@@ -1,0 +1,43 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ANALISIS SPASIAL DENGAN TEKNIK STATISTIKA",
+    "section": "",
+    "text": "Kata Pengantar\nSains data berkaitan dengan menemukan jawaban atas pertanyaan berdasarkan data yang tersedia, dan mengomunikasikan upaya tersebut. Selain menunjukkan hasil, komunikasi ini melibatkan pembagian data yang digunakan, namun juga memaparkan jalur yang mengarah pada jawaban dengan cara yang komprehensif dan dapat direproduksi. Hal ini juga mengakui fakta bahwa data yang tersedia mungkin tidak cukup untuk menjawab pertanyaan, dan bahwa jawaban apa pun bergantung pada pengumpulan data atau protokol pengambilan sampel yang digunakan.\nBuku ini memperkenalkan dan menjelaskan konsep-konsep yang mendasari data spasial: titik, garis, poligon, raster, cakupan, atribut geometri, kubus data, sistem referensi, serta konsep tingkat tinggi termasuk bagaimana atribut berhubungan dengan geometri dan bagaimana hal ini mempengaruhi analisis. Hubungan atribut dengan geometri disebut tumpuan, dan perubahan tumpuan juga mengubah karakteristik atribut. Beberapa proses pembuatan data berlangsung terus-menerus di ruang angkasa, dan dapat diamati di mana saja. Lainnya bersifat terpisah, diamati dalam wadah bertessel. Dalam analisis data spasial modern, metode tesellated sering digunakan untuk semua data, meluas ke seluruh partisi lama hingga ke proses titik, model geostatistik, dan model kisi. Dukungan (dan pemahaman tentang dukungan) inilah yang mendasari pentingnya keterwakilan spasial. Buku ini ditujukan bagi para ilmuwan data yang ingin menguasai penggunaan data spasial dalam analisis mereka. Sebagai contoh bagaimana melakukan sesuatu, ia menggunakan R. Di edisi mendatang kami berharap dapat memperluasnya dengan contoh menggunakan Python (lihat, misalnya, Bivand 2022a) dan Julia.\nSeringkali data spasial dianggap bermuara pada pengamatan garis bujur dan lintang dalam kumpulan data, dan memperlakukannya sama seperti variabel lainnya. Hal ini membawa risiko hilangnya peluang dan analisis yang tidak berarti. Contohnya,\npasangan koordinat sebenarnya adalah pasangan, dan kehilangan maknanya jika diperlakukan secara independen Daripada memiliki lokasi titik, observasi sering kali dikaitkan dengan garis spasial, area, atau sel grid Jarak spasial antar observasi seringkali tidak direpresentasikan dengan baik melalui jarak garis lurus, namun dengan jarak lingkaran besar, jarak melalui jaringan, atau dengan mengukur usaha yang diperlukan untuk berpindah dari A ke B.",
+    "crumbs": [
+      "Kata Pengantar"
+    ]
+  },
+  {
+    "objectID": "index.html#versi-cetak-buku-ini",
+    "href": "index.html#versi-cetak-buku-ini",
+    "title": "ANALISIS SPASIAL DENGAN TEKNIK STATISTIKA",
+    "section": "Versi cetak buku ini",
+    "text": "Versi cetak buku ini",
+    "crumbs": [
+      "Kata Pengantar"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "ANALISIS SPASIAL DENGAN TEKNIK STATISTIKA",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements",
+    "crumbs": [
+      "Kata Pengantar"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Appendix A — Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  }
+]
