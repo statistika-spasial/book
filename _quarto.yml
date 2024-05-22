@@ -1,0 +1,61 @@
+project:
+  type: book
+  output-dir: docs
+
+prefer-html: true
+
+book:
+  title: "ANALISIS SPASIAL DENGAN TEKNIK STATISTIKA"
+  subtitle: "Studi Kasus dan Ilustrasi R"
+  author: 
+    - name: Prof. Dr. Ir. Anik Djuraidah, MS.
+      email: anikdjuraidah@apps.ipb.ac.id
+      affiliations:
+      - name: Departemen Statistika IPB University
+        city: Bogor
+        country: Indonesia
+  search: true
+  chapters:
+    - index.qmd
+    - part: part-1.qmd
+      chapters: 
+        - 01-SpasialAutoRegresifModel.qmd 
+        - 02-SpasialDurbinModel.qmd
+        - 03-SpasialAutoRegresifBinomialNegatif.qmd 
+    - part: part-2.qmd
+      chapters: 
+        - 04-RegresiTerbobotiGeografis.qmd 
+        - 05-RegresiTerbobotiGeografisCampuran.qmd
+        - 06-RegresiTerbobotiGeografisBinomialNegatif.qmd
+    - part: part-3.qmd
+      chapters: 
+        - 07-Data.qmd 
+        - 08-MetodeAnalisis.qmd
+        - 09-TahapanR.qmd    
+    - part: part-4.qmd
+      chapters: 
+        - 10-ModelDependensiSpasial.qmd 
+        - 11-ModelKeragamanSpasial.qmd
+  appendices: 
+    - summary.qmd
+    - references.qmd
+
+bibliography: 
+  - packages.bib
+  - book.bib
+  - references.bib
+
+format:
+  html:
+    number-depth: 2
+    theme: cosmo
+    code-fold: false
+    code-summary: "Code"
+    code-tools: true
+    code-link: true
+    knitr:
+      opts_chunk:
+        out.width: 100%
+        R.options:
+          width: 68
+
