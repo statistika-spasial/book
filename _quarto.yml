@@ -17,6 +17,7 @@ book:
   search: true
   chapters:
     - index.qmd
+    - intro.qmd
     - part: part-1.qmd
       chapters: 
         - 01-SpasialAutoRegresifModel.qmd 
@@ -36,6 +37,7 @@ book:
       chapters: 
         - 10-ModelDependensiSpasial.qmd 
         - 11-ModelKeragamanSpasial.qmd
+    - 12-ModelEpidemiologi.qmd
   appendices: 
     - summary.qmd
     - references.qmd
@@ -44,6 +46,17 @@ bibliography:
   - packages.bib
   - book.bib
   - references.bib
+
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+      dplyr.print_min: 6
+      dplyr.print_max: 6
+      stars.crs: 17
+      digits: 3
 
 format:
   html:

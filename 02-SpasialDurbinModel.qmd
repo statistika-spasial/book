@@ -1,1 +1,444 @@
 # Spasial Durbin Model 
+
+## Data
+
+Ilustrasi model spasial Durbin (spatial Durbin model/SDM) bersumber dari penelitian Febriyanti et al. (2016). Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan  DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada Tabel berikut. Data dan peta ilustrasi SDM tersedia pada tautan https://ipb.link/sdm. 
+
+\begin{table}[h]
+  \centering
+  \caption{Daftar Peubah dan Sumber Data}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    Peubah & Nama Peubah & Sumber \\
+    \hline
+    Y & Persentase penderita infeksi virus Dengue per kecamatan di DKI Jakarta tahun 2014 (\%) & Dinas Kesehatan DKI Jakarta 2014 \\
+    X1 & Kepadatan penduduk per kecamatan di DKI Jakarta tahun 2014 (Jiwa/km\textsuperscript{2}) & Dinas Kependudukan dan Pencatatan Sipil DKI Jakarta 2014 \\
+    X2 & Rasio rumah sakit dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
+    X3 & Rasio puskesmas dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
+    X4 & Rasio poliklinik dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
+    X5 & Rasio tempat praktik dokter dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
+    X6 & Rasio apotek dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
+    X7 & Rasio keluarga yang tinggal di pemukiman kumuh dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
+    X8 & Rasio sekolah dasar dengan sekolah lain per kecamatan di DKI Jakarta tahun 2014 & Potensi Desa (PODES) BPS RI 2014 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+## Metode Analisis
+
+Langkah-langkah metode analisis data pada penelitian ini adalah sebagai berikut:
+1. Melakukan eksplorasi data untuk memeriksa multikolinearitas pada prediktor yang digunakan dengan variance inflation factors (VIF), menentukan efek spasial secara eksploratif dengan peta tematik, dan memeriksa pencilan spasial dengan menggunakan diagram kotak garis dan plot pencaran Moran.
+2. Membuat matriks pembobot spasial (W) dengan metode pembobotan Queen Contiguity.
+3. Menguji efek  spasial: 
+a) depedensi spasial pada peubah respon dan sisaan dari model regresi linier berganda dengan indeks Moran.
+b) Menguji kehomogenan ragam sisaan model regresi klasik dengan uji Breusch-Pagan. 
+c) Pemilihan model depedensi spasial menggunakan uji pengganda Lagrange (Lagrange Multiplier/LM).
+4. Memeriksa efek depedensi spasial pada prediktor dengan indeks Moran.
+5. Menduga parameter model regresi spasial sesuai hasil butir (3) dan (4). 
+6. Memeriksa asumsi pada model regresi spasial pada butir (5).
+7. Mengukur kebaikan model dengan pseudo R2 dan AIC.
+8. Interpretasi Model terbaik.
+
+## Tahapan Analisis Data dengan R
+
+Tahap awal dalam pemodelan menggunakan R Studio adalah melakukan input data dan install package yang dibutuhkan untuk analisis.
+
+### Package
+```{r}
+library(readxl) 		# Untuk import data format .xlsx
+library(car)		# Untuk menghitung nilai VIF
+library(spdep)		# Untuk pemodelan dependensi spasial
+library(spatialreg)	# Untuk pemodelan dependensi spasial
+library(lmtest)		# Untuk pengujian asumsi
+library(DataExplorer)	# Untuk visualisasi data
+library(ggplot2)	      	# Untuk visualisasi data
+library(dplyr)		# Untuk mengolah dataset
+```
+
+### Input Data
+
+```{r}
+#Set Lokasi File
+#Input Data
+DBD<-read_excel('data/3100_data.xlsx')
+#
+#Menyamakan tipe data dengan file shp
+DBD$KODE2010 <- as.character(DBD$KODE2010) 
+#
+#Rasio SD per 100 000 penduduk
+DBD$PSD <- (DBD$SD/DBD$JUMLAHPENDUDUK)*100000 
+colnames(DBD)[c(23, 17, 18, 19, 20, 21, 22, 24)] <- c('X1','X2','X3','X4','X5','X6','X7','X8')
+#
+#Merapikan dataframe
+DBD <- DBD[c('KODE2010', 'KECAMATAN', 'Y', 'X1', 'X2', 'X3', 'X4', 
+     'X5', 'X6', 'X7', 'X8')]
+# 
+#Input peta SHP
+shp.jkt <- read_sf("data/shp/3100_kec.shp")
+# 
+#Menggabungkan Data ke file SHP
+gabung = inner_join(shp.jkt, DBD, by = "KODE2010")
+longlat=st_coordinates(st_centroid(gabung))
+gabung
+```
+
+### Eksplorasi Data
+
+Untuk mengetahui multikolinearitas pada prediktor digunakan yaitu VIF. Syntax  untuk menghitung VIF setiap prediktor sebagai berikut:
+
+```{r}
+#Multikolinier 
+model<-lm(Y~X1+X2+X3+X4+X5+X6+X7+X8,data=gabung)
+as.matrix(vif(model))
+```
+
+Pada output terlihat nilai VIF dari prediktor lebih kecil dari 10, sehingga disimpulkan tidak terdapat multikolinearitas pada prediktor. \ \
+\ \
+Untuk mengetahui efek dependensi spasial pada persentase kasus DBD secara eksploratif dapat menggunakan peta pola tebaran data. Syntax untuk membuat peta tematik sebagai berikut:
+
+```{r}
+#Peta persentase kasus DBD
+plotDBD = ggplot(data=gabung) +
+  geom_sf(aes(fill = cut(Y, 
+       breaks = c(0.12, 0.18, 0.25, 0.40, 0.73, 1.54)))) +
+       geom_text(aes(longlat[,1],
+       longlat[,2],label=KECAMATAN.y),size=2) +
+       scale_fill_brewer("Presentase Kasus DBD", 
+       palette = "RdPu", 
+       labels = c("0.12% - 0.18%", "0.18% - 0.25%", 
+       "0.25% - 0.40%", "0.40% - 0.73%", "0.73% - 1.54%"), 
+       direction = 1) +
+  xlab("") +
+  ylab("") 
+plotDBD
+```
+
+Pada peta persentase kasus DBD terlihat kecamatan yang berdekatan memiliki warna yang sama. Warna pada peta tampak mengelompok.Perubahan warna antar kelompok mengikuti gradasi warna, yaitu kecamatan yang warna yang pekat berdekatan dengan warna yang lebih terang. Hal ini menunjukkan bahwa autokorelasi spasial pada persentase kasus DBD DKI Jakarta tahun 2014. \ \
+\ \
+Pemeriksaan pencilan pada peubah Y menggunakan diagram kotak-garis. Syntax untuk membuat diagram kotak-garis sebagai berikut:
+
+```{r}
+#Membuat fungsi untuk menemukan outlier
+findoutlier <- function(x) {
+  return(x < quantile(x, .25) - 1.5*IQR(x) | x > quantile(x, .75) + 1.5*IQR(x))
+}
+# 
+#Membuat kolom baru pada data DBD yang berisi Nama Kecamatan j
+#jika nilai Y merupakan outlier, dan NA jika bukan outlier
+DBD <- DBD %>%
+  mutate(outlier = ifelse(findoutlier(Y), KECAMATAN, NA))
+#
+#Membuat boxplot
+ggplot(DBD) + aes(x = Y, y = "") + 
+  geom_boxplot(fill = "#EF562D") +
+  geom_text(aes(x = Y-0.95, y = 1.06, label = outlier),
+            na.rm=TRUE, hjust=-.2)+
+  xlim(c(0.1,0.8))+
+  labs(x = "Y", y ="") + theme_light()
+```
+
+Pada diagram kotak garis terlihat bahwa kecamatan Kelapa Gading memiliki persentase penderita infeksi virus Dengue tertinggi dan merupakan amatan pencilan. Oleh karena  itu, pemeriksaan efek depedensi spasial dan efek keheterogenan spasial dilakukan pada data semua kecamatan (Model 1) dan data tanpa Kecamatan Kelapa Gading (Model 2).
+
+### Matriks Pembobot Spasial
+
+Syntax untuk membuat matriks pembobot spasial langka ratu untuk Model 1 dan Model 2 sebagai berikut:
+
+```{r}
+#Membentuk dataset tanpa pencilan
+gabung2 <- gabung[gabung$KECAMATAN.y != "KELAPA GADING",]
+#
+#Matriks pembobot spasial Model 1
+sf_use_s2(FALSE)
+W.queen <- poly2nb(gabung,queen=T)
+queen.listw <- nb2listw(W.queen,style='W', zero.policy = TRUE)
+summary(queen.listw)
+#
+#Matriks pembobot spasial Model 2
+W.queen2 <- poly2nb(gabung2,queen=T)
+queen.listw2 <- nb2listw(W.queen2,style='W', zero.policy = TRUE)
+summary(queen.listw2)
+```
+
+### Efek Spasial
+
+Perhitungan indeks Moran dan uji efek heterogenitas spasial dilakukan pada Model 1 dan Model 2 dengan menggunakan syntax sebagai berikut:
+
+```{r}
+#Regresi untuk Model 1 
+Model1 <- lm(Y~X1+X2+X3+X4+X5+X6+X7+X8,data=gabung)
+#
+#Pemeriksaan efek spasial Model 1
+moran1 <- moran.test(gabung$Y,queen.listw)
+moranerr1 <- lm.morantest(model, queen.listw)
+bp1 <- bptest(model)
+#
+#Regresi untuk Model 2 
+model2 <- lm(Y~X1+X2+X3+X4+X5+X6+X7+X8,data=gabung2)
+#
+#Pemeriksaan efek spasial Model 2
+moran2 <- moran.test(gabung2$Y,queen.listw2)
+moranerr2 <- lm.morantest(model2, queen.listw2)
+bp2 <- bptest(model2)
+#
+#Ringkasan
+IMoran <- data.frame(matrix(c("Nilai p Uji BP",
+          "Indeks Moran Y", "Nilai p Indeks Moran Y",
+          "Indeks Moran Sisaan", 
+          "Nilai p Indeks Moran Sisaan",
+          round(bp1$p.value,2), 
+          round(moran1$estimate[1], 2), 
+          round(moran1$p.value, 2),
+          round(moranerr1$estimate[1], 2), 
+          round(moranerr1$p.value, 2),
+          round(bp2$p.value,2),
+          round(moran2$estimate[1], 2), 
+          round(moran2$p.value, 2),
+          round(moranerr2$estimate[1], 2), 
+          round(moranerr2$p.value, 2)),
+          byrow = F, ncol = 3, 
+          dimnames = list(1:5, c("Keterangan", 
+          "Model 1", "Model 2"))))
+IMoran
+```
+
+Berdasarkan hasil uji Indeks Moran dan Uji Breusch Pagan dapat disimpulkan bahwa Model 1 memiliki ragam yang heterogen. Untuk Model 2 hanya memiliki autokorelasi spasial pada peubah responnya. Pada ilustrasi ini hanya dilakukan pembahasan untuk Model 2. \ \
+\ \
+Pengujian efek dependensi spasial menggunakan uji Lagrange Multiplier dengan syntax sebagai berikut:
+```{r}
+#Uji LM dan RLM
+spasial2<-lm.RStests(model2,queen.listw2,test=c('LMlag','LMerr','RLMlag', 'RLMerr','SARMA'))
+summary(spasial2)
+```
+Pada output uji efek spasial terlihat nilai-p dari uji RLMlag dan RLMerr bernilai lebih kecil dari α=0.05 dan SARMA lebih besar dari α=0.05. Berdasarkan hasil uji LM ini maka model yang sesuai untuk data adalah SAR.
+
+
+### Efek dependensi spasial pada prediktor
+
+Penentuan prediktor yang mempunyai autokorelasi spasial menggunakan indeks Moran dengan syntax sebagai berikut:
+
+```{r}
+#Uji Moran pada prediktor
+moranx1 <- moran.test(gabung2$X1, queen.listw2)
+moranx2 <- moran.test(gabung2$X2, queen.listw2)
+moranx3 <- moran.test(gabung2$X3, queen.listw2)
+moranx4 <- moran.test(gabung2$X4, queen.listw2)
+moranx5 <- moran.test(gabung2$X5, queen.listw2)
+moranx6 <- moran.test(gabung2$X6, queen.listw2)
+moranx7 <- moran.test(gabung2$X7, queen.listw2)
+moranx8 <- moran.test(gabung2$X8, queen.listw2)
+MoranX <- data.frame(matrix(c("X1", "X2", "X3", "X4",
+          "X5", "X6", "X7", "X8", 
+          round(moranx1$estimate[1], 2), 
+          round(moranx2$estimate[1], 2),
+          round(moranx3$estimate[1], 2),
+          round(moranx4$estimate[1], 2),
+          round(moranx5$estimate[1], 2),
+          round(moranx6$estimate[1], 2),
+          round(moranx7$estimate[1], 2),
+          round(moranx8$estimate[1], 2),
+          round(moranx1$p.value, 2), 
+          round(moranx2$p.value, 2),
+          round(moranx3$p.value, 2),
+          round(moranx4$p.value, 2),
+          round(moranx5$p.value, 2),
+          round(moranx6$p.value, 2),
+          round(moranx7$p.value, 2),
+          round(moranx8$p.value, 2)),
+          byrow = F, ncol = 3, dimnames = list(1:8, 
+          c("Peubah", "Nilai Indeks Moran", "Nilai-p"))))
+MoranX
+```
+
+Pada output indeks Moran tampak peubah X1, X3, X5, dan X8 memiliki autokorelasi spasial yang nyata. Oleh karena itu, pada model spasial perlu ditambahkan lag-prediktor (WX). Berdasarkan hasil uji LM dan uji indeks Moran pada prediktor, maka model spasial yang dipilih adalah SAR dan SDM.
+
+### Pendugaan parameter model SAR dan SDM
+
+Pendugaan parameter model SAR menggunakan syntax sebagai berikut:
+
+```{r}
+#Model SAR
+modelSAR<-lagsarlm(model2,queen.listw2,data=gabung2)
+summary(modelSAR,Nagelkerke=T)
+```
+
+Pemodelan SDM dengan lag-prediktor X1, X3, X5, dan X8 menggunakan syntax berikut:
+
+```{r}
+#Model SDM
+modelSDM <- lagsarlm(model2, queen.listw2, data = gabung2,
+            Durbin = ~X1+X3+X5+X8)
+summary(modelSDM,Nagelkerke=T)
+```
+
+### Pemeriksaan asumsi model regresi spasial
+Pemeriksaan asumsi untuk Model SAR dan SDM yang terdiri dari kenormalan sisaan, homogenitas ragam, dan kebebasan sisan menggunakan syntax sebagai berikut:
+
+```{r}
+#Asumsi model SAR
+sisaan.sar<-resid(modelSAR)
+normSAR <- shapiro.test(sisaan.sar)
+heteSAR <- bptest.Sarlm(modelSAR)
+autoSAR <- moran.test(sisaan.sar, listw = queen.listw2)
+asumsiSAR <- data.frame(matrix(c("Kenormalan", 
+             "Kehomogenan ragam", "Autokorelasi", 
+             round(normSAR$p.value, 2),
+             round(heteSAR$p.value, 2),
+             round(autoSAR$p.value, 2)), 
+             byrow = F, ncol = 2, dimnames = list(1:3,
+             c("Uji", "p-value"))))
+asumsiSAR$Kesimpulan <- ifelse(asumsiSAR$p.value > 0.05, "Terpenuhi", "Tidak Terpenuhi")
+asumsiSAR
+```
+
+```{r}
+#Asumsi model SDM
+sisaan.SDM<-resid(modelSDM)
+normSDM <- shapiro.test(sisaan.SDM)
+heteSDM <- bptest.Sarlm(modelSDM)
+autoSDM <- moran.test(sisaan.SDM, listw = queen.listw2)
+asumsiSDM <- data.frame(matrix(c("Kenormalan",
+             "Kehomogenan ragam", "Autokorelasi", 
+             round(normSDM$p.value, 2), 
+             round(heteSDM$p.value, 2),
+             round(autoSDM$p.value, 2)), 
+             byrow = F, ncol = 2, dimnames = list(1:3,
+             c("Uji", "p-value"))))
+asumsiSDM$Kesimpulan <- ifelse(asumsiSDM$p.value > 0.05, "Terpenuhi", "Tidak Terpenuhi")
+asumsiSDM
+```
+Berdasarkan hasil pemeriksaan asumsi pada sisaan,  model SDM memenuhi seluruh asumsi.
+
+### Evaluasi kebaikan model
+
+Evaluasi kebaikan model menggunakan nilai AIC dan Pseudo R-Square dengan syntax sebagai berikut:
+```{r}
+#Nilai AIC dan Pseudo-R2
+sumSAR <- summary(modelSAR, Nagelkerke=T)
+sumSDM <- summary(modelSDM, Nagelkerke=T)
+evaluasi <- data.frame(matrix(
+  c("Model SAR", "Model SDM",
+    round(AIC(modelSAR),2),
+    round(AIC(modelSDM),2),
+    round(sumSAR$NK,2), round(sumSDM$NK,2)),
+  byrow = F, nrow = 2, ncol = 3))
+colnames(evaluasi) <- c("Model", "AIC", "Pseudo-R2")
+evaluasi
+```
+
+Pada output terlihat model SDM dibandingkan SAR mempunyai nilai AIC yang lebih rendah dan nilai Pseudo R-Square yang lebih tinggi. \ \
+\ \
+Pemilihan model yang lebih efisien antara SAR dan SDM dapat menggunakan uji Likelihood Ratio (LR). Uji LR antara SAR dan SDM digunakan untuk mengetahui efek penambahan lag-X pada SAR. Syntax untuk uji LR sebagai berikut:
+
+```{r}
+#Uji LR SAR dan SDM
+LR.Sarlm(modelSAR, modelSDM)
+```
+
+Pada output uji LR terlihat model SDM lebih efisien dibandingkan model SAR. Model SDM memenuhi semua asumsi pada sisaan, sehingga model SDM merupakan model yang terbaik untuk data infeksi virus Dengue di Jakarta.
+
+### Interpretasi model terbaik
+Interpretasi model SDM dilakukan dengan menentukan nilai efek marginal dari setiap prediktor dengan syntax sebagai berikut:
+
+```{r}
+#Efek marginal
+options(scipen = 2, digits = 2) # Untuk mengatur digit desimal dari output yang akan dikeluarkan
+impacts(modelSDM, listw = queen.listw2)
+```
+
+Berdasarkan output efek marginal terlihat bahwa TE positif tertinggi (0.0129226) berasal dari peubah rasio sekolah dasar per 100.000 penduduk (X8), sedangkan TE negatif terkecil (-0.0195118) berasal dari peubah rasio puskesmas per 100.000 penduduk (X3). TE peubah rasio sekolah dasar per 100.000 penduduk (X8) sebesar 0.0129226, artinya kenaikan satu persen X8 akan menaikkan sebanyak 0.0129226 persen kasus infeksi virus Dengue. DE X8 merupakan total efek dari perubahan pada X8 di suatu lokasi berdampak pada lokasi yang sama sebesar 0.0030936. IE X8 sebesar 0.0098290 merupakan total efek dari perubahan satu persen X8 di di suatu lokasi pada lokasi lainnya. \ \
+\ \ 
+Efek marginal dapat diuraikan berdasarkan daerah dan peubahnya. Berikut syntax yang dapat digunakan untuk menguraikan efek marginal untuk prediktor X8:
+
+```{r}
+#Membuat Matriks S untuk Peubah X8
+rho <- modelSDM$rho
+beta_hat <- coef(modelSDM)[-c(1,11,12,13,14)]
+A <- invIrW(queen.listw2, rho = rho) # (I - rho*W)^{-1}
+b8 <- as.numeric(beta_hat[9])
+i <- diag(1, ncol = 41, nrow = 41)
+wgamma <- listw2mat(queen.listw2) %*% (coef(modelSDM)[14] * i)
+mat_s <-  A %*% (b8 * i + wgamma)
+
+#Efek langsung
+de <- diag(mat_s)
+
+#Efek tidak langsung
+diag(mat_s) <- 0
+ie <- rowSums(mat_s) 
+
+#Efek total
+te <- de+ie
+```
+
+Efek marginal dari prediktor X1 untuk setiap kecamatan DKI Jakarta berbeda-beda. Untuk memudahkan penyajian efek marginal disajikan dalam bentuk peta dengan syntax sebagai berikut:
+
+```{r}
+#Menggabungkan hasil uraian efek dengan data peta
+gabung2$de <- de
+gabung2$ie <- ie
+gabung2$te <- te
+
+#Plot Efek Langsung X8
+ggplot(gabung2) + aes(fill = de) + geom_sf(size = 0.05) +
+  scale_fill_continuous("Efek Langsung X8", trans = 'reverse',
+  guide = guide_legend(reverse = F))+ xlab("") + ylab("")
+```
+
+Pada peta efek langsung terlihat mayoritas kecamatan di DKI Jakarta berwarna biru gelap (nilai DE 0.028-0.032), kecuali kecamatan Koja, Cilincing dan Cakung yang berwarna biru muda (nilai DE 0.022).
+
+```{r}
+#Plot Efek Tidak Langsung X8
+ggplot(gabung2) + aes(fill = ie) + geom_sf(size = 0.05) +
+  scale_fill_continuous("Efek Tidak Langsung X8", 
+  trans = 'reverse', guide = guide_legend(reverse = F))+
+  xlab("") + ylab("")
+```
+
+Pada peta efek langsung terlihat mayoritas kecamatan di DKI Jakarta berwarna biru muda (nilai DE 0.0099-0.0102), kecuali kecamatan Koja, Cilincing dan Cakung yang berwarna biru tua (nilai DE 0.0105). Peta DE dan peta IE tampak merupakan kebalikan satu sama lain.
+
+```{r}
+#Plot Total Efek X8
+ggplot(gabung2) + aes(fill = te) + geom_sf(size = 0.05) +
+  scale_fill_continuous("Total Efek X8", 
+  guide = guide_legend(reverse = F))+ xlab("") + ylab("")
+```
+
+Untuk menentukan efek besarnya perubahan Y di kecamatan DKI Jakarta akibat kenaikan nilai prediktor X8 di Kecamatan Kalideres sebesar 1% dapat dihitung menggunakan syntax sebagai berikut:
+
+```{r}
+#Nilai dugaan Y sebelum ada kenaikan nilai
+DBD_up <- DBD[DBD$KECAMATAN != 'KELAPA GADING',]
+X <- cbind(1, DBD_up[,4:11]) 
+gamma <- matrix(coef(modelSDM)[11:14], nrow = 4)
+X_2 <- DBD_up[, c('X1', 'X3', 'X5', 'X8')]
+X_2 <- as.matrix(X_2)
+matw <- listw2mat(queen.listw2)
+y_hat_pre <- A %*% (crossprod(t(X), beta_hat) + (matw %*% X_2 %*% gamma))
+
+#Data Kec. Kalideres naikdengan kenaikan nilai
+DBD_new <- DBD_up
+DBD_new[DBD_new$KECAMATAN == 'KALI DERES', "X8"] <- 72
+
+#Nilai dugaan Y setelah ada kenaikan nilai
+X_d <- cbind(1, DBD_new[,4:11]) 
+X_2_d <- DBD_new[, c('X1', 'X3', 'X5', 'X8')]
+X_2_d <- as.matrix(X_2_d)
+y_hat_post <- A %*% (crossprod(t(X_d), beta_hat) + 
+             (matw %*% X_2_d %*% gamma))
+
+#Perubahan nilai
+delta_y <- y_hat_post - y_hat_pre
+DBD_new$delta_y <- delta_y
+
+#Plot perubahan nilai
+gabung.new = inner_join(shp.jkt, DBD_new, by = "KODE2010")
+ggplot(gabung.new) +
+  aes(fill = delta_y) +
+  geom_sf(size = 0.05) +
+  scale_fill_continuous("Perubahan Nilai",trans = 'reverse',
+                        guide = guide_legend(reverse = F))+
+  xlab("") +
+  ylab("")
+```
+
+Pada peta perubahan nilai Y (kasus DBD) terlihat Kecamatan Kalideres (warna biru pekat) mempunyai kenaikan kasus DBD terbesar dibandingkan kecamatan lainnya di DKI Jakarta. Pada peta terlihat tetangga Kecamatan Kalideres tidak mengalami perubahan kasus DBD. Beberapa kecamatan yang letaknya jauh dari Kecamatan Kalideres tampak berwarna biru tua, hal ini karena adanya efek dependensi pada  prediktor X8. 

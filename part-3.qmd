@@ -1,1 +1,1 @@
-# MIXED SAR-GWR
+# Mixed SAR-GWR
