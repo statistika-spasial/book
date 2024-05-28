@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ANALISIS SPASIAL DENGAN TEKNIK STATISTIKA - 7&nbsp; Data</title>
+<title>PEMODELAN STATISTIKA PADA DATA GEOSPASIAL - 7&nbsp; Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">ANALISIS SPASIAL DENGAN TEKNIK STATISTIKA</a> 
+      <a href="./">PEMODELAN STATISTIKA PADA DATA GEOSPASIAL</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-ModelEpidemiologi.html" class="sidebar-item-text sidebar-link">
+  <a href="./ModelEpidemiologi.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Model Epidemiologi</span></span></a>
   </div>
 </li>
@@ -321,6 +321,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>Data dalam penelitian ini berasal dari data sekunder Badan Pusat Statistik (BPS) mengenai aspek sosial ekonomi masyarakat dengan objek amatan 514 Kabupaten/Kota se-Indonesia pada tahun 2021. Berikut adalah peubah-peubah yang digunakan:</p>
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 56%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Peubah</th>
+<th>Keterangan</th>
+<th>Satuan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Y</td>
+<td>PDRB atas Dasar Harga Konstan menurut Pengeluaran</td>
+<td>Rupiah</td>
+</tr>
+<tr class="even">
+<td>X1</td>
+<td>Persentase Penduduk Miskin (P0) Menurut Kabupaten/Kota</td>
+<td>Persen</td>
+</tr>
+<tr class="odd">
+<td>X2</td>
+<td>Rata-rata Lama Sekolah Penduduk usia &gt; 15 tahun</td>
+<td>Tahun</td>
+</tr>
+<tr class="even">
+<td>X3</td>
+<td>Pengeluaran per Kapita Disesuaikan</td>
+<td>Ribu Rupiah/Orang/Tahun</td>
+</tr>
+<tr class="odd">
+<td>X4</td>
+<td>Indeks Pembangunan Manusia</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>X5</td>
+<td>Umur Harapan Hidup</td>
+<td>Tahun</td>
+</tr>
+<tr class="odd">
+<td>X6</td>
+<td>Persentase Rumah Tangga yang Memiliki Akses terhadap Sanitasi Layak</td>
+<td>Persen</td>
+</tr>
+<tr class="even">
+<td>X7</td>
+<td>Persentase Rumah Tangga yang Memiliki Akses terhadap Air Minum Layak</td>
+<td>Persen</td>
+</tr>
+<tr class="odd">
+<td>X8</td>
+<td>Tingkat Pengangguran Terbuka</td>
+<td>Persen</td>
+</tr>
+<tr class="even">
+<td>X9</td>
+<td>Tingkat Partisipasi Angkatan Kerja</td>
+<td>Persen</td>
+</tr>
+</tbody>
+</table>
 
 
 <!-- -->
@@ -799,7 +866,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Data dalam penelitian ini berasal dari data sekunder Badan Pusat Statistik (BPS) mengenai aspek sosial ekonomi masyarakat dengan objek amatan 514 Kabupaten/Kota se-Indonesia pada tahun 2021. Berikut adalah peubah-peubah yang digunakan:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>| Peubah | Keterangan                                                | Satuan                              |</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>|--------|----------------------------------------------------------|-------------------------------------|</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>| Y      | PDRB atas Dasar Harga Konstan menurut Pengeluaran       | Rupiah                              |</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>| X1     | Persentase Penduduk Miskin (P0) Menurut Kabupaten/Kota | Persen                              |</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>| X2     | Rata-rata Lama Sekolah Penduduk usia &gt; 15 tahun         | Tahun                               |</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>| X3     | Pengeluaran per Kapita Disesuaikan                       | Ribu Rupiah/Orang/Tahun             |</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>| X4     | Indeks Pembangunan Manusia                               | -                                   |</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>| X5     | Umur Harapan Hidup                                       | Tahun                               |</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>| X6     | Persentase Rumah Tangga yang Memiliki Akses terhadap Sanitasi Layak | Persen                    |</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>| X7     | Persentase Rumah Tangga yang Memiliki Akses terhadap Air Minum Layak | Persen                    |</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>| X8     | Tingkat Pengangguran Terbuka                             | Persen                              |</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>| X9     | Tingkat Partisipasi Angkatan Kerja                       | Persen                              |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

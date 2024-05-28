@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.552">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>ANALISIS SPASIAL DENGAN TEKNIK STATISTIKA - 4&nbsp; Regresi Terboboti Geografis</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,7 +53,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -74,8 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -101,17 +96,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -122,13 +137,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">ANALISIS SPASIAL DENGAN TEKNIK STATISTIKA</a> 
     </div>
@@ -140,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kata Pengantar</span></a>
@@ -160,8 +171,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-SpasialAutoRegresifModel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Spasial Autoregresif Model</span></span></a>
@@ -180,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part-2.html" class="sidebar-item-text sidebar-link">
@@ -189,8 +200,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-RegresiTerbobotiGeografis.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresi Terboboti Geografis</span></span></a>
@@ -209,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part-3.html" class="sidebar-item-text sidebar-link">
@@ -218,8 +229,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-Data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data</span></span></a>
@@ -238,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part-4.html" class="sidebar-item-text sidebar-link">
@@ -247,8 +258,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10-ModelDependensiSpasial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
@@ -261,10 +272,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12-ModelEpidemiologi.html" class="sidebar-item-text sidebar-link">
+  <a href="./ModelEpidemiologi.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Model Epidemiologi</span></span></a>
   </div>
 </li>
@@ -276,8 +287,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
@@ -290,21 +301,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">4.1</span> Data</a></li>
+  <li><a href="#tahapan-analisis-data" id="toc-tahapan-analisis-data" class="nav-link" data-scroll-target="#tahapan-analisis-data"><span class="header-section-number">4.2</span> Tahapan Analisis Data</a></li>
+  <li>
+<a href="#tahapan-analisis-data-dengan-r" id="toc-tahapan-analisis-data-dengan-r" class="nav-link" data-scroll-target="#tahapan-analisis-data-dengan-r"><span class="header-section-number">4.3</span> Tahapan Analisis Data dengan R</a>
+  <ul class="collapse">
+<li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package">Package</a></li>
+  <li><a href="#input-data" id="toc-input-data" class="nav-link" data-scroll-target="#input-data">Input Data</a></li>
+  <li><a href="#eksplorasi-data" id="toc-eksplorasi-data" class="nav-link" data-scroll-target="#eksplorasi-data">Eksplorasi Data</a></li>
+  <li><a href="#uji-efek-spasial" id="toc-uji-efek-spasial" class="nav-link" data-scroll-target="#uji-efek-spasial">Uji Efek Spasial</a></li>
+  <li><a href="#melakukan-pendugaan-parameter-rtg" id="toc-melakukan-pendugaan-parameter-rtg" class="nav-link" data-scroll-target="#melakukan-pendugaan-parameter-rtg">Melakukan pendugaan parameter RTG</a></li>
+  <li><a href="#uji-asumsi-model-rtg-terbaik" id="toc-uji-asumsi-model-rtg-terbaik" class="nav-link" data-scroll-target="#uji-asumsi-model-rtg-terbaik">Uji asumsi model RTG terbaik</a></li>
+  <li><a href="#uji-signifikansi-parameter-pada-tiap-lokasi-amatan" id="toc-uji-signifikansi-parameter-pada-tiap-lokasi-amatan" class="nav-link" data-scroll-target="#uji-signifikansi-parameter-pada-tiap-lokasi-amatan">Uji signifikansi parameter pada tiap lokasi amatan</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-2.html">Model Keragaman Spasial</a></li><li class="breadcrumb-item"><a href="./04-RegresiTerbobotiGeografis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresi Terboboti Geografis</span></a></li></ol></nav>
-<div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresi Terboboti Geografis</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-2.html">Model Keragaman Spasial</a></li><li class="breadcrumb-item"><a href="./04-RegresiTerbobotiGeografis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresi Terboboti Geografis</span></a></li></ol></nav><div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">
+<span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regresi Terboboti Geografis</span>
+</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -318,16 +344,674 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
+</header><section id="data" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="data">
+<span class="header-section-number">4.1</span> Data</h2>
+<p>Ilustrasi RTG dirujuk dari hasil penelitian Hujjah et al.&nbsp;(2020). Data yang digunakan dalam penelitian bersumber dari Badan Pusat Statistik (BPS) pada 118 kabupaten/kota di Pulau Jawa tahun 2015. Peubah respon dalam penelitian ini adalah persentase penduduk miskin kabupaten/kota di Pulau Jawa, sedangkan prediktor yang digunakan selengkapnya tertera Tabel berikut. Data dan peta selengkapnya dapat diakses pada tautan <a href="https://ipb.link/gwr">https://ipb.link/gwr</a>.</p>
+<p><span class="math display">\[
+\begin{table}[ht]
+\centering
+\caption{Keterangan Peubah}
+\begin{tabular}{|c|p{8cm}|}
+  \hline
+  \textbf{Peubah} &amp; \textbf{Keterangan peubah} \\
+  \hline
+  Y &amp; Persentase penduduk miskin (\%) \\
+  \hline
+  X1 &amp; PDRB (Milyar) \\
+  \hline
+  X2 &amp; Persentase masyarakat tamat SD kebawah (\%) \\
+  \hline
+  X3 &amp; Angka melek huruf (\%) \\
+  \hline
+  X4 &amp; Pengeluaran perkapita (\%) \\
+  \hline
+  X5 &amp; Banyak rumah tangga penerima raskin (\%) \\
+  \hline
+  X6 &amp; Penduduk kelompok umur 15-64 (\%) \\
+  \hline
+  X7 &amp; Harapan lama sekolah (tahun) \\
+  \hline
+\end{tabular}
+\end{table}
+\]</span></p>
+</section><section id="tahapan-analisis-data" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="tahapan-analisis-data">
+<span class="header-section-number">4.2</span> Tahapan Analisis Data</h2>
+<p>Tahapan analisis yang digunakan untuk mencapai tujuan dari penelitian ini adalah sebagai berikut:</p>
+<ol type="1">
+<li>
+<strong>Menentukan Pola Hubungan:</strong>
+<ul>
+<li>Menentukan pola hubungan antara prediktor dengan peubah respon menggunakan plot pencaran.</li>
+<li>Menyeleksi prediktor dengan menggunakan <em>Variance Inflation Factor</em> (VIF).</li>
+</ul>
+</li>
+<li>
+<strong>Uji Efek Spasial:</strong>
+<ul>
+<li>Uji Lagrange Multiplier (LM) untuk mengetahui efek dependensi spasial.</li>
+<li>Uji Breusch-Pagan (BP) untuk mengetahui efek keragaman spasial.</li>
+</ul>
+</li>
+<li>
+<strong>Menentukan Model RTG:</strong>
+<ul>
+<li>Menentukan nilai lebar jendela optimum pada kernel normal tetap dan adaptif berdasarkan nilai <em>Cross Validation</em> (CV) yang minimum.</li>
+<li>Menduga Parameter RTG dengan metode kuadrat terkecil terboboti.</li>
+<li>Menguji kebaikan model RTG dengan melakukan uji F.</li>
+<li>Menentukan kebaikan model berdasarkan nilai koefisien determinasi (<span class="math inline">\(R^2\)</span>) dan AIC.</li>
+</ul>
+</li>
+<li>
+<strong>Pemeriksaan Asumsi pada Sisaan RTG:</strong>
+<ul>
+<li>Pemeriksaan sisaan, yaitu sisaan menyebar normal, bersifat homogenan, dan independen.</li>
+</ul>
+</li>
+<li>
+<strong>Interpretasi Koefisien RTG:</strong>
+<ul>
+<li>Interpretasi koefisien RTG dengan menggunakan peta.</li>
+</ul>
+</li>
+</ol></section><section id="tahapan-analisis-data-dengan-r" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="tahapan-analisis-data-dengan-r">
+<span class="header-section-number">4.3</span> Tahapan Analisis Data dengan R</h2>
+<p>Untuk komputasi RTG, berikut daftar package yang diinstall:</p>
+<section id="package" class="level3"><h3 class="anchored" data-anchor-id="package">Package</h3>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span>        <span class="co"># Untuk menghitung nilai VIF</span></span>
+<span><span class="co"># Loading required package: carData</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span>      <span class="co"># Untuk pemodelan dependensi spasial</span></span>
+<span><span class="co"># Warning: package 'spdep' was built under R version 4.2.3</span></span>
+<span><span class="co"># Loading required package: spData</span></span>
+<span><span class="co"># To access larger datasets in this package, install the</span></span>
+<span><span class="co"># spDataLarge package with: `install.packages('spDataLarge',</span></span>
+<span><span class="co"># repos='https://nowosad.github.io/drat/', type='source')`</span></span>
+<span><span class="co"># Loading required package: sf</span></span>
+<span><span class="co"># Linking to GEOS 3.9.1, GDAL 3.4.3, PROJ 7.2.1; sf_use_s2() is TRUE</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span> <span class="co"># Untuk pemodelan dependensi spasial</span></span>
+<span><span class="co"># Loading required package: Matrix</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># Attaching package: 'spatialreg'</span></span>
+<span><span class="co"># The following objects are masked from 'package:spdep':</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co">#     get.ClusterOption, get.coresOption, get.mcOption,</span></span>
+<span><span class="co">#     get.VerboseOption, get.ZeroPolicyOption,</span></span>
+<span><span class="co">#     set.ClusterOption, set.coresOption, set.mcOption,</span></span>
+<span><span class="co">#     set.VerboseOption, set.ZeroPolicyOption</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">lmtest</span><span class="op">)</span>     <span class="co"># Untuk pengujian asumsi</span></span>
+<span><span class="co"># Loading required package: zoo</span></span>
+<span><span class="co"># Warning: package 'zoo' was built under R version 4.2.3</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># Attaching package: 'zoo'</span></span>
+<span><span class="co"># The following objects are masked from 'package:base':</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co">#     as.Date, as.Date.numeric</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>        <span class="co"># Untuk visualisasi data</span></span>
+<span><span class="co"># Warning: package 'ggplot2' was built under R version 4.2.2</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/classInt/">classInt</a></span><span class="op">)</span>       <span class="co"># Untuk membuat selang nilai</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rsbivand/spgwr/">spgwr</a></span><span class="op">)</span>      <span class="co"># Untuk membentuk model GWR</span></span>
+<span><span class="co"># Warning: package 'spgwr' was built under R version 4.2.3</span></span>
+<span><span class="co"># Loading required package: sp</span></span>
+<span><span class="co"># NOTE: This package does not constitute approval of GWR</span></span>
+<span><span class="co"># as a method of spatial analysis; see example(gwr)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="input-data" class="level3"><h3 class="anchored" data-anchor-id="input-data">Input Data</h3>
+<p>Input data dilakukan dengan syntax berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Set Lokasi File</span></span>
+<span><span class="co">#Input Data</span></span>
+<span><span class="va">miskin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">'data/data_kemiskinan_2015.csv'</span><span class="op">)</span></span>
+<span><span class="va">miskin</span><span class="op">$</span><span class="va">Wilayah</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">miskin</span><span class="op">$</span><span class="va">Nama.Wilayah</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#Input peta SHP</span></span>
+<span><span class="va">IDN</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"data/shp/jawa.shp"</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#Menggabungkan Data ke file SHP</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co"># Spherical geometry (s2) switched off</span></span>
+<span><span class="va">gabung</span> <span class="op">=</span> <span class="fu"><a href="https://edzer.github.io/sp/reference/merge.html">merge</a></span><span class="op">(</span><span class="va">IDN</span>, <span class="va">miskin</span>, by.x <span class="op">=</span> <span class="st">"KABKOT"</span>, by.y <span class="op">=</span> <span class="st">"Wilayah"</span>, </span>
+<span>         all.x <span class="op">=</span> <span class="cn">F</span>, all.y <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="va">longlat</span><span class="op">=</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html">st_coordinates</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">gabung</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Warning in st_centroid.sf(gabung): st_centroid assumes attributes</span></span>
+<span><span class="co"># are constant over geometries of x</span></span>
+<span><span class="co"># Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =</span></span>
+<span><span class="co"># of_largest_polygon): st_centroid does not give correct centroids for</span></span>
+<span><span class="co"># longitude/latitude data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gabung</span><span class="op">)</span></span>
+<span><span class="co"># Simple feature collection with 6 features and 16 fields</span></span>
+<span><span class="co"># Geometry type: MULTIPOLYGON</span></span>
+<span><span class="co"># Dimension:     XY</span></span>
+<span><span class="co"># Bounding box:  xmin: 107 ymin: -8.03 xmax: 113 ymax: -6.69</span></span>
+<span><span class="co"># Geodetic CRS:  WGS 84</span></span>
+<span><span class="co">#          KABKOT PROVNO KABKOTNO                   PROVINSI ID2013</span></span>
+<span><span class="co"># 1       BANDUNG     32       04                 JAWA BARAT   3204</span></span>
+<span><span class="co"># 2       BANDUNG     32       73                 JAWA BARAT   3273</span></span>
+<span><span class="co"># 3 BANDUNG BARAT     32       17                 JAWA BARAT   3217</span></span>
+<span><span class="co"># 4     BANGKALAN     35       26                 JAWA TIMUR   3526</span></span>
+<span><span class="co"># 5  BANJARNEGARA     33       04                JAWA TENGAH   3304</span></span>
+<span><span class="co"># 6        BANTUL     34       02 DAERAH ISTIMEWA YOGYAKARTA   3402</span></span>
+<span><span class="co">#    Nama.Wilayah Longitude Latitude    Y   X1    X2    X3   X4   X5</span></span>
+<span><span class="co"># 1       Bandung       108    -7.13  8.0 24.2 15.25 100.0 57.7 55.7</span></span>
+<span><span class="co"># 2       Bandung       108    -7.13  8.0 24.2 15.25 100.0 57.7 55.7</span></span>
+<span><span class="co"># 3 Bandung Barat       107    -6.87 12.7 20.9  7.92 100.0 60.5 60.6</span></span>
+<span><span class="co"># 4     Bangkalan       113    -7.04 22.6 20.1 43.29  86.6 62.0 22.2</span></span>
+<span><span class="co"># 5  Banjarnegara       110    -7.38 18.4 17.6 34.74  97.5 58.8 67.5</span></span>
+<span><span class="co"># 6        Bantul       110    -7.92 16.3 19.9 32.46  97.9 49.1 43.7</span></span>
+<span><span class="co">#     X6   X7                       geometry</span></span>
+<span><span class="co"># 1 66.1 12.1 MULTIPOLYGON (((108 -6.81, ...</span></span>
+<span><span class="co"># 2 66.1 12.1 MULTIPOLYGON (((108 -6.86, ...</span></span>
+<span><span class="co"># 3 65.2 11.4 MULTIPOLYGON (((108 -6.73, ...</span></span>
+<span><span class="co"># 4 64.9 11.6 MULTIPOLYGON (((113 -6.89, ...</span></span>
+<span><span class="co"># 5 66.3 11.4 MULTIPOLYGON (((110 -7.2, 1...</span></span>
+<span><span class="co"># 6 69.0 14.7 MULTIPOLYGON (((110 -7.77, ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="eksplorasi-data" class="level3"><h3 class="anchored" data-anchor-id="eksplorasi-data">Eksplorasi Data</h3>
+<p>Eksplorasi data yang dilakukan meliputi pemeriksaan mulitkolinearitas dan pemetaan nilai persentase penduduk miskin. Pemeriksaan multikolinearitas dilakukan dengan syntax berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Multikolinier</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, data <span class="op">=</span> <span class="va">gabung</span><span class="op">)</span></span>
+<span>         <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/vif.html">vif</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#    [,1]</span></span>
+<span><span class="co"># X1 1.17</span></span>
+<span><span class="co"># X2 2.63</span></span>
+<span><span class="co"># X3 2.55</span></span>
+<span><span class="co"># X4 1.85</span></span>
+<span><span class="co"># X5 1.35</span></span>
+<span><span class="co"># X6 1.21</span></span>
+<span><span class="co"># X7 1.43</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nilai VIF dari semua prediktor berkisar antara 1.34 sampai 3.62, sehingga disimpulkan tidak terdapat multikolinearitas. &nbsp;<br>
+&nbsp;<br>
+Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dalam 4 (empat) kelas interval menggunakan style = ’kmeans. Syntax untuk membuat kelas interval sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Membuat kelas interval data kemiskinan</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html">classIntervals</a></span><span class="op">(</span><span class="va">gabung</span><span class="op">$</span><span class="va">Y</span>, n <span class="op">=</span> <span class="fl">4</span>, style <span class="op">=</span> <span class="st">'kmeans'</span><span class="op">)</span></span>
+<span><span class="co"># style: kmeans</span></span>
+<span><span class="co">#   one of 82,160 possible partitions of this variable into 4 classes</span></span>
+<span><span class="co"># [5.09,8.77) [8.77,12.1) [12.1,16.9) [16.9,25.7] </span></span>
+<span><span class="co">#          14          35          37          17</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan dengan menggunakan syntax sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Peta kemiskinan</span></span>
+<span><span class="va">cc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'#fbb4b9'</span>, <span class="st">'#f768a1'</span>, <span class="st">'#ae017e'</span>, <span class="st">'#551c53'</span><span class="op">)</span></span>
+<span><span class="va">plot.miskin</span> <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">gabung</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">Y</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.68</span>, <span class="fl">6.865</span>, <span class="fl">11.055</span>, </span>
+<span>  <span class="fl">16.505</span>, <span class="fl">25.69</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span><span class="st">"Persentase Kemiskinan"</span>, values <span class="op">=</span> <span class="va">cc</span>, </span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1.68% - 6.865%"</span>, <span class="st">"6.865% - 11.055%"</span>,</span>
+<span>  <span class="st">"11.055% - 16.505%"</span>, <span class="st">"16.505% - 25.69%"</span><span class="op">)</span>,</span>
+<span>  guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>reverse <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> </span>
+<span><span class="va">plot.miskin</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="04-RegresiTerbobotiGeografis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="uji-efek-spasial" class="level3"><h3 class="anchored" data-anchor-id="uji-efek-spasial">Uji Efek Spasial</h3>
+<ol type="a">
+<li>Membentuk matriks pembobot spasial</li>
+</ol>
+<p>Pada ilustrasi ini digunakan matriks pembobot spasial KNN dengan K = 3 dengan syntax sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Membuat matriks bobot K-NN</span></span>
+<span><span class="va">k</span><span class="op">&lt;-</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knearneigh.html">knearneigh</a></span><span class="op">(</span><span class="va">longlat</span>, k<span class="op">=</span><span class="fl">3</span>, longlat <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">k1</span><span class="op">&lt;-</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knn2nb.html">knn2nb</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span></span>
+<span><span class="va">klist</span><span class="op">&lt;-</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">k1</span><span class="op">)</span></span>
+<span><span class="va">klist</span></span>
+<span><span class="co"># Characteristics of weights list object:</span></span>
+<span><span class="co"># Neighbour list object:</span></span>
+<span><span class="co"># Number of regions: 103 </span></span>
+<span><span class="co"># Number of nonzero links: 309 </span></span>
+<span><span class="co"># Percentage nonzero weights: 2.91 </span></span>
+<span><span class="co"># Average number of links: 3 </span></span>
+<span><span class="co"># Non-symmetric neighbours list</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># Weights style: W </span></span>
+<span><span class="co"># Weights constants summary:</span></span>
+<span><span class="co">#     n    nn  S0   S1  S2</span></span>
+<span><span class="co"># W 103 10609 103 60.8 429</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li>Uji Lagrange Multiplier</li>
+</ol>
+<p>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier menggunakan syntax sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji LM dan RLM</span></span>
+<span><span class="va">lmtestmod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.LMtests</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">klist</span>, zero.policy <span class="op">=</span> <span class="cn">T</span>, </span>
+<span>        test <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="co"># Please update scripts to use lm.RStests in place of lm.LMtests</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lmtestmod</span><span class="op">)</span></span>
+<span><span class="co">#   Rao's score (a.k.a Lagrange multiplier) diagnostics for</span></span>
+<span><span class="co">#   spatial dependence</span></span>
+<span><span class="co"># data:  </span></span>
+<span><span class="co"># model: lm(formula = Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7,</span></span>
+<span><span class="co"># data = gabung)</span></span>
+<span><span class="co"># test weights: listw</span></span>
+<span><span class="co">#  </span></span>
+<span><span class="co">#          statistic parameter p.value    </span></span>
+<span><span class="co"># RSerr        19.39         1 1.1e-05 ***</span></span>
+<span><span class="co"># RSlag        18.66         1 1.6e-05 ***</span></span>
+<span><span class="co"># adjRSerr      1.82         1    0.18    </span></span>
+<span><span class="co"># adjRSlag      1.09         1    0.30    </span></span>
+<span><span class="co"># SARMA        20.48         2 3.6e-05 ***</span></span>
+<span><span class="co"># ---</span></span>
+<span><span class="co"># Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Hasil uji LMlag, LMerr, RLMerr, dan SARMA memiliki nilai-p yang lebih kecil dari α=0.05. Untuk menentukan efek dependensi pada data cukup diperhatikan pada hasil uji robustLM yang nyata pada α=0.05. Berdasarkan hasil uji RLM dapat disimpulkan terdapat dependensi spasial pada galat.</p>
+<ol start="3" type="a">
+<li>Uji Breusch-Pagan</li>
+</ol>
+<p>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial. Syntax uji ini sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji Breusch-Pagan</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/bptest.html">bptest</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co">#   studentized Breusch-Pagan test</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># data:  model</span></span>
+<span><span class="co"># BP = 13, df = 7, p-value = 0.06</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nilai-p uji Breusch-Pagan lebih kecil dari α=0.05, sehingga dapat disimpulkan bawa terdapat keragaman spasial pada data. Hasil butir (2b) dan (2c) menunjukkan bahwa pada data yang digunakan mengandung efek dependensi pada galat dan efek keragaman. Pada ilustrasi ini, efek dependensi diabaikan dan hanya memperhatikan efek keragaman spasial. Model yang digunakan untuk menangani keragaman spasial adalah regresi terboboti geografis (RTG). &nbsp;<br></p>
+</section><section id="melakukan-pendugaan-parameter-rtg" class="level3"><h3 class="anchored" data-anchor-id="melakukan-pendugaan-parameter-rtg">Melakukan pendugaan parameter RTG</h3>
+<ol type="a">
+<li>Menentukan nilai lebar jendela optimum</li>
+</ol>
+<p>Lebar jendela dari fungsi kernel dapat bersifat adaptif atau tetap. Penentuan lebar jendela optimum menggunakan validasi silang (CV). Untuk menentukan lebar jendela tetap pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Mengubah class data PDRB menjadi class SpatialPointsDataFrame</span></span>
+<span><span class="va">miskin.sp</span> <span class="op">&lt;-</span> <span class="va">miskin</span></span>
+<span><span class="fu"><a href="https://edzer.github.io/sp/reference/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Longitude'</span>, <span class="st">'Latitude'</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#Menentukan nilai bandwidth fixed gaussian </span></span>
+<span><span class="va">bw1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsbivand.github.io/spgwr/reference/gwr.cv.html">gwr.sel</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, </span>
+<span>       data <span class="op">=</span> <span class="va">miskin.sp</span>,longlat <span class="op">=</span> <span class="cn">T</span>, adapt <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="co"># Bandwidth: 381 CV score: 1321 </span></span>
+<span><span class="co"># Bandwidth: 616 CV score: 1371 </span></span>
+<span><span class="co"># Bandwidth: 236 CV score: 1311 </span></span>
+<span><span class="co"># Bandwidth: 213 CV score: 1315 </span></span>
+<span><span class="co"># Bandwidth: 285 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 322 CV score: 1308 </span></span>
+<span><span class="co"># Bandwidth: 285 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 284 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 284 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 284 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 284 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 284 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 284 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 284 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 284 CV score: 1305 </span></span>
+<span><span class="co"># Bandwidth: 284 CV score: 1305</span></span>
+<span><span class="va">bw1</span></span>
+<span><span class="co"># [1] 284</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Untuk menentukan lebar jendela adaptif pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Menentukan lebar jendela adaptive gaussian</span></span>
+<span><span class="va">bw2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsbivand.github.io/spgwr/reference/gwr.cv.html">gwr.sel</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, </span>
+<span>       data <span class="op">=</span> <span class="va">miskin.sp</span>,longlat <span class="op">=</span> <span class="cn">T</span>, adapt <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="co"># Adaptive q: 0.382 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.618 CV score: 1331 </span></span>
+<span><span class="co"># Adaptive q: 0.236 CV score: 1329 </span></span>
+<span><span class="co"># Adaptive q: 0.424 CV score: 1309 </span></span>
+<span><span class="co"># Adaptive q: 0.373 CV score: 1307 </span></span>
+<span><span class="co"># Adaptive q: 0.393 CV score: 1307 </span></span>
+<span><span class="co"># Adaptive q: 0.383 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.379 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.381 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.381 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.381 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.381 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.381 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.381 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.381 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.381 CV score: 1306 </span></span>
+<span><span class="co"># Adaptive q: 0.381 CV score: 1306</span></span>
+<span><span class="va">bw2</span></span>
+<span><span class="co"># [1] 0.381</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="a">
+<li>Menduga parameter RTG</li>
+</ol>
+<p>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat tetap dilakukan dengan menggunakan syntax berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Pendugaan parameter RTG Fixed Gaussian</span></span>
+<span><span class="va">modgwr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsbivand.github.io/spgwr/reference/gwr.html">gwr</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, </span>
+<span>        data <span class="op">=</span> <span class="va">miskin.sp</span>,bandwidth<span class="op">=</span><span class="va">bw1</span>, hatmatrix<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">modgwr1</span></span>
+<span><span class="co"># Call:</span></span>
+<span><span class="co"># gwr(formula = Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7, data = miskin.sp, </span></span>
+<span><span class="co">#     bandwidth = bw1, hatmatrix = TRUE)</span></span>
+<span><span class="co"># Kernel function: gwr.Gauss </span></span>
+<span><span class="co"># Fixed bandwidth: 284 </span></span>
+<span><span class="co"># Summary of GWR coefficient estimates at data points:</span></span>
+<span><span class="co">#                  Min.  1st Qu.   Median  3rd Qu.     Max. Global</span></span>
+<span><span class="co"># X.Intercept. 71.64250 71.64291 71.64336 71.64368 71.64419  71.64</span></span>
+<span><span class="co"># X1           -0.00227 -0.00227 -0.00227 -0.00227 -0.00227   0.00</span></span>
+<span><span class="co"># X2           -0.00880 -0.00880 -0.00880 -0.00880 -0.00880  -0.01</span></span>
+<span><span class="co"># X3           -0.46262 -0.46262 -0.46262 -0.46261 -0.46261  -0.46</span></span>
+<span><span class="co"># X4            0.02389  0.02391  0.02393  0.02394  0.02396   0.02</span></span>
+<span><span class="co"># X5            0.10363  0.10363  0.10363  0.10364  0.10364   0.10</span></span>
+<span><span class="co"># X6           -0.33893 -0.33892 -0.33892 -0.33891 -0.33890  -0.34</span></span>
+<span><span class="co"># X7            0.12023  0.12024  0.12024  0.12025  0.12026   0.12</span></span>
+<span><span class="co"># Number of data points: 118 </span></span>
+<span><span class="co"># Effective number of parameters (residual: 2traceS - traceS'S): 8 </span></span>
+<span><span class="co"># Effective degrees of freedom (residual: 2traceS - traceS'S): 110 </span></span>
+<span><span class="co"># Sigma (residual: 2traceS - traceS'S): 3.21 </span></span>
+<span><span class="co"># Effective number of parameters (model: traceS): 8 </span></span>
+<span><span class="co"># Effective degrees of freedom (model: traceS): 110 </span></span>
+<span><span class="co"># Sigma (model: traceS): 3.21 </span></span>
+<span><span class="co"># Sigma (ML): 3.1 </span></span>
+<span><span class="co"># AICc (GWR p. 61, eq 2.33; p. 96, eq. 4.21): 622 </span></span>
+<span><span class="co"># AIC (GWR p. 96, eq. 4.22): 610 </span></span>
+<span><span class="co"># Residual sum of squares: 1137 </span></span>
+<span><span class="co"># Quasi-global R2: 0.603</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat adaptif dilakukan dengan menggunakan syntax berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Pendugaan parameter RTG Adaptive Gaussian</span></span>
+<span><span class="va">modgwr2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsbivand.github.io/spgwr/reference/gwr.html">gwr</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, </span>
+<span>     data <span class="op">=</span> <span class="va">miskin.sp</span>,adapt<span class="op">=</span><span class="va">bw2</span>, hatmatrix<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">modgwr2</span></span>
+<span><span class="co"># Call:</span></span>
+<span><span class="co"># gwr(formula = Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7, data = miskin.sp, </span></span>
+<span><span class="co">#     adapt = bw2, hatmatrix = TRUE)</span></span>
+<span><span class="co"># Kernel function: gwr.Gauss </span></span>
+<span><span class="co"># Adaptive quantile: 0.381 (about 44 of 118 data points)</span></span>
+<span><span class="co"># Summary of GWR coefficient estimates at data points:</span></span>
+<span><span class="co">#                   Min.   1st Qu.    Median   3rd Qu.      Max.</span></span>
+<span><span class="co"># X.Intercept. 23.363476 35.135103 44.598202 49.628117 66.066298</span></span>
+<span><span class="co"># X1           -0.008387 -0.004279 -0.000960  0.000148  0.001057</span></span>
+<span><span class="co"># X2           -0.046471 -0.013779  0.014497  0.044178  0.075466</span></span>
+<span><span class="co"># X3           -0.443799 -0.342696 -0.233574 -0.196681 -0.140880</span></span>
+<span><span class="co"># X4           -0.183275 -0.119927  0.144968  0.336282  0.442372</span></span>
+<span><span class="co"># X5            0.036957  0.047140  0.086035  0.155074  0.172139</span></span>
+<span><span class="co"># X6           -0.435163 -0.379993 -0.344504 -0.317770 -0.280135</span></span>
+<span><span class="co"># X7            0.073159  0.290455  0.473494  0.701423  0.878044</span></span>
+<span><span class="co">#              Global</span></span>
+<span><span class="co"># X.Intercept.  71.64</span></span>
+<span><span class="co"># X1             0.00</span></span>
+<span><span class="co"># X2            -0.01</span></span>
+<span><span class="co"># X3            -0.46</span></span>
+<span><span class="co"># X4             0.02</span></span>
+<span><span class="co"># X5             0.10</span></span>
+<span><span class="co"># X6            -0.34</span></span>
+<span><span class="co"># X7             0.12</span></span>
+<span><span class="co"># Number of data points: 118 </span></span>
+<span><span class="co"># Effective number of parameters (residual: 2traceS - traceS'S): 18.6 </span></span>
+<span><span class="co"># Effective degrees of freedom (residual: 2traceS - traceS'S): 99.4 </span></span>
+<span><span class="co"># Sigma (residual: 2traceS - traceS'S): 2.89 </span></span>
+<span><span class="co"># Effective number of parameters (model: traceS): 15.3 </span></span>
+<span><span class="co"># Effective degrees of freedom (model: traceS): 103 </span></span>
+<span><span class="co"># Sigma (model: traceS): 2.85 </span></span>
+<span><span class="co"># Sigma (ML): 2.66 </span></span>
+<span><span class="co"># AICc (GWR p. 61, eq 2.33; p. 96, eq. 4.21): 604 </span></span>
+<span><span class="co"># AIC (GWR p. 96, eq. 4.22): 581 </span></span>
+<span><span class="co"># Residual sum of squares: 832 </span></span>
+<span><span class="co"># Quasi-global R2: 0.709</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Untuk menampilkan 5 baris pertama dari koefisien RTG menggunakan syntax sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Koefisien RTG Fixed Gaussian</span></span>
+<span><span class="va">hasil</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">modgwr1</span><span class="op">$</span><span class="va">SDF</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">hasil</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#   X.Intercept.       X1      X2     X3     X4    X5     X6   X7</span></span>
+<span><span class="co"># 1         71.6 -0.00227 -0.0088 -0.463 0.0239 0.104 -0.339 0.12</span></span>
+<span><span class="co"># 2         71.6 -0.00227 -0.0088 -0.463 0.0239 0.104 -0.339 0.12</span></span>
+<span><span class="co"># 3         71.6 -0.00227 -0.0088 -0.463 0.0239 0.104 -0.339 0.12</span></span>
+<span><span class="co"># 4         71.6 -0.00227 -0.0088 -0.463 0.0239 0.104 -0.339 0.12</span></span>
+<span><span class="co"># 5         71.6 -0.00227 -0.0088 -0.463 0.0239 0.104 -0.339 0.12</span></span>
+<span><span class="co"># 6         71.6 -0.00227 -0.0088 -0.463 0.0239 0.104 -0.339 0.12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Koefisien RTG Adaptive Gaussian</span></span>
+<span><span class="va">hasil2</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">hasil2</span><span class="op">[</span>,<span class="fl">2</span><span class="op">:</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#   X.Intercept.        X1      X2     X3     X4    X5     X6    X7</span></span>
+<span><span class="co"># 1         45.8 -0.001199 0.03794 -0.198 -0.157 0.160 -0.332 0.537</span></span>
+<span><span class="co"># 2         52.5  0.000552 0.00476 -0.288 -0.101 0.150 -0.280 0.266</span></span>
+<span><span class="co"># 3         47.8  0.000808 0.00865 -0.234 -0.122 0.157 -0.284 0.296</span></span>
+<span><span class="co"># 4         47.1  0.000849 0.00899 -0.227 -0.123 0.157 -0.284 0.299</span></span>
+<span><span class="co"># 5         48.0  0.000806 0.00829 -0.237 -0.120 0.156 -0.283 0.294</span></span>
+<span><span class="co"># 6         48.6  0.000770 0.00784 -0.244 -0.118 0.155 -0.283 0.290</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Untuk menampilkan ringkasan koefisien RTG menggunakan syntax sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Membuat fungsi ringkasan RTG fixed Gaussian</span></span>
+<span><span class="va">summarycoef</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">data</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">min</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>,<span class="va">x</span><span class="op">]</span><span class="op">)</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="va">q1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>,<span class="va">x</span><span class="op">]</span>, probs <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="va">med</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>,<span class="va">x</span><span class="op">]</span>, probs <span class="op">=</span> <span class="fl">0.50</span><span class="op">)</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="va">mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>,<span class="va">x</span><span class="op">]</span><span class="op">)</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="va">q3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>,<span class="va">x</span><span class="op">]</span>, probs <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="va">max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>,<span class="va">x</span><span class="op">]</span><span class="op">)</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="va">variance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>,<span class="va">x</span><span class="op">]</span><span class="op">)</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="va">ran</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">max</span> <span class="op">-</span> <span class="va">min</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="va">iqr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>,<span class="va">x</span><span class="op">]</span><span class="op">)</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span>  <span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">min</span>, <span class="va">q1</span>, <span class="va">med</span>, <span class="va">mean</span>, <span class="va">q3</span>, <span class="va">max</span>, <span class="va">variance</span>, <span class="va">ran</span>, </span>
+<span>       <span class="va">iqr</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">x</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Ringkasan Koefisien RTG Fixed Gaussian</span></span>
+<span><span class="va">ringkasan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Min"</span>, <span class="st">"Q1"</span>, <span class="st">"Median"</span>, <span class="st">"Mean"</span>, </span>
+<span>         <span class="st">"Q3"</span>, <span class="st">"Max"</span>, <span class="st">"Variance"</span>, <span class="st">"Range"</span>, <span class="st">"IQR"</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">ringkasan</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"Statistics"</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">sumkoef</span> <span class="op">&lt;-</span> <span class="fu">summarycoef</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">hasil</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">hasil</span><span class="op">)</span></span>
+<span>  <span class="va">ringkasan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">ringkasan</span>, <span class="va">sumkoef</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">ringkasan</span></span>
+<span><span class="co">#   Statistics X.Intercept.        X1       X2        X3       X4</span></span>
+<span><span class="co"># 1        Min     7.16e+01 -0.002271 -8.8e-03 -0.462624 0.023894</span></span>
+<span><span class="co"># 2         Q1     7.16e+01 -0.002271 -8.8e-03 -0.462619 0.023909</span></span>
+<span><span class="co"># 3     Median     7.16e+01 -0.002271 -8.8e-03 -0.462616 0.023927</span></span>
+<span><span class="co"># 4       Mean     7.16e+01 -0.002271 -8.8e-03 -0.462616 0.023924</span></span>
+<span><span class="co"># 5         Q3     7.16e+01 -0.002271 -8.8e-03 -0.462613 0.023938</span></span>
+<span><span class="co"># 6        Max     7.16e+01 -0.002270 -8.8e-03 -0.462609 0.023956</span></span>
+<span><span class="co"># 7   Variance     0.00e+00  0.000000  0.0e+00  0.000000 0.000000</span></span>
+<span><span class="co"># 8      Range     1.69e-03  0.000001  5.0e-06  0.000015 0.000062</span></span>
+<span><span class="co"># 9        IQR     7.69e-04  0.000000  2.0e-06  0.000006 0.000029</span></span>
+<span><span class="co">#         X5        X6      X7</span></span>
+<span><span class="co"># 1 0.103625 -0.338932 1.2e-01</span></span>
+<span><span class="co"># 2 0.103630 -0.338922 1.2e-01</span></span>
+<span><span class="co"># 3 0.103634 -0.338917 1.2e-01</span></span>
+<span><span class="co"># 4 0.103634 -0.338916 1.2e-01</span></span>
+<span><span class="co"># 5 0.103639 -0.338908 1.2e-01</span></span>
+<span><span class="co"># 6 0.103644 -0.338901 1.2e-01</span></span>
+<span><span class="co"># 7 0.000000  0.000000 0.0e+00</span></span>
+<span><span class="co"># 8 0.000019  0.000031 2.9e-05</span></span>
+<span><span class="co"># 9 0.000009  0.000014 1.2e-05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Ringkasan Koefisien RTG adaptif Gaussian</span></span>
+<span><span class="va">ringkasan2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Min"</span>, <span class="st">"Q1"</span>, <span class="st">"Median"</span>, <span class="st">"Mean"</span>, </span>
+<span>           <span class="st">"Q3"</span>, <span class="st">"Max"</span>, <span class="st">"Variance"</span>, <span class="st">"Range"</span>, <span class="st">"IQR"</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">ringkasan2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"Statistics"</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">sumkoef</span> <span class="op">&lt;-</span> <span class="fu">summarycoef</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">hasil2</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">hasil2</span><span class="op">)</span></span>
+<span>  <span class="va">ringkasan2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">ringkasan2</span>, <span class="va">sumkoef</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">ringkasan2</span></span>
+<span><span class="co">#   Statistics X.Intercept.        X1       X2       X3     X4</span></span>
+<span><span class="co"># 1        Min         23.4 -0.008387 -0.04647 -0.44380 -0.183</span></span>
+<span><span class="co"># 2         Q1         35.1 -0.004279 -0.01378 -0.34270 -0.120</span></span>
+<span><span class="co"># 3     Median         44.6 -0.000960  0.01450 -0.23357  0.145</span></span>
+<span><span class="co"># 4       Mean         43.5 -0.002045  0.01570 -0.26842  0.119</span></span>
+<span><span class="co"># 5         Q3         49.6  0.000148  0.04418 -0.19668  0.336</span></span>
+<span><span class="co"># 6        Max         66.1  0.001057  0.07547 -0.14088  0.442</span></span>
+<span><span class="co"># 7   Variance        119.3  0.000007  0.00135  0.00838  0.051</span></span>
+<span><span class="co"># 8      Range         42.7  0.009444  0.12194  0.30292  0.626</span></span>
+<span><span class="co"># 9        IQR         14.5  0.004427  0.05796  0.14602  0.456</span></span>
+<span><span class="co">#        X5       X6     X7</span></span>
+<span><span class="co"># 1 0.03696 -0.43516 0.0732</span></span>
+<span><span class="co"># 2 0.04714 -0.37999 0.2905</span></span>
+<span><span class="co"># 3 0.08604 -0.34450 0.4735</span></span>
+<span><span class="co"># 4 0.09889 -0.34959 0.4844</span></span>
+<span><span class="co"># 5 0.15507 -0.31777 0.7014</span></span>
+<span><span class="co"># 6 0.17214 -0.28014 0.8780</span></span>
+<span><span class="co"># 7 0.00253  0.00216 0.0561</span></span>
+<span><span class="co"># 8 0.13518  0.15503 0.8049</span></span>
+<span><span class="co"># 9 0.10793  0.06222 0.4110</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Berdasarkan output ringkasan koefisien RTG terlihat nilai rataan koefisien X7 bernilai positif tertinggi pada kedua model (RTG dengan lebar jendela tetap dan adaptif). Untuk koefisien yang bernilai negatif terendah, terlihat X3 pada model dengan lebar jendela tetap dan X6 pada model adaptif. Ragam koefisien untuk model tetap Gaussian cenderung lebih rendah dibandingkan model adaptif Gaussian. Berdasarkan nilai IQR pada kedua model terlihat koefisien X4 memiliki nilai yang lebih tinggi dibandingkan koefisien lainnya, hal ini menunjukan bahwa koefisien X4 pada setiap kabupaten/kota di Jawa lebih beragam dibandingkan koefisien prediktor lainnya.</p>
+<ol start="3" type="a">
+<li>ANOVA</li>
+</ol>
+<p>Untuk membandingkan kebaikan antara model regresi linier berganda dengan RTG, digunakan perbandingan kuadrat tengah antara kedua model dengan analisis ragam (ANOVA). Berikut syntax yang digunakan untuk menampilkan ANOVA dan nilai-p dari statistik uji F:</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#ANOVA RTG Fixed Gaussian</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modgwr1</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co"># Analysis of Variance Table </span></span>
+<span><span class="co">#                      Df Sum Sq Mean Sq F value</span></span>
+<span><span class="co"># OLS Residuals   8.0e+00   1137                </span></span>
+<span><span class="co"># GWR Improvement 9.0e-04      0    37.3        </span></span>
+<span><span class="co"># GWR Residuals   1.1e+02   1137    10.3    3.61</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#Nilai p</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span><span class="fl">3.6086</span>, <span class="fl">0.0009</span>,<span class="fl">109.9991</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="co"># [1] 0.00263</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#ANOVA RTG Adaptive Gaussian</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co"># Analysis of Variance Table </span></span>
+<span><span class="co">#                   Df Sum Sq Mean Sq F value</span></span>
+<span><span class="co"># OLS Residuals    8.0   1137                </span></span>
+<span><span class="co"># GWR Improvement 10.6    304   28.62        </span></span>
+<span><span class="co"># GWR Residuals   99.4    832    8.38    3.42</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#Nilai p</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span><span class="fl">3.418</span>, <span class="fl">10.64</span>, <span class="fl">99.36</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="co"># [1] 0.000546</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nilai-p dari statistik uji F lebih kecil dari α=0.05, sehingga dapat disimpulkan bahwa model RTG mempunyai kuadrat tengah galat lebih kecil dari pada model regresi linier berganda.</p>
+<ol start="4" type="a">
+<li>Evaluasi kebaikan RTG</li>
+</ol>
+<p>Untuk mengetahui kebaikan model antara regresi linier berganda dengan RTG, selain menggunakan ANOVA (butir 3d), dapat juga dibandingkani nilai AIC dan R-square kedua model tersebut. Syntax untuk menghitung nilai AIC dan R-square sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Nilai AIC dan R-square</span></span>
+<span><span class="va">regsum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="va">eval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Regresi Linear'</span>, <span class="st">'RTG Fixed Gaussian'</span>, <span class="st">'RTG Adaptive Gaussian'</span>, <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>,</span>
+<span>                   <span class="va">modgwr1</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">AICh</span>,  <span class="va">modgwr2</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">AICh</span>,</span>
+<span>                   <span class="va">regsum</span><span class="op">$</span><span class="va">r.squared</span>, <span class="op">(</span><span class="fl">1</span> <span class="op">-</span><span class="op">(</span><span class="va">modgwr1</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">rss</span><span class="op">/</span></span>
+<span>                   <span class="va">modgwr1</span><span class="op">$</span><span class="va">gTSS</span><span class="op">)</span><span class="op">)</span>, <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">rss</span><span class="op">/</span></span>
+<span>                   <span class="va">modgwr2</span><span class="op">$</span><span class="va">gTSS</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">eval</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Model'</span>, <span class="st">'AIC'</span>, <span class="st">'R-square'</span><span class="op">)</span></span>
+<span><span class="va">eval</span><span class="op">$</span><span class="va">`R-square`</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">eval</span><span class="op">$</span><span class="va">`R-square`</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span></span>
+<span><span class="va">eval</span><span class="op">$</span><span class="va">AIC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">eval</span><span class="op">$</span><span class="va">AIC</span><span class="op">)</span></span>
+<span><span class="va">eval</span></span>
+<span><span class="co">#                   Model AIC R-square</span></span>
+<span><span class="co"># 1        Regresi Linear 552     41.3</span></span>
+<span><span class="co"># 2    RTG Fixed Gaussian 610     60.3</span></span>
+<span><span class="co"># 3 RTG Adaptive Gaussian 581     70.9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Berdasarkan nilai AIC dan R-Square, model RTG adaptif dibandingkan model regresi linier dan RTG tetap memiliki AIC terkecil dan R-square terbesar. Sehingga disimpulkan bahwa model RTG adaptif merupakan model terbaik untuk memodelkan data kemiskinan.</p>
+</section><section id="uji-asumsi-model-rtg-terbaik" class="level3"><h3 class="anchored" data-anchor-id="uji-asumsi-model-rtg-terbaik">Uji asumsi model RTG terbaik</h3>
+<p>Uji asumsi pada sisaan RTG meliputi uji normalitas, homogenitas ragam, dan kebebasan sisaan. Untuk uji normalitas menggunakan uji Shapiro-Wik dengan syntax sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji Normalitas</span></span>
+<span><span class="va">sisaan</span><span class="op">&lt;-</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">gwr.e</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test</a></span><span class="op">(</span><span class="va">sisaan</span><span class="op">)</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co">#   Shapiro-Wilk normality test</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># data:  sisaan</span></span>
+<span><span class="co"># W = 1, p-value = 0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Hasil uji normalitas menunjukkan statistik uji Shapiro-Wilk mempunyai nilai-p&gt; α=0.05, sehingga disimpulkan sebaran sisaan dapat dihampiri dengan sebaran normal.</p>
+<p>Uji homogenitas sisaan menggunakan uji Breusch-Pagan, dan hasil uji menunjukkan p-value = 0.04612&lt; α=0.05, sehingga dapat disimpulkan sisaan bersifat heterogen. Nilai-p dari uji B-P sisaan sudah lebih kecil dibandingkan pada model yaitu sebesar p-value = 0.00542. Dengan demikian dapat disimpulkan Model RTG mampu mengatasi heterogenitas.</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji Heteroskedastisitas</span></span>
+<span><span class="va">modres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">sisaan</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, data <span class="op">=</span> </span>
+<span>        <span class="va">miskin.sp</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/bptest.html">bptest</a></span><span class="op">(</span><span class="va">modres</span><span class="op">)</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co">#   studentized Breusch-Pagan test</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># data:  modres</span></span>
+<span><span class="co"># BP = 14, df = 7, p-value = 0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Uji kebebasan sisaan dilakukan menggunakan uji indeks Moran pada sisaan untuk mengetahui apakah ada autokorelasi spasial pada sisaan. Hasil uji Moran mempunyai p-value = 0.7293, sehingga dapat disimpulkan tidak terdapat autokorelasi spasial antar sisaan RTG.</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Uji Autokorelasi Galat</span></span>
+<span><span class="fu"><a href="https://rsbivand.github.io/spgwr/reference/gwr.morantest.html">gwr.morantest</a></span><span class="op">(</span><span class="va">modgwr2</span>, <span class="va">klist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="uji-signifikansi-parameter-pada-tiap-lokasi-amatan" class="level3"><h3 class="anchored" data-anchor-id="uji-signifikansi-parameter-pada-tiap-lokasi-amatan">Uji signifikansi parameter pada tiap lokasi amatan</h3>
+<p>Parameter dari model RTG pada tiap kabupaten/kota di Jawa diuji menggunakan uji t-student dengan syntax sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji T untuk koefisien RTG</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X1.pval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1</span><span class="op">)</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1_se</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X1.kesimpulan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X1.pval</span> <span class="op">&gt;</span> <span class="fl">0</span> , <span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X2.pval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X2</span><span class="op">)</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1_se</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X2.kesimpulan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X2.pval</span> <span class="op">&gt;</span> <span class="fl">0</span> , <span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X3.pval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X3</span><span class="op">)</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1_se</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X3.kesimpulan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X3.pval</span> <span class="op">&gt;</span> <span class="fl">0</span> , <span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X4.pval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X4</span><span class="op">)</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1_se</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X4.kesimpulan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X4.pval</span> <span class="op">&gt;</span> <span class="fl">0</span> , <span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X5.pval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X5</span><span class="op">)</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1_se</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X5.kesimpulan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X5.pval</span> <span class="op">&gt;</span> <span class="fl">0</span> , <span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X6.pval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X6</span><span class="op">)</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1_se</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X6.kesimpulan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X6.pval</span> <span class="op">&gt;</span> <span class="fl">0</span> , <span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X7.pval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X7</span><span class="op">)</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1_se</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X7.kesimpulan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X7.pval</span> <span class="op">&gt;</span> <span class="fl">0</span> , <span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Mengelompokkan peubah yang signifikan dari setiap wilayah</span></span>
+<span><span class="va">strings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">""</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X7.kesimpulan</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">{</span><span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X7"</span>,</span>
+<span>  <span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X6.kesimpulan</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">{</span><span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X6"</span>,</span>
+<span>  <span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X5.kesimpulan</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">{</span><span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X5"</span>,</span>
+<span>  <span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X4.kesimpulan</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">{</span><span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X4"</span>,</span>
+<span>  <span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X3.kesimpulan</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">{</span><span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X3"</span>,</span>
+<span>  <span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X2.kesimpulan</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">{</span><span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X2"</span>,</span>
+<span>  <span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X1.kesimpulan</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">{</span><span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X1"</span>,</span>
+<span>  <span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">==</span> <span class="st">""</span><span class="op">)</span> <span class="op">{</span><span class="va">strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Tidak ada"</span><span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">Peubah_Signifikan</span> <span class="op">&lt;-</span> <span class="va">strings</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">Peubah_Signifikan</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#                    [,1]</span></span>
+<span><span class="co"># X2 X3 X4 X5 X6 X7    89</span></span>
+<span><span class="co"># X2 X3 X5 X6 X7        2</span></span>
+<span><span class="co"># X3 X4 X5 X6 X7       27</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Output hasil uji t menunjukkan prediktor yang signifikan dan banyaknya kabupaten/kota yang masuk dalam kategorinya. Prediktor X1 tidak nyata pada semua kabupaten/kota di Jawa. Untuk memudahkan mengetahui kabupaten/kota sesuai kategori peubah yang nyata disajikan dalam peta. Syntax yang digunakan untuk membuat peta sebagai berikut:</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Peta koefisien RTG</span></span>
+<span><span class="va">Peubah</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">Wilayah</span>, <span class="va">miskin.sp</span><span class="op">$</span><span class="va">Peubah_Signifikan</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">Peubah</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Wilayah"</span>, <span class="st">"Peubah_Signifikan"</span><span class="op">)</span></span>
+<span><span class="va">gabung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://edzer.github.io/sp/reference/merge.html">merge</a></span><span class="op">(</span><span class="va">gabung</span>, <span class="va">Peubah</span>, by.x <span class="op">=</span> <span class="st">"KABKOT"</span>, by.y <span class="op">=</span> </span>
+<span>          <span class="st">"Wilayah"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gabung</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Peubah_Signifikan</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_hue.html">scale_fill_hue</a></span><span class="op">(</span>direction <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Peubah signifikan"</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="04-RegresiTerbobotiGeografis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Dari peta terlihat mayoritas kabupaten/kota di Jawa berwarna merah, menunjukkan prediktor X2 sampai X7 berpengaruh nyata. Beberapa kabupate/kota di bagian barat Provinsi Jawa Barat dan bagian tengah Provinsi Jawa Timur berwarna biru yang menunjukkan prediktor X1 dan X4 tidak nyata.</p>
 
 
 <!-- -->
 
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -786,9 +1470,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./part-2.html" class="pagination-link" aria-label="Model Keragaman Spasial">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Model Keragaman Spasial</span>
       </a>          
@@ -799,10 +1481,412 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Regresi Terboboti Geografis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Regresi Terboboti Geografis</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>Ilustrasi RTG dirujuk dari hasil penelitian Hujjah et al. (2020). Data yang digunakan dalam penelitian bersumber dari Badan Pusat Statistik (BPS) pada 118 kabupaten/kota di Pulau Jawa tahun 2015. Peubah respon dalam penelitian ini adalah persentase penduduk miskin kabupaten/kota di Pulau Jawa, sedangkan prediktor yang digunakan selengkapnya tertera Tabel berikut. Data dan peta selengkapnya dapat diakses pada tautan <span class="co">[</span><span class="ot">https://ipb.link/gwr</span><span class="co">](https://ipb.link/gwr)</span>.</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>\begin{table}<span class="co">[</span><span class="ot">ht</span><span class="co">]</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>\centering</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>\caption{Keterangan Peubah}</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>\begin{tabular}{|c|p{8cm}|}</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  \textbf{Peubah} &amp; \textbf{Keterangan peubah} <span class="sc">\\</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  Y &amp; Persentase penduduk miskin (\%) <span class="sc">\\</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  X1 &amp; PDRB (Milyar) <span class="sc">\\</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  X2 &amp; Persentase masyarakat tamat SD kebawah (\%) <span class="sc">\\</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  X3 &amp; Angka melek huruf (\%) <span class="sc">\\</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>  X4 &amp; Pengeluaran perkapita (\%) <span class="sc">\\</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>  X5 &amp; Banyak rumah tangga penerima raskin (\%) <span class="sc">\\</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  X6 &amp; Penduduk kelompok umur 15-64 (\%) <span class="sc">\\</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>  X7 &amp; Harapan lama sekolah (tahun) <span class="sc">\\</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>  \hline</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>\end{tabular}</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>\end{table}</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tahapan Analisis Data</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>Tahapan analisis yang digunakan untuk mencapai tujuan dari penelitian ini adalah sebagai berikut:</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Menentukan Pola Hubungan:**</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menentukan pola hubungan antara prediktor dengan peubah respon menggunakan plot pencaran.</span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menyeleksi prediktor dengan menggunakan *Variance Inflation Factor* (VIF).</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Uji Efek Spasial:**</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Uji Lagrange Multiplier (LM) untuk mengetahui efek dependensi spasial.</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Uji Breusch-Pagan (BP) untuk mengetahui efek keragaman spasial.</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Menentukan Model RTG:**</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menentukan nilai lebar jendela optimum pada kernel normal tetap dan adaptif berdasarkan nilai *Cross Validation* (CV) yang minimum.</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menduga Parameter RTG dengan metode kuadrat terkecil terboboti.</span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menguji kebaikan model RTG dengan melakukan uji F.</span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menentukan kebaikan model berdasarkan nilai koefisien determinasi ($R^2$) dan AIC.</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Pemeriksaan Asumsi pada Sisaan RTG:**</span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Pemeriksaan sisaan, yaitu sisaan menyebar normal, bersifat homogenan, dan independen.</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Interpretasi Koefisien RTG:**</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Interpretasi koefisien RTG dengan menggunakan peta.</span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tahapan Analisis Data dengan R</span></span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>Untuk komputasi RTG, berikut daftar package yang diinstall:</span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### Package</span></span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)        <span class="co"># Untuk menghitung nilai VIF</span></span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)      <span class="co"># Untuk pemodelan dependensi spasial</span></span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatialreg) <span class="co"># Untuk pemodelan dependensi spasial</span></span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)     <span class="co"># Untuk pengujian asumsi</span></span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)        <span class="co"># Untuk visualisasi data</span></span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classInt)       <span class="co"># Untuk membuat selang nilai</span></span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spgwr)      <span class="co"># Untuk membentuk model GWR</span></span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### Input Data</span></span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a>Input data dilakukan dengan syntax berikut:</span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a><span class="co">#Set Lokasi File</span></span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a><span class="co">#Input Data</span></span>
+<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>miskin <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/data_kemiskinan_2015.csv'</span>)</span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a>miskin<span class="sc">$</span>Wilayah <span class="ot">&lt;-</span> <span class="fu">toupper</span>(miskin<span class="sc">$</span>Nama.Wilayah)</span>
+<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a><span class="co">#Input peta SHP</span></span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a>IDN <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/shp/jawa.shp"</span>)</span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a><span class="co">#Menggabungkan Data ke file SHP</span></span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a>gabung <span class="ot">=</span> <span class="fu">merge</span>(IDN, miskin, <span class="at">by.x =</span> <span class="st">"KABKOT"</span>, <span class="at">by.y =</span> <span class="st">"Wilayah"</span>, </span>
+<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a>         <span class="at">all.x =</span> F, <span class="at">all.y =</span> F)</span>
+<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a>longlat<span class="ot">=</span><span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(gabung))</span>
+<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gabung)</span>
+<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a><span class="fu">### Eksplorasi Data</span></span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a>Eksplorasi data yang dilakukan meliputi pemeriksaan mulitkolinearitas dan pemetaan nilai persentase penduduk miskin. Pemeriksaan multikolinearitas dilakukan dengan syntax berikut:</span>
+<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Multikolinier</span></span>
+<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6 <span class="sc">+</span> X7, <span class="at">data =</span> gabung)</span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a>         <span class="fu">as.matrix</span>(<span class="fu">vif</span>(model))</span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a>Nilai VIF dari semua prediktor berkisar antara 1.34 sampai 3.62, sehingga disimpulkan tidak terdapat multikolinearitas. \ \</span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a>\ \</span>
+<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a>Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dalam 4 (empat) kelas interval menggunakan style = 'kmeans. Syntax untuk membuat kelas interval sebagai berikut:</span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat kelas interval data kemiskinan</span></span>
+<span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a><span class="fu">classIntervals</span>(gabung<span class="sc">$</span>Y, <span class="at">n =</span> <span class="dv">4</span>, <span class="at">style =</span> <span class="st">'kmeans'</span>)</span>
+<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan dengan menggunakan syntax sebagai berikut:</span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a><span class="co">#Peta kemiskinan</span></span>
+<span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'#fbb4b9'</span>, <span class="st">'#f768a1'</span>, <span class="st">'#ae017e'</span>, <span class="st">'#551c53'</span>)</span>
+<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a>plot.miskin <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gabung) <span class="sc">+</span></span>
+<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">cut</span>(Y, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">1.68</span>, <span class="fl">6.865</span>, <span class="fl">11.055</span>, </span>
+<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a>  <span class="fl">16.505</span>, <span class="fl">25.69</span>))), <span class="at">lwd =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="st">"Persentase Kemiskinan"</span>, <span class="at">values =</span> cc, </span>
+<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"1.68% - 6.865%"</span>, <span class="st">"6.865% - 11.055%"</span>,</span>
+<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a>  <span class="st">"11.055% - 16.505%"</span>, <span class="st">"16.505% - 25.69%"</span>),</span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a>  <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T))<span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>) </span>
+<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a>plot.miskin</span>
+<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji Efek Spasial</span></span>
+<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a>a)  Membentuk matriks pembobot spasial</span>
+<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a>Pada ilustrasi ini digunakan matriks pembobot spasial KNN dengan K = 3 dengan syntax sebagai berikut:</span>
+<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat matriks bobot K-NN</span></span>
+<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a>k<span class="ot">&lt;-</span><span class="fu">knearneigh</span>(longlat, <span class="at">k=</span><span class="dv">3</span>, <span class="at">longlat =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a>k1<span class="ot">&lt;-</span><span class="fu">knn2nb</span>(k)</span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>klist<span class="ot">&lt;-</span><span class="fu">nb2listw</span>(k1)</span>
+<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a>klist</span>
+<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a>b)  Uji Lagrange Multiplier</span>
+<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier menggunakan syntax sebagai berikut:</span>
+<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji LM dan RLM</span></span>
+<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a>lmtestmod <span class="ot">&lt;-</span> <span class="fu">lm.LMtests</span>(model, klist, <span class="at">zero.policy =</span> T, </span>
+<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a>        <span class="at">test =</span> <span class="st">"all"</span>)</span>
+<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmtestmod)</span>
+<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-168"><a href="#cb24-168" aria-hidden="true" tabindex="-1"></a>Hasil uji LMlag, LMerr, RLMerr, dan SARMA memiliki nilai-p yang lebih kecil dari α=0.05. Untuk menentukan efek dependensi pada data cukup diperhatikan pada hasil uji robustLM yang nyata pada α=0.05. Berdasarkan hasil uji RLM dapat disimpulkan terdapat dependensi spasial pada galat.</span>
+<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a>c)  Uji Breusch-Pagan</span>
+<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial. Syntax uji ini sebagai berikut:</span>
+<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Breusch-Pagan</span></span>
+<span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model)</span>
+<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-180"><a href="#cb24-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a>Nilai-p uji Breusch-Pagan lebih kecil dari α=0.05, sehingga dapat disimpulkan bawa terdapat keragaman spasial pada data. Hasil butir (2b) dan (2c) menunjukkan bahwa pada data yang digunakan mengandung efek dependensi pada galat dan efek keragaman.  Pada ilustrasi ini, efek dependensi diabaikan dan hanya memperhatikan efek keragaman spasial. Model yang digunakan untuk menangani keragaman spasial adalah regresi terboboti geografis (RTG). \ \</span>
+<span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-183"><a href="#cb24-183" aria-hidden="true" tabindex="-1"></a><span class="fu">### Melakukan pendugaan parameter RTG</span></span>
+<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a>a)  Menentukan nilai lebar jendela optimum</span>
+<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a>Lebar jendela dari fungsi kernel dapat bersifat adaptif atau tetap. Penentuan lebar jendela optimum menggunakan validasi silang (CV). Untuk menentukan lebar jendela tetap pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:</span>
+<span id="cb24-188"><a href="#cb24-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-191"><a href="#cb24-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-192"><a href="#cb24-192" aria-hidden="true" tabindex="-1"></a><span class="co">#Mengubah class data PDRB menjadi class SpatialPointsDataFrame</span></span>
+<span id="cb24-193"><a href="#cb24-193" aria-hidden="true" tabindex="-1"></a>miskin.sp <span class="ot">&lt;-</span> miskin</span>
+<span id="cb24-194"><a href="#cb24-194" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(miskin.sp) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Longitude'</span>, <span class="st">'Latitude'</span>)</span>
+<span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan nilai bandwidth fixed gaussian </span></span>
+<span id="cb24-197"><a href="#cb24-197" aria-hidden="true" tabindex="-1"></a>bw1 <span class="ot">&lt;-</span> <span class="fu">gwr.sel</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6 <span class="sc">+</span> X7, </span>
+<span id="cb24-198"><a href="#cb24-198" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> miskin.sp,<span class="at">longlat =</span> T, <span class="at">adapt =</span> F)</span>
+<span id="cb24-199"><a href="#cb24-199" aria-hidden="true" tabindex="-1"></a>bw1</span>
+<span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-202"><a href="#cb24-202" aria-hidden="true" tabindex="-1"></a>Untuk menentukan lebar jendela adaptif pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:</span>
+<span id="cb24-203"><a href="#cb24-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan lebar jendela adaptive gaussian</span></span>
+<span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a>bw2 <span class="ot">&lt;-</span> <span class="fu">gwr.sel</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6 <span class="sc">+</span> X7, </span>
+<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> miskin.sp,<span class="at">longlat =</span> T, <span class="at">adapt =</span> T)</span>
+<span id="cb24-210"><a href="#cb24-210" aria-hidden="true" tabindex="-1"></a>bw2</span>
+<span id="cb24-211"><a href="#cb24-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-212"><a href="#cb24-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-213"><a href="#cb24-213" aria-hidden="true" tabindex="-1"></a>b)  Menduga parameter RTG</span>
+<span id="cb24-214"><a href="#cb24-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-215"><a href="#cb24-215" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat tetap dilakukan dengan menggunakan syntax berikut:</span>
+<span id="cb24-216"><a href="#cb24-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-219"><a href="#cb24-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-220"><a href="#cb24-220" aria-hidden="true" tabindex="-1"></a><span class="co">#Pendugaan parameter RTG Fixed Gaussian</span></span>
+<span id="cb24-221"><a href="#cb24-221" aria-hidden="true" tabindex="-1"></a>modgwr1 <span class="ot">&lt;-</span> <span class="fu">gwr</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6 <span class="sc">+</span> X7, </span>
+<span id="cb24-222"><a href="#cb24-222" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> miskin.sp,<span class="at">bandwidth=</span>bw1, <span class="at">hatmatrix=</span><span class="cn">TRUE</span>)</span>
+<span id="cb24-223"><a href="#cb24-223" aria-hidden="true" tabindex="-1"></a>modgwr1</span>
+<span id="cb24-224"><a href="#cb24-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-225"><a href="#cb24-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-226"><a href="#cb24-226" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat adaptif dilakukan dengan menggunakan syntax berikut:</span>
+<span id="cb24-227"><a href="#cb24-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-230"><a href="#cb24-230" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-231"><a href="#cb24-231" aria-hidden="true" tabindex="-1"></a><span class="co">#Pendugaan parameter RTG Adaptive Gaussian</span></span>
+<span id="cb24-232"><a href="#cb24-232" aria-hidden="true" tabindex="-1"></a>modgwr2 <span class="ot">&lt;-</span> <span class="fu">gwr</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6 <span class="sc">+</span> X7, </span>
+<span id="cb24-233"><a href="#cb24-233" aria-hidden="true" tabindex="-1"></a>     <span class="at">data =</span> miskin.sp,<span class="at">adapt=</span>bw2, <span class="at">hatmatrix=</span><span class="cn">TRUE</span>)</span>
+<span id="cb24-234"><a href="#cb24-234" aria-hidden="true" tabindex="-1"></a>modgwr2</span>
+<span id="cb24-235"><a href="#cb24-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-236"><a href="#cb24-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-237"><a href="#cb24-237" aria-hidden="true" tabindex="-1"></a>Untuk menampilkan 5 baris pertama dari koefisien RTG menggunakan syntax sebagai berikut:</span>
+<span id="cb24-238"><a href="#cb24-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-241"><a href="#cb24-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-242"><a href="#cb24-242" aria-hidden="true" tabindex="-1"></a><span class="co">#Koefisien RTG Fixed Gaussian</span></span>
+<span id="cb24-243"><a href="#cb24-243" aria-hidden="true" tabindex="-1"></a>hasil <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(modgwr1<span class="sc">$</span>SDF)</span>
+<span id="cb24-244"><a href="#cb24-244" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hasil[,<span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>])</span>
+<span id="cb24-245"><a href="#cb24-245" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-246"><a href="#cb24-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-249"><a href="#cb24-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-250"><a href="#cb24-250" aria-hidden="true" tabindex="-1"></a><span class="co">#Koefisien RTG Adaptive Gaussian</span></span>
+<span id="cb24-251"><a href="#cb24-251" aria-hidden="true" tabindex="-1"></a>hasil2 <span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(modgwr2<span class="sc">$</span>SDF)</span>
+<span id="cb24-252"><a href="#cb24-252" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hasil2[,<span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>])</span>
+<span id="cb24-253"><a href="#cb24-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-254"><a href="#cb24-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-255"><a href="#cb24-255" aria-hidden="true" tabindex="-1"></a>Untuk menampilkan ringkasan koefisien RTG menggunakan syntax sebagai berikut:</span>
+<span id="cb24-256"><a href="#cb24-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-259"><a href="#cb24-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-260"><a href="#cb24-260" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat fungsi ringkasan RTG fixed Gaussian</span></span>
+<span id="cb24-261"><a href="#cb24-261" aria-hidden="true" tabindex="-1"></a>summarycoef <span class="ot">&lt;-</span> <span class="cf">function</span>(x, data){</span>
+<span id="cb24-262"><a href="#cb24-262" aria-hidden="true" tabindex="-1"></a>  min <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">min</span>(data[,x]),<span class="dv">6</span>)</span>
+<span id="cb24-263"><a href="#cb24-263" aria-hidden="true" tabindex="-1"></a>  q1 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">quantile</span>(data[,x], <span class="at">probs =</span> <span class="fl">0.25</span>),<span class="dv">6</span>)</span>
+<span id="cb24-264"><a href="#cb24-264" aria-hidden="true" tabindex="-1"></a>  med <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">quantile</span>(data[,x], <span class="at">probs =</span> <span class="fl">0.50</span>),<span class="dv">6</span>)</span>
+<span id="cb24-265"><a href="#cb24-265" aria-hidden="true" tabindex="-1"></a>  mean <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(data[,x]),<span class="dv">6</span>)</span>
+<span id="cb24-266"><a href="#cb24-266" aria-hidden="true" tabindex="-1"></a>  q3 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">quantile</span>(data[,x], <span class="at">probs =</span> <span class="fl">0.75</span>),<span class="dv">6</span>)</span>
+<span id="cb24-267"><a href="#cb24-267" aria-hidden="true" tabindex="-1"></a>  max <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">max</span>(data[,x]),<span class="dv">6</span>)</span>
+<span id="cb24-268"><a href="#cb24-268" aria-hidden="true" tabindex="-1"></a>  variance <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">var</span>(data[,x]),<span class="dv">6</span>)</span>
+<span id="cb24-269"><a href="#cb24-269" aria-hidden="true" tabindex="-1"></a>  ran <span class="ot">&lt;-</span> <span class="fu">round</span>(max <span class="sc">-</span> min,<span class="dv">6</span>)</span>
+<span id="cb24-270"><a href="#cb24-270" aria-hidden="true" tabindex="-1"></a>  iqr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">IQR</span>(data[,x]),<span class="dv">6</span>)</span>
+<span id="cb24-271"><a href="#cb24-271" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(min, q1, med, mean, q3, max, variance, ran, </span>
+<span id="cb24-272"><a href="#cb24-272" aria-hidden="true" tabindex="-1"></a>       iqr), <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb24-273"><a href="#cb24-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> x</span>
+<span id="cb24-274"><a href="#cb24-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> (<span class="fu">as.data.frame</span>(mat))</span>
+<span id="cb24-275"><a href="#cb24-275" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb24-276"><a href="#cb24-276" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-277"><a href="#cb24-277" aria-hidden="true" tabindex="-1"></a><span class="co"># Ringkasan Koefisien RTG Fixed Gaussian</span></span>
+<span id="cb24-278"><a href="#cb24-278" aria-hidden="true" tabindex="-1"></a>ringkasan <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">"Min"</span>, <span class="st">"Q1"</span>, <span class="st">"Median"</span>, <span class="st">"Mean"</span>, </span>
+<span id="cb24-279"><a href="#cb24-279" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Q3"</span>, <span class="st">"Max"</span>, <span class="st">"Variance"</span>, <span class="st">"Range"</span>, <span class="st">"IQR"</span>), <span class="at">ncol =</span> <span class="dv">1</span>))</span>
+<span id="cb24-280"><a href="#cb24-280" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ringkasan) <span class="ot">&lt;-</span> <span class="st">"Statistics"</span></span>
+<span id="cb24-281"><a href="#cb24-281" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>){</span>
+<span id="cb24-282"><a href="#cb24-282" aria-hidden="true" tabindex="-1"></a>  sumkoef <span class="ot">&lt;-</span> <span class="fu">summarycoef</span>(<span class="fu">colnames</span>(hasil)[i], hasil)</span>
+<span id="cb24-283"><a href="#cb24-283" aria-hidden="true" tabindex="-1"></a>  ringkasan <span class="ot">&lt;-</span> <span class="fu">cbind</span>(ringkasan, sumkoef)</span>
+<span id="cb24-284"><a href="#cb24-284" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-285"><a href="#cb24-285" aria-hidden="true" tabindex="-1"></a>ringkasan</span>
+<span id="cb24-286"><a href="#cb24-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-287"><a href="#cb24-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-288"><a href="#cb24-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-291"><a href="#cb24-291" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-292"><a href="#cb24-292" aria-hidden="true" tabindex="-1"></a><span class="co">#Ringkasan Koefisien RTG adaptif Gaussian</span></span>
+<span id="cb24-293"><a href="#cb24-293" aria-hidden="true" tabindex="-1"></a>ringkasan2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">"Min"</span>, <span class="st">"Q1"</span>, <span class="st">"Median"</span>, <span class="st">"Mean"</span>, </span>
+<span id="cb24-294"><a href="#cb24-294" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Q3"</span>, <span class="st">"Max"</span>, <span class="st">"Variance"</span>, <span class="st">"Range"</span>, <span class="st">"IQR"</span>), <span class="at">ncol =</span> <span class="dv">1</span>))</span>
+<span id="cb24-295"><a href="#cb24-295" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ringkasan2) <span class="ot">&lt;-</span> <span class="st">"Statistics"</span></span>
+<span id="cb24-296"><a href="#cb24-296" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>){</span>
+<span id="cb24-297"><a href="#cb24-297" aria-hidden="true" tabindex="-1"></a>  sumkoef <span class="ot">&lt;-</span> <span class="fu">summarycoef</span>(<span class="fu">colnames</span>(hasil2)[i], hasil2)</span>
+<span id="cb24-298"><a href="#cb24-298" aria-hidden="true" tabindex="-1"></a>  ringkasan2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(ringkasan2, sumkoef)</span>
+<span id="cb24-299"><a href="#cb24-299" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-300"><a href="#cb24-300" aria-hidden="true" tabindex="-1"></a>ringkasan2</span>
+<span id="cb24-301"><a href="#cb24-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-302"><a href="#cb24-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-303"><a href="#cb24-303" aria-hidden="true" tabindex="-1"></a>Berdasarkan output ringkasan koefisien RTG terlihat nilai rataan koefisien X7 bernilai positif  tertinggi pada kedua model (RTG dengan lebar jendela tetap dan adaptif). Untuk koefisien yang bernilai negatif terendah, terlihat X3 pada model dengan lebar jendela tetap dan X6 pada model adaptif. Ragam koefisien untuk model tetap Gaussian cenderung lebih rendah dibandingkan model adaptif Gaussian. Berdasarkan nilai IQR pada kedua model terlihat koefisien X4 memiliki nilai yang lebih tinggi dibandingkan koefisien lainnya, hal ini menunjukan bahwa koefisien X4 pada setiap kabupaten/kota di Jawa lebih beragam dibandingkan koefisien prediktor lainnya. </span>
+<span id="cb24-304"><a href="#cb24-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-305"><a href="#cb24-305" aria-hidden="true" tabindex="-1"></a>c)  ANOVA</span>
+<span id="cb24-306"><a href="#cb24-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-307"><a href="#cb24-307" aria-hidden="true" tabindex="-1"></a>Untuk membandingkan kebaikan antara model regresi linier berganda dengan RTG, digunakan perbandingan kuadrat tengah antara kedua model dengan analisis ragam (ANOVA). Berikut syntax yang digunakan untuk menampilkan ANOVA dan nilai-p dari statistik uji F:</span>
+<span id="cb24-308"><a href="#cb24-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-311"><a href="#cb24-311" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-312"><a href="#cb24-312" aria-hidden="true" tabindex="-1"></a><span class="co">#ANOVA RTG Fixed Gaussian</span></span>
+<span id="cb24-313"><a href="#cb24-313" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">anova</span>(modgwr1), <span class="dv">4</span>)</span>
+<span id="cb24-314"><a href="#cb24-314" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-315"><a href="#cb24-315" aria-hidden="true" tabindex="-1"></a><span class="co">#Nilai p</span></span>
+<span id="cb24-316"><a href="#cb24-316" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">3.6086</span>, <span class="fl">0.0009</span>,<span class="fl">109.9991</span>, <span class="at">lower.tail =</span> F)</span>
+<span id="cb24-317"><a href="#cb24-317" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-318"><a href="#cb24-318" aria-hidden="true" tabindex="-1"></a><span class="co">#ANOVA RTG Adaptive Gaussian</span></span>
+<span id="cb24-319"><a href="#cb24-319" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">anova</span>(modgwr2), <span class="dv">4</span>)</span>
+<span id="cb24-320"><a href="#cb24-320" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-321"><a href="#cb24-321" aria-hidden="true" tabindex="-1"></a><span class="co">#Nilai p</span></span>
+<span id="cb24-322"><a href="#cb24-322" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">3.418</span>, <span class="fl">10.64</span>, <span class="fl">99.36</span>, <span class="at">lower.tail =</span> F)</span>
+<span id="cb24-323"><a href="#cb24-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-324"><a href="#cb24-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-325"><a href="#cb24-325" aria-hidden="true" tabindex="-1"></a>Nilai-p dari statistik uji F lebih kecil dari α=0.05, sehingga dapat disimpulkan bahwa model RTG mempunyai kuadrat tengah galat lebih kecil dari pada model regresi linier berganda.</span>
+<span id="cb24-326"><a href="#cb24-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-327"><a href="#cb24-327" aria-hidden="true" tabindex="-1"></a>d)  Evaluasi kebaikan RTG</span>
+<span id="cb24-328"><a href="#cb24-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-329"><a href="#cb24-329" aria-hidden="true" tabindex="-1"></a>Untuk mengetahui kebaikan model antara regresi linier berganda dengan RTG, selain menggunakan ANOVA (butir 3d), dapat juga dibandingkani nilai AIC dan R-square kedua model tersebut. Syntax untuk menghitung nilai AIC dan R-square sebagai berikut:</span>
+<span id="cb24-330"><a href="#cb24-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-333"><a href="#cb24-333" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-334"><a href="#cb24-334" aria-hidden="true" tabindex="-1"></a><span class="co">#Nilai AIC dan R-square</span></span>
+<span id="cb24-335"><a href="#cb24-335" aria-hidden="true" tabindex="-1"></a>regsum <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
+<span id="cb24-336"><a href="#cb24-336" aria-hidden="true" tabindex="-1"></a>eval <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">'Regresi Linear'</span>, <span class="st">'RTG Fixed Gaussian'</span>, <span class="st">'RTG Adaptive Gaussian'</span>, <span class="fu">AIC</span>(model),</span>
+<span id="cb24-337"><a href="#cb24-337" aria-hidden="true" tabindex="-1"></a>                   modgwr1<span class="sc">$</span>results<span class="sc">$</span>AICh,  modgwr2<span class="sc">$</span>results<span class="sc">$</span>AICh,</span>
+<span id="cb24-338"><a href="#cb24-338" aria-hidden="true" tabindex="-1"></a>                   regsum<span class="sc">$</span>r.squared, (<span class="dv">1</span> <span class="sc">-</span>(modgwr1<span class="sc">$</span>results<span class="sc">$</span>rss<span class="sc">/</span></span>
+<span id="cb24-339"><a href="#cb24-339" aria-hidden="true" tabindex="-1"></a>                   modgwr1<span class="sc">$</span>gTSS)), (<span class="dv">1</span> <span class="sc">-</span> (modgwr2<span class="sc">$</span>results<span class="sc">$</span>rss<span class="sc">/</span></span>
+<span id="cb24-340"><a href="#cb24-340" aria-hidden="true" tabindex="-1"></a>                   modgwr2<span class="sc">$</span>gTSS))), <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">byrow =</span> F))</span>
+<span id="cb24-341"><a href="#cb24-341" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(eval) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Model'</span>, <span class="st">'AIC'</span>, <span class="st">'R-square'</span>)</span>
+<span id="cb24-342"><a href="#cb24-342" aria-hidden="true" tabindex="-1"></a>eval<span class="sc">$</span><span class="st">`</span><span class="at">R-square</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(eval<span class="sc">$</span><span class="st">`</span><span class="at">R-square</span><span class="st">`</span>)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb24-343"><a href="#cb24-343" aria-hidden="true" tabindex="-1"></a>eval<span class="sc">$</span>AIC <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(eval<span class="sc">$</span>AIC)</span>
+<span id="cb24-344"><a href="#cb24-344" aria-hidden="true" tabindex="-1"></a>eval</span>
+<span id="cb24-345"><a href="#cb24-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-346"><a href="#cb24-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-347"><a href="#cb24-347" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai AIC dan R-Square, model RTG adaptif  dibandingkan model regresi linier dan RTG tetap memiliki AIC terkecil dan R-square terbesar. Sehingga disimpulkan bahwa model RTG adaptif merupakan model terbaik untuk memodelkan data kemiskinan.</span>
+<span id="cb24-348"><a href="#cb24-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-349"><a href="#cb24-349" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji asumsi model RTG terbaik</span></span>
+<span id="cb24-350"><a href="#cb24-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-351"><a href="#cb24-351" aria-hidden="true" tabindex="-1"></a>Uji asumsi pada sisaan RTG meliputi uji normalitas, homogenitas ragam, dan kebebasan sisaan. Untuk uji normalitas menggunakan uji Shapiro-Wik dengan syntax sebagai berikut:</span>
+<span id="cb24-352"><a href="#cb24-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-355"><a href="#cb24-355" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-356"><a href="#cb24-356" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Normalitas</span></span>
+<span id="cb24-357"><a href="#cb24-357" aria-hidden="true" tabindex="-1"></a>sisaan<span class="ot">&lt;-</span>modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>gwr.e</span>
+<span id="cb24-358"><a href="#cb24-358" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(sisaan)</span>
+<span id="cb24-359"><a href="#cb24-359" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-360"><a href="#cb24-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-361"><a href="#cb24-361" aria-hidden="true" tabindex="-1"></a>Hasil uji normalitas menunjukkan statistik uji Shapiro-Wilk mempunyai nilai-p&gt; α=0.05, sehingga disimpulkan sebaran sisaan dapat dihampiri dengan sebaran normal. </span>
+<span id="cb24-362"><a href="#cb24-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-363"><a href="#cb24-363" aria-hidden="true" tabindex="-1"></a>Uji homogenitas sisaan menggunakan uji Breusch-Pagan, dan hasil uji menunjukkan p-value = 0.04612&lt; α=0.05, sehingga dapat disimpulkan sisaan bersifat heterogen. Nilai-p dari uji B-P sisaan sudah lebih kecil dibandingkan pada model yaitu sebesar p-value = 0.00542. Dengan demikian dapat disimpulkan Model RTG mampu mengatasi heterogenitas.</span>
+<span id="cb24-364"><a href="#cb24-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-367"><a href="#cb24-367" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-368"><a href="#cb24-368" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Heteroskedastisitas</span></span>
+<span id="cb24-369"><a href="#cb24-369" aria-hidden="true" tabindex="-1"></a>modres <span class="ot">&lt;-</span> <span class="fu">lm</span>(sisaan <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6 <span class="sc">+</span> X7, <span class="at">data =</span> </span>
+<span id="cb24-370"><a href="#cb24-370" aria-hidden="true" tabindex="-1"></a>        miskin.sp)</span>
+<span id="cb24-371"><a href="#cb24-371" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(modres)</span>
+<span id="cb24-372"><a href="#cb24-372" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-373"><a href="#cb24-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-374"><a href="#cb24-374" aria-hidden="true" tabindex="-1"></a>Uji kebebasan sisaan dilakukan menggunakan uji indeks Moran pada sisaan untuk mengetahui apakah ada autokorelasi spasial pada sisaan. Hasil uji Moran mempunyai p-value = 0.7293, sehingga dapat disimpulkan tidak terdapat autokorelasi spasial antar sisaan RTG.</span>
+<span id="cb24-375"><a href="#cb24-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-378"><a href="#cb24-378" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-379"><a href="#cb24-379" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb24-380"><a href="#cb24-380" aria-hidden="true" tabindex="-1"></a><span class="co"># Uji Autokorelasi Galat</span></span>
+<span id="cb24-381"><a href="#cb24-381" aria-hidden="true" tabindex="-1"></a><span class="fu">gwr.morantest</span>(modgwr2, klist)</span>
+<span id="cb24-382"><a href="#cb24-382" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-383"><a href="#cb24-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-384"><a href="#cb24-384" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji signifikansi parameter pada tiap lokasi amatan</span></span>
+<span id="cb24-385"><a href="#cb24-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-386"><a href="#cb24-386" aria-hidden="true" tabindex="-1"></a>Parameter dari model RTG pada tiap kabupaten/kota di Jawa diuji menggunakan uji t-student dengan syntax sebagai berikut:</span>
+<span id="cb24-387"><a href="#cb24-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-390"><a href="#cb24-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-391"><a href="#cb24-391" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji T untuk koefisien RTG</span></span>
+<span id="cb24-392"><a href="#cb24-392" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X1.pval <span class="ot">&lt;-</span> <span class="fu">abs</span>(modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X1) <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X1_se</span>
+<span id="cb24-393"><a href="#cb24-393" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X1.kesimpulan <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(miskin.sp<span class="sc">$</span>X1.pval <span class="sc">&gt;</span> <span class="dv">0</span> , <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb24-394"><a href="#cb24-394" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X2.pval <span class="ot">&lt;-</span> <span class="fu">abs</span>(modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X2) <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X1_se</span>
+<span id="cb24-395"><a href="#cb24-395" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X2.kesimpulan <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(miskin.sp<span class="sc">$</span>X2.pval <span class="sc">&gt;</span> <span class="dv">0</span> , <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb24-396"><a href="#cb24-396" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X3.pval <span class="ot">&lt;-</span> <span class="fu">abs</span>(modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X3) <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X1_se</span>
+<span id="cb24-397"><a href="#cb24-397" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X3.kesimpulan <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(miskin.sp<span class="sc">$</span>X3.pval <span class="sc">&gt;</span> <span class="dv">0</span> , <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb24-398"><a href="#cb24-398" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X4.pval <span class="ot">&lt;-</span> <span class="fu">abs</span>(modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X4) <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X1_se</span>
+<span id="cb24-399"><a href="#cb24-399" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X4.kesimpulan <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(miskin.sp<span class="sc">$</span>X4.pval <span class="sc">&gt;</span> <span class="dv">0</span> , <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb24-400"><a href="#cb24-400" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X5.pval <span class="ot">&lt;-</span> <span class="fu">abs</span>(modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X5) <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X1_se</span>
+<span id="cb24-401"><a href="#cb24-401" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X5.kesimpulan <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(miskin.sp<span class="sc">$</span>X5.pval <span class="sc">&gt;</span> <span class="dv">0</span> , <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb24-402"><a href="#cb24-402" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X6.pval <span class="ot">&lt;-</span> <span class="fu">abs</span>(modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X6) <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X1_se</span>
+<span id="cb24-403"><a href="#cb24-403" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X6.kesimpulan <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(miskin.sp<span class="sc">$</span>X6.pval <span class="sc">&gt;</span> <span class="dv">0</span> , <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb24-404"><a href="#cb24-404" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X7.pval <span class="ot">&lt;-</span> <span class="fu">abs</span>(modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X7) <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>modgwr2<span class="sc">$</span>SDF<span class="sc">$</span>X1_se</span>
+<span id="cb24-405"><a href="#cb24-405" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>X7.kesimpulan <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(miskin.sp<span class="sc">$</span>X7.pval <span class="sc">&gt;</span> <span class="dv">0</span> , <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb24-406"><a href="#cb24-406" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-407"><a href="#cb24-407" aria-hidden="true" tabindex="-1"></a><span class="co"># Mengelompokkan peubah yang signifikan dari setiap wilayah</span></span>
+<span id="cb24-408"><a href="#cb24-408" aria-hidden="true" tabindex="-1"></a>strings <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb24-409"><a href="#cb24-409" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(miskin.sp)){</span>
+<span id="cb24-410"><a href="#cb24-410" aria-hidden="true" tabindex="-1"></a>  strings[i] <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb24-411"><a href="#cb24-411" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(miskin.sp<span class="sc">$</span>X7.kesimpulan[i]<span class="sc">==</span><span class="dv">1</span>) {strings[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"X7"</span>,</span>
+<span id="cb24-412"><a href="#cb24-412" aria-hidden="true" tabindex="-1"></a>  strings[i])}</span>
+<span id="cb24-413"><a href="#cb24-413" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(miskin.sp<span class="sc">$</span>X6.kesimpulan[i]<span class="sc">==</span><span class="dv">1</span>) {strings[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"X6"</span>,</span>
+<span id="cb24-414"><a href="#cb24-414" aria-hidden="true" tabindex="-1"></a>  strings[i])}</span>
+<span id="cb24-415"><a href="#cb24-415" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(miskin.sp<span class="sc">$</span>X5.kesimpulan[i]<span class="sc">==</span><span class="dv">1</span>) {strings[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"X5"</span>,</span>
+<span id="cb24-416"><a href="#cb24-416" aria-hidden="true" tabindex="-1"></a>  strings[i])}</span>
+<span id="cb24-417"><a href="#cb24-417" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(miskin.sp<span class="sc">$</span>X4.kesimpulan[i]<span class="sc">==</span><span class="dv">1</span>) {strings[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"X4"</span>,</span>
+<span id="cb24-418"><a href="#cb24-418" aria-hidden="true" tabindex="-1"></a>  strings[i])}</span>
+<span id="cb24-419"><a href="#cb24-419" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(miskin.sp<span class="sc">$</span>X3.kesimpulan[i]<span class="sc">==</span><span class="dv">1</span>) {strings[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"X3"</span>,</span>
+<span id="cb24-420"><a href="#cb24-420" aria-hidden="true" tabindex="-1"></a>  strings[i])}</span>
+<span id="cb24-421"><a href="#cb24-421" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(miskin.sp<span class="sc">$</span>X2.kesimpulan[i]<span class="sc">==</span><span class="dv">1</span>) {strings[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"X2"</span>,</span>
+<span id="cb24-422"><a href="#cb24-422" aria-hidden="true" tabindex="-1"></a>  strings[i])}</span>
+<span id="cb24-423"><a href="#cb24-423" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(miskin.sp<span class="sc">$</span>X1.kesimpulan[i]<span class="sc">==</span><span class="dv">1</span>) {strings[i] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"X1"</span>,</span>
+<span id="cb24-424"><a href="#cb24-424" aria-hidden="true" tabindex="-1"></a>  strings[i])}</span>
+<span id="cb24-425"><a href="#cb24-425" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(strings[i] <span class="sc">==</span> <span class="st">""</span>) {strings[i] <span class="ot">&lt;-</span> <span class="st">"Tidak ada"</span>}</span>
+<span id="cb24-426"><a href="#cb24-426" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-427"><a href="#cb24-427" aria-hidden="true" tabindex="-1"></a>miskin.sp<span class="sc">$</span>Peubah_Signifikan <span class="ot">&lt;-</span> strings</span>
+<span id="cb24-428"><a href="#cb24-428" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(<span class="fu">summary</span>(<span class="fu">as.factor</span>(miskin.sp<span class="sc">$</span>Peubah_Signifikan)))</span>
+<span id="cb24-429"><a href="#cb24-429" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-430"><a href="#cb24-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-431"><a href="#cb24-431" aria-hidden="true" tabindex="-1"></a>Output hasil uji t menunjukkan prediktor yang signifikan dan banyaknya kabupaten/kota yang masuk dalam kategorinya. Prediktor X1 tidak nyata pada semua kabupaten/kota di Jawa. Untuk memudahkan mengetahui kabupaten/kota sesuai kategori peubah yang nyata disajikan dalam peta. Syntax yang digunakan untuk membuat peta sebagai berikut:</span>
+<span id="cb24-432"><a href="#cb24-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-435"><a href="#cb24-435" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-436"><a href="#cb24-436" aria-hidden="true" tabindex="-1"></a><span class="co">#Peta koefisien RTG</span></span>
+<span id="cb24-437"><a href="#cb24-437" aria-hidden="true" tabindex="-1"></a>Peubah <span class="ot">&lt;-</span> <span class="fu">cbind</span>(miskin.sp<span class="sc">$</span>Wilayah, miskin.sp<span class="sc">$</span>Peubah_Signifikan)</span>
+<span id="cb24-438"><a href="#cb24-438" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Peubah) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Wilayah"</span>, <span class="st">"Peubah_Signifikan"</span>)</span>
+<span id="cb24-439"><a href="#cb24-439" aria-hidden="true" tabindex="-1"></a>gabung <span class="ot">&lt;-</span> <span class="fu">merge</span>(gabung, Peubah, <span class="at">by.x =</span> <span class="st">"KABKOT"</span>, <span class="at">by.y =</span> </span>
+<span id="cb24-440"><a href="#cb24-440" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Wilayah"</span>)</span>
+<span id="cb24-441"><a href="#cb24-441" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gabung) <span class="sc">+</span></span>
+<span id="cb24-442"><a href="#cb24-442" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill =</span> Peubah_Signifikan) <span class="sc">+</span></span>
+<span id="cb24-443"><a href="#cb24-443" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb24-444"><a href="#cb24-444" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb24-445"><a href="#cb24-445" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Peubah signifikan"</span>)<span class="sc">+</span></span>
+<span id="cb24-446"><a href="#cb24-446" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb24-447"><a href="#cb24-447" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-448"><a href="#cb24-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-449"><a href="#cb24-449" aria-hidden="true" tabindex="-1"></a>Dari peta terlihat mayoritas kabupaten/kota di Jawa berwarna merah, menunjukkan prediktor X2 sampai X7 berpengaruh nyata. Beberapa kabupate/kota di bagian barat  Provinsi Jawa Barat dan bagian tengah Provinsi Jawa Timur berwarna biru yang menunjukkan prediktor X1 dan X4 tidak nyata.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-
 
 
 
