@@ -2,48 +2,47 @@
 
 ## Data
 
-Ilustrasi model spasial Durbin (spatial Durbin model/SDM) bersumber dari penelitian Febriyanti et al. (2016). Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan  DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada Tabel berikut. Data dan peta ilustrasi SDM tersedia pada tautan https://ipb.link/sdm. 
+Ilustrasi model spasial Durbin (spatial Durbin model/SDM) bersumber dari penelitian Febriyanti et al. (2016). Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan  DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada Tabel berikut. Data dan peta ilustrasi SDM tersedia pada tautan [https://ipb.link/sdm](https://ipb.link/sdm). 
 
-\begin{table}[h]
-  \centering
-  \caption{Daftar Peubah dan Sumber Data}
-  \begin{tabular}{|c|c|c|}
-    \hline
-    Peubah & Nama Peubah & Sumber \\
-    \hline
-    Y & Persentase penderita infeksi virus Dengue per kecamatan di DKI Jakarta tahun 2014 (\%) & Dinas Kesehatan DKI Jakarta 2014 \\
-    X1 & Kepadatan penduduk per kecamatan di DKI Jakarta tahun 2014 (Jiwa/km\textsuperscript{2}) & Dinas Kependudukan dan Pencatatan Sipil DKI Jakarta 2014 \\
-    X2 & Rasio rumah sakit dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
-    X3 & Rasio puskesmas dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
-    X4 & Rasio poliklinik dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
-    X5 & Rasio tempat praktik dokter dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
-    X6 & Rasio apotek dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
-    X7 & Rasio keluarga yang tinggal di pemukiman kumuh dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) & Potensi Desa (PODES) BPS RI 2014 \\
-    X8 & Rasio sekolah dasar dengan sekolah lain per kecamatan di DKI Jakarta tahun 2014 & Potensi Desa (PODES) BPS RI 2014 \\
-    \hline
-  \end{tabular}
-\end{table}
+| Peubah   | Nama Peubah                                          | Sumber        |
+|--------|-------------------------------------------------|-----------------------|
+| $Y$    | Persentase penderita infeksi virus Dengue per kecamatan di DKI Jakarta tahun 2014 (\%)                         | Dinas Kesehatan DKI Jakarta 2014                     |
+| $X_1$  | Kepadatan penduduk per kecamatan di DKI Jakarta tahun 2014 (Jiwa/km\textsuperscript{2})                        | Dinas Kependudukan dan Pencatatan Sipil DKI Jakarta 2014 |
+| $X_2$  | Rasio rumah sakit dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa)           | Potensi Desa (PODES) BPS RI 2014 |
+| $X_3$  | Rasio puskesmas dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa)             | Potensi Desa (PODES) BPS RI 2014 |
+| $X_4$  | Rasio poliklinik dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa)            | Potensi Desa (PODES) BPS RI 2014 |
+| $X_5$  | Rasio tempat praktik dokter dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa) | Potensi Desa (PODES) BPS RI 2014       |
+| $X_6$  | Rasio apotek dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa)                | Potensi Desa (PODES) BPS RI 2014   |
+| $X_7$  | Rasio keluarga yang tinggal di pemukiman kumuh dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa)  | Potensi Desa (PODES) BPS RI 2014 |
+| $X_8$  | Rasio sekolah dasar dengan sekolah lain per kecamatan di DKI Jakarta tahun 2014                                | Potensi Desa (PODES) BPS RI 2014       |
+
+: Daftar Peubah dan Sumber Data {.striped .hover}
+
 
 ## Metode Analisis
 
 Langkah-langkah metode analisis data pada penelitian ini adalah sebagai berikut:
-1. Melakukan eksplorasi data untuk memeriksa multikolinearitas pada prediktor yang digunakan dengan variance inflation factors (VIF), menentukan efek spasial secara eksploratif dengan peta tematik, dan memeriksa pencilan spasial dengan menggunakan diagram kotak garis dan plot pencaran Moran.
-2. Membuat matriks pembobot spasial (W) dengan metode pembobotan Queen Contiguity.
-3. Menguji efek  spasial: 
-a) depedensi spasial pada peubah respon dan sisaan dari model regresi linier berganda dengan indeks Moran.
-b) Menguji kehomogenan ragam sisaan model regresi klasik dengan uji Breusch-Pagan. 
-c) Pemilihan model depedensi spasial menggunakan uji pengganda Lagrange (Lagrange Multiplier/LM).
-4. Memeriksa efek depedensi spasial pada prediktor dengan indeks Moran.
-5. Menduga parameter model regresi spasial sesuai hasil butir (3) dan (4). 
-6. Memeriksa asumsi pada model regresi spasial pada butir (5).
-7. Mengukur kebaikan model dengan pseudo R2 dan AIC.
-8. Interpretasi Model terbaik.
+
+  1. Melakukan eksplorasi data untuk memeriksa multikolinearitas pada prediktor yang digunakan dengan variance inflation factors (VIF), menentukan efek spasial secara eksploratif dengan peta tematik, dan memeriksa pencilan spasial dengan menggunakan diagram kotak garis dan plot pencaran Moran.
+  2. Membuat matriks pembobot spasial (W) dengan metode pembobotan Queen Contiguity.
+  3. Menguji efek  spasial: 
+
+      a) depedensi spasial pada peubah respon dan sisaan dari model regresi linier berganda dengan indeks Moran.
+      b) Menguji kehomogenan ragam sisaan model regresi klasik dengan uji Breusch-Pagan. 
+      c) Pemilihan model depedensi spasial menggunakan uji pengganda Lagrange (Lagrange Multiplier/LM).
+  
+  4. Memeriksa efek depedensi spasial pada prediktor dengan indeks Moran.
+  5. Menduga parameter model regresi spasial sesuai hasil butir (3) dan (4). 
+  6. Memeriksa asumsi pada model regresi spasial pada butir (5).
+  7. Mengukur kebaikan model dengan pseudo R2 dan AIC.
+  8. Interpretasi Model terbaik.
 
 ## Tahapan Analisis Data dengan R
 
 Tahap awal dalam pemodelan menggunakan R Studio adalah melakukan input data dan install package yang dibutuhkan untuk analisis.
 
 ### Package
+
 ```{r}
 library(readxl) 		# Untuk import data format .xlsx
 library(car)		# Untuk menghitung nilai VIF
@@ -145,17 +144,20 @@ Syntax untuk membuat matriks pembobot spasial langka ratu untuk Model 1 dan Mode
 
 ```{r}
 #Membentuk dataset tanpa pencilan
-gabung2 <- gabung[gabung$KECAMATAN.y != "KELAPA GADING",]
+gabung2 <- gabung[gabung$KECAMATAN.y != "KELAPA GADING", ]
 #
 #Matriks pembobot spasial Model 1
 sf_use_s2(FALSE)
-W.queen <- poly2nb(gabung,queen=T)
-queen.listw <- nb2listw(W.queen,style='W', zero.policy = TRUE)
+W.queen <- poly2nb(gabung, queen = T)
+queen.listw <- nb2listw(W.queen, style = 'W', zero.policy = TRUE)
 summary(queen.listw)
-#
+```
+
+
+```{r}
 #Matriks pembobot spasial Model 2
-W.queen2 <- poly2nb(gabung2,queen=T)
-queen.listw2 <- nb2listw(W.queen2,style='W', zero.policy = TRUE)
+W.queen2 <- poly2nb(gabung2, queen = T)
+queen.listw2 <- nb2listw(W.queen2, style = 'W', zero.policy = TRUE)
 summary(queen.listw2)
 ```
 
@@ -165,50 +167,58 @@ Perhitungan indeks Moran dan uji efek heterogenitas spasial dilakukan pada Model
 
 ```{r}
 #Regresi untuk Model 1 
-Model1 <- lm(Y~X1+X2+X3+X4+X5+X6+X7+X8,data=gabung)
+Model1 <- lm(Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8, data = gabung)
 #
 #Pemeriksaan efek spasial Model 1
-moran1 <- moran.test(gabung$Y,queen.listw)
+moran1 <- moran.test(gabung$Y, queen.listw)
 moranerr1 <- lm.morantest(model, queen.listw)
 bp1 <- bptest(model)
 #
-#Regresi untuk Model 2 
-model2 <- lm(Y~X1+X2+X3+X4+X5+X6+X7+X8,data=gabung2)
+#Regresi untuk Model 2
+model2 <- lm(Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8, data = gabung2)
 #
 #Pemeriksaan efek spasial Model 2
-moran2 <- moran.test(gabung2$Y,queen.listw2)
+moran2 <- moran.test(gabung2$Y, queen.listw2)
 moranerr2 <- lm.morantest(model2, queen.listw2)
 bp2 <- bptest(model2)
 #
 #Ringkasan
-IMoran <- data.frame(matrix(c("Nilai p Uji BP",
-          "Indeks Moran Y", "Nilai p Indeks Moran Y",
-          "Indeks Moran Sisaan", 
-          "Nilai p Indeks Moran Sisaan",
-          round(bp1$p.value,2), 
-          round(moran1$estimate[1], 2), 
-          round(moran1$p.value, 2),
-          round(moranerr1$estimate[1], 2), 
-          round(moranerr1$p.value, 2),
-          round(bp2$p.value,2),
-          round(moran2$estimate[1], 2), 
-          round(moran2$p.value, 2),
-          round(moranerr2$estimate[1], 2), 
-          round(moranerr2$p.value, 2)),
-          byrow = F, ncol = 3, 
-          dimnames = list(1:5, c("Keterangan", 
-          "Model 1", "Model 2"))))
+IMoran <- data.frame(matrix(
+  c(
+    "Nilai p Uji BP",
+    "Indeks Moran Y",
+    "Nilai p Indeks Moran Y",
+    "Indeks Moran Sisaan",
+    "Nilai p Indeks Moran Sisaan",
+    round(bp1$p.value, 2),
+    round(moran1$estimate[1], 2),
+    round(moran1$p.value, 2),
+    round(moranerr1$estimate[1], 2),
+    round(moranerr1$p.value, 2),
+    round(bp2$p.value, 2),
+    round(moran2$estimate[1], 2),
+    round(moran2$p.value, 2),
+    round(moranerr2$estimate[1], 2),
+    round(moranerr2$p.value, 2)
+  ),
+  byrow = F,
+  ncol = 3,
+  dimnames = list(1:5, c("Keterangan",
+                         "Model 1", "Model 2"))
+))
 IMoran
 ```
 
-Berdasarkan hasil uji Indeks Moran dan Uji Breusch Pagan dapat disimpulkan bahwa Model 1 memiliki ragam yang heterogen. Untuk Model 2 hanya memiliki autokorelasi spasial pada peubah responnya. Pada ilustrasi ini hanya dilakukan pembahasan untuk Model 2. \ \
-\ \
+Berdasarkan hasil uji Indeks Moran dan Uji Breusch Pagan dapat disimpulkan bahwa Model 1 memiliki ragam yang heterogen. Untuk Model 2 hanya memiliki autokorelasi spasial pada peubah responnya. Pada ilustrasi ini hanya dilakukan pembahasan untuk Model 2.
+
 Pengujian efek dependensi spasial menggunakan uji Lagrange Multiplier dengan syntax sebagai berikut:
+
 ```{r}
 #Uji LM dan RLM
-spasial2<-lm.RStests(model2,queen.listw2,test=c('LMlag','LMerr','RLMlag', 'RLMerr','SARMA'))
+spasial2<-lm.RStests(model2, queen.listw2, test=c('LMlag','LMerr','RLMlag', 'RLMerr','SARMA'))
 summary(spasial2)
 ```
+
 Pada output uji efek spasial terlihat nilai-p dari uji RLMlag dan RLMerr bernilai lebih kecil dari α=0.05 dan SARMA lebih besar dari α=0.05. Berdasarkan hasil uji LM ini maka model yang sesuai untuk data adalah SAR.
 
 
@@ -226,26 +236,38 @@ moranx5 <- moran.test(gabung2$X5, queen.listw2)
 moranx6 <- moran.test(gabung2$X6, queen.listw2)
 moranx7 <- moran.test(gabung2$X7, queen.listw2)
 moranx8 <- moran.test(gabung2$X8, queen.listw2)
-MoranX <- data.frame(matrix(c("X1", "X2", "X3", "X4",
-          "X5", "X6", "X7", "X8", 
-          round(moranx1$estimate[1], 2), 
-          round(moranx2$estimate[1], 2),
-          round(moranx3$estimate[1], 2),
-          round(moranx4$estimate[1], 2),
-          round(moranx5$estimate[1], 2),
-          round(moranx6$estimate[1], 2),
-          round(moranx7$estimate[1], 2),
-          round(moranx8$estimate[1], 2),
-          round(moranx1$p.value, 2), 
-          round(moranx2$p.value, 2),
-          round(moranx3$p.value, 2),
-          round(moranx4$p.value, 2),
-          round(moranx5$p.value, 2),
-          round(moranx6$p.value, 2),
-          round(moranx7$p.value, 2),
-          round(moranx8$p.value, 2)),
-          byrow = F, ncol = 3, dimnames = list(1:8, 
-          c("Peubah", "Nilai Indeks Moran", "Nilai-p"))))
+MoranX <- data.frame(matrix(
+  c(
+    "X1",
+    "X2",
+    "X3",
+    "X4",
+    "X5",
+    "X6",
+    "X7",
+    "X8",
+    round(moranx1$estimate[1], 2),
+    round(moranx2$estimate[1], 2),
+    round(moranx3$estimate[1], 2),
+    round(moranx4$estimate[1], 2),
+    round(moranx5$estimate[1], 2),
+    round(moranx6$estimate[1], 2),
+    round(moranx7$estimate[1], 2),
+    round(moranx8$estimate[1], 2),
+    round(moranx1$p.value, 2),
+    round(moranx2$p.value, 2),
+    round(moranx3$p.value, 2),
+    round(moranx4$p.value, 2),
+    round(moranx5$p.value, 2),
+    round(moranx6$p.value, 2),
+    round(moranx7$p.value, 2),
+    round(moranx8$p.value, 2)
+  ),
+  byrow = F,
+  ncol = 3,
+  dimnames = list(1:8,
+                  c("Peubah", "Nilai Indeks Moran", "Nilai-p"))
+))
 MoranX
 ```
 

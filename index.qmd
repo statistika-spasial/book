@@ -14,7 +14,7 @@ Jarak spasial antar observasi seringkali tidak direpresentasikan dengan baik mel
 
 ## Versi cetak buku ini
 
-![](images/cover.png){fig-alt="cover by Fadillah R" fig-align="left"}
+![](images/cover.png){fig-alt="cover by Fadillah R" fig-align="left" height=400}
 
 :::
 

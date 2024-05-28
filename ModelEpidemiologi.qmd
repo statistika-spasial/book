@@ -1,0 +1,428 @@
+# Model Epidemiologi
+
+## Package
+
+```{r}
+library(readxl)
+library(tidyverse)
+library(INLA)
+library(car)
+library(AER)
+library(spdep)
+library(sp)
+library(sf)
+library(raster)
+library(tmap)
+library(geosphere)
+library(rgdal)
+library(dplyr)
+library(scales)
+library(RColorBrewer)
+```
+
+## Data
+
+```{r}
+jawa <- readOGR(dsn = "data/shp", layer = "jawa2")
+jawa_data <- read_excel("data/data_stunting_epidemiologi.xlsx")
+jawa_data <- jawa_data %>%
+  mutate(logStunting = log(Stunting), E_d = mean(Stunting))
+jawa@data <- left_join(jawa@data, jawa_data)
+jawa@data$ID <- 1:nrow(jawa@data)
+view(jawa_data)
+summary(jawa_data)
+```
+
+```{r}
+palette(terrain.colors(6))
+plot(jawa, col=jawa$kode_prov-30)
+text(jawa,'Kode',cex=0.5)
+```
+
+
+## Exploratory Data Analysis
+
+### Stunting
+
+```{r}
+my.palette.1<-brewer.pal(n=4,name="OrRd")
+spplot(jawa,'Stunting', cuts=3, col.regions=my.palette.1, cex=c(0.3,1,0.3), main="Banyaknya Stunting per 100.000 di Pulau Jawa", at = c(min(jawa$Stunting) - 1, 50, 100, 150, max(jawa$Stunting) + 1))
+```
+
+Insidensi stunting tinggi banyak terjadi di Jawa Barat, dengan kasus tertinggi di Kabupaten Bogor.
+
+### ASI
+
+```{r}
+my.palette.1<-brewer.pal(n=4,name="OrRd")
+spplot(jawa,'ASI', cuts=3, col.regions=my.palette.1, cex=c(0.3,1,0.3), main="Persentase tingkat balita yang mendapatkan ASI eksklusif di Pulau Jawa")
+```
+
+### Imunisasi
+
+```{r}
+my.palette.1<-brewer.pal(n=4,name="OrRd")
+spplot(jawa,'Imunisasi', cuts=3, col.regions=my.palette.1, cex=c(0.3,1,0.3), main="Persentase balita yang mendapatkan imunisasi dasar lengkap di Pulau Jawa",at = c(min(jawa$Imunisasi) - 1, 30, 60, 90, max(jawa$Imunisasi) + 1))
+```
+
+### Sanitasi
+
+```{r}
+my.palette.1<-brewer.pal(n=4,name="OrRd")
+spplot(jawa,'Sanitasi', cuts=3, col.regions=my.palette.1, cex=c(0.3,1,0.3), main="Persentase keluarga dengan akses sanitasi layak",at = c(min(jawa$Sanitasi) - 1, 30, 60, 90, max(jawa$Sanitasi) + 1))
+```
+
+### Miskin
+
+```{r}
+my.palette.1<-brewer.pal(n=4,name="OrRd")
+spplot(jawa,'Miskin', cuts=3, col.regions=my.palette.1, cex=c(0.3,1,0.3), main="Persentase Penduduk Miskin di Pulau Jawa")
+```
+
+
+### Correlation plot
+
+```{r}
+eda_data <- jawa_data %>%
+    dplyr::select(Stunting, ASI,Imunisasi, Sanitasi, Miskin)
+PerformanceAnalytics::chart.Correlation(eda_data, histogram = TRUE, pch = 19)
+```
+
+### Correlation Matrix
+```{r}
+round(cor(eda_data), 4)
+```
+
+### Correlation plot
+
+```{r}
+eda_data <- jawa_data %>%
+    dplyr::select(ASI, Imunisasi, Sanitasi, Miskin)
+PerformanceAnalytics::chart.Correlation(eda_data, histogram = TRUE, pch = 19)
+```
+
+### Correlation Matrix
+```{r}
+round(cor(eda_data), 4)
+```
+
+
+## Multicollinearity Test
+
+```{r}
+form_fit <- Stunting ~ ASI + Imunisasi + Sanitasi + Miskin
+lin_mod <- glm(form_fit, data = jawa_data)
+vif(lin_mod)
+```
+
+Dari nilai VIF di atas yang kurang dari 10 menunjukkan bahwa tidak terdapat multikolinieritas antar peubah penjelas.
+
+## Overdispersion Test
+
+
+```{r}
+#Cek Overdispersi
+poisson<-glm(jawa_data$Stunting ~ jawa_data$ASI + jawa_data$Imunisasi + jawa_data$Sanitasi + jawa_data$Miskin, data=jawa_data, family = poisson())
+model1 <- glm(jawa_data$Stunting~1, data=jawa_data, family = poisson())
+dispersiontest(poisson)
+summary(poisson)
+anova(model1, poisson, test="Chisq")
+```
+Diperoleh p-value < 0.05, yang artinya bahwa nilai dispersi lebih dari 1. Sehingga dapat disimpulkan bahwa terdapat dispersi pada data.
+
+```{r}
+#Cek Sebaran
+library("fitdistrplus")
+poisson <- fitdist(jawa_data$Stunting, "pois", method = c("mle", "mme", "qme", "mge", "mse"), 
+                   start=NULL, fix.arg=NULL, T, keepdata = TRUE)
+binom.negatif <- fitdist(jawa_data$Stunting, "nbinom", method = c("mle", "mme", "qme", "mge", "mse"), 
+                         start=NULL, fix.arg=NULL, T, keepdata = TRUE)
+qqcomp(list(poisson, binom.negatif), legendtext = c("Pois", "Neg Binom"), fitpch="o", fitcol = c("red","green"))
+
+descdist(jawa_data$Stunting, discrete = TRUE, boot=1000)
+```
+
+
+## Spatial Weighted Matrix
+
+### Queen continguity
+
+```{r}
+wm_q <- poly2nb(jawa, queen = TRUE)
+summary(wm_q)
+```
+
+- Terdapat 119 Kabupaten/Kota di Pulau Jawa.
+- Terdapat satu daerah yang tidak bersinggungan dengan daerah lain, yaitu `r jawa$KabKota[1]`.
+- Daerah yang paling banyak bersinggungan dengan daerah lain, yaitu `r jawa$KabKota[13]` yang bersinggungan dengan 11 daerah.
+
+```{r}
+plot(jawa, borders = 'lightgrey', main = "Queen Contiguity Based Neighbours Maps") 
+plot(wm_q, coordinates(jawa), pch = 19, cex = 0.6, add = TRUE, col = "red")
+```
+
+### Exponential Weight
+
+```{r}
+coords <- coordinates(jawa)
+dist <- nbdists(wm_q, coords, longlat = TRUE)
+eds <- lapply(dist, function(x) exp(-1*x))
+head(eds)
+```
+
+### Inverse Distance Weight
+
+```{r}
+ids <- lapply(dist, function(x) 1/(x))
+head(ids)
+```
+
+## Spatial Autocorrelation Test
+
+```{r}
+rswm_q <- nb2listw(wm_q, style = "W", zero.policy = TRUE)
+rswm_eds <- nb2listw(wm_q, glist = eds, style = "B", zero.policy = TRUE)
+rswm_ids <- nb2listw(wm_q, glist = ids, style = "B", zero.policy = TRUE)
+moran_q <- moran.test(jawa$logStunting, listw = rswm_q, zero.policy = TRUE)
+moran_q
+moran_eds <- moran.test(jawa$logStunting, listw = rswm_eds, zero.policy = TRUE)
+moran_eds
+moran_ids <- moran.test(jawa$logStunting, listw = rswm_ids, zero.policy = TRUE)
+moran_ids
+```
+
+| Weighted Matrix | Moran's Index | E(I) | Var(I) | p-value |
+| ----- | ----- | ----- | ----- | ----- |
+| Queen Continuity | `r round(moran_q$estimate[1], 4)` | `r round(moran_q$estimate[2], 4)` | `r round(moran_q$estimate[3], 4)` | `r round(moran_q$p.value, 4)` |
+| Exponential Distance | `r round(moran_eds$estimate[1], 4)` | `r round(moran_eds$estimate[2], 4)` | `r round(moran_eds$estimate[3], 4)` | `r round(moran_eds$p.value, 4)` |
+| Inverse Distance | `r round(moran_ids$estimate[1], 4)` | `r round(moran_ids$estimate[2], 4)` | `r round(moran_ids$estimate[3], 4)` | `r round(moran_ids$p.value, 4)` |
+
+
+## Matriks Bobot
+```{r}
+# Distance Matrix
+longlat<-cbind(jawa_data$Long ,jawa_data$Lat)
+gdist<-pointDistance(longlat,lonlat=TRUE) 
+m.gdist<-as.matrix(gdist)
+djarak<-dist(longlat)
+m.djarak<-as.matrix(djarak)
+```
+
+```{r}
+#K-Nearest Neighbour Weight dengan k=4
+koord <- coordinates(jawa)
+W1<-knn2nb(knearneigh(longlat,k=4,longlat=TRUE)) 
+WW1<- nb2listw(W1,style='W') 
+WW1
+```
+
+```{r}
+MI1 <- moran.test(jawa_data$Stunting,WW1)  
+```
+
+### Uji Moran
+```{r}
+moran.test(jawa_data$Stunting, WW1,randomisation=T, 
+           alternative="two.sided")
+```
+
+Berdasarkan uji Indeks Moran di atas, diperoleh p-value < 0.05, artinya bahwa H0 ditolak. Sehingga dapat disimpulkan bahwa terdapat autokorelasi spasial pada data.
+ 
+
+## Model Estimation
+
+### GLM
+
+```{r}
+glm_mod <- inla(form_fit, data = jawa@data, family = "nbinomial", E = E_d,
+  control.predictor = list(compute = TRUE, link = 1),
+  control.compute = list(dic = TRUE))
+summary(glm_mod)
+```
+
+```{r}
+library(MASS)
+glm1<-glm.nb(form_fit, data = jawa@data)
+summary(glm1)
+```
+
+### Residuals autocorrelation
+
+```{r}
+moran.test(residuals(glm_mod)[[1]], listw = WW1, na.action = na.omit, zero.policy = T)
+```
+
+Diperoleh p-value < 0.05, yang artinya bahwa terdapat autokorelasi spasial pada galat model GLM.
+
+
+### GLMM
+```{r}
+form_fit2 <- Stunting ~  Imunisasi + ASI + Sanitasi + Miskin +
+  f(ID, model = "iid", param = c(1, .5))
+glmm_mod <- inla(form_fit2, data = jawa@data, family = "nbinomial", E = E_d,
+  control.predictor = list(compute = TRUE, link = 1),
+  control.compute = list(dic = TRUE))
+summary(glmm_mod)
+```
+
+Komponen acak yang digunakan adalah Independent Gaussian Random Effect. Komponennya adalah sebagai berikut:
+
+
+```{r}
+rand_glmm <- cbind(jawa@data$Provinsi,jawa@data$KabKota, glmm_mod$summary.random$ID[,c('ID', 'mean')])
+names(rand_glmm) <- c("Provinsi","KabKota", "ID", "iid")
+rand_glmm
+view(rand_glmm)
+```
+
+### Residuals autocorrelation
+
+```{r}
+moran.test(residuals(glmm_mod)[[1]], listw = WW1, na.action = na.omit, zero.policy = T)
+```
+
+
+
+### ICAR
+
+```{r}
+wm_q.mat <- as(nb2mat(wm_q, style = "B", zero.policy = T), "Matrix")
+# Fit model
+form_fit3 <- Stunting ~ Imunisasi + ASI + Sanitasi + Miskin + 
+  f(ID, model = "besag", graph = wm_q.mat)
+icar_mod <- inla(form_fit3,
+  data = jawa@data, E = E_d, family ="nbinomial",
+  control.predictor = list(compute = TRUE, link = 1),
+  control.compute = list(dic = TRUE))
+summary(icar_mod)
+```
+
+Komponen acak spasial yang digunakan pada model ICAR $u$ adalah sebagai berikut:
+
+```{r}
+rand_icar <- cbind(jawa@data$Provinsi,jawa@data$KabKota, icar_mod$summary.random$ID[,c('ID', 'mean')])
+names(rand_icar) <- c("Provinsi","KabKota", "ID", "u")
+rand_icar
+view(rand_icar)
+```
+
+### Residuals autocorrelation
+
+```{r}
+moran.test(residuals(icar_mod)[[1]], listw = WW1, na.action = na.omit, zero.policy = T)
+```
+
+### BYM
+
+```{r}
+form_fit4 <- Stunting ~ ASI + Imunisasi + Sanitasi + Miskin + 
+  f(ID, model = "bym", graph = wm_q.mat)
+bym_mod <- inla(form_fit4,
+  data = jawa@data, E = E_d, family ="nbinomial",
+  control.predictor = list(compute = TRUE, link = 1),
+  control.compute = list(dic = TRUE))
+summary(bym_mod)
+```
+Komponen acak spasial yang digunakan pada model ICAR $u$ adalah sebagai berikut:
+
+```{r}
+rand_bym <- cbind(jawa@data$Provinsi,jawa@data$KabKota, bym_mod$summary.random$ID[1:119, c('ID', 'mean')], bym_mod$summary.random$ID[120:238, c('mean')])
+names(rand_bym) <- c("Provinsi","KabKota", "ID", "u", "v")
+rand_bym
+view(rand_bym)
+```
+
+### Residuals autocorrelation
+
+```{r}
+moran.test(residuals(bym_mod)[[1]], listw = WW1, na.action = na.omit, zero.policy = T)
+```
+
+## Model Selection
+
+```{r}
+mad <- function(y, yhat){
+  return(mean(abs(y-yhat)))
+}
+mad_glm <- mad(jawa@data$Stunting, glm_mod$summary.fitted.values$mean*jawa@data$E_d)
+mad_glmm <- mad(jawa@data$Stunting, glmm_mod$summary.fitted.values$mean*jawa@data$E_d)
+mad_icar <- mad(jawa@data$Stunting, icar_mod$summary.fitted.values$mean*jawa@data$E_d)
+mad_bym <- mad(jawa@data$Stunting, bym_mod$summary.fitted.values$mean*jawa@data$E_d)
+mad_glm
+mad_glmm
+mad_icar
+mad_bym
+```
+
+| Model | DIC | MAD |
+| ----- | --- | --- |
+| GLM | `r round(glm_mod$dic$dic, 2)` | `r round(mad_glm, 4)` |
+| GLMM | `r round(glmm_mod$dic$dic, 2)` | `r round(mad_glmm, 4)` |
+| ICAR | `r round(icar_mod$dic$dic, 2)` | `r round(mad_icar, 4)` |
+| BYM | `r round(bym_mod$dic$dic, 2)` | `r round(mad_bym, 4)` |
+
+Diperoleh nilai DIC dan MAD model ICAR lebih kecil daripada model BYM.
+
+```{r}
+mape <- function(y, yhat){
+  return(sum(abs(y-yhat)/y))
+}
+y <- jawa@data$Stunting/jawa@data$E_d
+mape_glm <- mape(y, glm_mod$summary.fitted.values$mean)
+mape_glmm <- mape(y, glmm_mod$summary.fitted.values$mean)
+mape_icar <- mape(y, icar_mod$summary.fitted.values$mean)
+mape_bym <- mape(y, bym_mod$summary.fitted.values$mean)
+mape_glm
+mape_glmm
+mape_icar
+mape_bym
+```
+
+
+## Relative Risk
+
+```{r}
+jawa@data$RR <- bym_mod$summary.fitted.values$mean
+bym_mod$summary.fitted.values
+summary(jawa@data$RR)
+view(jawa@data$RR)
+```
+
+```{r}
+my.palette.1<-brewer.pal(n=2,name="OrRd")
+spplot(jawa,'RR', cuts=1, col.regions=my.palette.1, cex=c(0.3,1,0.3), main="Peta risiko relatif kasus stunting di Pulau Jawa",at = c(min(jawa$RR) - 1 ,1.0 , max(jawa$RR) + 1))
+```
+
+Dari grafik tersebut juga dapat dilihat bahwa risiko terjadinya stunting yang tinggi berada di Jawa Barat, dengan risiko paling tinggi di Kabupaten Bogor.
+
+
+Relative Risk yang hanya menggunakan komponen acak adalah sebagai berikut.
+```{r}
+jawa@data$RR2 <- exp(icar_mod$summary.random$ID$mean)
+my.palette.1<-brewer.pal(n=3,name="OrRd")
+spplot(jawa,'RR2', cuts=2, col.regions=my.palette.1, cex=c(0.3,1,0.3), main="Peta risiko relatif kasus stunting di Pulau Jawa",at = c(min(jawa$RR2) - 1, 0.7 ,1 , max(jawa$RR2) + 1))
+```
+
+## Prediction
+
+```{r}
+yhat_icar <- icar_mod$summary.fitted.values$mean*jawa@data$E_d
+yhat_bym <- bym_mod$summary.fitted.values$mean*jawa@data$E_d
+yhat_glmm <- glmm_mod$summary.fitted.values$mean*jawa@data$E_d
+pred <- data.frame(jawa@data$Provinsi,jawa@data$KabKota, jawa@data$Stunting, yhat_icar, yhat_bym, yhat_glmm)
+names(pred) <- c("Provinsi","KabKota", "Stunting", "yhat ICAR", "yhat BYM", "yhat GLMM")
+pred
+view(pred)
+```
+
+
+## Conclusion
+
+Model yand dipilih adalah ICAR yang memiliki nilai DIC dan MAD lebih rendah daripada BYM. 
+
+```{r}
+yhat_bym <- bym_mod$summary.fitted.values$mean*jawa@data$E_d
+jawa@data$yhat_bym <- bym_mod$summary.fitted.values$mean*jawa@data$E_d
+my.palette.1<-brewer.pal(n=4,name="OrRd")
+spplot(jawa,'yhat_bym', cuts=3, col.regions=my.palette.1, cex=c(0.3,1,0.3), main="Hasil dugaan menggunakan CAR BYM",at = c(min(jawa$yhat_bym) - 1, 50, 100, 150 , max(jawa$yhat_bym) + 1))
+```

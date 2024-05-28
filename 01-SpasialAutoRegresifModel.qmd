@@ -52,27 +52,22 @@ W_2 & : \text{matriks pembobot spasial bagi peubah penjelas berukuran } n \times
 
 ## Data
 
-Data yang digunakan pada penelitian ini merupakan data sekunder yang diambil dari situs Open Data Jabar (\url{https://opendata.jabarprov.go.id/id}). Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat pada tabel berikut.
+Data yang digunakan pada penelitian ini merupakan data sekunder yang diambil dari situs [Open Data Jabar](https://opendata.jabarprov.go.id/id). Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat pada tabel berikut.
 
-\begin{table}[h]
-  \centering
-  \caption{Peubah yang Digunakan}
-  \begin{tabular}{|c|c|c|}
-    \hline
-    Kode & Peubah & Sumber Pustaka \\
-    \hline
-    Y & Total produksi sampah dalam ton/jiwa/km2 & - \\
-    X1 & PDRB tahun 2021 & Prajati et al. (2015) \\
-    X2 & Jumlah pengeluaran per kapita dalam ribu rupiah & Prajati et al. (2015) \\
-    X3 & Rata-rata lama sekolah & Prajati et al. (2015) \\
-    X4 & Angka melek huruf & Prajati et al. (2015) \\
-    X5 & Jumlah UMKM & Demirbas (2011) \\
-    X6 & Jumlah tempat rekreasi dan pariwisata & Karim et al. (2022) \\
-    X7 & Jumlah pasar rakyat & Fatimah et al. (2020) \\
-    X8 & Jumlah restoran & Demirbas (2011) \\
-    \hline
-  \end{tabular}
-\end{table}
+
+| Kode   | Peubah                                          | Sumber Pustaka        |
+|--------|-------------------------------------------------|-----------------------|
+| $Y$    | Total produksi sampah dalam ton/jiwa/km2        | -                     |
+| $X_1$  | PDRB tahun 2021                                 | Prajati et al. (2015) |
+| $X_2$  | Jumlah pengeluaran per kapita dalam ribu rupiah | Prajati et al. (2015) |
+| $X_3$  | Rata-rata lama sekolah                          | Prajati et al. (2015) |
+| $X_4$  | Angka melek huruf                               | Prajati et al. (2015) |
+| $X_5$  | Jumlah UMKM & Demirbas                          | Demirbas (2011)       |
+| $X_6$  | Jumlah tempat rekreasi dan pariwisata           | Karim et al. (2022)   |
+| $X_7$  | Jumlah pasar rakyat                             | Fatimah et al. (2020) |
+| $X_8$  | Jumlah restoran & Demirbas                      | Demirbas (2011)       |
+
+: Peubah yang Digunakan {.striped .hover}
 
 ## Prosedur Analisis Data
 
@@ -82,12 +77,13 @@ Analisis data dilakukan dengan menggunakan perangkat lunak R, dengan tahapan ana
    - Melakukan eksplorasi data untuk mengetahui karakteristik data.
 
 2. **Deteksi Multikolinieritas:**
-   - Mendeteksi multikolinieritas antar peubah penjelas dengan melihat nilai Variance Inflation Factor (VIF).
+   - Mendeteksi multikolinieritas antar peubah penjelas dengan melihat nilai _Variance Inflation Factor_ (VIF).
    - VIF dihitung menggunakan persamaan berikut:
-     \[
-     VIF = \frac{1}{1 - R_i^2}
-     \]
+     
+     $VIF = \frac{1}{1 - R_i^2}$
+     
      dengan \(R_i^2\) adalah koefisien determinasi antara \(X_i\) dengan peubah penjelas lainnya.
+     
    - Menurut Akinwande et al. (2015), nilai VIF yang lebih dari lima menunjukkan adanya multikolinieritas, menjadi acuan untuk mengeluarkan peubah penjelas dari model.
 
 3. **Transformasi Peubah:**
@@ -186,6 +182,7 @@ petajabar$prod_sampah <- Data$produksi_sampah_per_kepadatan
 ### Eksplorasi Data
 
 Peta sebaran produksi sampah per kepadatan penduduk dapat dihasilkan dengan syntax berikut:
+
 ```{r}
 ## Peta Produksi Sampah per Kepadatan Penduduk
 # Create list object for sp.layout
@@ -201,16 +198,66 @@ spplot(petajabar, "prod_sampah", col.regions=color,
 ```
 
 Diagram kotak garis dari produksi sampah per kepadatan penduduk dapat dihasilkan menggunakan syntax
+
 ```{r}
 boxplot(Y2, xlab = "Produksi sampah per kepadatan penduduk", horizontal = TRUE)
 ```
 
-Berdasarkan diagram kotak garis, dapat dilihat bahwa garis di bagian kanan diagram kotak garis lebih panjang. Hal tersebut menunjukkan bahwa data produksi sampah per kepadatan penduduk cenderung menjulur ke kanan. \ \
-\ \
+Berdasarkan diagram kotak garis, dapat dilihat bahwa garis di bagian kanan diagram kotak garis lebih panjang. Hal tersebut menunjukkan bahwa data produksi sampah per kepadatan penduduk cenderung menjulur ke kanan.
+
 Nilai deskriptif merupakan gambaran dari data yang akan digunakan dalam penelitian dan nilai deskriptif dari seluruh peubah yang digunakan pada penelitian ini ditampilkan pada Tabel 2. Peubah penjelas yang memiliki nilai minimum paling kecil adalah peubah X8 dengan nilai 0. Wilayah yang memiliki peubah X8 atau jumlah restoran sama dengan 0 adalah Kabupaten Kuningan. Wilayah yang memiliki jumlah restoran terbanyak adalah Kota Bekasi dengan jumlah sebanyak 1024 restoran. Peubah penjelas dengan nilai rataan tertinggi yaitu peubah X5 atau jumlah UMKM. Sedangkan peubah penjelas dengan rataan terkecil dibandingkan peubah lainnya adalah X3 atau rata-rata lama sekolah. Peubah penjelas dengan nilai standar deviasi yang tinggi adalah peubah X1 dan X5.
 
 ```{r}
-tabel_deskriptif <- matrix(c(min(Y2),min(X1), min(X2), min(X3), min(X4), min(X5), min(X6), min(X7), min(X8), max(Y2), max(X1), max(X2), max(X3), max(X4), max(X5), max(X6), max(X7), max(X8), median(Y2), median(X1), median(X2), median(X3), median(X4), median(X5), median(X6), median(X7), median(X8), mean(Y2), mean(X1), mean(X2), mean(X3), mean(X4), mean(X5), mean(X6), mean(X7), mean(X8), sd(Y2), sd(X1), sd(X2), sd(X3), sd(X4), sd(X5), sd(X6), sd(X7), sd(X8)), ncol = 9, byrow = TRUE)
+tabel_deskriptif <-matrix(
+    c(min(Y2),
+      min(X1),
+      min(X2),
+      min(X3),
+      min(X4),
+      min(X5),
+      min(X6),
+      min(X7),
+      min(X8),
+      max(Y2),
+      max(X1),
+      max(X2),
+      max(X3),
+      max(X4),
+      max(X5),
+      max(X6),
+      max(X7),
+      max(X8),
+      median(Y2),
+      median(X1),
+      median(X2),
+      median(X3),
+      median(X4),
+      median(X5),
+      median(X6),
+      median(X7),
+      median(X8),
+      mean(Y2),
+      mean(X1),
+      mean(X2),
+      mean(X3),
+      mean(X4),
+      mean(X5),
+      mean(X6),
+      mean(X7),
+      mean(X8),
+      sd(Y2),
+      sd(X1),
+      sd(X2),
+      sd(X3),
+      sd(X4),
+      sd(X5),
+      sd(X6),
+      sd(X7),
+      sd(X8)
+    ),
+    ncol = 9,
+    byrow = TRUE
+  )
 tabel_deskriptif <- round(tabel_deskriptif, 2)
 rownames(tabel_deskriptif) <- c("Minimum", "Maksimum", "Median", "Rataan", "Standar Deviasi")
 colnames(tabel_deskriptif) <- c("Y", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "X8")
@@ -255,17 +302,21 @@ Berdasarkan gambar di atas, dapat dilihat bahwa nilai 0 berada pada selang nilai
 
 ### Pengujian Efek Spasial
 
-a.	Uji Breusch-Pagan | Uji Breusch-Pagan dilakukan menggunakan syntax berikut:
+a.	Uji Breusch-Pagan
+    
+    Uji Breusch-Pagan dilakukan menggunakan syntax berikut:
 
 ```{r}
 reglin2 <- lm(log(Y2)~log(X1)+X2+X3+X4+log(X5)+X6+X7+X8)
 bptest(reglin2)
 ```
 
-Hasil uji menunjukkan nilai-p > 0.05, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial \ \
-\ \
+Hasil uji menunjukkan nilai-p > 0.05, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial 
 
-b.	Uji LM dan indeks Moran | untuk melakukan uji LM dan indeks Moran, perlu ditentukan terlebih dahulu matriks pembobot yang akan digunakan. Pada penelitian ini akan menggunakan matriks bobot ketetanggaan Queen, ketetanggaan rook, jarak eksponensial negatif, dan invers jarak. Berikut merupakan syntax yang digunakan untuk membuat matriks bobot:
+
+b.	Uji LM dan indeks Moran
+    
+    untuk melakukan uji LM dan indeks Moran, perlu ditentukan terlebih dahulu matriks pembobot yang akan digunakan. Pada penelitian ini akan menggunakan matriks bobot ketetanggaan Queen, ketetanggaan rook, jarak eksponensial negatif, dan invers jarak. Berikut merupakan syntax yang digunakan untuk membuat matriks bobot:
 
 ```{r}
 #### Matriks queen ####
@@ -323,57 +374,90 @@ Setelah dibuat matriks pembobot, maka akan dilakukan pengujian LM dengan semua m
 
 ```{r}
 #### LM Test Model 1 ####
-reglin2 <- lm(log(Y2)~log(X1)+X2+X4+log(X5)+X6+X7+X8)
+reglin2 <- lm(log(Y2) ~ log(X1) + X2 + X4 + log(X5) + X6 + X7 + X8)
 
 #LM dengan queen
-LM_Queen <- lm.RStests(reglin2, queen.jabar,
-                     test=c("RSerr", "RSlag","adjRSerr","adjRSlag","SARMA"))
+LM_Queen <- lm.RStests(reglin2,
+                       queen.jabar,
+                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
 
 #LM rook
-LM_rook <- lm.RStests(reglin2, rook.jabar,
-                      test = c("RSerr", "RSlag","adjRSerr","adjRSlag","SARMA"))
+LM_rook <- lm.RStests(reglin2,
+                      rook.jabar,
+                      test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
 
 #LM Inverse
-LM_inv_1 <- lm.RStests(reglin2, invers.w,
-                       test = c("RSerr", "RSlag","adjRSerr","adjRSlag","SARMA"))
+LM_inv_1 <- lm.RStests(reglin2,
+                       invers.w,
+                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
 
-LM_inv_2 <- lm.RStests(reglin2, invers.w2,
-                       test = c("RSerr", "RSlag","adjRSerr","adjRSlag","SARMA"))
+LM_inv_2 <- lm.RStests(reglin2,
+                       invers.w2,
+                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
 #LM Exponential
-LM_exp_1 <- lm.RStests(reglin2, W.eksp.s1,
-                       test = c("RSerr", "RSlag","adjRSerr","adjRSlag","SARMA"))
+LM_exp_1 <- lm.RStests(reglin2,
+                       W.eksp.s1,
+                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
 
-LM_exp_2 <- lm.RStests(reglin2, W.eksp.s2,
-                       test = c("RSerr", "RSlag","adjRSerr","adjRSlag","SARMA"))
+LM_exp_2 <- lm.RStests(reglin2,
+                       W.eksp.s2,
+                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
 
-tabel_uji_LM <- matrix(c(LM_Queen$RSerr$p.value, LM_Queen$RSlag$p.value,
-                         LM_Queen$adjRSerr$p.value, LM_Queen$adjRSlag$p.value,
-                         LM_Queen$SARMA$p.value, LM_rook$RSerr$p.value,
-                         LM_rook$RSlag$p.value, LM_rook$adjRSerr$p.value,
-                         LM_rook$adjRSlag$p.value, LM_rook$SARMA$p.value,
-                         LM_inv_1$RSerr$p.value, LM_inv_1$RSlag$p.value,
-                         LM_inv_1$adjRSerr$p.value, LM_inv_1$adjRSlag$p.value,
-                         LM_inv_1$SARMA$p.value, LM_inv_2$RSerr$p.value,
-                         LM_inv_2$RSlag$p.value, LM_inv_2$adjRSerr$p.value,
-                         LM_inv_2$adjRSlag$p.value, LM_inv_2$SARMA$p.value,
-                         LM_exp_1$RSerr$p.value, LM_exp_1$RSlag$p.value,
-                         LM_exp_1$adjRSerr$p.value, LM_exp_1$adjRSlag$p.value,
-                         LM_exp_1$SARMA$p.value, LM_exp_2$RSerr$p.value,
-                         LM_exp_2$RSlag$p.value, LM_exp_2$adjRSerr$p.value,
-                         LM_exp_2$adjRSlag$p.value, LM_exp_2$SARMA$p.value),
-                       ncol = 6, byrow = FALSE)
+tabel_uji_LM <-
+  matrix(
+    c(
+      LM_Queen$RSerr$p.value,
+      LM_Queen$RSlag$p.value,
+      LM_Queen$adjRSerr$p.value,
+      LM_Queen$adjRSlag$p.value,
+      LM_Queen$SARMA$p.value,
+      LM_rook$RSerr$p.value,
+      LM_rook$RSlag$p.value,
+      LM_rook$adjRSerr$p.value,
+      LM_rook$adjRSlag$p.value,
+      LM_rook$SARMA$p.value,
+      LM_inv_1$RSerr$p.value,
+      LM_inv_1$RSlag$p.value,
+      LM_inv_1$adjRSerr$p.value,
+      LM_inv_1$adjRSlag$p.value,
+      LM_inv_1$SARMA$p.value,
+      LM_inv_2$RSerr$p.value,
+      LM_inv_2$RSlag$p.value,
+      LM_inv_2$adjRSerr$p.value,
+      LM_inv_2$adjRSlag$p.value,
+      LM_inv_2$SARMA$p.value,
+      LM_exp_1$RSerr$p.value,
+      LM_exp_1$RSlag$p.value,
+      LM_exp_1$adjRSerr$p.value,
+      LM_exp_1$adjRSlag$p.value,
+      LM_exp_1$SARMA$p.value,
+      LM_exp_2$RSerr$p.value,
+      LM_exp_2$RSlag$p.value,
+      LM_exp_2$adjRSerr$p.value,
+      LM_exp_2$adjRSlag$p.value,
+      LM_exp_2$SARMA$p.value
+    ),
+    ncol = 6,
+    byrow = FALSE
+  )
 
 tabel_uji_LM <- round(tabel_uji_LM, 3)
 
-rownames(tabel_uji_LM) <- c("RSerr", "RSlag","adjRSerr","adjRSlag","SARMA")
-colnames(tabel_uji_LM) <- c("Queen", "Rook", "Jarak Inverse-1",
-                            "Jarak Inverse-2", "Negatif Eksponensial-1",
-                            "Negatif Eksponensial-2")
+rownames(tabel_uji_LM) <-
+  c("LMlag", "LMerr", "RLMlag", "RLMerr", "SARMA")
+colnames(tabel_uji_LM) <- c(
+  "Queen",
+  "Rook",
+  "Jarak Inverse-1",
+  "Jarak Inverse-2",
+  "Negatif Eksponensial-1",
+  "Negatif Eksponensial-2"
+)
 t(tabel_uji_LM)
 ```
 
-Berdasarkan hasil Uji LM, diketahui bahwa matriks jarak invers 1 memberikan nilai LMlag, RLMlag, dan SARMA yang signifikan pada taraf nyata α = 0,05 dan paling kecil jika dibandingkan dengan matriks pembobot yang lainnya. \ \ 
-\ \
+Berdasarkan hasil Uji LM, diketahui bahwa matriks jarak invers 1 memberikan nilai LMlag, RLMlag, dan SARMA yang signifikan pada taraf nyata α = 0,05 dan paling kecil jika dibandingkan dengan matriks pembobot yang lainnya. 
+
 Selanjutnya akan dilakukan pengujian indeks Moran dari setiap peubah penjelas dengan syntax berikut
 
 ```{r}
@@ -509,7 +593,6 @@ Interpretasi pada koefisien regresi spasial dilakukan dengan melihat nilai efek 
 
 ```{r}
 #### Spill-Over Effect ####
-
 mod.sar.fixed <- lagsarlm(log(Y2)~X4+log(X5)+X6+X7, listw = invers.w)
 
 #Membuat matriks identitas
@@ -568,6 +651,10 @@ tabel_efek <- matrix(c(mean(direct_b3), mean(indirect_b3), total_b3,mean(direct_
 colnames(tabel_efek) <- c("Direct", "Indirect", "Total")
 rownames(tabel_efek) <- c("X4", "X5", "X6", "X7")
 tabel_efek
+```
+
+
+```{r}
 indirect_b3 <- cbind(petajabar$KABKOT, indirect_b3)
 indirect_b4 <- cbind(petajabar$KABKOT, indirect_b4)
 indirect_b5 <- cbind(petajabar$KABKOT, indirect_b5)
@@ -612,7 +699,6 @@ map.de.x7 <- ggplot()+
 
 ```{r}
 #### Indirect Effect Map ####
-
 map.ie.x4 <- ggplot()+
   geom_sf(data=dat.map, mapping =  aes(geometry = geometry, fill = ie_x4))+
   scale_fill_gradientn(colours = mycol, name = NULL)+

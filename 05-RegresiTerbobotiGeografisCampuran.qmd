@@ -1,1 +1,403 @@
 # Regresi Terboboti Geografis Campuran
+
+## Deskripsi
+Regresi terboboti geografis campuran (RTGC) memiliki parameter yang bersifat lokal dan global (Fotheringham et al. 2002). Prosedur pendugaan parameter pada model RTGC menggabungkan metode parametrik (parameter global) dan nonparametrik (parameter lokal), sehingga model ini juga dikenal sebagai RTG semiparametrik (Nakaya et al. 2005). Model RTGC diformulasikan sebagai berikut:
+
+$y_i = \sum_{j=1}^{k} \alpha_j x_{ij} + \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il} + \epsilon_i \quad (6.4.1)$
+
+dengan $\( i = 1, \ldots, n; \ j = 1, 2, \ldots, k; \ l = 0, 1, 2, \ldots, p \)$,
+
+  $\(u_i, v_i\)$: koordinat (longitude, latitude) titik lokasi ke-i,
+  $\(\beta_l(u_i, v_i)\)$: parameter beragam geografis (lokal) disetiap lokasi-i,
+  $\(\alpha_j\)$: parameter bernilai konstan (global),
+  $\(y_i\)$: peubah respon lokasi ke-i,
+  $\(x_{ij}\)$: peubah penjelas parameter global ke-j pada lokasi ke-i,
+  $\(x_{il}\)$: peubah penjelas parameter lokal ke-l pada lokasi ke-i,
+  $\(p\)$: banyaknya peubah lokal,
+  $\(k\)$: banyaknya peubah global,
+  $\(\epsilon_i\)$: pengaruh acak ke-i yang diasumsikan identik, saling bebas, dan menyebar $\(N(0, \sigma^2)\)$.
+
+Pendugaan parameter lokal pada RTGC menggunakan metode yang sama dengan pendugaan pada RTG, yaitu menggunakan kuadrat terkecil terboboti. Model RTGC dalam bentuk matriks dinyatakan sebagai:
+
+$y = X_g a + m + \epsilon \quad (6.4.2)$
+
+dengan elemen vektor $\(m = \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il}\)$. Penduga parameter lokal adalah:
+
+$\hat{m} = S_l (y - X_g a) \quad (6.4.3)$
+
+dengan matriks-Hat adalah
+
+$S_l = \begin{bmatrix} (X_{l1}' W(u_i, v_i) X_{l1})^{-1} X_{l1}' W(u_i, v_i) \\ (X_{l2}' W(u_i, v_i) X_{l2})^{-1} X_{l2}' W(u_i, v_i) \\ \vdots \\ (X_{ln}' W(u_i, v_i) X_{ln})^{-1} X_{ln}' W(u_i, v_i) \end{bmatrix} \quad (6.4.4)$
+
+dan $\(X_{li}\)$ adalah vektor prediktor yang bersifat lokal pada lokasi-i, serta $\(W(u_i, v_i) = \text{diag}[w_1(u_i, v_i), w_2(u_i, v_i), \ldots, w_n(u_i, v_i)]\)$ adalah matriks pembobot spasial lokasi-i yang nilai elemen-elemen diagonalnya ditentukan oleh kedekatan lokasi-i dengan lokasi lainnya. Matriks $\(W(u_i, v_i)\)$ ditentukan dengan menggunakan fungsi kernel, seperti yang dibahas pada RTG.
+
+Untuk menentukan parameter global, Persamaan (6.4.3) disubstitusikan ke Persamaan (6.4.2) sehingga diperoleh:
+
+$\hat{a} = (X_g' WX_g)^{-1} X_g' Wy \quad (6.4.6)$
+
+Sehingga prediksi untuk \(\hat{y}\) adalah:
+
+$\hat{y} = X_g (X_g' WX_g)^{-1} X_g' Wy + S_l y \quad (6.4.7)$
+
+Pengujian hipotesis pada RTGC menggunakan uji-t dengan hipotesis yang diuji sebagai berikut:
+
+
+\begin{align*}
+H_0: & \ \beta_j(u_i, v_i) = 0 \quad \text{(peubah penjelas tidak berpengaruh nyata)} \\
+H_1: & \ \beta_j(u_i, v_i) \neq 0 \quad \text{(peubah penjelas berpengaruh nyata)}
+\end{align*}
+
+Statistik uji untuk menguji hipotesis tersebut adalah:
+
+$t_{\text{hit}} = \frac{\hat{\beta}_j(u_i, v_i)}{S_{\hat{\beta}_j(u_i, v_i)}} \quad \text{untuk } i=1,2,\ldots,n; \ j=0,1,2,\ldots,p \quad (6.4.8)$
+
+Dengan galat baku $\(\hat{\beta}_j(u_i, v_i)\)$ adalah $\(S_{\hat{\beta}_j(u_i, v_i)} = \sqrt{(I-S_l)(I-S_l)'\hat{\sigma}^2}\)$, dan penduga ragam adalah $\(\hat{\sigma}^2 = \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n-p}\)$. $\(H_0\)$ ditolak jika nilai $\(t_{\text{hit}} > t_{(\alpha/2;n-p)}\)$ (Fotheringham et al. 2002).
+
+## Data
+
+Ilustrasi untuk model RTGC merujuk hasil penelitian Pongoh (2015) dan Mar’ah et al. (2017). Penentuan peubah penjelas yang bersifat global dan lokal ada dua pendekatan, yaitu dengan menggunakan model liner koregionalisasi (MLK) dan selang kepercayaan. MLK agak rumit tetapi hasilnya lebih detil (Mar’ah et al. 2017), sedangkan metode selang kepercayaan dari koefisien RTG sangat sederhana Pongoh (2015).
+
+Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untuk Program Perlindungan Sosial Juli 2012 pada 159 kecamatan di Provinsi Sulawesi Utara, data diambil dari website TNP2K (Tim Nasional Percepatan Penanggulangan Kemiskinan). Peubah respon (Y) yang digunakan yaitu persentase status kesejahteraan rendah (%) dan prediktor yang digunakan selengkapnya tertera di Tabel 6.4.1. Data dan peta ilustrasi RTGC tersedia pada tautan [https://ipb.link/gwr-mixed](https://ipb.link/gwr-mixed). 
+
+$$
+\begin{table}[ht]
+\centering
+\caption{Keterangan Peubah}
+\begin{tabular}{|c|p{10cm}|}
+  \hline
+  \textbf{Peubah} & \textbf{Keterangan peubah} \\
+  \hline
+  X1 & Persentase kepala rumah tangga perempuan per kecamatan \\
+  \hline
+  X2 & Persentase anak tidak sekolah \\
+  \hline
+  X3 & Persentase penderita cacat \\
+  \hline
+  X4 & Persentase penderita penyakit kronis \\
+  \hline
+  X5 & Persentase individu tidak bekerja usia di atas 15 tahun \\
+  \hline
+  X6 & Persentase rumah tangga memiliki bangunan milik sendiri \\
+  \hline
+  X7 & Persentase rumah tangga menggunakan sumber air minum air terlindung \\
+  \hline
+  X8 & Persentase rumah tangga menggunakan listrik/PLN \\
+  \hline
+  X9 & Persentase rumah tangga menggunakan kompor gas/listrik \\
+  \hline
+  X10 & Persentase rumah tangga menggunakan jamban sendiri \\
+  \hline
+  X11 & Persentase rumah tangga menggunakan SPAL \\
+  \hline
+\end{tabular}
+\end{table}
+$$
+
+## Metode Analisis
+
+Tahapan analisis data adalah sebagai berikut:
+
+1. **Eksplorasi Data:**
+   - Eksplorasi data dengan membentuk peta tematik dari persentase status kesejahteraan rendah (SKR).
+   - Memeriksa multikolinearitas pada prediktor menggunakan Variance Inflation Factor (VIF).
+
+2. **Pengujian Efek Spasial:**
+   - Uji dependensi menggunakan Lagrange Multiplier (LM).
+   - Uji keragaman spasial menggunakan uji Breusch-Pagan (BP).
+
+3. **Pemodelan Regresi Terboboti Geografis (RTG):**
+   - Menentukan lebar jendela (bandwidth) optimum menggunakan fungsi kernel bisquare dengan lebar jendela yang bersifat tetap.
+   - Menduga penduga parameter RTG.
+   - Penentuan peubah penjelas yang bersifat global dan lokal menggunakan Maximum Likelihood Kernel (MLK).
+   - Menduga semivariogram dan semivariogram silang.
+   - Menghitung proporsi keragaman spasial tiap prediktor.
+
+4. **Pemodelan Regresi Terboboti Geografis Campuran (RTGC):**
+   - Melakukan pendugaan parameter RTGC.
+   - Menghitung $AIC_C$.
+   - Membandingkan model RTG dan RTGC berdasarkan nilai $AIC_C$.
+   
+## Tahapan Analisis Data dengan R
+
+### Package
+
+Berikut daftar package yang digunakan untuk menduga RTGC:
+
+```{r}
+library(car)		# Untuk menghitung nilai VIF
+library(classInt)  	# Untuk membuat selang nilai
+library(ggplot2)		# Untuk visualisasi data
+library(lmtest)		# Untuk pengujian asumsi
+library(spdep)		# Untuk dependensi spasial
+library(gstat)		# Untuk membuat variogram
+library(sp)		# Untuk membentuk Mixed GWR model
+library(GWmodel)		# Untuk membentuk Mixed GWR model
+```
+
+### Input Data
+Input data menggunakan syntax berikut:
+
+```{r}
+#Set Lokasi File
+#Input Data
+SKR <- read.csv('data/data_gwr_mixed.csv')
+# 
+#Daerah Singkil tidak diikutkan sementara karena tidak ada dalam peta
+SKR <- SKR[SKR$daerah != "SINGKIL",] 
+#
+#Input peta SHP
+IDN <- read_sf("data/shp/BATAS KECAMATAN DESEMBER 2019 DUKCAPIL.shp")
+#
+#Menggabungkan Data ke file SHP
+sf_use_s2(FALSE)
+gabung <- merge(IDN, SKR, by.x = "KECAMATAN",
+                by.y = "daerah",
+                all.x = FALSE,
+                all.y = FALSE)
+longlat = st_coordinates(st_centroid(gabung))
+head(gabung)
+```
+
+### Eksplorasi Data
+
+Pemeriksaan multikolinearitas antar peubah prediktor menggunakan syntax sebagai berikut:
+
+```{r}
+# Pemeriksaan Multikolineritas
+model<-lm(y ~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + 
+          x9 + x10 + x11, data = gabung)
+as.matrix(vif(model))
+```
+
+Berdasarkan output di atas, nilai VIF dari semua prediktor cukup kecil, sehingga disimpulkan tidak terdapat multikolinearitas.
+
+Untuk membuat peta sebaran SKR terlebih dulu dilakukan pembentukan selang kelas menggunakan metode kmeans. Syntax untuk membuat selang kelas SKR sebagai berikut:
+
+```{r}
+#selang kelas kmeans
+classIntervals(gabung$y, n = 4, style = 'kmeans')
+```
+
+Berdasarkan selang nilai yang terbentuk dibuat peta tematik SKR dengan syntax sebagai berikut:
+
+```{r}
+#Peta SKR
+cc <- c('#fbb4b9', '#f768a1', '#ae017e', '#551c53')
+plot.skr = ggplot(data=gabung) +
+  geom_sf(aes(fill = cut(y, breaks = c(5.82, 20.60,
+          35.12, 51.38, 79.79))), lwd = 0.1, 
+          col = 'black') +
+  scale_fill_manual("SKR", values = cc, 
+          labels = c("5.83% - 20.60%", "20.60% - 35.12%", 
+          "35.12% - 51.38%","50.215% - 79.79%"),                  
+          guide = guide_legend(reverse = T))+
+          xlab("") + ylab("") + xlim(123,127.5) + ylim(0,5)
+plot.skr
+```
+
+### Uji Efek Spasial
+
+a)	Membentuk matriks pembobot spasial
+
+Pada ilustrasi ini, matriks pembobot spasial yang digunakan yaitu matriks KNN dengan K = 2 menggunakan syntax sebagai berikut:
+
+```{r}
+#Matriks bobot 2-NN
+k<-knearneigh(longlat, k=2, longlat = TRUE)
+k1<-knn2nb(k)
+klist<-nb2listw(k1)
+summary(klist)
+```
+
+b)	Uji Lagrange Multiplier
+
+Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier dengan syntax  sebagai berikut:
+
+```{r}
+# uji LM dan RLM
+summary(lm.LMtests(model, klist, test = "all"))
+```
+
+Pada output uji LMerr dan RLMerr memiliki p-value < α=0.05, menunjukkan pada data terdapat dependensi spasial pada galat. 
+
+c)	Uji Breusch-Pagan
+
+Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial dengan syntax sebagai berikut:
+
+```{r}
+#Uji Breusch-Pagan
+bptest(model)
+```
+
+Pada output uji Breusch-Pagan memiliki p-value < α=0.05, menunjukkan terdapat heterogenitas spasial.
+
+### Regresi Terboboti Geografis (RTG)
+
+a)	Menentukan lebar jendela
+
+Pada ilustrasi ini digunakan kernel bisquare dengan syntax sebagai berikut:
+
+```{r}
+# Mengubah data menjadi class SpatialPointsDataFrame
+SKR <- read.csv('data/data_gwr_mixed.csv')
+rownames(SKR)<-SKR$daerah
+coordinates(SKR)<-~longitude+latitude
+#
+#Menentukan nilai bandwidth
+band <- bw.gwr(y ~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + 
+               x8 + x9 + x10 + x11, data = SKR,
+               approach="CV", kernel="bisquare",
+               adaptive=F, p=2, theta=0, longlat=T)
+```
+
+Pada output terlihat nilai lebar jendela optimum sebesar 284.7643 dengan nilai CV minimum sebesar 1106.087. 
+
+b)	Menduga parameter RTG
+
+Pendugaan parameter RTG dengan menggunakan kernel bisquare dapat dilakukan dengan menggunakan syntax berikut:
+
+```{r}
+# Pendugaan parameter RTG dengan fixed bisquare 
+gwrmod <- gwr.basic(y ~ x1 + x2 + x3 + x4 + x5 + x6 + 
+          x7 + x8 + x9 + x10 + x11, data=SKR, bw=band,
+          kernel="bisquare", adaptive=F, p=2, theta=0,
+          longlat=T, F123.test=F, cv=T, W.vect=NULL)
+gwrmod
+```
+
+Berdasarkan output dapat dilihat RTG mempunyai nilai R-Square yang lebih tinggi dan AIC yang lebih rendah dibandingkan model regresi linear.
+
+### Penentuan peubah global dan peubah lokal
+
+a)	Menduga semivariogram dan semivariogram silang
+
+Untuk menduga semivariogram dan semivariogram silang, data lebih dulu di standarisasi. Selanjutnya, dibentuk objek geostatistik dari semua peubah yang digunakan. Pada ilustrasi  ini model struktur tersarang yang digunakan yaitu model Nug(0) + Sph(54) + Gau(161) dengan syntax sebagai berikut:
+
+```{r}
+#Variogram dan semivariogram silang
+SKR <- read.csv('data/data_gwr_mixed.csv')
+# Standarisasi data
+scaleSKR <- as.data.frame(scale(SKR[,4:15]))
+coord <- SKR[,2:3]
+#
+#Mengubah koordinat ke bentuk longitunde-latitude
+coord <- coord*111.32
+colnames(coord)<-c("lat","long")
+#
+#Mengubah data menjadi class SpatialPointsDataFrame
+SKR.sp <-cbind(scaleSKR,coord)
+coordinates(SKR.sp)=~long+lat
+#
+#Membuat objek geostatistik dari setiap peubah
+g = gstat(NULL, "y", y~1, SKR.sp)
+g = gstat(g, "x1", x1~1, data=SKR.sp)
+g = gstat(g, "x2", x2~1, data=SKR.sp)
+g = gstat(g, "x3", x3~1, data=SKR.sp)
+g = gstat(g, "x4", x4~1, data=SKR.sp)
+g = gstat(g, "x5", x5~1, data=SKR.sp)
+g = gstat(g, "x6", x6~1, data=SKR.sp)
+g = gstat(g, "x7", x7~1, data=SKR.sp)
+g = gstat(g, "x8", x8~1, data=SKR.sp)
+g = gstat(g, "x9", x9~1, data=SKR.sp)
+g = gstat(g, "x10", x10~1, data=SKR.sp)
+g = gstat(g, "x11", x11~1, data=SKR.sp)
+#
+#Variogram, semivariogram, dan semivariogram silang
+v = variogram(g, cutoff=240, width=25)
+g = gstat(g, model = vgm(psill=.75, model="Gau", range=
+    161, add.to = vgm(psill=.35, model="Sph", nugget=
+    0.35, range=54)),fill.all = TRUE)
+g.fit = fit.lmc(v, g, fit.lmc = TRUE, correct.diagonal =
+        1.01)
+```
+
+b)	Menghitung proporsi keragaman spasial setiap peubah
+
+Proporsi keragaman spasial ditentukan berdasarkan selang kepercayannya. Rataan proporsi keragaman spasial diperoleh dari rasio antara sill dari nugget terhadap total sill dari tiap peubah. Batas bawah diperoleh dari rasio antara sill dari struktur Sph terhadap total sill dari tiap peubah, dan batas atas diperoleh dari rasio antara sill dari struktur Gau terhadap total sill dari tiap peubah. Berikut syntax yang digunakan:
+
+```{r}
+#Menyiapkan tabel
+labelpeubah <- c('y', 'x1', 'x2', 'x3', 'x4', 'x5',
+                 'x6', 'x7', 'x8', 'x9', 'x10', 'x11')
+tabel5 <- data.frame(matrix(0, ncol = 4))
+colnames(tabel5) <- c('Peubah', 'Nugget', 'Batas bawah',
+                      'Batas atas')
+sumnugget <- 0
+sumbawah <- 0
+sumatas <- 0
+#
+#Menghitung proporsi keragaman masing-masing peubah
+for(i in 1:12){
+  nugget <- round((g.fit$model[[labelpeubah[i]]][1,2]/
+          sum(g.fit$model[[labelpeubah[i]]][,2]))*100,2)
+  btsbawah <- round((g.fit$model[[labelpeubah[i]]][2,2]/
+          sum(g.fit$model[[labelpeubah[i]]][,2]))*100,2)
+  btsatas <- round((g.fit$model[[labelpeubah[i]]][3,2]/
+          sum(g.fit$model[[labelpeubah[i]]][,2]))*100,2)
+  tabel5[i,] <- c(labelpeubah[i], nugget, btsbawah,
+                  btsatas)
+  sumnugget=sumnugget+g.fit$model[[labelpeubah[i]]][1,2]
+  sumbawah=sumbawah + g.fit$model[[labelpeubah[i]]][2,2]
+  sumatas=sumatas + g.fit$model[[labelpeubah[i]]][3,2]
+}
+#
+#Menghitung proporsi keragaman Y dengan semua X
+sumofsum <- sumnugget + sumbawah + sumatas
+totalnugget <- round((sumnugget/sumofsum)*100,2)
+totalatas <- round((sumbawah/sumofsum)*100,2)
+totalbawah <- round((sumatas/sumofsum)*100,2)
+tabel5[13,] <- c("y dan semua x" , totalnugget, totalatas, totalbawah)
+tabel5
+```
+
+c)	Menghitung pengaruh spasial setiap peubah.
+
+Proporsi pengaruh spasial yang dapat dimodelkan dapat dihitung berdasarkan nilai proporsi non-nugget (batas atas dan batas bawah). Berikut syntax yang dapat digunakan:
+
+```{r}
+#Pengaruh spasial
+labtabel7 <- labelpeubah[2:12]
+pspasial <- matrix(as.numeric(tabel5[2:12,3])) +
+            matrix(as.numeric(tabel5[2:12,4]))
+tabel7 <- as.data.frame(cbind(labtabel7, pspasial))
+colnames(tabel7) <- c("Peubah", "Pengaruh Spasial")
+tabel7
+```
+
+Berdasarkan output diketahui nilai pengaruh spasial, prediktor yang mempunyai pengaruh spasial lebih besar dari 70%, yaitu X2, X6, X8, dan X10, ditetapkan sebagai prediktor yang bersifat lokal. Peubah lainnya selanjutnya akan dijadikan peubah global. 
+
+### Pemodelan Regresi Terboboti Geografis Semi-Parametrik (RTGC)
+
+Pendugaan parameter RTGC menggunakan syntax sebagai berikut:
+
+```{r}
+#lebar jendela
+bandmix <-bw.gwr(y~x1+x2+x3+x4+x5+x6+x7+x8+x9+x10+x11,
+                 data=SKR.sp, approach="CV",
+                 kernel="bisquare", adaptive=F, p=2,
+                 theta=0, longlat=T)
+#
+#RTGC
+gwrmixmod <- gwr.mixed(y ~ x1 + x2 + x3 + x4 + x5 + x6 +
+             x7 + x8 + x9 + x10 + x11, data = SKR.sp,
+             fixed.vars = c("x1", "x3", "x4", "x5",
+             "x7", "x9", "x11"), intercept.fixed=F,
+             bw = bandmix, diagnostic=T,
+             kernel="bisquare",adaptive=F, p=2, theta=0,
+             longlat=T)
+```
+
+### Membandingkan model RTG dan RTGC berdasarkan nilai $AIC_C$
+
+Untuk mengetahui nilai $AIC_C$ dari model RTG dan RTGC menggunakan syntax sebagai berikut:
+
+```{r}
+#AICc RTG dan RTGC
+tabelbanding <- data.frame(matrix(c("RTG", "RTGC",
+                round(gwrmod$GW.diagnostic$AICc,2),
+                round(gwrmixmod$aic,2)), ncol = 2))
+colnames(tabelbanding) <- c("Model", "AICc")
+tabelbanding
+```
+
+Nilai $AIC_C$ dari model RTGC lebih kecil dibandingkan RTG, sehingga dapat disimpulkan model terbaik untuk kasus ini adalah RTGC.

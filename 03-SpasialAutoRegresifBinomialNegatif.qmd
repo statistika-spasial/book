@@ -1,41 +1,63 @@
 # Spasial Autoregresif Binomial Negatif
 
 ## Deskripsi
-Regresi autoregresif spasial binomial negatif (SAR-BN) adalah pengembangan analisis regresi binomial negatif dengan menambahkan adanya efek spasial pada data. Regresi spasial binomial negatif dapat digunakan pada data cacah yang memiliki dependensi spasial dan kondisi overdispersi. Model regresi spasial BN antara lain: \ \
-\textbf{Spatial Autoregressive Model (SAR)}
+
+Regresi autoregresif spasial binomial negatif (SAR-BN) adalah pengembangan analisis regresi binomial negatif dengan menambahkan adanya efek spasial pada data. Regresi spasial binomial negatif dapat digunakan pada data cacah yang memiliki dependensi spasial dan kondisi overdispersi. Model regresi spasial BN antara lain:
+
+a. Spatial Autoregressive Model (SAR)
+
 SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR sebagai berikut (Anselin 1988):
-\[
-y = \rho W_1 y + X\beta + \varepsilon
-\]
+
+
+$y = \rho W_1 y + X\beta + \varepsilon$
+
 dengan \(y\) merupakan peubah respon, \(W_1\) merupakan matriks pembobot spasial untuk \(y\), \(\beta\) adalah koefisien parameter regresi, \(\varepsilon\) merupakan sisaan, dan \(\rho\) merupakan koefisien autoregressive lag spasial. Model SAR binomial negatif (SAR BN) dinyatakan sebagai berikut:
-\[
-\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta\right)
-\]
+
+$\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta\right)$
+
 dengan \(y_i \sim \text{NB}(\mu_i)\)
-\textbf{Spatial Durbin Model (SDM)}
+
+b. Spatial Durbin Model (SDM)
+
 SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut (Anselin 1988):
-\[
-y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon
-\]
+
+$y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon $
+
 dengan \(W_2\) merupakan matriks pembobot spasial untuk \(X\) dan \(\gamma\) merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut (Glaser 2017):
-\[
-\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta + w_{2i}^{\prime} x_i \gamma\right)
-\]
+
+$\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta + w_{2i}^{\prime} x_i \gamma\right)$
+
 dengan \(y_i \sim \text{NB}(\mu_i)\)
-\textbf{Spatial Lag-X (SLX)}
+
+c. Spatial Lag-X (SLX)
+
 SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas. Persamaan untuk SLX sebagai berikut (Vega dan Elhorst 2015):
-\[
-y = X\beta + \gamma W_2 X + \varepsilon
-\]
+
+$y = X\beta + \gamma W_2 X + \varepsilon$
+
 Spatial lag-x binomial negatif (SLX BN) merupakan model regresi spasial untuk data cacah dengan overdispersi dan terdapat dependensi spasial pada prediktor. Persamaan dari SLX BN sebagai berikut:
-\[
-\mu_i = \exp\left(x_i \beta + w_{2i}^{\prime} x_i \gamma\right)
-\]
+
+$\mu_i = \exp\left(x_i \beta + w_{2i}^{\prime} x_i \gamma\right)$
+
 dengan \(y_i \sim \text{NB}(\mu_i)\)
 
 ## Data
-Ilustrasi model SAR-BN dirujuk dari hasil penelitian Amelia et al. (2023). Data yang digunakan adalah data sekunder yang diperoleh dari Badan Pusat Statistik Jawa Barat, Dinas Kesehatan Provinsi Jawa Barat, dan Profil Kesehatan Provinsi Jawa Barat Tahun 2021 yang dikeluarkan oleh Dinas Kesehatan Jawa Barat tahun 2021. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat di Tabel berikut. Data dan peta ilustrasi SAR-BN tersedia pada tautan https://ipb.link/sar-binomial-negatif. \ \
-\ \
+
+Ilustrasi model SAR-BN dirujuk dari hasil penelitian Amelia et al. (2023). Data yang digunakan adalah data sekunder yang diperoleh dari Badan Pusat Statistik Jawa Barat, Dinas Kesehatan Provinsi Jawa Barat, dan Profil Kesehatan Provinsi Jawa Barat Tahun 2021 yang dikeluarkan oleh Dinas Kesehatan Jawa Barat tahun 2021. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat di Tabel berikut. Data dan peta ilustrasi SAR-BN tersedia pada tautan [https://ipb.link/sar-binomial-negatif](https://ipb.link/sar-binomial-negatif). 
+
+| Kode   | Peubah                                          |
+|--------|-------------------------------------------------|
+| $Y$    | Banyaknya stunting per 100.000 balita           |
+| $X_1$  | Persentase balita mendapatkan imunisasi dasar lengkap |
+| $X_2$  | Persentase bayi berusia kurang dari 6 bulan mendapat ASI |
+| $X_3$  | Persentase tempat pengelolaan makanan memenuhi syarat |
+| $X_4$  | Persentase bayi berat badan lahir rendah              |
+| $X_5$  | Persentase keluarga dengan akses sanitasi layak       |
+| $X_6$  | Pengeluaran per kapita dalam juta rupiah              |
+
+: Deskripsi Peubah {.striped .hover}
+
+$$
 \begin{table}[ht]
 \centering
 \caption{Deskripsi Peubah}
@@ -59,6 +81,7 @@ Ilustrasi model SAR-BN dirujuk dari hasil penelitian Amelia et al. (2023). Data 
   \hline
 \end{tabular}
 \end{table}
+$$
 
 ## Metode Analasis
 

@@ -4,9 +4,12 @@ project:
 
 prefer-html: true
 
+language:
+  section-title-appendices: "Lampiran"
+
 book:
-  title: "ANALISIS SPASIAL DENGAN TEKNIK STATISTIKA"
-  subtitle: "Studi Kasus dan Ilustrasi R"
+  title: "PEMODELAN STATISTIKA PADA DATA GEOSPASIAL"
+  subtitle: "Studi Kasus dan Ilustrasi dengan R"
   author: 
     - name: Prof. Dr. Ir. Anik Djuraidah, MS.
       email: anikdjuraidah@apps.ipb.ac.id
@@ -37,7 +40,7 @@ book:
       chapters: 
         - 10-ModelDependensiSpasial.qmd 
         - 11-ModelKeragamanSpasial.qmd
-    - 12-ModelEpidemiologi.qmd
+    - ModelEpidemiologi.qmd
   appendices: 
     - summary.qmd
     - references.qmd

@@ -1,1 +1,454 @@
 # Model Keragaman Spasial 
+
+## Package
+
+```{r}
+library(spdep) # Untuk pemodelan dependensi spasial 
+library(spatialreg) # Untuk pemodelan dependensi spasial 
+library(stats) # Untuk operasi matematis 
+library(car) # Untuk menghitung VIF 
+library(nortest) # Untuk uji kenormalan 
+library(sf) # Untuk menginput peta 
+library(ggplot2) # Untuk visualisasi data 
+library(tidyr) # Untuk mengolah dataframe 
+library(dplyr) # Untuk mengolah dataframe 
+library(tidyverse) # Struktur matriks 
+library(lmtest) # Uji model linier 
+library(spmoran) # ESF 
+library(ape) 
+library(fitdistrplus)
+library(readxl) 
+```
+
+## Data dan Peta
+
+```{r}
+hasil2 <- readRDS("data/hasil.RDS")
+#Input Data 
+ikp <- read_excel("data/IKP2022.xlsx") 
+
+# #Import peta SHP 
+peta <- read_sf("data/shp/BATAS KABUPATEN KOTA DESEMBER 2019 DUKCAPIL.shp")
+```
+
+## Modifikasi Data
+
+```{r}
+ikp$KAB_KOTA = toupper(ikp$KAB_KOTA)
+
+#join data to peta
+dfix = left_join(peta, ikp, by = "KAB_KOTA")
+
+dfix = na.omit(dfix)
+
+sf::sf_use_s2(FALSE)
+longlat = st_coordinates(st_centroid(dfix$geometry))
+```
+
+## Plot Spasial
+
+```{r}
+#peta ikp
+ggplot(dfix) +
+  geom_sf(aes(fill = Y)) +
+  ggtitle("Indeks Ketahanan Pangan") +
+  scale_fill_gradientn(colours = rev(hcl.colors(5, palette = "Emrld")),
+                       limits = c(0, max(dfix$Y) + 1)) +
+  xlab("") +
+  ylab("") +
+  labs(fill = "Nilai") + theme_bw() + theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    legend.title = element_text(size =
+                                  14, face = "bold"),
+    legend.text = element_text(size =
+                                 13),
+    legend.key.height = unit(0.32, 'npc')
+  )
+```
+
+## Boxplot
+
+```{r}
+# Boxplot
+X = as.data.frame(cbind(
+  c(1:length(dfix$X1)),
+  dfix$X1,
+  dfix$X3,
+  dfix$X5,
+  dfix$X6,
+  dfix$X7,
+  dfix$X8
+))
+colnames(X) <- c("id", paste0("X", 1:6))
+head(X)
+```
+
+
+```{r}
+X <- pivot_longer(X,
+               cols = colnames(X)[-1],
+               names_to = 'Variable',
+               values_to = 'Value')
+head(X)
+```
+
+
+```{r}
+ggplot(X, aes(y = Value)) +
+  geom_boxplot(
+    # custom boxes
+    color = "steelblue",
+    fill = "steelblue",
+    alpha = 0.2,
+    # Notch?
+    notch = TRUE,
+    notchwidth = 0.8,
+    # custom outliers
+    outlier.colour = "firebrick2",
+    outlier.fill = "firebrick2",
+    outlier.size = 3
+  ) + facet_wrap( ~ Variable,
+                  scales = "free",
+                  nrow = 1,
+                  ncol = 6) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()
+  ) +
+  theme_bw()
+```
+
+## Bobot Spasial
+
+```{r}
+#Bobot Spasial
+D <- as.matrix(dist(longlat, method = "euclidean"))
+#inverse weight matrix
+w <- 1 / D
+# inverse weight matrix - row-normalized
+diag(w) <- 0
+wmoran = mat2listw(w, style = "W")
+#Uji Moran Indeks (Autokorelasi)
+moran.test(dfix$Y, wmoran, zero.policy = T)
+```
+
+## Uji Asumsi
+
+```{r}
+#Uji asumsi
+formula <- Y ~ X1 + X3 + X5 + X6 + X7 + X8
+vif(lm(formula, data = dfix))
+lillie.test(residuals(lm(formula, data = dfix)))
+bptest(lm(formula, data = dfix))
+model <- lm(formula, data = dfix)
+lm.morantest(model, wmoran, alternative = "two.sided", zero.policy = T)
+```
+
+## Histogram
+
+```{r}
+# Histogram Normalitas Sebelum Transformasi
+hist(
+  dfix$Y,
+  main = "Histogram",
+  col = "steelblue",
+  border = "black",
+  xlab = "Y"
+)
+hist(
+  residuals(lm(formula, data = dfix)),
+  main = "Histogram",
+  col = "steelblue",
+  border = "black",
+  xlab = "Residuals"
+)
+```
+
+## Identifikasi Model Spasial dan Sebaran
+
+```{r}
+#LM Test (Model Spasial)
+model <- lm(formula, data = dfix)
+lm.morantest(model, wmoran, alternative = "two.sided", zero.policy = T)
+#Deteksi Sebaran
+descdist(residuals(lm(formula, data = dfix)), boot = 500)
+descdist(dfix$Y, boot = 500)
+```
+
+## Transformasi dan Pemodelan
+
+```{r}
+#| eval: false
+# Find transformation D in SAL
+hasil2 <- data.frame(
+  resid_ad = 0,
+  resid_ll = 0,
+  y_ad = 0,
+  y_ll = 0
+)
+for (i in 1:25) {
+  ng2 <- nongauss_y(y_nonneg = T, tr_num = i)
+  #ESF VC
+  Y = dfix$Y
+  X = cbind(dfix$X1, dfix$X3, dfix$X5, dfix$X6, dfix$X7, dfix$X8)
+  X = matrix(X, ncol = ncol(X), nrow = nrow(X))
+  meig <- meigen(cmat = w)
+  resf_vc <- resf_vc(
+    y = Y,
+    x = X,
+    meig = meig,
+    x_sel = FALSE,
+    nongauss = ng2
+  )
+  hasil <- data.frame(
+      resid_ad = ad.test(resf_vc$resid)$p.value,
+      resid_ll = lillie.test(resf_vc$resid)$p.value,
+      y_ad = ad.test(resf_vc$tr_y)$p.value,
+      y_ll = lillie.test(resf_vc$tr_y)$p.value
+    )
+  
+  hasil2 <- rbind(hasil2, hasil)
+}
+```
+
+
+```{r}
+hasil2
+```
+
+## Model ESF-VC
+
+```{r}
+#RESF VC
+ng2 <- nongauss_y(y_nonneg = T, tr_num = 14)
+Y = dfix$Y
+X = cbind(dfix$X1, dfix$X3, dfix$X5, dfix$X6, dfix$X7, dfix$X8)
+X = matrix(X, ncol = ncol(X), nrow = nrow(X))
+meig <- meigen(cmat = w)
+resf_vc <- resf_vc(
+  y = Y,
+  x = X,
+  meig = meig,
+  x_sel = FALSE,
+  nongauss = ng2
+)
+```
+
+
+```{r}
+# Hasil RESF-VC
+resf_vc
+```
+
+## Hitogram Setelah Transformasi
+
+```{r}
+# Histogram sesudah transformasi
+hist(
+  resf_vc$tr_y,
+  main = "Histogram",
+  col = "steelblue",
+  border = "black",
+  xlab = "Y"
+)
+lillie.test(resf_vc$tr_y)
+hist(
+  resf_vc$resid,
+  main = "Histogram",
+  col = "steelblue",
+  border = "black",
+  xlab = "Residuals"
+)
+lillie.test(resf_vc$resid)
+```
+
+## Peta Signifikansi Peubah Varying Coefficient
+
+```{r}
+# Peta Signifikansi Variabel
+data_p <- resf_vc$p_vc
+data_p$kX1 <- ifelse(data_p$V1 < 0.05, "X1", NA)
+data_p$kX2 <- ifelse(data_p$V2 < 0.05, "X2", NA)
+data_p$kX3 <- ifelse(data_p$V3 < 0.05, "X3", NA)
+data_p$kX4 <- ifelse(data_p$V4 < 0.05, "X4", NA)
+data_p$kX5 <- ifelse(data_p$V5 < 0.05, "X5", NA)
+data_p$kX6 <- ifelse(data_p$V6 < 0.05, "X6", NA)
+data_p2 <- data_p[, c("kX1", "kX2", "kX3", "kX4", "kX5", "kX6")]
+data_p$Sig <- apply(data_p2, 1, function(data_p2) {
+  filtered_values <- data_p2[is.na(data_p2) == FALSE]
+  paste(filtered_values, collapse = ", ")
+})
+table(data_p$Sig)
+```
+
+
+```{r}
+dfix$Signifikansi <- as.factor(data_p$Sig)
+ggplot(dfix) +
+  geom_sf(aes(fill = Signifikansi)) +
+  ggtitle("Signifikansi Peubah Model RE-ESF VC") +
+  xlab("") +
+  ylab("") +
+  labs(fill = "Variabel") + theme_bw() + theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    legend.title = element_text(size =
+                                  14, face = "bold"),
+    legend.text = element_text(size =
+                                 12),
+    legend.key.width = unit(0.10, 'npc')
+  )
+```
+
+## Peta Koefisien
+
+```{r}
+# Peta Koefisien Beta
+data_b<-resf_vc$b_vc
+dfix$bX1<-data_b$V1
+dfix$bX2<-data_b$V2
+dfix$bX3<-data_b$V3
+dfix$bX4<-data_b$V4
+dfix$bX5<-data_b$V5
+dfix$bX6<-data_b$V6
+
+# X1
+ggplot(dfix) +
+  geom_sf(aes(fill = bX1)) +
+  ggtitle(expression(bold(
+    paste("Koefisien ",  ~ beta[1], " (Persentase Penduduk Miskin)")
+  ))) +
+  scale_fill_gradientn(colours = rev(hcl.colors(5, palette = "Emrld")),
+                       limits = c(min(dfix$bX1), max(dfix$bX1))) +
+  xlab("") +
+  ylab("") +
+  labs(fill = "Nilai") + theme_bw() + theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    legend.title = element_text(size =
+                                  14, face = "bold"),
+    legend.text = element_text(size =
+                                 16),
+    legend.key.height = unit(0.32, 'npc')
+  )
+```
+
+
+```{r}
+# X2
+ggplot(dfix) +
+  geom_sf(aes(fill = bX2)) +
+  ggtitle(expression(bold(
+    paste("Koefisien ", beta[2], " (Pengeluaran Per Kapita)")
+  ))) +
+  scale_fill_gradientn(colours = rev(hcl.colors(5, palette = "Emrld")),
+                       limits = c(min(dfix$bX2), max(dfix$bX2))) +
+  xlab("") +
+  ylab("") +
+  labs(fill = "Nilai") + theme_bw() + theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    legend.title = element_text(size =
+                                  14, face = "bold"),
+    legend.text = element_text(size =
+                                 16),
+    legend.key.height = unit(0.30, 'npc')
+  )
+```
+
+
+```{r}
+# X3
+ggplot(dfix) +
+  geom_sf(aes(fill = bX3)) +
+  ggtitle(expression(bold(
+    paste("Koefisien ", beta[3], " (Umur Harapan Hidup)")
+  ))) +
+  scale_fill_gradientn(colours = rev(hcl.colors(5, palette = "Emrld")),
+                       limits = c(min(dfix$bX3), max(dfix$bX3))) +
+  xlab("") +
+  ylab("") +
+  labs(fill = "Nilai") + theme_bw() + theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    legend.title = element_text(size =
+                                  14, face = "bold"),
+    legend.text = element_text(size =
+                                 16),
+    legend.key.height = unit(0.30, 'npc')
+  )
+```
+
+
+```{r}
+# X4
+ggplot(dfix) +
+  geom_sf(aes(fill = bX4)) +
+  ggtitle(expression(bold(
+    paste(
+      "Koefisien ",
+      beta[4],
+      " (Rata - Rata Lama Sekolah Penduduk 15 Tahun Keatas)"
+    )
+  ))) +
+  scale_fill_gradientn(colours = rev(hcl.colors(5, palette = "Emrld")),
+                       limits = c(min(dfix$bX4), max(dfix$bX4))) +
+  xlab("") +
+  ylab("") +
+  labs(fill = "Nilai") + theme_bw() + theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    legend.title = element_text(size =
+                                  14, face = "bold"),
+    legend.text = element_text(size =
+                                 16),
+    legend.key.height = unit(0.30, 'npc')
+  )
+```
+
+
+```{r}
+# X5
+ggplot(dfix) +
+  geom_sf(aes(fill = bX5)) +
+  ggtitle(expression(bold(
+    paste("Koefisien ", beta[5], " (Persentase Akses Sanitasi Layak)")
+  ))) +
+  scale_fill_gradientn(colours = rev(hcl.colors(5, palette = "Emrld")),
+                       limits = c(min(dfix$bX5), max(dfix$bX5))) +
+  xlab("") +
+  ylab("") +
+  labs(fill = "Nilai") + theme_bw() + theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    legend.title = element_text(size =
+                                  14, face = "bold"),
+    legend.text = element_text(size =
+                                 16),
+    legend.key.height = unit(0.30, 'npc')
+  )
+```
+
+
+```{r}
+# X6
+ggplot(dfix) +
+  geom_sf(aes(fill = bX6)) +
+  ggtitle(expression(bold(
+    paste("Koefisien ", beta[6], " (Akses Terhadap Air Minum)")
+  ))) +
+  scale_fill_gradientn(colours = rev(hcl.colors(5, palette = "Emrld")),
+                       limits = c(min(dfix$bX6), max(dfix$bX6))) +
+  xlab("") +
+  ylab("") +
+  labs(fill = "Nilai") + theme_bw() + theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    legend.title = element_text(size =
+                                  14, face = "bold"),
+    legend.text = element_text(size =
+                                 16),
+    legend.key.height = unit(0.30, 'npc')
+  )
+```
+
+
+```{r}
+# Koefisien Marginal
+me<-coef_marginal_vc(resf_vc)
+me
+```

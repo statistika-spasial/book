@@ -1,1 +1,135 @@
 # Model Dependensi Spasial 
+
+## Package
+
+```{r}
+library(spdep) # Untuk pemodelan dependensi spasial
+library(spatialreg) # Untuk pemodelan dependensi spasial
+library(stats) # Untuk operasi matematis
+library(car) # Untuk menghitung VIF
+library(nortest) # Untuk uji kenormalan
+library(sf) # Untuk menginput peta
+library(ggplot2) # Untuk visualisasi data
+library(tidyr) # Untuk mengolah dataframe
+library(dplyr) # Untuk mengolah dataframe
+library(tidyverse) # Struktur matriks
+library(lmtest) # Uji model linier
+library(spmoran) # ESF
+library(ape)
+library(fitdistrplus)
+library(readxl)
+```
+
+## Data dan Peta
+
+```{r}
+#Input Data
+stunting <- read_excel("data/data_stunting_indo.xlsx")
+
+#Import peta SHP
+peta <- read_sf("data/shp/BATAS KABUPATEN KOTA DESEMBER 2019 DUKCAPIL.shp")
+```
+
+## Modifikasi Data
+
+```{r}
+#Menggabungkan Data ke file SHP
+#df = cbind(stunting,KAB_KOTA=shp.jabar$KAB_KOTA)
+dfix = left_join(peta, stunting, by = "KAB_KOTA")
+
+dfix = na.omit(dfix)
+sf::sf_use_s2(FALSE)
+longlat = st_coordinates(st_centroid(dfix$geometry))
+
+#library("writexl")
+#write_xlsx(dfix,"datacek.xlsx")
+```
+
+## Plot Spasial
+
+```{r}
+#Pemetaan Kasus Stunting
+ggplot(dfix) +
+  geom_sf(aes(fill = Y)) +
+  geom_text(aes(longlat[, 1], longlat[, 2], label = KAB_KOTA), size = 1) +
+  ggtitle("Stunting di Indonesia") +
+  xlab("") +
+  ylab("") +
+  labs(fill = "Stunting")
+```
+
+## Bobot Spasial
+
+```{r}
+#Bobot Spasial
+D = as.matrix(dist(longlat, method = "euclidean"))
+#inverse weight matrix
+w = 1 / D
+# inverse weight matrix - row-normalized
+diag(w) <- 0
+rtot <- rowSums(w, na.rm = T)
+w_std <- w / rtot
+cekrowsum = rowSums(w_std, na.rm = T)
+wmoran = mat2listw(w_std, style = "W")
+```
+
+## Uji Asumsi
+
+```{r}
+#Uji Moran Indeks (Autokorelasi)
+moran.test(dfix$Y, wmoran)
+
+# Uji Breusch-Pagan (Heteroskesdasitas)
+bptest(lm(Y ~ X1 + X2 + X3 + X4 + X5, data = dfix))
+
+#LM Test (Model Spsial)
+model <- lm(Y ~ X1 + X2 + X3 + X4 + X5, data = dfix)
+LM <- lm.LMtests(model, wmoran, test = c('LMerr', 'LMlag', 'RLMerr', 'RLMlag'))
+summary(LM)
+```
+
+## Fixed ESF
+
+```{r}
+#ESF Fixed
+Y = dfix$Y
+X = matrix(c(dfix$X1, dfix$X2, dfix$X3, dfix$X4, dfix$X5), nrow(dfix), 5)
+meig <- meigen(cmat = w)
+esf <- esf(y = Y, x = X, meig = meig)
+esf
+```
+
+## Random Effect-ESF
+
+```{r}
+#ESF Random
+Y = dfix$Y
+X = matrix(c(dfix$X1, dfix$X2, dfix$X3, dfix$X4, dfix$X5), nrow(dfix), 5)
+meig <- meigen(cmat = w)
+resf <- resf(y = Y, x = X, meig = meig)
+resf
+```
+
+## Random Effect ESF - VC
+
+```{r}
+#ESF VC
+Y = dfix$Y
+X = matrix(c(dfix$X1, dfix$X2, dfix$X3, dfix$X4, dfix$X5), nrow(dfix), 5)
+meig <- meigen(coords = longlat)
+resf_vc <- resf_vc(y = Y,
+                   x = X,
+                   meig = meig,
+                   x_sel = FALSE)
+```
+
+
+```{r}
+resf_vc
+```
+
+
+```{r}
+head(resf_vc$b_vc)
+```
+

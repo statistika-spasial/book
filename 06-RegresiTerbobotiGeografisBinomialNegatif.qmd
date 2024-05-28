@@ -1,1 +1,383 @@
 # Regresi Terboboti Geografis Binomial Negatif
+
+## Deskripsi
+Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda (Silva & Rodrigues 2014).
+
+Model RTGBN dapat dirumuskan sebagai berikut:
+
+$y_i \sim \text{BN}\left(\exp\left(\sum_j \beta_j(u_i,v_i) x_{ij} \theta_i(u_i,v_i)\right)\right) \quad (6.6.1)$
+
+dengan $y_i$ adalah nilai amatan respon ke-i, $x_{ij}$ adalah nilai amatan prediktor ke-j pada pengamatan, $(u_i, v_i)$ adalah logitude dan latitude lokasi-i, $\beta_j(u_i, v_i)$ adalah parameter regresi prediktor ke-j untuk setiap lokasi-i, dan $\theta_i(u_i, v_i)$ adalah parameter dispersi setiap lokasi-$i$.
+
+Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut (Ricardo & Carvalho 2013):
+
+\begin{aligned}
+L(\beta(u_i, v_i), \theta_i, i=1,2,\ldots,n) = \prod_{i=1}^{n} \left(\prod_{r=0}^{y_i-1} (r + \frac{1}{\theta_i})\right) \frac{1}{y_i!} \left(\frac{1}{1 + \theta_i \mu_i}\right)^{\frac{1}{\theta_i}} \left(\frac{\theta_i \mu_i}{1 + \theta_i \mu_i}\right)^{y_i}
+\end{aligned}
+
+Pengujian parameter model RTGBN terdiri dari uji serentak dan parsial. Uji signifikansi serentak menggunakan uji rasio kemungkinan maksimum (MLRT) dengan hipotesis sebagai berikut.
+
+\begin{aligned}
+H_0: & \ \beta_1(u_i,v_i) = \beta_2(u_i,v_i) = \ldots = \beta_p(u_i,v_i) = 0 \\
+H_1: & \ \text{Minimal ada satu } \beta_j(u_i,v_i) \neq 0, \ j=1,2,\ldots ,p
+\end{aligned}
+
+dengan statistik ujinya yaitu:
+
+$D(\hat{\beta}) = -2 \ln\left[\frac{L(\hat{\omega})}{L(\hat{\Omega})}\right] = 2\left[\ln(L(\hat{\Omega})) - \ln(L(\hat{\omega}))\right]$
+
+Keputusannya adalah tolak $H_0$ jika $D(\hat{\beta}) > \chi^2_{p,\alpha} $ dengan $p$ adalah banyaknya parameter. Tolak $H_0$ artinya minimal ada satu peubah yang berpengaruh signifikan terhadap model sehingga dilanjutkan dengan pengujian parsial.
+
+Hipotesis yang digunakan untuk pengujian parameter secara parsial. Berikut hipotesis yang digunakan untuk pengujian parameter secara parsial:
+
+\begin{aligned}
+H_0: & \ \beta_j(u_i,v_i) = 0 \\
+H_1: & \ \beta_j(u_i,v_i) \neq 0
+\end{aligned}
+
+dengan statistik ujinya dinyatakan dalam formula berikut:
+
+
+$Z = \frac{\hat{\beta}_j(u_i,v_i)}{\text{se}(\hat{\beta}_j(u_i,v_i))} \sim \mathcal{N}(0,1)$
+
+dengan $\hat{\beta}_j(u_i,v_i)$ merupakan penduga parameter koefisien
+regresi prediktor ke-j pada lokasi ke-i dan $\text{se}(\hat{\beta}_j)$
+adalah galat baku penduga parameter koefisien regresi prediktor ke-j pada lokasi ke-i. Keputusan adalah tolak $H_0$ jika $|z_{\text{hit}}| > z_{\alpha/2}$
+
+## Data
+
+Ilustrasi untuk model RTG-BN merujuk hasil penelitian Fadila et al. (2021) tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (Tabel 6.6.1). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan [https://ipb.link/gwr-binomial-negatif](https://ipb.link/gwr-binomial-negatif).
+
+$$
+\begin{table}[ht]
+\centering
+\caption{Tabel Peubah dan Referensi}
+\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Kode} & \textbf{Peubah} & \textbf{Referensi} \\
+  \hline
+  Y & Angka Tuberkulosis per 100.000 penduduk & \\
+  \hline
+  X1 & Persentase rumah tangga dengan akses sanitasi layak & Nisa’ \& Budiantara (2016) \\
+  \hline
+  X2 & Persentase tempat pengolahan makanan (TPM) sehat & Lestari et al. (2014) \\
+  \hline
+  X3 & Persentase rumah tangga ber-PHBS & Nisa’ \& Budiantara (2016) \\
+  \hline
+  X4 & Persentase rumah sehat & Lestari et al. (2014) \\
+  \hline
+  X5 & Rata-rata konsumsi batang rokok per minggu & Tandang et al. (2018) \\
+  \hline
+  X6 & Persentase pengobatan lengkap kasus Tuberkulosis & Sarani (2019) \\
+  \hline
+\end{tabular}
+\end{table}
+$$
+
+## Metode Analisis
+
+Tahapan untuk menganalisis data jumlah kasus TB di Provinsi Jawa Timur tahun 2019 dengan pendekatan RTG-BN adalah sebagai berikut:
+
+1. Melakukan eksplorasi data untuk mengetahui gambaran awal data jumlah kasus TB pada balita di Provinsi Jawa Timur tahun 2019.
+
+2. Membuat peta sebaran dari setiap peubah respon dan prediktor yang digunakan.
+
+3. Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai $VIF_i > 10$, maka terdapat multikolinear (Kutner et al. 2005):
+
+$VIF_i = \frac{1}{1 - R_i^2}$
+
+dengan $R_i^2$ adalah koefisien determinasi antara $X_i$ dengan prediktor lainnya. Prediktor yang memiliki nilai $VIF_i > 10$ tidak diikutsertakan dalam penyusunan model.
+
+4. Memeriksa overdispersi Regresi Poisson memiliki asumsi equidispersi, artinya nilai rataan dan ragam pada peubah $Y$ bernilai sama. Penyimpangan asumsi yang sering terjadi pada regresi Poisson yaitu overdispersi, yaitu nilai ragam lebih besar dari pada nilai rataan pada peubah $Y$. Pengujian overdispersi menggunakan nilai devians dan Khi-kuadrat Pearson yang dibagi dengan derajat bebasnya. Hipotesis yang diuji sebagai berikut:
+
+\[H_0: \text{Model mengandung overdispersi}\]
+\[H_1: \text{Model tidak mengandung overdispersi}\]
+
+   - Statistik Uji Devians:
+   
+   $\[D^2 = 2\sum_{i=1}^n \left( y_i \ln\left(\frac{y_i}{\hat{\mu}_i}\right) - (y_i - \hat{\mu}_i) \right)\]$
+   $\[\phi_1 = \frac{D^2}{db}\]$
+   
+   dengan $db = n - k$ dengan $k$ merupakan banyaknya parameter (termasuk konstanta) model regresi Poisson, $n$ merupakan banyaknya amatan, dan $D^2$ adalah nilai Devians.
+
+   - Khi-kuadrat Pearson:
+   
+   $\chi^2 = 2\sum_{i=1}^n \frac{(y_i - \mu_i)^2}{\text{var}(y_i)}$
+   $\phi_2 = \frac{\chi^2}{db}$
+   
+   dengan $db = n - k$ dengan $k$ merupakan banyaknya parameter termasuk konstanta, $n$ merupakan banyaknya pengamatan, dan $\chi^2$ adalah nilai Khi-kuadrat Pearson.
+
+   Jika $\phi_1$ atau $\phi_2$ bernilai lebih dari 1 maka terjadi overdispersi pada data. Jika tidak terdapat overdispersi maka model yang digunakan adalah model regresi Poisson, sedangkan jika terdapat overdispersi lebih cocok menggunakan model regresi binomial negatif.
+
+5. Melakukan uji efek spasial yaitu:
+   - Uji dependensi spasial dengan uji LM dan Robust LM
+   - Uji heterogenitas spasial menggunakan uji Breusch Pagan
+
+6. Menduga model regresi spasial sesuai hasil uji butir (2) dan (3). Memilih model terbaik dengan kriteria AIC.
+
+7. Pemilihan model terbaik menggunakan Kriteria Informasi Akaike dengan rumus sebagai berikut:
+
+    $AIC = -2\log_e(L(\hat{\theta}|\text{data})) + 2K$
+    
+    dengan $\log_e(L(\hat{\theta}|\text{data}))$ adalah nilai maksimum pendugaan kemungkinan maksimum, $\theta$ adalah parameter yang tidak diketahui, $K$ adalah banyaknya parameter yang diestimasi, dan $n$ adalah banyaknya pengamatan.
+
+## Tahapan Analisis Data dengan R
+
+Tahap awal dalam pemodelan menggunakan R Studio adalah melakukan input data dan install package sesuai kebutuhan dalam analisis. Package diperlukan adalah:
+
+### Package
+
+```{r}
+library(car)	     # Untuk menghitung nilai VIF
+library(classInt)	     # Untuk membuat selang nilai
+library(ggplot2)	     # Untuk visualisasi data
+library(lmtest)	     # Untuk pengujian asumsi
+library(spdep)	     # Untuk dependensi spasial
+library(sp)	     # Untuk membentuk GWR model
+library(spgwr)	     # Untuk membentuk GWNBR
+library(AER)	     # Untuk uji dispersi
+library(MASS)	     # Untuk mengoptimasi parameter binomial
+library(dplyr)	     # Untuk meringkas data koefisien
+library(sf)
+```
+
+### Input Data
+
+```{r}
+#Set Lokasi File
+# Input Data
+gabung <- readRDS('data/gabung.RDS')
+tb <- read.csv('data/tb_jatim.csv')
+tb$KABUPATEN..KOTA <- toupper(tb$KABUPATEN..KOTA)
+#
+#Input peta SHP
+jatim <- read_sf("data/shp/TB Jatim.shp")
+sf_use_s2(FALSE)
+colnames(jatim)[2:8] <- c('Y', 'X1', 'X2', 'X3', 'X4', 'X5', 'X6')
+
+longlat = st_coordinates(st_centroid(jatim))
+
+jatim$Y <- as.numeric(jatim$Y)
+jatim$X1 <- as.numeric(jatim$X1)
+jatim$X2 <- as.numeric(jatim$X2)
+jatim$X3 <- as.numeric(jatim$X3)
+jatim$X4 <- as.numeric(jatim$X4)
+jatim$X5 <- as.numeric(jatim$X5)
+jatim$X6 <- as.numeric(jatim$X6)
+head(jatim)
+```
+
+### Eksplorasi Data
+
+a.	Peta sebaran
+
+Berikut syntax yang dapat digunakan untuk membuat peta sebaran:
+
+```{r}
+#Menentukan batas kelas dari angka TB per 100000 penduduk
+classIntervals(gabung$y, n = 4, style = 'kmeans')
+```
+
+```{r}
+#Membuat peta
+cc <- c('#fbb4b9', '#f768a1', '#ae017e', '#551c53')
+plot.tb = ggplot(data=jatim) +
+  geom_sf(aes(fill = cut(Y, breaks = c(65, 104.5, 153.5, 225.5,
+         401))), lwd = 0.1, col ='black') +
+         scale_fill_manual("TB", values = cc,
+         labels = c("66 - 104.5", "104.5 - 153.5",
+         "153.5 - 225.5", "225.5 - 401"),
+         guide = guide_legend(reverse = T))+
+  xlab("") +
+  ylab("")
+plot.tb
+```
+
+b.	VIF
+
+VIF dihitung menggunakan syntax berikut ini:
+
+```{r}
+#VIF
+model <- lm(log(Y) ~ X1 + X2 + X3 + X4 + X5 + X6, 
+            data = jatim)
+as.matrix(vif(model))
+```
+Berdasarkan nilai VIF, seluruh peubah memiliki nilai VIF < 10 sehingga dapat disimpulkan tidak terdapat multikolinearitas.
+
+### Uji efek spasial
+
+a.	Indeks Moran
+
+Untuk mengetahui efek dependensi spasial pada model regresi dengan respon ln(Y) dengan 6 (enam) prediktor (X1 sampai X6) digunakan uji Lagrange multiplier dengan syntax sebagai berikut:
+
+```{r}
+#Uji Lagrange Multiplier
+queenl <- poly2nb(jatim)
+queenl <- nb2listw(queenl)
+summary(lm.LMtests(model, queenl, zero.policy = T,
+        test = c('LMlag', 'LMerr', 'RLMlag', 'RLMerr')))
+```
+
+Pada output di atas terlihat semua uji LM dan RLM mempunyai p-value > α=0.05, sehingga tidak terdapat dependensi spasial pada ln(Y) dan sisaan. 
+
+b.	Uji Breusch-Pagan
+
+Efek keragaman spasial diuji dengan uji Breusch-Pagan dengan syntax berikut:
+
+```{r}
+#Model log(Y)
+bptest(model)
+```
+
+Hasil uji Breusch-Pagan untuk data ini menghasilkan p-value < α=0.05 yang berarti terdapat heterogenitas spasial. 
+
+c.	Uji Overdispersi
+
+Untuk melakukan uji dispersi menggunakan syntax sebagai berikut:
+
+```{r}
+#Model Regresi Poisson
+poisson<-glm(Y~X1+X2+X3+X4+X5+X6,data=jatim, family = poisson())
+#
+#Nilai Deviance
+dv_df<-deviance(poisson)/df.residual(poisson)
+#
+#Nilai Chi-Squares
+pr_df<-sum(residuals(poisson,"pearson")^2)/df.residual(poisson)
+#
+#Overdispersi
+overdis<-cbind.data.frame(dv_df,pr_df)
+overdis
+```
+
+Kedua nilai statistik uji overdispersi bernilai lebih besar dari satu, maka pada data TB terdapat overdispersi. Untuk menangani overdispersi pada data TB digunakan model regresi binomial negatif.
+
+### Menduga model RTBNG
+
+a.	RTBNG Fixed Gaussian
+
+```{r}
+#Menentukan bandwidth
+bdwt.gauss.fixed <- ggwr.sel(Y ~ X1+X2+X3+X4+X5+X6, data = jatim, coords=longlat, adapt = F, gweight = gwr.Gauss)
+
+#Optimasi Parameter Theta Binomial Negatif
+aicvec <- c()
+library(MASS)
+for(i in 1:30){
+  gwnbr.gauss.fixed <- tryCatch(spgwr::ggwr(Y ~ X1 + X2
+                       + X3 + X4 + X5 + X6, data = jatim,
+                       coords=longlat, bandwidth =
+                       bdwt.gauss.fixed, gweight =
+                       gwr.Gauss, family =
+                       negative.binomial(theta= i, link
+                       = "log")), warning=function(w) w)
+  aicvec[i] <- ifelse(is(gwnbr.gauss.fixed, 'warning'),
+                      "not converge",
+                      round(gwnbr.gauss.fixed$lm$aic,2))
+}
+matrix(aicvec, ncol = 3)
+plot(1:30, aicvec, xlab = 'theta',  ylab = 'AIC')
+```
+
+Dalam ilustrasi ini, dilakukan optimasi parameter theta pada sebaran binomial negatif yang digunakan. Berdasarkan pemodelan RTBNG dengan nilai theta 1 sampai 30 menghasilkan algoritma yang konvergen. Nilai AIC terkecil pada theta 8 senilai 431.98. Oleh karena itu, untuk pendekatan ini digunakan theta = 8.
+
+```{r}
+#Pendugaan GWR-BN
+gwnbr.gauss.fixed <- spgwr::ggwr(Y ~ X1+X2+X3+X4+X5+X6,
+                     data = jatim, coords=longlat,
+                     bandwidth = bdwt.gauss.fixed,
+                     gweight=gwr.Gauss, family =
+                     negative.binomial(theta = 8, link =
+                     "log"))
+gwnbr.gauss.fixed
+```
+
+b.	RTBNG Adaptive Gaussian
+
+```{r}
+#Menentukan Bandwidth
+bdwt.gauss.adapt <- ggwr.sel(Y ~ X1+X2+X3+X4+X5+X6, 
+              data = jatim,coords=longlat, adapt = T,
+              gweight = gwr.Gauss)
+#
+# Optimasi Parameter Theta Binomial Negatif
+aicvec <- c()
+for(i in 1:30){
+  gwnbr.gauss.adapt <- spgwr::ggwr(Y ~ X1+X2+X3+X4+X5,
+                       data=jatim,coords=longlat, adapt =
+                       bdwt.gauss.adapt, gweight =
+                       gwr.Gauss, family =
+                       negative.binomial(theta = i,
+                       link="log"))
+  aicvec[i] <- gwnbr.gauss.adapt$lm$aic
+}
+matrix(aicvec, ncol = 3)
+plot(1:30, aicvec, xlab = 'theta',  ylab = 'AIC')
+```
+
+Berdasarkan nilai AIC, nilai theta = 8 menghasilkan AIC terkecil sehingga pada ilustrasi ini akan digunakan model RTBNG dengan nilai theta = 8.
+
+```{r}
+gwnbr.gauss.adapt <- spgwr::ggwr(Y ~ X1+X2+X3+X4+X5+X6,
+                     data = jatim,coords=longlat,
+                     adapt=bdwt.gauss.adapt,
+                     gweight=gwr.Gauss,
+                     family = negative.binomial(theta =
+                     8, link = "log"))
+gwnbr.gauss.adapt  
+```
+
+c.	Perbandingan nilai AIC
+
+Berikut syntax untuk memperlihatkan perbandingan AIC dari setiap model:
+
+```{r}
+#AIC
+aicmod <- c(gwnbr.gauss.fixed$lm$aic, gwnbr.gauss.adapt$lm$aic)
+mod <- c('Fixed', 'Adaptive')
+aicdf <- data.frame(cbind(mod, round(aicmod,2)))
+colnames(aicdf) <- c('Model', 'AIC')
+aicdf
+```
+
+Berdasarkan nilai AIC, model dengan bandwidth fixed gaussian memiliki nilai AIC yang sama dengan model dengan bandwidth adaptive gaussian sehingga model terbaik yang lebih sederhana untuk data ini adalah model dengan bandwidth fixed gaussian. 
+
+
+### Interpretasi
+
+Interpretasi model RTBNG dapat dilakukan dengan mengelompokkan koefisien model berdasarkan metode clustering tertentu. Dalam ilustrasi ini, dilakukan pengelompokan koefisien menggunakan kmeans. 
+
+```{r}
+#Koefisien model
+hasil <- as.data.frame(gwnbr.gauss.fixed$SDF)
+hasil$KABKOT <- jatim$KABKOT
+gabung_new <- merge(jatim, hasil, by= 'KABKOT', all=T)
+#
+#Standarisasi koefisien
+clustdt<- scale(as.data.frame(gabung_new[,10:16])[,1:7])
+#
+#K-means clustering dengan 4 cluster
+set.seed(123)
+kcluster <- kmeans(clustdt, centers = 4)
+gabung_new$cluster <- kcluster$cluster
+#
+#Plot Cluster
+ggplot(gabung_new) +
+  aes(fill = factor(cluster)) +
+  geom_sf(size = 0.05) +
+  scale_fill_brewer("Cluster", palette = 'Set2')+
+  xlab("") +
+  ylab("")
+```
+
+Nilai rataan dari setiap gerombol dapat diperoleh dengan menggunakan syntax berikut ini:
+
+```{r}
+#ringkasan pusat gerombol
+gabungdf <- as.data.frame(gabung_new)
+gabungdf %>% select(cluster, X.Intercept., X1.y, X2.y, X3.y, 
+           X4.y, X5.y, X6.y) %>% group_by(cluster) %>% summarise_each(funs(mean))
+```
+
+Dari output terlihat urutan rataan koefisien X1 dari terkecil sampai terbesar berturut-turut   pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1. Sebaliknya urutan koefisien untuk X2 sampai X6 dari terkecil sampai terbesar berturut-turut  pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1.

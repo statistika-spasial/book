@@ -1,1 +1,1370 @@
 # Tahapan Analisis dengan R
+
+## Package
+
+```{r}
+library(dplyr)
+library(tidyverse)
+library(spdep)
+library(spData)
+library(spgwr)
+library(mgwrsar)
+library(rgdal)
+library(raster)
+library(DataExplorer)
+library(tigris)
+library(sf)
+library(Rcpp)
+library(ggplot2)
+library(corrplot)
+library(writexl)
+library(nortest)
+library(car)
+library(DescTools)
+library(lmtest)
+library(tseries)
+```
+
+## Load Data
+
+```{r}
+load('data/W.rook.queen.RData')
+load('data/mgwrsar_models.RData')
+```
+
+
+```{r}
+pdrb <- read.csv("data/pdrb.csv", sep = ";")
+glimpse(pdrb)
+```
+
+## Eksplorasi Data
+
+```{r}
+pdrb %>% as.data.frame %>% 
+  ggplot(aes(longitude, latitude)) + geom_point(aes(size=Y), color="blue", alpha=0.6) + 
+  ggtitle("Sebaran PDRB Kabupaten Kota di Indonesia Tahun 2021") + coord_equal() + theme_bw()
+```
+
+```{r}
+plot_intro(data = pdrb)
+```
+
+```{r}
+# Plot
+datagwr <- pdrb[4:13]
+glimpse(datagwr)
+
+#Plot hubungan
+
+plot_scatterplot( datagwr, by = 'Y',
+                  ggtheme = theme_bw(),
+                  geom_point_args = list("color" = alpha("dodgerblue4", 0.7)))
+
+```
+
+```{r}
+summary(datagwr)
+```
+
+## Korelasi
+```{r , warning=FALSE, message=FALSE}
+
+#nilai p value dari korelasi antar peubah Y dan X
+p.mat <- cor.mtest(datagwr)
+head(p.mat$p)
+
+
+#plot korelasi
+col2 <- colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))
+corrplot(cor(pdrb[,4:13]), method="color", col=col2(200),  
+         type="upper", 
+         addCoef.col = "black", 
+         tl.col="black",  
+         p.mat = p.mat$p, sig.level = 0.05, insig = "blank",
+         diag=FALSE 
+         )
+```
+
+Peubah yang memiliki korelasi positif taraf sedang yaitu X1 dan X5 sedangkan X2 dan X5 memiliki korelasi negatif taraf sedang
+
+Pada peubah X2 dengan X4, dan X3 dengan X4 terlihat korelasi yang cukup tinggi yaitu sebesar 0.87. Hal ini mengindikasikan adanya multikolinearitas.
+
+## Matriks Bobot
+
+Matriks Pembobot berdasarkan jarak
+
+```{r}
+pdrb1 <- pdrb
+coordinates(pdrb1) <- ~longitude+latitude
+plot(pdrb1)
+```
+
+```{r}
+#menghitung matriks jarak
+longlat <- coordinates(pdrb1)
+jarak<-as.matrix((dist(longlat)))
+```
+
+### K-Nearest Neighbour
+
+```{r}
+# k=5, 5 tetangga terdekat
+W.knn<-knn2nb(knearneigh(longlat,k=5,longlat=TRUE))
+W.knn
+```
+
+```{r}
+W.knn1 <- nb2listw(W.knn,style='W')
+W.knn1
+```
+
+### Inverse Distance Weight
+
+```{r}
+#Alpha = 1
+alpha1=1
+
+W.idw <-1/(jarak^alpha1)
+class(W.idw)
+```
+
+```{r}
+#normalisasi matriks jarak
+diag(W.idw)<-0
+rtot<-rowSums(W.idw,na.rm=TRUE)
+
+W.idw.sd<-W.idw/rtot #row-normalized
+rowSums(W.idw.sd,na.rm=TRUE)
+```
+
+```{r}
+W.idw.1 = mat2listw(W.idw.sd,style='W')
+summary(W.idw.1)
+```
+
+```{r}
+#Alpha = 2
+alpha2 = 2
+
+W.idw2 <- 1/(jarak^alpha2)
+
+#normalisasi baris
+diag(W.idw2) <- 0
+rtot <- rowSums(W.idw2,na.rm=TRUE)
+W.idw.sd2 <- W.idw2/rtot #row-normalized
+rowSums(W.idw.sd2,na.rm=TRUE)
+
+W.idw.22 = mat2listw(W.idw.sd2,style='W')
+
+summary(W.idw.22)
+```
+
+### Eksponensial Distance Weight
+
+```{r}
+alpha=1
+
+W.exp <-exp((-alpha)*jarak)
+diag(W.exp) <- 0
+rtot<-rowSums(W.exp,na.rm=TRUE)
+
+W.e.sd<-W.exp/rtot #row-normalized
+rowSums(W.e.sd,na.rm=TRUE)
+
+W.ed1 = mat2listw(W.e.sd,style='W')
+summary(W.ed1)
+```
+
+```{r}
+#peta
+peta <- readOGR(dsn="data/shp/BATAS KABUPATEN KOTA DESEMBER 2019 DUKCAPIL.shp")
+
+peta2 <- subset(peta, !is.na(peta@data$KAB_KOTA))
+sf_use_s2(FALSE)
+```
+
+### Rook
+
+```{r}
+#| eval: false
+W.rook <- poly2nb(peta2, queen=FALSE)
+
+W.rook.s <- nb2listw(W.rook, style='W', zero.policy = TRUE)
+```
+
+### Queen
+
+```{r}
+#| eval: false
+W.queen <- poly2nb(peta2, queen=T)
+
+W.queen.s <- nb2listw(W.queen, style='W', zero.policy = TRUE)
+```
+
+## Pemilihan Matriks Bobot
+
+```{r}
+#knn
+MI.knn <- moran(pdrb1$Y, W.knn1, n=length(W.knn1$neighbours), S0=Szero(W.knn1))
+
+#radial
+#MI.radial <- moran(pdrb1$Y, W.dmax.s, n=length(W.dmax.s$neighbours), S0=Szero(W.dmax.s))
+
+#power distance alpha=1
+MI.power1 <- moran(pdrb1$Y, W.idw.1, n=length(W.idw.1$neighbours), S0=Szero(W.idw.1))
+
+#power distance alpha=2
+MI.power2 <- moran(pdrb1$Y, W.idw.22, n=length(W.idw.22$neighbours), S0=Szero(W.idw.22))
+
+#exponencial distance
+MI.exp1 <- moran(pdrb1$Y, W.ed1, n=length(W.ed1$neighbours), S0=Szero(W.ed1))
+
+#rook
+MI.rook <- moran.test(pdrb1$Y, W.rook.s, randomisation = TRUE, zero.policy = TRUE)
+MI.rook$estimate
+
+#queen
+MI.queen <- moran.test(pdrb1$Y, W.queen.s, randomisation = TRUE, zero.policy = TRUE)
+MI.queen$estimate
+```
+
+## Perbandingan Nilai Moran Index
+
+```{r}
+moranindeks<-data.frame(
+"Matriks Bobot"=c("KNN (k=5)", "Power distance weight (alpha=1)", "Power distance weight (alpha=2)", "Exponential distance weight (alpha=1)", "Rook Contiguity", "Queen Contiguity"),
+"Nilai Indeks Moran"=c(MI.knn$I, MI.power1$I, MI.power2$I,
+MI.exp1$I, MI.rook[["estimate"]][["Moran I statistic"]] , MI.queen[["estimate"]][["Moran I statistic"]]))
+moranindeks
+```
+
+```{r}
+Woptimum <- W.knn1
+moran.test(pdrb1$Y, Woptimum, randomisation = TRUE, zero.policy = TRUE)
+```
+
+## Model
+
+```{r}
+ols = lm(Y~., data = datagwr)
+
+summary(ols)
+```
+
+### Uji Asumsi Model
+
+```{r}
+par(mfrow = c(2,2))
+plot(ols)
+```
+
+#### Normality Test 
+
+Plot sisaan model Regresi Klasik
+
+```{r}
+
+sisaan.ols <-residuals(ols)
+hist(sisaan.ols, 
+     xlab = "sisaan",
+     col = "#27D3D3", 
+     breaks=30,  
+     prob = TRUE) 
+lines(density(sisaan.ols), # density plot
+ lwd = 2, # thickness of line
+ col = "chocolate3")
+
+```
+
+```{r}
+qqnorm(sisaan.ols,datax=T, col="blue")
+qqline(rnorm(length(sisaan.ols),mean(sisaan.ols),sd(sisaan.ols)),datax=T, col="red")
+```
+
+Berdasarkan plot histogram tampak bahwa data cenderung menjulur ke kanan dan pada plot QQ normal cukup banyak titik-titik yang tidak berada di sekitar garis yang mengindikasikan secara eksploratif asumsi normalitas belum terpenuhi.
+
+```{r}
+ad.test(sisaan.ols)
+jarque.bera.test(sisaan.ols)
+```
+
+Hipotesis yang digunakan adalah 
+
+> H0: sisaan model menyebar normal 
+> H1: sisaan model tidak menyebar normal 
+
+Hasil dari pengujian asumsi normlitas nilai p value yang diperoleh < alpha 5% baik dengan jarque bera ataupun anderson darling. Sehingga tolak H0 yang menandakan bahwa sisaan belum menyebar normal. (Asumsi kenormalam belum terpenuhi)
+
+#### Heteroscedasticity
+
+```{r}
+bptest(ols)
+```
+
+Hipotesis yang digunakan adalah 
+
+> H0: ragam sisaan homogen 
+> H1: ragam sisaan tidak homogen 
+
+Nilai p value yang diperoleh < alpha (5%) sehingga tolak H0 dan dapat disimpulkan bahwa ragam dari sisaan tidak homogen. \ 
+
+#### VIF
+
+```{r}
+vif(ols)
+```
+
+Berdasarkan pengujian vif untuk melihat adanya multikolinearitas, diperoleh nilai vif yang > 5 pada peubah X2, X3, X4 yang mengindikasikan terdapat multikolinearitas. 
+
+#### Autocorrelation 
+
+Dengan durbin watson, tanpa memasukkan weight
+
+```{r}
+dwtest(ols)
+```
+
+Hipotesis yang digunakan adalah  
+
+> H0: tidak ada autokorelasi 
+> H1: terdapat autokorelasi 
+
+Nilai p=value yang diperoleh 2.2e-16 < alpha (5%) sehingga tolak H0 sehingga dapat dikatakan terdapat gejala autokorelasi pada sisaan. 
+
+Melihat autokorelasi dengan moran test dan matriks jarak yang digunakan adalah KNN dengan k=5.
+
+```{r}
+lm.morantest(ols, W.knn1 , alternative="two.sided")
+```
+
+```{r}
+moran.test(sisaan.ols, W.knn1 ,randomisation=F, alternative="two.sided")
+```
+
+Hipotesis yang digunakan : 
+
+> H0 : Tidak terdapat autokorelasi pada sisaan 
+> H1 : Terdapat autokorelasi pada sisaan 
+
+
+Berdasarkan output diatas, hasil pengujian dengan lm.moran test dan moran.test diperoleh p-value yang sangat kecil. Nilai p-value < alpha (5%) sehingga dapat menolak H0. Artinya kita dapat menyimpulkan bahwa terdapat cukup bukti untuk menyatakan bahwa terdapat autokorelasi  pada sisaan model ols dengan taraf nyata 5%. Atau dengan kata lain, model dengan regresi klasik saja tidak cukup, karena terjadi dependensi spasial sehingga diperlukan uji Lagrange Multiplier (LM) untuk mengidentifikasi model regresi dependensi spasial yang sesuai.
+
+## Seleksi peubah 
+
+### Model
+
+```{r}
+
+datgwr2 <- datagwr %>%
+            dplyr::select(-c('X2','X3','X4'))
+
+ols1 = lm(log(Y)~., data = datgwr2)
+
+summary(ols1)
+```
+
+### Uji Asumsi 
+
+#### Normality Test 
+
+Plot sisaan model Regresi Klasik
+
+```{r}
+
+sisaan.ols1 <-residuals(ols1)
+hist(sisaan.ols1, 
+     xlab = "sisaan",
+     col = "#27D3D3", 
+     breaks=30,  
+     prob = TRUE) 
+lines(density(sisaan.ols1), # density plot
+ lwd = 2, # thickness of line
+ col = "chocolate3")
+
+```
+
+```{r}
+qqnorm(sisaan.ols1,datax=T, col="blue")
+qqline(rnorm(length(sisaan.ols1),mean(sisaan.ols1),sd(sisaan.ols1)),datax=T, col="red")
+```
+
+Berdasarkan plot histogram tampak bahwa data sudah membentuk pola simetris dan pada plot QQ normal cukup banyak titik-titik yang  berada di sekitar garis lurus yang mengindikasikan secara eksploratif asumsi normalitas  terpenuhi.
+
+```{r, warning=FALSE, message=FALSE}
+ad.test(sisaan.ols1)
+jarque.bera.test(sisaan.ols1)
+```
+
+Hipotesis yang digunakan adalah 
+
+> H0: sisaan model menyebar normal 
+> H1: sisaan model tidak menyebar normal 
+
+Hasil dari pengujian asumsi normlitas nilai p value yang diperoleh > alpha 5% anderson darling. Sehingga terima H0 yang menandakan bahwa sisaan  menyebar normal. (Asumsi kenormalam  terpenuhi)  
+
+
+#### Heteroscedasticity
+
+```{r}
+bptest(ols1)
+```
+
+Hipotesis yang digunakan adalah 
+
+> H0: ragam sisaan homogen 
+> H1: ragam sisaan tidak homogen 
+
+Nilai p value yang diperoleh < alpha (5%) sehingga tolak H0 dan dapat disimpulkan bahwa ragam dari sisaan tidak homogen. \ 
+
+#### Autocorrelation 
+
+Dengan durbin watson, tanpa memasukkan weight
+
+```{r}
+dwtest(ols1)
+```
+
+Hipotesis yang digunakan adalah 
+
+> H0: tidak ada autokorelasi 
+> H1: terdapat autokorelasi
+
+Nilai p=value yang diperoleh 2.2e-16 , < alpha (5%) sehingga tolak H0 sehingga dapat dikatakan terdapat gejala autokorelasi pada sisaan.
+
+```{r}
+vif(ols1)
+```
+
+Setelah dilakukan reduksi peubah X2, X3, dan X4 tidak ditemukan adanya masalah multikolinearitas. \ \
+
+Setelah dilakukan treatment berupa log pada Y dan membuang peubah X2, X3, dan X4, asumsi kenormalan dan Vif dapat tertangani. \ \
+
+Akan tetapi untuk asumsi kebebasan sisaan dan kehomogenan ragam belum dapat tertangani. \ \
+
+Oleh karena itu diperlukan pemodelan lain yang dapat mengakomodir hal tersebut yaitu Mixed GWR.
+
+## UJI LM
+
+Pengujian dilakukan untuk melihat k optimum yang dapat digunakan untuk memberikan model terbaik.
+
+Menentukan K atau NN optimal.
+
+```{r}
+#menghitung matriks jarak
+longlat <- coordinates(pdrb1)
+
+jarak<-as.matrix((dist(longlat)))
+
+```
+
+```{r}
+#k=1, 1 tetangga terdekat 
+W.knn1<-knn2nb(knearneigh(longlat,k=1,longlat=TRUE)) #matriks bobot dengan knn k=1 #knearneigh(x, k=1, longlat = NULL, use_kd_tree=TRUE) 
+
+W.knn1
+
+W.knn1a <- nb2listw(W.knn1,style='W') 
+W.knn1a
+
+# LM-test
+LM1<-lm.RStests(ols1, W.knn1a, test=c("RSlag"))
+summary(LM1)
+```
+
+```{r}
+#k=2,  
+W.knn2<-knn2nb(knearneigh(longlat,k=2,longlat=TRUE))  
+W.knn2
+
+W.knn2a <- nb2listw(W.knn2,style='W') 
+W.knn2a
+
+# LM-test
+LM2<-lm.RStests(ols1, W.knn2a,
+               test=c("RSlag"))
+summary(LM2)
+```
+
+```{r}
+#k=3,  
+W.knn3<-knn2nb(knearneigh(longlat,k=3,longlat=TRUE))  
+W.knn3
+
+W.knn3a <- nb2listw(W.knn3,style='W') 
+W.knn3a
+
+# LM-test
+LM3<-lm.LMtests(ols1, W.knn3a,
+               test=c("RSlag"))
+summary(LM3)
+```
+
+```{r}
+#k=4,  
+W.knn4<-knn2nb(knearneigh(longlat,k=4,longlat=TRUE))  
+W.knn4
+
+W.knn4a <- nb2listw(W.knn4,style='W') 
+W.knn4a
+
+# LM-test
+LM4<-lm.LMtests(ols1, W.knn4a,
+               test=c("RSlag"))
+summary(LM4)
+```
+
+```{r}
+#k=5,  
+W.knn5<-knn2nb(knearneigh(longlat,k=5,longlat=TRUE))  
+W.knn5
+
+W.knn5a <- nb2listw(W.knn5,style='W') 
+W.knn5a
+
+# LM-test
+LM5<-lm.LMtests(ols1, W.knn5a,
+               test=c("RSlag"))
+summary(LM5)
+```
+
+```{r}
+#k=6,  
+W.knn6<-knn2nb(knearneigh(longlat,k=6,longlat=TRUE))  
+W.knn6a <- nb2listw(W.knn6,style='W')
+# LM-test
+LM6<-lm.LMtests(ols1, W.knn6a,
+               test=c("RSlag"))
+summary(LM6)
+```
+
+```{r}
+#k=7,  
+W.knn7<-knn2nb(knearneigh(longlat,k=7,longlat=TRUE))  
+W.knn7a <- nb2listw(W.knn7,style='W')
+# LM-test
+LM7<-lm.LMtests(ols1, W.knn7a,
+               test=c("RSlag"))
+summary(LM7)
+```
+
+```{r}
+#k=8,  
+W.knn8<-knn2nb(knearneigh(longlat,k=8,longlat=TRUE))  
+W.knn8a <- nb2listw(W.knn8,style='W')
+# LM-test
+LM8<-lm.LMtests(ols1, W.knn8a,
+               test=c("RSlag"))
+summary(LM8)
+```
+
+```{r}
+#k=9,  
+W.knn9<-knn2nb(knearneigh(longlat,k=9,longlat=TRUE))  
+W.knn9a <- nb2listw(W.knn8,style='W')
+# LM-test
+LM9<-lm.LMtests(ols1, W.knn9a,
+               test=c("RSlag"))
+summary(LM9)
+```
+
+```{r}
+#k=10,  
+W.knn10<-knn2nb(knearneigh(longlat,k=10,longlat=TRUE))  
+W.knn10a <- nb2listw(W.knn10,style='W')
+# LM-test
+LM10<-lm.LMtests(ols1, W.knn10a,
+               test=c("RSlag"))
+summary(LM10)
+```
+
+Rangkuman k atau NN optimum
+```{r}
+LM_k <- data.frame(k = c(1,2,3,4,5,6,7,8,9,10),
+                      
+              LMstat= c(round(LM1$RSlag$statistic,3),
+                        round(LM2$RSlag$statistic,3),
+                        round(LM3$RSlag$statistic,3),
+                        round(LM4$RSlag$statistic,3),
+                        round(LM5$RSlag$statistic,3),
+                        round(LM6$RSlag$statistic,3),
+                        round(LM7$RSlag$statistic,3),
+                        round(LM8$RSlag$statistic,3),
+                        round(LM9$RSlag$statistic,3),
+                        round(LM10$RSlag$statistic,3)),
+                     
+            
+              pvalue = c((LM1$RSlag$p.value),
+                       (LM2$RSlag$p.value),
+                       (LM3$RSlag$p.value),
+                       (LM4$RSlag$p.value),
+                       (LM5$RSlag$p.value),
+                       (LM6$RSlag$p.value),
+                       (LM7$RSlag$p.value),
+                       (LM8$RSlag$p.value),
+                       (LM9$RSlag$p.value),
+                       (LM10$RSlag$p.value)
+                       )
+           )
+
+
+LM_k
+```
+
+```{r}
+LM_k %>%
+  ggplot(aes(k, LMstat))+ 
+  ylim(0,180)+
+  geom_line(color="blue") +
+   geom_point(shape = 21, colour = "darkblue", fill = "red", size=2)+
+     geom_point(data = LM_k %>% filter(LMstat != max(LMstat)),
+      pch = 21, fill = "white", colour = "black")+
+  ggtitle("Nilai LMStat pada k = 1 s.d 10")+
+  theme_bw() +
+  annotate("text", x=9.5, y=175, label= " Opt(k=10)")  
+
+```
+Berdasarkan pengujian dengan LMTest pada model SAR dan bobot KNN dengan k=2 sd. 10 diperoleh K = 10 yang memiliki LMstat terbesar yaitu 161.692. 
+
+## GWR 
+
+### Bandwith 
+
+#### Bisquare
+
+```{r, warning = FALSE}
+#bw_bisquare
+bwbs1<- gwr.sel(log(Y) ~.,data=datgwr2,
+    coords=cbind(pdrb$latitude,pdrb$longitude),gweight=gwr.bisquare, adapt=FALSE)
+```
+
+```{r}
+modelgwr_bisq <- gwr(log(Y) ~.,data=datgwr2,
+    coords=cbind(pdrb$longitude,pdrb$latitude),
+    gweight=gwr.bisquare,
+    hatmatrix=TRUE,
+    bandwidth=bwbs1,
+    se.fit=TRUE)
+
+#cek bw
+bw <- modelgwr_bisq$bandwidth
+bw
+
+modelgwr_bisq
+```
+
+#### Gauss
+
+```{r}
+
+bwgauss <- gwr.sel(log(Y) ~.,data=datgwr2,
+    coords=cbind(pdrb$longitude,pdrb$latitude),gweight=gwr.Gauss, adapt = F)
+
+bwgauss
+```
+
+```{r}
+modelgwr_gauss <- gwr(log(Y)~.,data=datgwr2,
+                          bandwidth=bwgauss, coords=cbind(pdrb$longitude,pdrb$latitude),
+                                hatmatrix=TRUE,gweight=gwr.Gauss,
+                                se.fit = TRUE)
+modelgwr_gauss
+```
+
+### Rangkuman Model GWR
+
+```{r}
+data.frame(Rincian = c( "bisquare","gauss"),
+          
+              RSS= c(round(modelgwr_bisq$results$rss),
+                     round(modelgwr_gauss$results$rss)),
+            
+              AIC = c(round(modelgwr_bisq$results$AICh),
+                     round(modelgwr_gauss$results$AICh)))
+                    
+
+
+```
+Bandwith dengan gauss memberikan nilai AIC yang sedikit lebih baik. Sehingga bandwith optimal dengan gauss (bwgauss) akan digunakan untuk membentuk matriks pembobot W_gauss.
+
+## MGWR
+
+```{r, warning=FALSE}
+#Menyiapkan koordinat
+coord <- as.matrix(pdrb[,c("latitude","longitude")])
+
+#menyiapkan 
+## Creating a spatial weight matrix (sparce dgCMatrix) of 10 nearest neighbors with 0 in diagonal
+
+# H = bandwith optimal dengan gauss, NN=10 merupakan k optimal dari hasil LM-test dengan KNN
+
+W_gauss <- kernel_matW(
+  H = bwgauss,
+  kernels = 'gauss',
+  coord_i = coord,
+  NN = 10,
+  adaptive = TRUE,
+  diagnull = TRUE,
+  rowNorm = TRUE
+)
+
+
+# H = bandwith optimal dengan bisquare, NN=10 merupakan k optimal dari hasil LM-test dengan KNN
+
+W_bisq <- kernel_matW(
+  H = bwbs1,
+  kernels = 'bisq',
+  coord_i = coord,
+  NN = 10,
+  adaptive = TRUE,
+  diagnull = TRUE,
+  rowNorm = TRUE
+)
+```
+
+### Model 1 OLS
+
+```{r}
+summary(ols1)
+```
+
+```{r}
+error.ols <- residuals(ols1)
+
+error2 <- error.ols^2
+head(error2)
+```
+
+
+```{r}
+MSE <- sum(error2)/length(error2)
+RMSE <- sqrt(MSE)
+
+cat("Nilai MSE: ", MSE, "\n")
+cat("Nilai RMSE: ", RMSE)
+```
+
+### Model 2 GWR
+
+```{r}
+#| eval: false
+opt.bandwith.gwr <- bandwidths_mgwrsar(
+  formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+  data = datgwr2, 
+  coord=coord,
+  fixed_vars='Intercept',
+  Models='GWR',
+  candidates_Kernels=c('bisq','gauss'),
+  control=list(),
+  control_search=list()
+)
+```
+
+```{r}
+H_bisq <- opt.bandwith.gwr[["GWR_bisq_adaptive"]][["config_model"]][["H"]]
+H_gauss <- opt.bandwith.gwr[["GWR_gauss_adaptive"]][["config_model"]][["H"]]
+```
+
+```{r}
+gwr_bisq <- MGWRSAR(
+  formula = 'log(Y)~.', 
+  data = datgwr2,
+  coord = coord, 
+  kernels = c('bisq'),
+  H = H_bisq,
+  Model = 'GWR',
+  control = list(SE=TRUE,adaptive=TRUE)
+)
+summary_mgwrsar(gwr_bisq)
+```
+
+```{r}
+gwr_gauss <- MGWRSAR(
+  formula = 'log(Y)~.', 
+  data = datgwr2,
+  coord = coord, 
+  kernels = c('gauss'),
+  H = H_gauss,
+  Model = 'GWR',
+  control = list(SE=TRUE,adaptive=TRUE)
+)
+summary_mgwrsar(gwr_gauss)
+
+```
+
+```{r}
+Model_GWR <- c("Bisquare Adaptive", "Gauss Adaptive")
+AIC_GWR <- c(1219.306, 1233.073)
+RMSE_GWR <- c(gwr_bisq$RMSE, gwr_gauss$RMSE)
+data.frame(Model_GWR, AIC_GWR, RMSE_GWR)
+```
+
+### Model 3 MGWR
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr <- bandwidths_mgwrsar(
+  formula = 'log(Y)~X1+X5+X6+X7+X8+X9', 
+  data = datgwr2, 
+  coord = coord, 
+  fixed_vars = 'Intercept', 
+  Models = 'MGWR', 
+  candidates_Kernels = c('bisq','gauss'), 
+  control=list(), 
+  control_search=list()
+)
+```
+
+```{r}
+mgwr_bisq <- MGWRSAR(
+  formula = 'log(Y)~.', 
+  data = datgwr2,
+  coord = coord, 
+  fixed_vars ='X6', 
+  kernels = c('bisq'),
+  H = 103, 
+  Model = 'MGWR',
+  control = list(SE=TRUE,adaptive=TRUE)
+)
+summary_mgwrsar(mgwr_bisq)
+```
+
+```{r}
+mgwr_gauss <- MGWRSAR(
+  formula = 'log(Y)~.', 
+  data = datgwr2,
+  coord = coord, 
+  fixed_vars ='X6', 
+  kernels = c('gauss'),
+  H = 43 , 
+  Model = 'MGWR',
+  control = list(SE=TRUE,adaptive=TRUE)
+)
+summary_mgwrsar(mgwr_gauss)
+```
+
+```{r}
+Model_MGWR <- c("Bisquare Adaptive", "Gauss Adaptive")
+AIC_MGWR <- c(1191.419, 1226.738)
+RMSE_MGWR <- c(mgwr_bisq$RMSE, mgwr_gauss$RMSE)
+data.frame(Model_MGWR, AIC_MGWR, RMSE_MGWR)
+```
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr2 <- bandwidths_mgwrsar(
+  formula = 'log(Y)~X1+X5+X6+X7+X8+X9', 
+  data = datgwr2, 
+  coord=coord, 
+  fixed_vars='X6',
+  Models='MGWR', 
+  candidates_Kernels=c('bisq','gauss'),
+  control=list(),control_search=list()
+)
+```
+
+```{r}
+mgwr_bisq2 <- MGWRSAR(
+  formula = 'log(Y)~.', 
+  data = datgwr2,
+  coord=coord, 
+  fixed_vars ='X6', 
+  kernels=c('bisq'),
+  H=65 , 
+  Model = 'MGWR',
+  control=list(SE=TRUE,adaptive=TRUE)
+)
+summary_mgwrsar(mgwr_bisq2)
+```
+
+```{r}
+mgwr_gauss2 <- MGWRSAR(
+  formula = 'log(Y)~.', 
+  data = datgwr2,
+  coord = coord, 
+  fixed_vars = 'X6', 
+  kernels = c('gauss'),
+  H = 28 , 
+  Model = 'MGWR',
+  control = list(SE=TRUE,adaptive=TRUE))
+summary_mgwrsar(mgwr_gauss2)
+```
+
+```{r}
+Model_MGWR2 <- c("Bisquare Adaptive", "Gauss Adaptive")
+AIC_MGWR2 <- c(1191.419, 1226.738)
+RMSE_MGWR2 <- c(mgwr_bisq2$RMSE, mgwr_gauss2$RMSE)
+data.frame(Model_MGWR2, AIC_MGWR2, RMSE_MGWR2)
+```
+
+### Model 4 SAR (MGWRSAR (0,k,0))
+
+```{r}
+#| eval: false
+opt.bandwith.mgwrsar_0_kc_0 <- bandwidths_mgwrsar(
+  formula = 'log(Y)~X1+X5+X6+X7+X8+X9', 
+  data = datgwr2, 
+  coord = coord, 
+  fixed_vars = 'Intercept',
+  Models = '', 
+  candidates_Kernels = c('bisq','gauss'),
+  control=list(),
+  control_search=list())
+```
+
+```{r}
+mgwrsar_0_kc_0_bisq <- MGWRSAR(
+  formula = 'log(Y)~.', 
+  data = datgwr2,
+  coord = coord, 
+  fixed_vars ='Intercept', kernels=c('bisq'),H=103, Model = 'MGWRSAR_0_kc_0',
+control=list(SE=TRUE,adaptive=TRUE))
+summary_mgwrsar(mgwrsar_0_kc_0_bisq)
+```
+
+```{r}
+mgwrsar_0_kc_0_gauss <- MGWRSAR(
+  formula = 'log(Y)~.', 
+  data = datgwr2,
+  coord = coord, 
+  fixed_vars = 'Intercept', 
+  kernels=c('gauss'),
+  H = 43, 
+  Model = 'MGWRSAR_0_kc_0',
+  control = list(SE=TRUE,adaptive=TRUE))
+summary_mgwrsar(mgwrsar_0_kc_0_gauss)
+```
+
+### Model 5 MGWR SAR (0,0,k) 
+
+Varying spatial Beta 
+
+***Bisquare***
+
+Optimum Bandwith
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr00kv_bisq <- bandwidths_mgwrsar(
+  formula = 'log(Y)~X1+X5+X6+X7+X8+X9', 
+  data = datgwr2, 
+  coord = coord,
+  fixed_vars = 'Intercept',
+  Models = 'MGWRSAR_0_0_kv',
+  candidates_Kernels = c('bisq'), 
+  control = list(W=W_bisq),control_search=list())
+```
+
+Model
+
+```{r}
+mgwrsar_0_0_kv_bisq <-
+  MGWRSAR(
+    formula = 'log(Y)~.',
+    data = datgwr2,
+    coord = coord, 
+    fixed_vars = NULL, 
+    kernels = c('bisq'),
+    H = 185, Model = 'MGWRSAR_0_0_kv',
+    control=list(SE=TRUE,adaptive=TRUE,W=W_bisq))
+summary_mgwrsar(mgwrsar_0_0_kv_bisq)
+```
+
+***Gauss***
+
+Optimum Bandwith
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr00kv_gauss <- bandwidths_mgwrsar(
+  formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+  data = datgwr2,
+  coord = coord,
+  fixed_vars = 'Intercept',
+  Models = 'MGWRSAR_0_0_kv',
+  candidates_Kernels = c('gauss'),
+  control = list(W = W_gauss),
+  control_search = list()
+)
+```
+
+Model
+
+```{r}
+mgwrsar_0_0_kv_gauss <- MGWRSAR(
+  formula = 'log(Y)~.',
+  data = datgwr2,
+  coord = coord,
+  fixed_vars = NULL,
+  kernels = c('bisq'),
+  H = 48,
+  Model = 'MGWRSAR_0_0_kv',
+  control = list(SE = TRUE, adaptive = TRUE, W = W_gauss)
+)
+summary_mgwrsar(mgwrsar_0_0_kv_gauss)
+```
+
+```{r}
+Model_MGWRSAR00k <- c("Bisquare Adaptive", "Gauss Adaptive")
+AIC_MGWRSAR00k <- c(1226.462, 1104.081)
+RMSE_MGWRSAR00k <- c(mgwrsar_0_0_kv_bisq$RMSE, mgwrsar_0_0_kv_gauss$RMSE)
+data.frame(Model_MGWRSAR00k, AIC_MGWRSAR00k, RMSE_MGWRSAR00k)
+```
+
+### Model 6 MGWR SAR (1,0,kv)
+
+***Bisquare***
+
+Optimum Bandwith
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr10kv_bisq <-
+  bandwidths_mgwrsar(
+    formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'Intercept',
+    Models = 'MGWRSAR_1_0_kv',
+    candidates_Kernels = c('bisq'),
+    control = list(W = W_bisq),
+    control_search = list()
+  )
+```
+
+```{r}
+mgwrsar_1_0_kv_bisq   <- MGWRSAR(
+  formula = 'log(Y)~.',
+  data = datgwr2,
+  coord = coord,
+  fixed_vars = NULL,
+  kernels = c('bisq'),
+  H = 270,
+  Model = 'MGWRSAR_1_0_kv',
+  control = list(SE = TRUE, adaptive = TRUE, W = W_bisq)
+)
+summary_mgwrsar(mgwrsar_1_0_kv_bisq)
+```
+
+***Gauss***
+
+Optimum Bandwith
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr10kv_gauss <-
+  bandwidths_mgwrsar(
+    formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'Intercept',
+    Models = 'MGWRSAR_1_0_kv',
+    candidates_Kernels = c('gauss'),
+    control = list(W = W_gauss),
+    control_search = list()
+  )
+```
+
+```{r}
+mgwrsar_1_0_kv_gauss <- MGWRSAR(
+  formula = 'log(Y)~.',
+  data = datgwr2,
+  coord = coord,
+  fixed_vars = NULL,
+  kernels = c('gauss'),
+  H = 59,
+  Model = 'MGWRSAR_1_0_kv',
+  control = list(SE = TRUE, adaptive = TRUE, W = W_gauss)
+)
+summary_mgwrsar(mgwrsar_1_0_kv_gauss)
+```
+
+```{r}
+Model_MGWRSAR_1_0_kv <- c("Bisquare Adaptive", "Gauss Adaptive")
+AIC_MGWRSAR_1_0_kv <- c(1230.931 , 1226.788)
+RMSE_MGWRSAR_1_0_kv <- c(mgwrsar_1_0_kv_bisq$RMSE, mgwrsar_1_0_kv_gauss$RMSE)
+data.frame(Model_MGWRSAR_1_0_kv, AIC_MGWRSAR_1_0_kv, RMSE_MGWRSAR_1_0_kv)
+```
+
+### Model 7 MGWR SAR (0,kc,kv)
+
+***Bisquare***
+
+Optimum Bandwith
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr0kckv_bisq <-
+  bandwidths_mgwrsar(
+    formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'Intercept',
+    Models = 'MGWRSAR_0_kc_kv',
+    candidates_Kernels = c('bisq'),
+    control = list(W = W_bisq),
+    control_search = list()
+  )
+```
+
+Model 
+
+```{r}
+mgwrsar_0_kc_kv_bisq <- MGWRSAR(
+  formula = 'log(Y)~.',
+  data = datgwr2,
+  coord = coord,
+  fixed_vars = 'X6',
+  kernels = c('bisq'),
+  H = 106,
+  Model = 'MGWRSAR_0_kc_kv',
+  control = list(SE = TRUE, adaptive = TRUE, W = W_bisq)
+)
+summary_mgwrsar(mgwrsar_0_kc_kv_bisq)
+```
+
+***Gauss***
+
+Optimum Bandwith
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr0kckv_gauss <-
+  bandwidths_mgwrsar(
+    formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'Intercept',
+    Models = 'MGWRSAR_0_kc_kv',
+    candidates_Kernels = c('gauss'),
+    control = list(W = W_gauss),
+    control_search = list()
+  )
+```
+
+Model 
+
+```{r}
+mgwrsar_0_kc_kv_gauss <- MGWRSAR(
+  formula = 'log(Y)~.',
+  data = datgwr2,
+  coord = coord,
+  fixed_vars = 'X6',
+  kernels = c('gauss'),
+  H = 35,
+  Model = 'MGWRSAR_0_kc_kv',
+  control = list(SE = TRUE, adaptive = TRUE, W = W_gauss)
+)
+summary_mgwrsar(mgwrsar_0_kc_kv_gauss)
+```
+
+```{r}
+Model_MGWRSAR_0_kc_kv <- c("Bisquare Adaptive", "Gauss Adaptive")
+AIC_MGWRSAR_0_kc_kv <- c(1184.993, 1195.771)
+RMSE_MGWRSAR_0_kc_kv <- c(mgwrsar_0_kc_kv_bisq$RMSE, mgwrsar_0_kc_kv_gauss$RMSE)
+data.frame(Model_MGWRSAR_0_kc_kv, AIC_MGWRSAR_0_kc_kv, RMSE_MGWRSAR_0_kc_kv)
+```
+
+### Model 8 MGWR SAR (1,kc,kv)
+
+***Bisquare***
+
+Optimum Bandwidth
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr1kckv_bisq <-
+  bandwidths_mgwrsar(
+    formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'Intercept',
+    Models = 'MGWRSAR_1_kc_kv',
+    candidates_Kernels = c('bisq'),
+    control = list(W = W_bisq),
+    control_search = list()
+  )
+```
+
+Model
+
+```{r}
+# Model
+mgwrsar_1_kc_kv_bisq <- MGWRSAR(
+  formula = 'log(Y)~.',
+  data = datgwr2,
+  coord = coord,
+  fixed_vars = 'X6',
+  kernels = c('bisq'),
+  H = 177,
+  Model = 'MGWRSAR_1_kc_kv',
+  control = list(SE = TRUE, adaptive = TRUE, W = W_bisq)
+)
+summary_mgwrsar(mgwrsar_1_kc_kv_bisq)
+```
+
+***Gauss***
+
+Optimum Bandwidth
+```{r}
+opt.bandwith.mgwr1kckv_gauss <-
+  bandwidths_mgwrsar(
+    formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'Intercept',
+    Models = 'MGWRSAR_1_kc_kv',
+    candidates_Kernels = c('gauss'),
+    control = list(W = W_gauss),
+    control_search = list()
+  )
+```
+
+Model
+
+```{r}
+# Model
+mgwrsar_1_kc_kv_gauss <-
+  MGWRSAR(
+    formula = 'log(Y)~.',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'X6',
+    kernels = c('gauss'),
+    H = 511,
+    Model = 'MGWRSAR_1_kc_kv',
+    control = list(SE = TRUE, adaptive = TRUE, W = W_gauss)
+  )
+summary_mgwrsar(mgwrsar_1_kc_kv_gauss)
+```
+
+### Model 9 MGWR SAR (1,kc,0)
+
+***Bisquare***
+
+Optimum Bandwith
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr1kc0_bisq <-
+  bandwidths_mgwrsar(
+    formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'Intercept',
+    Models = 'MGWRSAR_1_kc_0',
+    candidates_Kernels = c('bisq'),
+    control = list(W = W_bisq),
+    control_search = list()
+  )
+```
+
+Model
+
+Fixed X6
+
+```{r}
+mgwrsar_1_kc_kv_bisq <- MGWRSAR(
+  formula = 'log(Y)~.',
+  data = datgwr2,
+  coord = coord,
+  fixed_vars = 'X6',
+  kernels = c('bisq'),
+  H = 231 ,
+  Model = 'MGWRSAR_1_kc_kv',
+  control = list(SE = TRUE, adaptive = TRUE, W = W_bisq)
+)
+summary_mgwrsar(mgwrsar_1_kc_kv_bisq)
+```
+
+***Gauss***
+
+Optimum Bandwith
+
+```{r}
+#| eval: false
+opt.bandwith.mgwr1kc0_gauss <-
+  bandwidths_mgwrsar(
+    formula = 'log(Y)~X1+X5+X6+X7+X8+X9',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'Intercept',
+    Models = 'MGWRSAR_1_kc_0',
+    candidates_Kernels = c('gauss'),
+    control = list(W = W_gauss),
+    control_search = list()
+  )
+```
+
+Model 
+
+Fixed X6
+
+```{r}
+mgwrsar_1_kc_kv_gauss <-
+  MGWRSAR(
+    formula = 'log(Y)~.',
+    data = datgwr2,
+    coord = coord,
+    fixed_vars = 'X6',
+    kernels = c('gauss'),
+    H = 311 ,
+    Model = 'MGWRSAR_1_kc_kv',
+    control = list(SE = TRUE, adaptive = TRUE, W = W_gauss)
+  )
+summary_mgwrsar(mgwrsar_1_kc_kv_gauss)
+```
+
+```{r}
+Model_GWRSAR_1_kc_kv <- c("Bisquare Adaptive", "Gauss Adaptive")
+AIC_GWRSAR_1_kc_kv <- c(1234.797, 1257.486)
+RMSE_GWRSAR_1_kc_kv <- c(mgwrsar_1_kc_kv_bisq$RMSE, mgwrsar_1_kc_kv_gauss$RMSE)
+data.frame(Model_GWRSAR_1_kc_kv, AIC_GWRSAR_1_kc_kv, RMSE_GWRSAR_1_kc_kv)
+```
+
+## Interpretasi Model Terbaik
+
+Namun demikian, meski X6 memiliki proporsi dugaan parameter di dalam SK 95% tertinggi, nilai tersebut tidak mencapai proporsi acuan yaitu sebesar 60% untuk dapat dikatakan dugaan parameter bersifat global. Berdasarkan hal tersebut serta pemodelan dengan metode SAR dapat disimpulkan bahwa dugaan parameter dari pemodelan tingkat PDRB kabupaten/kota di Indonesia bersifat lokal disertai adanya dependensi spasial.  
+
+Dengan demikian pemodelan yang dipilih untuk dibandingkan sebagai model terbaik adalah dengan menggunakan model MGWR-SAR dengan komponen peubah bersifat lokal yaitu model 5 MGWR-SAR(0,0,6) dan Model 6 MGWR - SAR (1,0,6). 
+
+Model yang dibandingkan hanya Berdasarkan kriteria RMSE dalam melihat performa model, terlihat bahwa model MGWR-SAR (0,0,6) dengan pembobot kernel gauss adaptive memiliki nilai RMSE terkecil, sehingga dipilih sebagai model terbaik.
+
+Betav	
+matrix of coefficients of dim(n,kv) x kv.
+
+Betac	
+vector of coefficients of length kc = lambda = 0.1243248
+
+```{r}
+beta <- mgwrsar_0_0_kv_gauss$Betav
+beta
+```
+
+```{r}
+datgwr2 %>% mutate(beta) %>% head(5)
+```
+
+```{r}
+b <- data.frame(beta)
+head(b)
+```
+
+```{r}
+Ymodel <- mgwrsar_0_0_kv_gauss$Y
+head(Ymodel)
+```
+
+```{r}
+# parameter
+koefisien <- b %>% mutate(Y = Ymodel) 
+head(koefisien)
+```
+
+
+
+```{r}
+std_error <- mgwrsar_0_0_kv_gauss$sev
+std_error2 <- data.frame(std_error)
+head(std_error2)
+```

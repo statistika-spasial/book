@@ -1,1 +1,41 @@
 # Metode Analisis
+
+Langkah-langkah yang dilakukan untuk menganalisis data adalah sebagai berikut:
+
+1. Melakukan eksplorasi data untuk melihat karakteristik data serta membuat visualisasi peta tematik pada setiap peubah.
+
+2. **Model Regresi Linear Berganda (RLB)**
+   - Membangun model RLB
+   - Mengidentifikasi adanya multikolinearitas melalui Variance Inflation Factor (VIF)
+   - Diagnostik sisaan model RLB meliputi kenormalan, kehomogenan ragam, dan kebebasan sisaan.
+
+3. **Model Dependensi Spasial**
+   - Membentuk matriks pembobot spasial berbasis ketetanggaan dan jarak yang dinormalisasi baris, antara lain rook contiguity, queen contiguity, k nearest neighbor (KNN), inverse distance weight (IDW), dan eksponensial.
+   - Mengecek adanya autokorelasi spasial dengan menggunakan:
+      - Indeks Moran
+        - Hipotesis:
+        
+          \[H_0 : I = 0 \quad (\text{Tidak terdapat autokorelasi spasial})\]
+          \[H_1 : I \neq 0 \quad (\text{Terdapat autokorelasi spasial})\]
+          
+        - Statistik Uji:
+        
+          $Z(I) = \frac{I - E(I)}{\sqrt{\text{Var}(I)}}$
+          
+        - $I$ adalah Statistik Indeks Moran ($I > 0$ terdapat autokorelasi positif; $I < 0$ terdapat autokorelasi negatif)
+        - Kriteria keputusan jika $Z(I) > Z_{\alpha/2}$
+        
+   - Menyelidiki adanya dependensi spasial dengan Uji Lagrange Multiplier.
+   - Menyelidiki adanya keragaman spasial dengan menggunakan uji Breusch-Pagan.
+   - Membangun model dependensi spasial yang sesuai dan uji parameter.
+   - Diagnostik sisaan model.
+
+4. **Model Dependensi dan Keragaman Spasial**
+   - Menentukan matriks pembobot kernel.
+   - Membentuk bandwidth optimum.
+   - Membangun model keragaman dan dependensi spasial, antara lain:
+      - Model GWR
+      - Model MGWR−SAR(0, k, 0)
+      - Model MGWR−SAR(0, 0, k)
+   - Membandingkan kebaikan model dengan kriteria RMSE.
+   - Visualisasi dugaan parameter model terbaik.
