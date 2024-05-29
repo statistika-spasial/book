@@ -1,5 +1,11 @@
 # Tahapan Analisis dengan R
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 ## Package
 
 ```{r}

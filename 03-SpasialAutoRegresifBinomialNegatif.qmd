@@ -1,5 +1,11 @@
 # Spasial Autoregresif Binomial Negatif
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 ## Deskripsi
 
 Regresi autoregresif spasial binomial negatif (SAR-BN) adalah pengembangan analisis regresi binomial negatif dengan menambahkan adanya efek spasial pada data. Regresi spasial binomial negatif dapat digunakan pada data cacah yang memiliki dependensi spasial dan kondisi overdispersi. Model regresi spasial BN antara lain:
@@ -57,31 +63,6 @@ Ilustrasi model SAR-BN dirujuk dari hasil penelitian Amelia et al. (2023). Data 
 
 : Deskripsi Peubah {.striped .hover}
 
-$$
-\begin{table}[ht]
-\centering
-\caption{Deskripsi Peubah}
-\begin{tabular}{|c|p{8cm}|}
-  \hline
-  \textbf{Kode} & \textbf{Peubah} \\
-  \hline
-  Y & Banyaknya stunting per 100.000 balita \\
-  \hline
-  X1 & Persentase balita mendapatkan imunisasi dasar lengkap \\
-  \hline
-  X2 & Persentase bayi berusia kurang dari 6 bulan mendapat ASI \\
-  \hline
-  X3 & Persentase tempat pengelolaan makanan memenuhi syarat \\
-  \hline
-  X4 & Persentase bayi berat badan lahir rendah \\
-  \hline
-  X5 & Persentase keluarga dengan akses sanitasi layak \\
-  \hline
-  X6 & Pengeluaran per kapita dalam juta rupiah \\
-  \hline
-\end{tabular}
-\end{table}
-$$
 
 ## Metode Analasis
 
@@ -199,6 +180,7 @@ boxplot(data1$Stunting, ylab="Banyaknya Stunting per 100.000 balita")
 ```
 
 Pemeriksaan sebaran yang paling sesuai untuk data stunting menggunakan grafik Cullen and Frey dan plot kuantil-kuantil dengan menggunakan syntax sebagai berikut:
+
 ```{r}
 #Grafik Cullen-Frey 
 poisson <- fitdist(data1$Stunting, "pois", method = c("mle", 
@@ -211,6 +193,7 @@ descdist(data1$Stunting, discrete = TRUE, boot=1000)
 ```
 
 Pemeriksaan sebaran yang sesuai untuk data stunting dapat juga dilakukan menggunakan plot kuantil-kauntil dengan menggunakan syntax berikut ini:
+
 ```{r}
 #Pemeriksaan sebaran menggunakan plot Q-Q
 qqcomp(list(poisson, binom.negatif), legendtext = c("Pois", 
@@ -220,6 +203,7 @@ Pada output plot Q-Q terlihat mayoritas titik-titik berwarna hijau (lambang untu
 
 #### Pemeriksaan Multikolinearitas
 Pemeriksaan multikolinearitas menggunakan syntax sebagai berikut:
+
 ```{r}
 #Multikolinieritas
 reglin<-lm(Y~X1+X2+X3+X4+X5+X6, data=data1)
@@ -228,7 +212,9 @@ as.matrix(vif(reglin))
 Berdasarkan output terlihat nilai VIF semua prediktor kecil, sehingga dapat disimpulkan tidak terdapat multikolinearitas.
 
 #### Uji Overdispersi
+
 Untuk melakukan uji dispersi menggunakan syntax sebagai berikut:
+
 ```{r}
 #Model Regresi Poisson
 poisson<-glm(Y~X1+X2+X3+X4+X5+X6,data=data1, family = poisson())
@@ -243,19 +229,25 @@ pr_df<-sum(residuals(poisson,"pearson")^2)/df.residual(poisson)
 overdis<-cbind.data.frame(dv_df,pr_df)
 overdis
 ```
+
 Kedua nilai statistik uji overdispersi bernilai lebih besar dari satu, maka pada data banyaknya stunting terdapat overdispersi. Untuk menangani oversdispersi pada data digunakan model regresi binomial negatif.
 
 #### Pemodelan regresi binomial negatif
+
 ```{r}
 #Regresi Binomial Negatif
 nb<-glm.nb(Y~X1+X2+X3+X4+X5+X6,data=data1)
 summary(nb)
 ```
+
 Pada output regresi binomial negatif terlihat prediktor X2, X3, X4, dan X5 nyata pada  α=0.05 dengan AIC model sebesar 340.64.
 
 #### Uji efek spasial
+
 a.	Uji LM dan indeks Moran
+
 Untuk menentukan Indeks Moran dan uji LM, terlebih dulu dibangun matriks bobot, Pada ilustrasi ini digunakan matriks ketetanggan langkah ratu, k-nearest neighbor, inverse distance weight, dan negative exponential. Syntax yang digunakan untuk membuat matriks bobot dan menghitung Indeks Moran sebagai berikut:
+
 ```{r}
 #Menghitung jarak Euclidean
 djarak<-dist(longlat) 
@@ -334,6 +326,7 @@ eks2.jabar <- W.eksp.s2
 ```
 
 Setelah dibuat matriks pembobot, dilakukan pengujian indeks Moran dengan menggunakan semua matriks pembobot pada semua prediktor.
+
 ```{r}
 #Indeks Moran dan Nilai-p peubah X1
 x1.q <- moran.test(petajabar$imunisasi,queen.jabar,randomisation=T)
@@ -361,6 +354,7 @@ rownames(tab) <- c('Queen','1-NN','2-NN', '3-NN', '4-NN',
 tab <- as.table(tab)
 tab
 ```
+
 Pada output Indeks Moran untuk prediktor X1 dengan matriks bobot 3-Nearest Neighbor memiliki yang paling besar dan nilai-p paling kecil, akan tetapi tidak nyata pada α=0.05.
 
 ```{r}
@@ -388,6 +382,7 @@ rownames(tab) <- c('Queen','1-NN','2-NN', '3-NN', '4-NN', "5-NN",
 tab <- as.table(tab)
 tab
 ```
+
 Pada output di atas terlihat bahwa pada pengujian indeks Moran peubah X2, matriks bobot Eksponential alpha=1 memiliki nilai-p paling kecil dan nyata pada α=0.05.
 
 ```{r}
@@ -415,6 +410,7 @@ rownames(tab) <- c('Queen','1-NN','2-NN', '3-NN', '4-NN', "5-NN",
 tab <- as.table(tab)
 tab
 ```
+
 Pada output di atas terlihat bahwa pada pengujian indeks Moran peubah X3, matriks bobot 3-nearest neighbor memiliki nilai-p paling kecil dan nyata pada α=0.05.
 
 ```{r}
@@ -443,6 +439,7 @@ rownames(tab) <- c('Queen','1-NN','2-NN', '3-NN', '4-NN', "5-NN",
 tab <- as.table(tab)
 tab
 ```
+
 Pada output di atas terlihat bahwa pada pengujian indeks Moran peubah X4, matriks bobot exponential alpha =1 memiliki nilai-p paling kecil dan nyata pada α=0.05.
 
 ```{r}
@@ -471,6 +468,7 @@ rownames(tab) <- c('Queen','1-NN','2-NN', '3-NN', '4-NN',
 tab <- as.table(tab)
 tab
 ```
+
 Pada output di atas terlihat bahwa pada pengujian indeks Moran peubah X5, matriks bobot 1-nearest neighbor memiliki nilai-p paling kecil, akan tetapi tidak nyata pada α=0.05.
 
 ```{r}
@@ -499,9 +497,11 @@ rownames(tab) <- c('Queen','1-NN','2-NN', '3-NN', '4-NN',
 tab <- as.table(tab)
 tab
 ```
+
 Pada output di atas terlihat bahwa pada pengujian indeks Moran peubah X6, matriks bobot exponential alpha = 1 memiliki nilai-p paling kecil dan nyata pada α=0.05. \ \
 \ \
 Pengujian LM dengan matriks pembobot Queen menggunakan syntax sebagai berikut:
+
 ```{r}
 #Uji LM
 reglin<-lm(log(Y)~X1+X2+X3+X4+X5+X6)
@@ -511,18 +511,25 @@ LM_Queen<-lm.RStests(reglin, queen.jabar,
           test=c("LMerr", "LMlag","RLMerr","RLMlag"))
 summary(LM_Queen)
 ```
+
 Output uji menunjukan RLMlag nyata pada α=0.05, sehingga model yang cocok digunakan adalah SAR. \ \
 \ \
 b.	Uji Breusch-Pagan
+
 Uji Breusch-Pagan dihitung menggunakan syntax berikut:
+
 ```{r}
 #Uji Breusch-Pagan
 bptest(reglin)
 ```
+
 Nilai statistik uji Breusch-Pagan mempunyai nilai-p > α=0.05, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial.
 
 #### Pendugaan Model Spasial Binomial Negatif
+
+
 Pendugaan model SAR-BN dengan matriks pembobot Queen menggunakan syntax sebagai berikut:
+
 ```{r}
 #SAR-BN
 petajabar$lagY<-lag.listw(x=queen.jabar, var=petajabar$Stunting)
@@ -530,9 +537,11 @@ SAR<-glm.nb(petajabar$Stunting~lagY+imunisasi+ASI+TPM+BBLR
      +sanitasi+pengeluaran,data=petajabar)
 summary(SAR)
 ```
+
 Pada output model SAR-BN terlihat prediktor signifikan pada kasus stunting adalah ASI, TPM, dan BBLR. Nilai AIC model sebesar 339.13. \ \
 \ \
 Pendugaan model SLX-BN dengan matriks pembobot untuk lag-prediktor sesuai hasil pada langkah (5) menggunakan syntax sebagai berikut:
+
 ```{r}
 #SLX-BN
 peubah.x2 <- as.matrix(data1[,4])
@@ -550,9 +559,11 @@ slx_reg<-glm.nb(Stunting ~imunisasi+ASI+TPM+BBLR+sanitasi
          data=petajabar)
 summary(slx_reg)
 ```
+
 Pada output model SLX-BN terlihat prediktor signifikan pada kasus stunting adalah ASI, BBLR, dan sanitasi. Nilai AIC model sebesar 344.51.\ \
 \ \
 Pendugaan model SDM-BN dengan matriks pembobot untuk lag-prediktor sesuai hasil pada langkah (5) dan matriks pembobot Queen untuk Y menggunakan syntax sebagai berikut:
+
 ```{r}
 #SDM-BN
 sdm_reg<-glm.nb(Stunting ~ imunisasi+ASI+TPM+BBLR+sanitasi
@@ -563,7 +574,9 @@ summary(sdm_reg)
 Pada output model SDM-BN terlihat prediktor signifikan pada kasus stunting adalah TPM dan BBLR. Nilai AIC model sebesar 344.62.
 
 #### Kebaikan Model
+
 Untuk memilih model terbaik digunakan nilai AIC dengan syntax sebagai berikut:
+
 ```{r}
 #AIC SAR, SLX, SDM
 AIC.BN <- AIC(nb)
@@ -582,7 +595,9 @@ nilai.aic
 Pada output terlihat nilai AIC terkecil dimiliki model SAR-BN, sehingga disimpulkan model SAR-BN merupakan model terbaik.
 
 #### Interpretasi Model
+
 Interpretasi pada koefisien regresi spasial dilakukan dengan melihat nilai efek langsung (direct effect), efek tidak langsung (indirect effect), dan efek total (total effect) menggunakan syntax sebagai berikut:
+
 ```{r}
 #Membuat matriks identitas
 I <- matrix(0, 27, 27)
@@ -630,6 +645,7 @@ marginal
 ```
 
 Efek langsung dan efek tidak langsung dari setiap prediktor di Kabupaten/Kota dapat sajikan dalam peta. Nilai DE dan IE untuk X2 tiap Kabupaten/Kota dihitung lebih dulu dengan syntax sebagai berikut:
+
 ```{r}
 #Efek DE dan IE pada kabupaten/Kota untuk X2
 direct_b2 <- as.matrix(diag(b2))
@@ -646,6 +662,7 @@ dat.map$lat <- longlat[,2]
 ```
 
 Selanjutnya membuat peta untuk nilai DE X2 tiap Kabupaten/Kota menggunakan syntax berikut:
+
 ```{r}
 #Peta DE untuk X2
 dat.map$de_x2<-as.numeric(direct_b2)
@@ -661,6 +678,7 @@ peta.de
 ```
 
 Untuk membuat peta IE X2 menggunakan syntax berikut ini:
+
 ```{r}
 #Peta IE
 dat.map$ie_x2<-as.numeric(indirect_b2)

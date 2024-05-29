@@ -1,5 +1,11 @@
 # Spasial Durbin Model 
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 ## Data
 
 Ilustrasi model spasial Durbin (spatial Durbin model/SDM) bersumber dari penelitian Febriyanti et al. (2016). Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan  DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada Tabel berikut. Data dan peta ilustrasi SDM tersedia pada tautan [https://ipb.link/sdm](https://ipb.link/sdm). 

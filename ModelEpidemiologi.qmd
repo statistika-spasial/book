@@ -1,5 +1,11 @@
 # Model Epidemiologi
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 ## Package
 
 ```{r}
@@ -18,6 +24,8 @@ library(rgdal)
 library(dplyr)
 library(scales)
 library(RColorBrewer)
+library(MASS)
+library(fitdistrplus)
 ```
 
 ## Data
@@ -29,7 +37,6 @@ jawa_data <- jawa_data %>%
   mutate(logStunting = log(Stunting), E_d = mean(Stunting))
 jawa@data <- left_join(jawa@data, jawa_data)
 jawa@data$ID <- 1:nrow(jawa@data)
-view(jawa_data)
 summary(jawa_data)
 ```
 
@@ -132,7 +139,6 @@ Diperoleh p-value < 0.05, yang artinya bahwa nilai dispersi lebih dari 1. Sehing
 
 ```{r}
 #Cek Sebaran
-library("fitdistrplus")
 poisson <- fitdist(jawa_data$Stunting, "pois", method = c("mle", "mme", "qme", "mge", "mse"), 
                    start=NULL, fix.arg=NULL, T, keepdata = TRUE)
 binom.negatif <- fitdist(jawa_data$Stunting, "nbinom", method = c("mle", "mme", "qme", "mge", "mse"), 
@@ -241,7 +247,6 @@ summary(glm_mod)
 ```
 
 ```{r}
-library(MASS)
 glm1<-glm.nb(form_fit, data = jawa@data)
 summary(glm1)
 ```
@@ -256,6 +261,7 @@ Diperoleh p-value < 0.05, yang artinya bahwa terdapat autokorelasi spasial pada 
 
 
 ### GLMM
+
 ```{r}
 form_fit2 <- Stunting ~  Imunisasi + ASI + Sanitasi + Miskin +
   f(ID, model = "iid", param = c(1, .5))
@@ -323,6 +329,7 @@ bym_mod <- inla(form_fit4,
   control.compute = list(dic = TRUE))
 summary(bym_mod)
 ```
+
 Komponen acak spasial yang digunakan pada model ICAR $u$ adalah sebagai berikut:
 
 ```{r}
@@ -397,6 +404,7 @@ Dari grafik tersebut juga dapat dilihat bahwa risiko terjadinya stunting yang ti
 
 
 Relative Risk yang hanya menggunakan komponen acak adalah sebagai berikut.
+
 ```{r}
 jawa@data$RR2 <- exp(icar_mod$summary.random$ID$mean)
 my.palette.1<-brewer.pal(n=3,name="OrRd")
@@ -412,7 +420,6 @@ yhat_glmm <- glmm_mod$summary.fitted.values$mean*jawa@data$E_d
 pred <- data.frame(jawa@data$Provinsi,jawa@data$KabKota, jawa@data$Stunting, yhat_icar, yhat_bym, yhat_glmm)
 names(pred) <- c("Provinsi","KabKota", "Stunting", "yhat ICAR", "yhat BYM", "yhat GLMM")
 pred
-view(pred)
 ```
 
 

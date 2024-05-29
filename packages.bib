@@ -1,19 +1,673 @@
-@article{knuth84,
-  author = {Knuth, Donald E.},
-  title = {Literate Programming},
-  year = {1984},
-  issue_date = {May 1984},
-  publisher = {Oxford University Press, Inc.},
-  address = {USA},
-  volume = {27},
-  number = {2},
-  issn = {0010-4620},
-  url = {https://doi.org/10.1093/comjnl/27.2.97},
-  doi = {10.1093/comjnl/27.2.97},
-  journal = {Comput. J.},
-  month = may,
-  pages = {97–111},
-  numpages = {15}
+@Manual{R-AER,
+  title = {AER: Applied Econometrics with R},
+  author = {Christian Kleiber and Achim Zeileis},
+  year = {2024},
+  note = {R package version 1.2-12},
+  url = {https://CRAN.R-project.org/package=AER},
 }
 
+@Manual{R-classInt,
+  title = {classInt: Choose Univariate Class Intervals},
+  author = {Roger Bivand},
+  year = {2023},
+  note = {R package version 0.4-10,
+    https://github.com/r-spatial/classInt/},
+  url = {https://r-spatial.github.io/classInt/},
+}
+
+@Manual{R-dplyr,
+  title = {dplyr: A Grammar of Data Manipulation},
+  author = {Hadley Wickham and Romain François and Lionel
+    Henry and Kirill Müller and Davis Vaughan},
+  year = {2023},
+  note = {R package version 1.1.4},
+  url = {https://dplyr.tidyverse.org},
+}
+
+@Manual{R-fitdistrplus,
+  title = {fitdistrplus: Help to Fit of a Parametric
+    Distribution to Non-Censored or Censored Data},
+  author = {Marie-Laure Delignette-Muller and Christophe
+    Dutang and Aurelie Siberchicot},
+  year = {2023},
+  note = {R package version 1.1-11,
+    https://github.com/aursiber/fitdistrplus},
+  url = {https://lbbe.univ-lyon1.fr/fr/fitdistrplus},
+}
+
+@Manual{R-ggplot2,
+  title = {ggplot2: Create Elegant Data Visualisations
+    Using the Grammar of Graphics},
+  author = {Hadley Wickham and Winston Chang and Lionel
+    Henry and Thomas Lin Pedersen and Kohske Takahashi and
+    Claus Wilke and Kara Woo and Hiroaki Yutani and Dewey
+    Dunnington and Teun {van den Brand}},
+  year = {2024},
+  note = {R package version 3.5.1,
+    https://github.com/tidyverse/ggplot2},
+  url = {https://ggplot2.tidyverse.org},
+}
+
+@Manual{R-GWmodel,
+  title = {GWmodel: Geographically-Weighted Models},
+  author = {Binbin Lu and Paul Harris and Martin Charlton
+    and Chris Brunsdon and Tomoki Nakaya and Daisuke
+    Murakami and Yigong Hu and Fiona H Evans},
+  year = {2024},
+  note = {R package version 2.3-2},
+  url = {http://gwr.nuim.ie/},
+}
+
+@Manual{R-INLA,
+  title = {INLA: Full Bayesian Analysis of Latent Gaussian
+    Models using Integrated Nested Laplace Approximations},
+  author = {Havard Rue and Finn Lindgren and Elias
+    {Teixeira Krainski}},
+  year = {2024},
+  note = {R package version 24.05.01-1},
+}
+
+@Manual{R-lmtest,
+  title = {lmtest: Testing Linear Regression Models},
+  author = {Torsten Hothorn and Achim Zeileis and Richard
+    W. Farebrother and Clint Cummins},
+  year = {2022},
+  note = {R package version 0.9-40},
+  url = {https://CRAN.R-project.org/package=lmtest},
+}
+
+@Manual{R-mapview,
+  title = {mapview: Interactive Viewing of Spatial Data in
+    R},
+  author = {Tim Appelhans and Florian Detsch and Christoph
+    Reudenbach and Stefan Woellauer},
+  year = {2023},
+  note = {R package version 2.11.2},
+  url = {https://github.com/r-spatial/mapview},
+}
+
+@Manual{R-MASS,
+  title = {MASS: Support Functions and Datasets for
+    Venables and Ripley's MASS},
+  author = {Brian Ripley},
+  year = {2024},
+  note = {R package version 7.3-60.0.1},
+  url = {http://www.stats.ox.ac.uk/pub/MASS4/},
+}
+
+@Manual{R-Matrix,
+  title = {Matrix: Sparse and Dense Matrix Classes and
+    Methods},
+  author = {Douglas Bates and Martin Maechler and Mikael
+    Jagan},
+  year = {2024},
+  note = {R package version 1.6-5},
+  url = {https://Matrix.R-forge.R-project.org},
+}
+
+@Manual{R-mgcv,
+  title = {mgcv: Mixed GAM Computation Vehicle with
+    Automatic Smoothness Estimation},
+  author = {Simon Wood},
+  year = {2023},
+  note = {R package version 1.9-1},
+  url = {https://CRAN.R-project.org/package=mgcv},
+}
+
+@Manual{R-mgwrsar,
+  title = {mgwrsar: GWR and MGWR with Spatial
+    Autocorrelation},
+  author = {Ghislain Geniaux and Davide Martinetti},
+  year = {2023},
+  note = {R package version 1.0.5},
+  url = {https://CRAN.R-project.org/package=mgwrsar},
+}
+
+@Manual{R-raster,
+  title = {raster: Geographic Data Analysis and Modeling},
+  author = {Robert J. Hijmans},
+  year = {2023},
+  note = {R package version 3.6-26},
+  url = {https://rspatial.org/raster},
+}
+
+@Manual{R-RColorBrewer,
+  title = {RColorBrewer: ColorBrewer Palettes},
+  author = {Erich Neuwirth},
+  year = {2022},
+  note = {R package version 1.1-3},
+  url = {https://CRAN.R-project.org/package=RColorBrewer},
+}
+
+@Manual{R-rgdal,
+  title = {rgdal: Bindings for the Geospatial Data
+    Abstraction Library},
+  author = {Roger Bivand and Tim Keitt and Barry
+    Rowlingson},
+  year = {2023},
+  note = {R package version 1.6-7},
+  url = {http://rgdal.r-forge.r-project.org},
+}
+
+@Manual{R-sf,
+  title = {sf: Simple Features for R},
+  author = {Edzer Pebesma},
+  year = {2024},
+  note = {R package version 1.0-16},
+  url = {https://r-spatial.github.io/sf/},
+}
+
+@Manual{R-sp,
+  title = {sp: Classes and Methods for Spatial Data},
+  author = {Edzer Pebesma and Roger Bivand},
+  year = {2024},
+  note = {R package version 2.1-4},
+  url = {https://github.com/edzer/sp/},
+}
+
+@Manual{R-spatialreg,
+  title = {spatialreg: Spatial Regression Analysis},
+  author = {Roger Bivand and Gianfranco Piras},
+  year = {2024},
+  note = {R package version 1.3-2,
+    https://r-spatial.github.io/spatialreg/},
+  url = {https://github.com/r-spatial/spatialreg/},
+}
+
+@Manual{R-spData,
+  title = {spData: Datasets for Spatial Analysis},
+  author = {Roger Bivand and Jakub Nowosad and Robin
+    Lovelace},
+  year = {2023},
+  note = {R package version 2.3.0},
+  url = {https://jakubnowosad.com/spData/},
+}
+
+@Manual{R-spdep,
+  title = {spdep: Spatial Dependence: Weighting Schemes,
+    Statistics},
+  author = {Roger Bivand},
+  year = {2024},
+  note = {R package version 1.3-3,
+    https://r-spatial.github.io/spdep/},
+  url = {https://github.com/r-spatial/spdep/},
+}
+
+@Manual{R-spgwr,
+  title = {spgwr: Geographically Weighted Regression},
+  author = {Roger Bivand and Danlin Yu},
+  year = {2023},
+  note = {R package version 0.6-36,
+    https://rsbivand.github.io/spgwr/},
+  url = {https://github.com/rsbivand/spgwr/},
+}
+
+@Manual{R-spmoran,
+  title = {spmoran: Fast Spatial Regression using Moran
+    Eigenvectors},
+  author = {Daisuke Murakami},
+  year = {2024},
+  note = {R package version 0.2.3},
+  url = {https://CRAN.R-project.org/package=spmoran},
+}
+
+@Manual{R-terra,
+  title = {terra: Spatial Data Analysis},
+  author = {Robert J. Hijmans},
+  year = {2024},
+  note = {R package version 1.7-78},
+  url = {https://rspatial.org/},
+}
+
+@Manual{R-tidyverse,
+  title = {tidyverse: Easily Install and Load the
+    Tidyverse},
+  author = {Hadley Wickham},
+  year = {2023},
+  note = {R package version 2.0.0,
+    https://github.com/tidyverse/tidyverse},
+  url = {https://tidyverse.tidyverse.org},
+}
+
+@Manual{R-tseries,
+  title = {tseries: Time Series Analysis and Computational
+    Finance},
+  author = {Adrian Trapletti and Kurt Hornik},
+  year = {2024},
+  note = {R package version 0.10-56},
+  url = {https://CRAN.R-project.org/package=tseries},
+}
+
+@Book{AER2008,
+  title = {Applied Econometrics with {R}},
+  author = {Christian Kleiber and Achim Zeileis},
+  year = {2008},
+  publisher = {Springer-Verlag},
+  address = {New York},
+  note = {{ISBN} 978-0-387-77316-2},
+  url = {https://CRAN.R-project.org/package=AER},
+}
+
+@Article{fitdistrplus2015,
+  title = {{fitdistrplus}: An {R} Package for Fitting
+    Distributions},
+  author = {Marie Laure Delignette-Muller and Christophe
+    Dutang},
+  journal = {Journal of Statistical Software},
+  year = {2015},
+  volume = {64},
+  number = {4},
+  pages = {1--34},
+  doi = {10.18637/jss.v064.i04},
+}
+
+@Book{ggplot22016,
+  author = {Hadley Wickham},
+  title = {ggplot2: Elegant Graphics for Data Analysis},
+  publisher = {Springer-Verlag New York},
+  year = {2016},
+  isbn = {978-3-319-24277-4},
+  url = {https://ggplot2.tidyverse.org},
+}
+
+@Article{GWmodel2015,
+  title = {{GWmodel}: An {R} Package for Exploring Spatial
+    Heterogeneity Using Geographically Weighted Models},
+  author = {{Isabella Gollini} and {Binbin Lu} and {Martin
+    Charlton} and {Christopher Brunsdon} and {Paul
+    Harris}},
+  journal = {Journal of Statistical Software},
+  year = {2015},
+  volume = {63},
+  number = {17},
+  pages = {1--50},
+  doi = {10.18637/jss.v063.i17},
+}
+
+@Article{GWmodel2014,
+  title = {The {GWmodel} {R} package: further topics for
+    exploring spatial heterogeneity using geographically
+    weighted models},
+  author = {{Binbin Lu} and {Paul Harris} and {Martin
+    Charlton} and {Christopher Brunsdon}},
+  journal = {Geo-spatial Information Science},
+  year = {2014},
+  volume = {17},
+  number = {2},
+  pages = {85--101},
+  doi = {10.1080/10095020.2014.917453},
+}
+
+@Article{INLA2009a,
+  author = {H{\aa}vard Rue and Sara Martino and Nicholas
+    Chopin},
+  title = {Approximate {Bayesian} Inference for Latent
+    {Gaussian} Models Using Integrated Nested {Laplace}
+    Approximations (with discussion).},
+  journal = {Journal of the Royal Statistical Society B},
+  year = {2009},
+  volume = {71},
+  pages = {319--392},
+}
+
+@Article{INLA2013a,
+  title = {Bayesian computing with {INLA}: {N}ew
+    features.},
+  author = {Thiago G. Martins and Daniel Simpson and Finn
+    Lindgren and H{\aa}vard Rue},
+  year = {2013},
+  volume = {67},
+  pages = {68--83},
+  journal = {Computational Statistics and Data Analysis},
+}
+
+@Article{INLA2011a,
+  title = {An Explicit Link between {Gaussian} Fields and
+    {Gaussian} {Markov} Random Fields: The Stochastic
+    Partial Differential Equation Approach (with
+    discussion).},
+  author = {Finn Lindgren and H{\aa}vard Rue and Johan
+    Lindstr{\"o}m},
+  year = {2011},
+  volume = {73},
+  number = {4},
+  pages = {423--498},
+  journal = {Journal of the Royal Statistical Society B},
+}
+
+@Article{INLA2015a,
+  title = {Bayesian Spatial Modelling with {R}-{INLA}},
+  author = {Finn Lindgren and H{\aa}vard Rue},
+  journal = {Journal of Statistical Software},
+  year = {2015},
+  volume = {63},
+  number = {19},
+  pages = {1--25},
+  url = {http://www.jstatsoft.org/v63/i19/},
+}
+
+@Article{INLA2017a,
+  title = {Bayesian computing with {INLA}: {A} review},
+  author = {H{\aa}vard Rue and Andrea I. Riebler and
+    Sigrunn H. S{\o}rbye and Janine B. Illian and Daniel P.
+    Simpson and Finn K. Lindgren},
+  journal = {Annual Reviews of Statistics and Its
+    Applications},
+  year = {2017},
+  volume = {4},
+  number = {March},
+  pages = {395--421},
+  url = {http://arxiv.org/abs/1604.00860},
+}
+
+@Article{INLA2018a,
+  title = {Spatial modelling with {INLA}: {A} review},
+  author = {Haakon Bakka and H{\aa}vard Rue and Geir-Arne
+    Fuglstad and Andrea I. Riebler and David Bolin and
+    Janine Illian and Elias Krainski and Daniel P. Simpson
+    and Finn K. Lindgren},
+  journal = {WIRES (Invited extended review)},
+  year = {2018},
+  volume = {xx},
+  number = {Feb},
+  pages = {xx--xx},
+  url = {http://arxiv.org/abs/1802.06350},
+}
+
+@Article{INLA2016a,
+  title = {Needles: Toward Large-Scale Genomic Prediction
+    with Marker-by-Environment Interaction},
+  author = {Arne {De Coninck} and Bernard {De Baets} and
+    Drosos Kourounis and Fabio Verbosio and Olaf Schenk and
+    Steven Maenhout and Jan Fostier},
+  volume = {203},
+  number = {1},
+  pages = {543--555},
+  year = {2016},
+  doi = {10.1534/genetics.115.179887},
+  journal = {Genetics},
+  url = {http://dx.doi.org/10.1534/genetics.115.179887},
+  eprint =
+    {http://www.genetics.org/content/203/1/543.full.pdf},
+}
+
+@Article{INLA2017b,
+  title = {Enhancing the scalability of selected inversion
+    factorization algorithms in genomic prediction},
+  author = {Fabio Verbosio and Arne {De Coninck} and Drosos
+    Kourounis and Olaf Schenk},
+  journal = {Journal of Computational Science},
+  volume = {22},
+  number = {Supplement C},
+  pages = {99-108},
+  year = {2017},
+  issn = {1877-7503},
+  url = {https://doi.org/10.1016/j.jocs.2017.08.013},
+}
+
+@Article{INLA2018b,
+  title = {Towards the Next Generation of Multiperiod
+    Optimal Power Flow Solvers},
+  author = {D. Kourounis and A. Fuchs and O. Schenk},
+  journal = {IEEE Transactions on Power Systems},
+  year = {2018},
+  volume = {PP},
+  number = {99},
+  pages = {1-10},
+  url = {https://doi.org/10.1109/TPWRS.2017.2789187},
+}
+
+@Article{lmtest2002,
+  title = {Diagnostic Checking in Regression
+    Relationships},
+  author = {Achim Zeileis and Torsten Hothorn},
+  journal = {R News},
+  year = {2002},
+  volume = {2},
+  number = {3},
+  pages = {7--10},
+  url = {https://CRAN.R-project.org/doc/Rnews/},
+}
+
+@Book{MASS2002,
+  title = {Modern Applied Statistics with S},
+  author = {W. N. Venables and B. D. Ripley},
+  publisher = {Springer},
+  edition = {Fourth},
+  address = {New York},
+  year = {2002},
+  note = {ISBN 0-387-95457-0},
+  url = {https://www.stats.ox.ac.uk/pub/MASS4/},
+}
+
+@Article{mgcv2011,
+  title = {Fast stable restricted maximum likelihood and
+    marginal likelihood estimation of semiparametric
+    generalized linear models},
+  journal = {Journal of the Royal Statistical Society (B)},
+  volume = {73},
+  number = {1},
+  pages = {3-36},
+  year = {2011},
+  author = {S. N. Wood},
+}
+
+@Article{mgcv2016,
+  title = {Smoothing parameter and model selection for
+    general smooth models (with discussion)},
+  author = {S.N. Wood and {N.} and {Pya} and B. S{"a}fken},
+  journal = {Journal of the American Statistical
+    Association},
+  year = {2016},
+  pages = {1548-1575},
+  volume = {111},
+}
+
+@Article{mgcv2004,
+  title = {Stable and efficient multiple smoothing
+    parameter estimation for generalized additive models},
+  journal = {Journal of the American Statistical
+    Association},
+  volume = {99},
+  number = {467},
+  pages = {673-686},
+  year = {2004},
+  author = {S. N. Wood},
+}
+
+@Book{mgcv2017,
+  title = {Generalized Additive Models: An Introduction
+    with R},
+  year = {2017},
+  author = {S.N Wood},
+  edition = {2},
+  publisher = {Chapman and Hall/CRC},
+}
+
+@Article{mgcv2003,
+  title = {Thin-plate regression splines},
+  journal = {Journal of the Royal Statistical Society (B)},
+  volume = {65},
+  number = {1},
+  pages = {95-114},
+  year = {2003},
+  author = {S. N. Wood},
+}
+
+@Article{mgwrsar2017,
+  title = {A new method for dealing simultaneously with
+    spatial autocorrelation and spatial heterogeneity in
+    regression models},
+  author = {Ghislain Geniaux and Davide Martinetti},
+  journal = {Regional Science and Urban Economics},
+  year = {2017},
+  doi = {10.1016/j.regsciurbeco.2017.04.001},
+  url =
+    {https://www.sciencedirect.com/science/article/pii/S0166046216302381},
+  author = {Ghislain Geniaux and Davide Martinetti},
+  keywords = {Local models, Geographically weighted
+    regression, Mixed GWR, SAR},
+}
+
+@Book{sf2023,
+  author = {Edzer Pebesma and Roger Bivand},
+  title = {{Spatial Data Science: With applications in R}},
+  year = {2023},
+  publisher = {{Chapman and Hall/CRC}},
+  url = {https://r-spatial.org/book/},
+  doi = {10.1201/9780429459016},
+}
+
+@Article{sf2018,
+  author = {Edzer Pebesma},
+  title = {{Simple Features for R: Standardized Support for
+    Spatial Vector Data}},
+  year = {2018},
+  journal = {{The R Journal}},
+  doi = {10.32614/RJ-2018-009},
+  url = {https://doi.org/10.32614/RJ-2018-009},
+  pages = {439--446},
+  volume = {10},
+  number = {1},
+}
+
+@Article{sp2005,
+  author = {Edzer J. Pebesma and Roger Bivand},
+  title = {Classes and methods for spatial data in {R}},
+  journal = {R News},
+  year = {2005},
+  volume = {5},
+  number = {2},
+  pages = {9--13},
+  month = {November},
+  url = {https://CRAN.R-project.org/doc/Rnews/},
+}
+
+@Book{sp2013,
+  author = {Roger S. Bivand and Edzer Pebesma and Virgilio
+    Gomez-Rubio},
+  title = {Applied spatial data analysis with {R}, Second
+    edition},
+  year = {2013},
+  publisher = {Springer, NY},
+  url = {https://asdar-book.org/},
+}
+
+@Article{spatialreg2021a,
+  title = {A Review of Software for Spatial Econometrics in
+    {R}},
+  author = {Roger Bivand and Giovanni Millo and Gianfranco
+    Piras},
+  journal = {Mathematics},
+  year = {2021},
+  volume = {9},
+  number = {11},
+  url = {https://www.mdpi.com/2227-7390/9/11/1276},
+  doi = {10.3390/math9111276},
+}
+
+@Article{spatialreg2015a,
+  title = {Comparing Implementations of Estimation Methods
+    for Spatial Econometrics},
+  author = {Roger Bivand and Gianfranco Piras},
+  journal = {Journal of Statistical Software},
+  year = {2015},
+  volume = {63},
+  number = {18},
+  pages = {1--36},
+  doi = {10.18637/jss.v063.i18},
+}
+
+@Article{spatialreg2013a,
+  title = {Computing the Jacobian in Gaussian spatial
+    autoregressive models: An illustrated comparison of
+    available methods},
+  author = {Roger Bivand and Jan Hauke and Tomasz
+    Kossowski},
+  journal = {Geographical Analysis},
+  year = {2013},
+  volume = {45},
+  number = {2},
+  pages = {150--179},
+  doi = {10.1111/gean.12008},
+}
+
+@Book{spatialreg2013b,
+  author = {Roger S. Bivand and Edzer Pebesma and Virgilio
+    Gómez-Rubio},
+  title = {Applied spatial data analysis with {R}, Second
+    edition},
+  year = {2013},
+  publisher = {Springer, NY},
+  url = {https://asdar-book.org/},
+}
+
+@Book{spatialreg2023a,
+  author = {Edzer Pebesma and Roger S. Bivand},
+  title = {Spatial Data Science With Applications in {R}},
+  year = {2023},
+  publisher = {Chapman & Hall},
+  url = {https://r-spatial.org/book/},
+}
+
+@Article{spdep2018,
+  author = {Roger Bivand and David W. S. Wong},
+  title = {Comparing implementations of global and local
+    indicators of spatial association},
+  journal = {TEST},
+  year = {2018},
+  volume = {27},
+  number = {3},
+  pages = {716--748},
+  doi = {10.1007/s11749-018-0599-x},
+}
+
+@Article{spdep2022,
+  author = {{Roger Bivand}},
+  title = {R Packages for Analyzing Spatial Data: A
+    Comparative Case Study with Areal Data},
+  journal = {Geographical Analysis},
+  year = {2022},
+  volume = {54},
+  number = {3},
+  pages = {488-518},
+  doi = {10.1111/gean.12319},
+}
+
+@Book{spdep2013,
+  author = {Roger S. Bivand and Edzer Pebesma and Virgilio
+    Gómez-Rubio},
+  title = {Applied spatial data analysis with {R}, Second
+    edition},
+  year = {2013},
+  publisher = {Springer, NY},
+  url = {https://asdar-book.org/},
+}
+
+@Book{spdep2023,
+  author = {Edzer Pebesma and Roger S. Bivand},
+  title = {Spatial Data Science With Applications in {R}},
+  year = {2023},
+  publisher = {Chapman & Hall},
+  url = {https://r-spatial.org/book/},
+}
+
+@Article{tidyverse2019,
+  title = {Welcome to the {tidyverse}},
+  author = {Hadley Wickham and Mara Averick and Jennifer
+    Bryan and Winston Chang and Lucy D'Agostino McGowan and
+    Romain François and Garrett Grolemund and Alex Hayes
+    and Lionel Henry and Jim Hester and Max Kuhn and Thomas
+    Lin Pedersen and Evan Miller and Stephan Milton Bache
+    and Kirill Müller and Jeroen Ooms and David Robinson
+    and Dana Paige Seidel and Vitalie Spinu and Kohske
+    Takahashi and Davis Vaughan and Claus Wilke and Kara
+    Woo and Hiroaki Yutani},
+  year = {2019},
+  journal = {Journal of Open Source Software},
+  volume = {4},
+  number = {43},
+  pages = {1686},
+  doi = {10.21105/joss.01686},
+}
 

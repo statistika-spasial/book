@@ -1,36 +1,28 @@
 # Regresi Terboboti Geografis
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 ## Data
 
 Ilustrasi RTG dirujuk dari hasil penelitian Hujjah et al. (2020). Data yang digunakan dalam penelitian bersumber dari Badan Pusat Statistik (BPS) pada 118 kabupaten/kota di Pulau Jawa tahun 2015. Peubah respon dalam penelitian ini adalah persentase penduduk miskin kabupaten/kota di Pulau Jawa, sedangkan prediktor yang digunakan selengkapnya tertera Tabel berikut. Data dan peta selengkapnya dapat diakses pada tautan [https://ipb.link/gwr](https://ipb.link/gwr).
 
-$$
-\begin{table}[ht]
-\centering
-\caption{Keterangan Peubah}
-\begin{tabular}{|c|p{8cm}|}
-  \hline
-  \textbf{Peubah} & \textbf{Keterangan peubah} \\
-  \hline
-  Y & Persentase penduduk miskin (\%) \\
-  \hline
-  X1 & PDRB (Milyar) \\
-  \hline
-  X2 & Persentase masyarakat tamat SD kebawah (\%) \\
-  \hline
-  X3 & Angka melek huruf (\%) \\
-  \hline
-  X4 & Pengeluaran perkapita (\%) \\
-  \hline
-  X5 & Banyak rumah tangga penerima raskin (\%) \\
-  \hline
-  X6 & Penduduk kelompok umur 15-64 (\%) \\
-  \hline
-  X7 & Harapan lama sekolah (tahun) \\
-  \hline
-\end{tabular}
-\end{table}
-$$
+| Kode   | Peubah                                          |
+|--------|-------------------------------------------------|
+| $Y$    | Persentase penduduk miskin (%)           |
+| $X_1$  | PDRB (Milyar) |
+| $X_2$  | Persentase masyarakat tamat SD kebawah (%) |
+| $X_3$  | Angka melek huruf (%) |
+| $X_4$  | Pengeluaran perkapita (%)             |
+| $X_5$  | Banyak rumah tangga penerima raskin (%)       |
+| $X_6$  | Penduduk kelompok umur 15-64 (%)              |
+| $X_7$  | Harapan lama sekolah (tahun)              |
+
+: Keterangan Peubah {.striped .hover}
+
 
 ## Tahapan Analisis Data
 Tahapan analisis yang digunakan untuk mencapai tujuan dari penelitian ini adalah sebagai berikut:

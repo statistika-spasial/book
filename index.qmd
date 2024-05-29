@@ -1,20 +1,55 @@
 # Kata Pengantar {.unnumbered}
 
-Sains data berkaitan dengan menemukan jawaban atas pertanyaan berdasarkan data yang tersedia, dan mengomunikasikan upaya tersebut. Selain menunjukkan hasil, komunikasi ini melibatkan pembagian data yang digunakan, namun juga memaparkan jalur yang mengarah pada jawaban dengan cara yang komprehensif dan dapat direproduksi. Hal ini juga mengakui fakta bahwa data yang tersedia mungkin tidak cukup untuk menjawab pertanyaan, dan bahwa jawaban apa pun bergantung pada pengumpulan data atau protokol pengambilan sampel yang digunakan.
+```{r echo=FALSE,eval=FALSE}
+knitr::write_bib(c(
+  "AER",
+  "classInt",
+  "dplyr",
+  "fitdistrplus",
+  "ggplot2",
+  "GWmodel",
+  "INLA",
+  "lmtest",
+  "MASS",
+  "mapview",
+  "Matrix",
+  "mgcv",
+  "mgwrsar",
+  "raster",
+  "RColorBrewer",
+  "rgdal",
+  "sf", 
+  "sp",
+  "spatialreg",
+  "spData",
+  "spdep",
+  "spgwr",
+  "spmoran",
+  "terra",
+  "tidyverse",
+  "tseries"
+  ), "packages.bib", width = 60)
+```
 
-Buku ini memperkenalkan dan menjelaskan konsep-konsep yang mendasari data spasial: titik, garis, poligon, raster, cakupan, atribut geometri, kubus data, sistem referensi, serta konsep tingkat tinggi termasuk bagaimana atribut berhubungan dengan geometri dan bagaimana hal ini mempengaruhi analisis. Hubungan atribut dengan geometri disebut tumpuan, dan perubahan tumpuan juga mengubah karakteristik atribut. Beberapa proses pembuatan data berlangsung terus-menerus di ruang angkasa, dan dapat diamati di mana saja. Lainnya bersifat terpisah, diamati dalam wadah bertessel. Dalam analisis data spasial modern, metode tesellated sering digunakan untuk semua data, meluas ke seluruh partisi lama hingga ke proses titik, model geostatistik, dan model kisi. Dukungan (dan pemahaman tentang dukungan) inilah yang mendasari pentingnya keterwakilan spasial. Buku ini ditujukan bagi para ilmuwan data yang ingin menguasai penggunaan data spasial dalam analisis mereka. Sebagai contoh bagaimana melakukan sesuatu, ia menggunakan R. Di edisi mendatang kami berharap dapat memperluasnya dengan contoh menggunakan Python (lihat, misalnya, Bivand 2022a) dan Julia.
+Statistika adalah seni dan ilmu merancang suatu penelitian dan menganalisis data yang dihasilkan dari penelitian tersebut. Tujuan utamanya adalah menerjemahkan data menjadi pengetahuan dan pemahaman tentang dunia sekitar. Singkatnya, statistika adalah seni dan ilmu tentang belajar dari data [@agresti2018]. Data merupakan elemen penting dalam statistika yang dikumpulkan melalui berbagai metode seperti survei, percobaan, observasi, administratif, terekam secara otomatis, dan lain-lain.
 
-Seringkali data spasial dianggap bermuara pada pengamatan garis bujur dan lintang dalam kumpulan data, dan memperlakukannya sama seperti variabel lainnya. Hal ini membawa risiko hilangnya peluang dan analisis yang tidak berarti. Contohnya,
+Data geospasial menggabungkan informasi lokasi (koordinat di bumi), informasi atribut (karakteristik dari objek, peristiwa, atau fenomena yang diteliti), dan seringkali juga informasi temporal (rentang waktu amatan di lokasi dari atribut tersebut berada) [@stock2016]. Cabang statistika yang berkaitan dengan analisis dan pemodelan data geospasial dikenal dengan statistika spasial. Perbedaan utama antara statistika spasial dan statistika klasik adalah bahwa data geospasial tidak memenuhi asumsi sebaran bebas stokastik [@gelfand2010].
 
-pasangan koordinat sebenarnya adalah pasangan, dan kehilangan maknanya jika diperlakukan secara independen
-Daripada memiliki lokasi titik, observasi sering kali dikaitkan dengan garis spasial, area, atau sel grid
-Jarak spasial antar observasi seringkali tidak direpresentasikan dengan baik melalui jarak garis lurus, namun dengan jarak lingkaran besar, jarak melalui jaringan, atau dengan mengukur usaha yang diperlukan untuk berpindah dari A ke B.
+Konsep utama dalam statistika spasial adalah autokorelasi spasial yang mengacu pada hukum pertama geografi yang dikemukakan @tobler1970: “Everything is related to everything else, but near things are more related than distant things". Autokorelasi spasial berasal dari (a) hubungan faktor-faktor eksogen dan endogen dengan pola spasial yang berbeda, (b) proses spasial yang menyebabkan munculnya interaksi spasial antar observasi, (c) agregasi nilai observasi pada unit spasial yang tidak tepat [@anselin1988; @tiefelsdorf2000].
+
+Buku ini memberikan penjelasan tentang analisis data geospasial dimulai dari identifikasi, pendugaan, dan interpretasi dari model spasial, serta manarik kesimpulan. Pada buku ini diberikan beberapa ilustrasi dari hasil penelitian mahasiswa S1 dan S2 Departemen Statistika IPB. Pada setiap ilustrasi dilengkapi dengan data, peta, dan syntax R, sehingga memudahkan pembaca memahami dan menerapkan pada data yang akan diteliti.
+
+Buku ini dirancang untuk pembaca dari berbagai latar belakang, baik yang memiliki pengalaman dalam analisis geospasial maupun yang baru mengenalnya. Kami berharap buku ini dapat menjadi sumber pengetahuan yang berharga dan panduan yang berguna bagi pembaca dalam memahami dan menguasai analisis geospasial.
+
+Ucapan terima kasih disampaikan kepada Sdr. ……., ……… yang membantu dalam menyusun dan memeriksa scipt R. Ucapan terimakasih juga disampaikan pada Bpk. ……. yang memberikan review pada buku yang kami susun.  Kami juga mengucapkan terima kasih kepada semua pihak yang telah mendukung dan berkontribusi dalam pembuatan buku ini. 
+Buku ini masih jauh dari sempurna, kritik dan saran yang membangun terhadap buku ini sangat diharapkan. Semoga buku ini dapat memberikan manfaat dan meningkatkan pemahaman pembaca tentang analisis data geospasial.
+
 
 ::: {.content-visible when-format="html"}
 
 ## Versi cetak buku ini
 
-![](images/cover.png){fig-alt="cover by Fadillah R" fig-align="left" height=400}
+![](images/cover.png){fig-alt="cover by Fadillah R" fig-align="left" height=500}
 
 :::
 

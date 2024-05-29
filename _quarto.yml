@@ -8,7 +8,7 @@ language:
   section-title-appendices: "Lampiran"
 
 book:
-  title: "PEMODELAN STATISTIKA PADA DATA GEOSPASIAL"
+  title: "Pemodelan Statistika Pada Data Geospasial"
   subtitle: "Studi Kasus dan Ilustrasi dengan R"
   author: 
     - name: Prof. Dr. Ir. Anik Djuraidah, MS.

@@ -1,5 +1,11 @@
 # Regresi Terboboti Geografis Campuran
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 ## Deskripsi
 Regresi terboboti geografis campuran (RTGC) memiliki parameter yang bersifat lokal dan global (Fotheringham et al. 2002). Prosedur pendugaan parameter pada model RTGC menggabungkan metode parametrik (parameter global) dan nonparametrik (parameter lokal), sehingga model ini juga dikenal sebagai RTG semiparametrik (Nakaya et al. 2005). Model RTGC diformulasikan sebagai berikut:
 
@@ -59,39 +65,22 @@ Ilustrasi untuk model RTGC merujuk hasil penelitian Pongoh (2015) dan Mar’ah e
 
 Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untuk Program Perlindungan Sosial Juli 2012 pada 159 kecamatan di Provinsi Sulawesi Utara, data diambil dari website TNP2K (Tim Nasional Percepatan Penanggulangan Kemiskinan). Peubah respon (Y) yang digunakan yaitu persentase status kesejahteraan rendah (%) dan prediktor yang digunakan selengkapnya tertera di Tabel 6.4.1. Data dan peta ilustrasi RTGC tersedia pada tautan [https://ipb.link/gwr-mixed](https://ipb.link/gwr-mixed). 
 
-$$
-\begin{table}[ht]
-\centering
-\caption{Keterangan Peubah}
-\begin{tabular}{|c|p{10cm}|}
-  \hline
-  \textbf{Peubah} & \textbf{Keterangan peubah} \\
-  \hline
-  X1 & Persentase kepala rumah tangga perempuan per kecamatan \\
-  \hline
-  X2 & Persentase anak tidak sekolah \\
-  \hline
-  X3 & Persentase penderita cacat \\
-  \hline
-  X4 & Persentase penderita penyakit kronis \\
-  \hline
-  X5 & Persentase individu tidak bekerja usia di atas 15 tahun \\
-  \hline
-  X6 & Persentase rumah tangga memiliki bangunan milik sendiri \\
-  \hline
-  X7 & Persentase rumah tangga menggunakan sumber air minum air terlindung \\
-  \hline
-  X8 & Persentase rumah tangga menggunakan listrik/PLN \\
-  \hline
-  X9 & Persentase rumah tangga menggunakan kompor gas/listrik \\
-  \hline
-  X10 & Persentase rumah tangga menggunakan jamban sendiri \\
-  \hline
-  X11 & Persentase rumah tangga menggunakan SPAL \\
-  \hline
-\end{tabular}
-\end{table}
-$$
+| Kode   | Peubah                                          |
+|--------|-------------------------------------------------|
+| $X_1$  | Persentase kepala rumah tangga perempuan per kecamatan |
+| $X_2$  | Persentase anak tidak sekolah  |
+| $X_3$  | Persentase penderita cacat |
+| $X_4$  | Persentase penderita penyakit kronis             |
+| $X_5$  | Persentase individu tidak bekerja usia di atas 15 tahun       |
+| $X_6$  | Persentase rumah tangga memiliki bangunan milik sendiri             |
+| $X_7$  | Persentase rumah tangga menggunakan sumber air minum air terlindung              |
+| $X_8$  | Persentase rumah tangga menggunakan listrik/PLN               |
+| $X_9$  | Persentase rumah tangga menggunakan kompor gas/listrik              |
+| $X_10$  | Persentase rumah tangga menggunakan jamban sendiri              |
+| $X_11$  | Persentase rumah tangga menggunakan SPAL              |
+
+: Keterangan Peubah {.striped .hover}
+
 
 ## Metode Analisis
 

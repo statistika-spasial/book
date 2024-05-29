@@ -1,5 +1,11 @@
 # Regresi Terboboti Geografis Binomial Negatif
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 ## Deskripsi
 Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda (Silva & Rodrigues 2014).
 
@@ -48,31 +54,18 @@ adalah galat baku penduga parameter koefisien regresi prediktor ke-j pada lokasi
 
 Ilustrasi untuk model RTG-BN merujuk hasil penelitian Fadila et al. (2021) tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (Tabel 6.6.1). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan [https://ipb.link/gwr-binomial-negatif](https://ipb.link/gwr-binomial-negatif).
 
-$$
-\begin{table}[ht]
-\centering
-\caption{Tabel Peubah dan Referensi}
-\begin{tabular}{|c|c|c|}
-  \hline
-  \textbf{Kode} & \textbf{Peubah} & \textbf{Referensi} \\
-  \hline
-  Y & Angka Tuberkulosis per 100.000 penduduk & \\
-  \hline
-  X1 & Persentase rumah tangga dengan akses sanitasi layak & Nisa’ \& Budiantara (2016) \\
-  \hline
-  X2 & Persentase tempat pengolahan makanan (TPM) sehat & Lestari et al. (2014) \\
-  \hline
-  X3 & Persentase rumah tangga ber-PHBS & Nisa’ \& Budiantara (2016) \\
-  \hline
-  X4 & Persentase rumah sehat & Lestari et al. (2014) \\
-  \hline
-  X5 & Rata-rata konsumsi batang rokok per minggu & Tandang et al. (2018) \\
-  \hline
-  X6 & Persentase pengobatan lengkap kasus Tuberkulosis & Sarani (2019) \\
-  \hline
-\end{tabular}
-\end{table}
-$$
+
+| Kode   | Peubah                                          | Referensi        |
+|--------|-------------------------------------------------|-----------------------|
+| $Y$    | Angka Tuberkulosis per 100.000 penduduk        | -                     |
+| $X_1$  | Persentase rumah tangga dengan akses sanitasi layak & Nisa’  | Budiantara (2016) |
+| $X_2$  | Persentase tempat pengolahan makanan (TPM) sehat | Lestari et al. (2014) |
+| $X_3$  | Persentase rumah tangga ber-PHBS & Nisa’      | Budiantara (2016) |
+| $X_4$  | Persentase rumah sehat                         | Lestari et al. (2014) |
+| $X_5$  | Rata-rata konsumsi batang rokok per minggu | Tandang et al. (2018)      |
+| $X_6$  | Persentase pengobatan lengkap kasus Tuberkulosis | Sarani (2019)   |
+
+: Tabel Peubah dan Referensi {.striped .hover}
 
 ## Metode Analisis
 
@@ -149,7 +142,10 @@ library(sf)
 gabung <- readRDS('data/gabung.RDS')
 tb <- read.csv('data/tb_jatim.csv')
 tb$KABUPATEN..KOTA <- toupper(tb$KABUPATEN..KOTA)
-#
+```
+
+
+```{r}
 #Input peta SHP
 jatim <- read_sf("data/shp/TB Jatim.shp")
 sf_use_s2(FALSE)
@@ -181,7 +177,7 @@ classIntervals(gabung$y, n = 4, style = 'kmeans')
 ```{r}
 #Membuat peta
 cc <- c('#fbb4b9', '#f768a1', '#ae017e', '#551c53')
-plot.tb = ggplot(data=jatim) +
+plot.tb <- ggplot(data=st_zm(jatim)) +
   geom_sf(aes(fill = cut(Y, breaks = c(65, 104.5, 153.5, 225.5,
          401))), lwd = 0.1, col ='black') +
          scale_fill_manual("TB", values = cc,
@@ -192,6 +188,7 @@ plot.tb = ggplot(data=jatim) +
   ylab("")
 plot.tb
 ```
+
 
 b.	VIF
 
@@ -213,7 +210,7 @@ Untuk mengetahui efek dependensi spasial pada model regresi dengan respon ln(Y) 
 
 ```{r}
 #Uji Lagrange Multiplier
-queenl <- poly2nb(jatim)
+queenl <- poly2nb(st_zm(jatim))
 queenl <- nb2listw(queenl)
 summary(lm.LMtests(model, queenl, zero.policy = T,
         test = c('LMlag', 'LMerr', 'RLMlag', 'RLMerr')))
@@ -363,7 +360,7 @@ kcluster <- kmeans(clustdt, centers = 4)
 gabung_new$cluster <- kcluster$cluster
 #
 #Plot Cluster
-ggplot(gabung_new) +
+ggplot(st_zm(gabung_new)) +
   aes(fill = factor(cluster)) +
   geom_sf(size = 0.05) +
   scale_fill_brewer("Cluster", palette = 'Set2')+

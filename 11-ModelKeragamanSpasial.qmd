@@ -1,8 +1,15 @@
 # Model Keragaman Spasial 
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 ## Package
 
 ```{r}
+
 library(spdep) # Untuk pemodelan dependensi spasial 
 library(spatialreg) # Untuk pemodelan dependensi spasial 
 library(stats) # Untuk operasi matematis 

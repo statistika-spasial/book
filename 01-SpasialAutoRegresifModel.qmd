@@ -1,6 +1,13 @@
 # Spasial Autoregresif Model 
 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
 ## Deskripsi
+
 Model regresi spasial digunakan untuk mengetahui hubungan antara satu peubah dengan satu atau lebih peubah dengan memperhatikan adanya efek spasial (Cahyati et al., 2018). Persamaan umum untuk model regresi spasial dapat dirumuskan sebagai berikut (Griffith, 1988):
 
 $y = \rho W_1 y + X\beta + \gamma W_2 X\beta + u$
@@ -118,12 +125,12 @@ Tahap awal dalam pemodelan menggunakan R Studio adalah melakukan input data dan 
 
 ### Package
 
-```{r cache=FALSE, message=FALSE}
+```{r cache=FALSE, message=FALSE, warning=FALSE}
 #| code-fold: true
 library(readxl)
-library(rgdal)
 library(spdep)
 library(raster)
+library(rgdal)
 library(rcompanion)
 library(MASS)
 library(knitr)
