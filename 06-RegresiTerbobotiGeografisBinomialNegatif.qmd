@@ -13,7 +13,7 @@ Model RTGBN dapat dirumuskan sebagai berikut:
 
 $$
 y_i \sim \text{BN}\left(\exp\left(\sum_j \beta_j(u_i,v_i) x_{ij} \theta_i(u_i,v_i)\right)\right) 
-$$ {eq-661}
+$$ {#eq-661}
 
 dengan $y_i$ adalah nilai amatan respon ke-i, $x_{ij}$ adalah nilai amatan prediktor ke-j pada pengamatan, $(u_i, v_i)$ adalah logitude dan latitude lokasi-i, $\beta_j(u_i, v_i)$ adalah parameter regresi prediktor ke-j untuk setiap lokasi-i, dan $\theta_i(u_i, v_i)$ adalah parameter dispersi setiap lokasi-$i$.
 
@@ -86,21 +86,21 @@ dengan $R_i^2$ adalah koefisien determinasi antara $X_i$ dengan prediktor lainny
 4. Memeriksa overdispersi Regresi Poisson memiliki asumsi equidispersi, artinya nilai rataan dan ragam pada peubah $Y$ bernilai sama. Penyimpangan asumsi yang sering terjadi pada regresi Poisson yaitu overdispersi, yaitu nilai ragam lebih besar dari pada nilai rataan pada peubah $Y$. Pengujian overdispersi menggunakan nilai devians dan Khi-kuadrat Pearson yang dibagi dengan derajat bebasnya. Hipotesis yang diuji sebagai berikut:
 
 \begin{aligned}
-H_0: \text{Model mengandung overdispersi} \\
-H_1: \text{Model tidak mengandung overdispersi}
+H_0: & \text{Model mengandung overdispersi} \\
+H_1: & \text{Model tidak mengandung overdispersi}
 \end{aligned}
 
    - Statistik Uji Devians:
    
-   $D^2 = 2\sum_{i=1}^n \left( y_i \ln\left(\frac{y_i}{\hat{\mu}_i}\right) - (y_i - \hat{\mu}_i) \right)$
-   $\phi_1 = \frac{D^2}{db}$
+     $D^2 = 2\sum_{i=1}^n \left( y_i \ln\left(\frac{y_i}{\hat{\mu}_i}\right) - (y_i - \hat{\mu}_i) \right)$ \\
+     $\phi_1 = \frac{D^2}{db}$
    
    dengan $db = n - k$ dengan $k$ merupakan banyaknya parameter (termasuk konstanta) model regresi Poisson, $n$ merupakan banyaknya amatan, dan $D^2$ adalah nilai Devians.
 
    - Khi-kuadrat Pearson:
    
-   $\chi^2 = 2\sum_{i=1}^n \frac{(y_i - \mu_i)^2}{\text{var}(y_i)}$
-   $\phi_2 = \frac{\chi^2}{db}$
+     $\chi^2 = 2\sum_{i=1}^n \frac{(y_i - \mu_i)^2}{\text{var}(y_i)}$ \\
+     $\phi_2 = \frac{\chi^2}{db}$
    
    dengan $db = n - k$ dengan $k$ merupakan banyaknya parameter termasuk konstanta, $n$ merupakan banyaknya pengamatan, dan $\chi^2$ adalah nilai Khi-kuadrat Pearson.
 
@@ -171,7 +171,7 @@ head(jatim)
 
 a.	Peta sebaran
 
-Berikut syntax yang dapat digunakan untuk membuat peta sebaran (@fig-plot-tb):
+    Berikut syntax yang dapat digunakan untuk membuat peta sebaran (@fig-plot-tb):
 
 ```{r}
 #Menentukan batas kelas dari angka TB per 100000 penduduk
@@ -198,7 +198,7 @@ plot.tb
 
 b.	VIF
 
-VIF dihitung menggunakan syntax berikut ini:
+    VIF dihitung menggunakan syntax berikut ini:
 
 ```{r}
 #VIF
@@ -212,7 +212,7 @@ Berdasarkan nilai VIF, seluruh peubah memiliki nilai VIF < 10 sehingga dapat dis
 
 a.	Indeks Moran
 
-Untuk mengetahui efek dependensi spasial pada model regresi dengan respon ln(Y) dengan 6 (enam) prediktor (X1 sampai X6) digunakan uji Lagrange multiplier dengan syntax sebagai berikut:
+    Untuk mengetahui efek dependensi spasial pada model regresi dengan respon ln(Y) dengan 6 (enam) prediktor (X1 sampai X6) digunakan uji Lagrange multiplier dengan syntax sebagai berikut:
 
 ```{r}
 #Uji Lagrange Multiplier
@@ -226,7 +226,7 @@ Pada output di atas terlihat semua uji LM dan RLM mempunyai p-value > α=0.05, s
 
 b.	Uji Breusch-Pagan
 
-Efek keragaman spasial diuji dengan uji Breusch-Pagan dengan syntax berikut:
+    Efek keragaman spasial diuji dengan uji Breusch-Pagan dengan syntax berikut:
 
 ```{r}
 #Model log(Y)
@@ -237,7 +237,7 @@ Hasil uji Breusch-Pagan untuk data ini menghasilkan p-value < α=0.05 yang berar
 
 c.	Uji Overdispersi
 
-Untuk melakukan uji dispersi menggunakan syntax sebagai berikut:
+    Untuk melakukan uji dispersi menggunakan syntax sebagai berikut:
 
 ```{r}
 #Model Regresi Poisson
@@ -333,7 +333,7 @@ gwnbr.gauss.adapt
 
 c.	Perbandingan nilai AIC
 
-Berikut syntax untuk memperlihatkan perbandingan AIC dari setiap model:
+    Berikut syntax untuk memperlihatkan perbandingan AIC dari setiap model:
 
 ```{r}
 #AIC
