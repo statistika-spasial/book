@@ -120,7 +120,7 @@ Tahap awal dalam pemodelan menggunakan R Studio adalah melakukan input data dan 
 
 ### Package
 
-```{r}
+```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(car)	     # Untuk menghitung nilai VIF
 library(classInt)	     # Untuk membuat selang nilai
 library(ggplot2)	     # Untuk visualisasi data

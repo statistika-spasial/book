@@ -42,38 +42,34 @@ RStudio is updated a couple of times a year, and it will automatically let you k
 It's a good idea to upgrade regularly to take advantage of the latest and greatest features.
 For this book, make sure you have at least RStudio 2022.02.0.
 
-### Paket lain yang digunakan
+### Paket yang digunakan
 
-There are many other excellent packages that are not part of the tidyverse because they solve problems in a different domain or are designed with a different set of underlying principles.
-This doesn't make them better or worse; it just makes them different.
-In other words, the complement to the tidyverse is not the messyverse but many other universes of interrelated packages.
-As you tackle more data science projects with R, you'll learn new packages and new ways of thinking about data.
-
-We'll use many packages from outside the tidyverse in this book.
-For example, we'll use the following packages because they provide interesting datasets for us to work with in the process of learning R:
+Terdapat banyak sekali package yang digunakan dalam pemodelan statistika pada data spasial. Package utama yang digunakan pada buku ini antara lain **AER** [@R-AER], **GWmodel** [@R-GWmodel; @GWmodel2015], **INLA** [@R-INLA; @INLA2015a], **mgwrsar** [@R-mgwrsar; @mgwrsar2017], **spdep** [@R-spdep], **spgwr** [@R-spgwr], **spmoran** [@R-spmoran], dan **sf** [@R-sf].
 
 ```{r}
 #| eval: false
 
 install.packages(
-  c("arrow", "babynames", "curl", "duckdb", "gapminder", 
-    "ggrepel", "ggridges", "ggthemes", "hexbin", "janitor", "Lahman", 
-    "leaflet", "maps", "nycflights13", "openxlsx", "palmerpenguins", 
-    "repurrrsive", "tidymodels", "writexl")
+  c("AER", "classInt", "fitdistrplus", "GWmodel", "INLA", 
+    "mgwrsar", "sf",  "sp", "spatialreg", "spData", "spdep",
+   "spgwr", "spmoran", "tseries")
   )
 ```
 
 We'll also use a selection of other packages for one off examples.
 You don't need to install them now, just remember that whenever you see an error like this:
 
+Kami juga akan menggunakan pilihan package lain sebagai contoh.
+Anda tidak perlu menginstalnya sekarang, ingatlah setiap kali Anda melihat error berikut ini
+
 ```{r}
 #| eval: false
 
-library(ggrepel)
-#> Error in library(ggrepel) : there is no package called ‘ggrepel’
+library(INLA)
+#> Error in library(mgwrsar) : there is no package called ‘mgwrsar’
 ```
 
-You need to run `install.packages("ggrepel")` to install the package.
+Anda perlu menjalankan `install.packages("mgwrsar")` untuk menginstal package tersebut.
 
 ## Menjalankan Sintaks R
 

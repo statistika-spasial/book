@@ -6,9 +6,17 @@ prefer-html: true
 
 language:
   section-title-appendices: "Lampiran"
+  section-title-references: "Referensi"
+  toc-title-document: "Daftar isi"
+  title-block-affiliation-single: "Afiliasi"
+  title-block-affiliation-plural: "Afiliasi"
+  crossref-fig-title: "Gambar"
+  crossref-tbl-title: "Tabel"
+  crossref-eq-prefix: "Persamaan"
+  
 
 book:
-  title: "Pemodelan Statistika Pada Data Geospasial"
+  title: "Pemodelan Statistika pada Data Geospasial"
   subtitle: "Studi Kasus dan Ilustrasi dengan R"
   author: 
     - name: Prof. Dr. Ir. Anik Djuraidah, MS.
@@ -21,26 +29,32 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    
     - part: part-1.qmd
       chapters: 
         - 01-SpasialAutoRegresifModel.qmd 
         - 02-SpasialDurbinModel.qmd
         - 03-SpasialAutoRegresifBinomialNegatif.qmd 
+    
     - part: part-2.qmd
       chapters: 
         - 04-RegresiTerbobotiGeografis.qmd 
         - 05-RegresiTerbobotiGeografisCampuran.qmd
         - 06-RegresiTerbobotiGeografisBinomialNegatif.qmd
+    
     - part: part-3.qmd
       chapters: 
         - 07-Data.qmd 
         - 08-MetodeAnalisis.qmd
         - 09-TahapanR.qmd    
+    
     - part: part-4.qmd
       chapters: 
         - 10-ModelDependensiSpasial.qmd 
         - 11-ModelKeragamanSpasial.qmd
+    
     - ModelEpidemiologi.qmd
+  
   appendices: 
     - summary.qmd
     - references.qmd

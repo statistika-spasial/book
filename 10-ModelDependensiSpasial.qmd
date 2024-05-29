@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Package
 
-```{r}
+```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(spdep) # Untuk pemodelan dependensi spasial
 library(spatialreg) # Untuk pemodelan dependensi spasial
 library(stats) # Untuk operasi matematis

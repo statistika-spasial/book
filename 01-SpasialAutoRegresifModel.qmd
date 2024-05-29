@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Deskripsi
 
-Model regresi spasial digunakan untuk mengetahui hubungan antara satu peubah dengan satu atau lebih peubah dengan memperhatikan adanya efek spasial (Cahyati et al., 2018). Persamaan umum untuk model regresi spasial dapat dirumuskan sebagai berikut (Griffith, 1988):
+Model regresi spasial digunakan untuk mengetahui hubungan antara satu peubah dengan satu atau lebih peubah dengan memperhatikan adanya efek spasial [@cahyati2018]. Persamaan umum untuk model regresi spasial dapat dirumuskan sebagai berikut [@griffith1988]:
 
 $y = \rho W_1 y + X\beta + \gamma W_2 X\beta + u$
 
@@ -29,19 +29,19 @@ u & : \text{vektor galat yang diasumsikan mengandung autokorelasi berukuran } n 
 \epsilon & : \text{vektor galat yang bebas autokorelasi berukuran } n \times 1.
 \end{align*}
 
-Jika pada persamaan nilai koefisien $\gamma = 0$ dan $\lambda = 0$, maka model yang digunakan akan menjadi model SAR. SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR adalah sebagai berikut (LeSage dan Pace, 2009):
+Jika pada persamaan nilai koefisien $\gamma = 0$ dan $\lambda = 0$, maka model yang digunakan akan menjadi model SAR. SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR adalah sebagai berikut [@lesage2009]:
 
 $y = \rho W y + X\beta + \epsilon$
 
 Dengan $y$ merupakan peubah respon, $W$ merupakan matriks pembobot spasial, $\beta$ adalah koefisien parameter regresi, $\epsilon$ merupakan sisaan, dan $\rho$ merupakan koefisien autoregressive lag spasial. Jika tidak terdapat ketergantungan spasial antara wilayah ke-$i$ dan wilayah ke-$j$, $\rho$ bernilai 0.
 
-Saat nilai koefisien $\rho$ dan $\lambda$ pada persamaan bernilai nol, maka model yang digunakan adalah model SLX. SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas (Vega dan Elhorst, 2015). Persamaan untuk SLX sebagai berikut (LeSage dan Pace, 2009):
+Saat nilai koefisien $\rho$ dan $\lambda$ pada persamaan bernilai nol, maka model yang digunakan adalah model SLX. SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas [@vega2015]. Persamaan untuk SLX sebagai berikut [@lesage2009]:
 
 $y = X\beta + \gamma WX + \epsilon$
 
 Dengan $y$ merupakan peubah respon, $W$ merupakan matriks pembobot spasial, $\beta$ adalah koefisien parameter regresi, $\epsilon$ merupakan sisaan, dan $\gamma$ merupakan koefisien lag spasial pada peubah penjelas.
 
-Jika nilai koefisien $\lambda$ pada persamaan bernilai nol, maka model yang digunakan adalah SDM. SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut (LeSage dan Pace, 2009):
+Jika nilai koefisien $\lambda$ pada persamaan bernilai nol, maka model yang digunakan adalah SDM. SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut [@lesage2009]:
 
 $y = \rho W_1 y + X\beta + \gamma W_2 X + \epsilon$
 
@@ -59,7 +59,7 @@ W_2 & : \text{matriks pembobot spasial bagi peubah penjelas berukuran } n \times
 
 ## Data
 
-Data yang digunakan pada penelitian ini merupakan data sekunder yang diambil dari situs [Open Data Jabar](https://opendata.jabarprov.go.id/id). Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat pada tabel berikut.
+Data yang digunakan pada penelitian ini merupakan data sekunder yang diambil dari situs [Open Data Jabar](https://opendata.jabarprov.go.id/id). Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat pada @tbl-sar.
 
 
 | Kode   | Peubah                                          | Sumber Pustaka        |
@@ -74,7 +74,7 @@ Data yang digunakan pada penelitian ini merupakan data sekunder yang diambil dar
 | $X_7$  | Jumlah pasar rakyat                             | Fatimah et al. (2020) |
 | $X_8$  | Jumlah restoran & Demirbas                      | Demirbas (2011)       |
 
-: Peubah yang Digunakan {.striped .hover}
+: Peubah yang Digunakan {#tbl-sar .striped .hover}
 
 ## Prosedur Analisis Data
 
@@ -91,7 +91,7 @@ Analisis data dilakukan dengan menggunakan perangkat lunak R, dengan tahapan ana
      
      dengan \(R_i^2\) adalah koefisien determinasi antara \(X_i\) dengan peubah penjelas lainnya.
      
-   - Menurut Akinwande et al. (2015), nilai VIF yang lebih dari lima menunjukkan adanya multikolinieritas, menjadi acuan untuk mengeluarkan peubah penjelas dari model.
+   - Menurut @akinwande2015, nilai VIF yang lebih dari lima menunjukkan adanya multikolinieritas, menjadi acuan untuk mengeluarkan peubah penjelas dari model.
 
 3. **Transformasi Peubah:**
    - Melakukan transformasi pada peubah \(Y\).
@@ -114,7 +114,7 @@ Analisis data dilakukan dengan menggunakan perangkat lunak R, dengan tahapan ana
 
      **Nagelkerke Pseudo R-Squared:**
      
-     $\text{pseudo R}^2 = \frac{\left(1 - \frac{LL_0}{LL_F}\right)^{2/N}}{1 - \left(\frac{LL_0}{LL_F}\right)^{2/N}}$ dengan ($LL_0$) adalah nilai log likelihood dari model tanpa peubah penjelas, ($LL_F$) adalah nilai log likelihood dari model dengan peubah penjelas, dan ($N$) adalah jumlah sampel (Walker dan Smith, 2016).
+     $\text{pseudo R}^2 = \frac{\left(1 - \frac{LL_0}{LL_F}\right)^{2/N}}{1 - \left(\frac{LL_0}{LL_F}\right)^{2/N}}$ dengan ($LL_0$) adalah nilai log likelihood dari model tanpa peubah penjelas, ($LL_F$) adalah nilai log likelihood dari model dengan peubah penjelas, dan ($N$) adalah jumlah sampel [@walker2016].
 
 7. **Interpretasi dan Kesimpulan:**
    - Melakukan interpretasi dari model yang terpilih dan menarik kesimpulan.
@@ -126,7 +126,6 @@ Tahap awal dalam pemodelan menggunakan R Studio adalah melakukan input data dan 
 ### Package
 
 ```{r cache=FALSE, message=FALSE, warning=FALSE}
-#| code-fold: true
 library(readxl)
 library(spdep)
 library(raster)
@@ -188,9 +187,11 @@ petajabar$prod_sampah <- Data$produksi_sampah_per_kepadatan
 
 ### Eksplorasi Data
 
-Peta sebaran produksi sampah per kepadatan penduduk dapat dihasilkan dengan syntax berikut:
+Peta sebaran produksi sampah per kepadatan penduduk (@fig-plot-sampah) dapat dihasilkan dengan syntax berikut:
 
 ```{r}
+#| label: fig-plot-sampah
+#| fig-cap: "Peta sebaran produksi sampah per kepadatan penduduk"
 ## Peta Produksi Sampah per Kepadatan Penduduk
 # Create list object for sp.layout
 sp.label <- function(x, label) {list("sp.text", coordinates(x), label, cex = 0.4)}
@@ -204,9 +205,11 @@ spplot(petajabar, "prod_sampah", col.regions=color,
        bg = "white", border="light grey")
 ```
 
-Diagram kotak garis dari produksi sampah per kepadatan penduduk dapat dihasilkan menggunakan syntax
+Diagram kotak garis dari produksi sampah per kepadatan penduduk (@fig-plot-box) dapat dihasilkan menggunakan syntax
 
 ```{r}
+#| label: fig-plot-box
+#| fig-cap: "Boxplot produksi sampah per kepadatan penduduk"
 boxplot(Y2, xlab = "Produksi sampah per kepadatan penduduk", horizontal = TRUE)
 ```
 

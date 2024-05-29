@@ -1,1 +1,42 @@
 # Mixed SAR-GWR
+
+Metode Mixed Geographically Weighted Regression-Spatial Autoregressive (MGWR-SAR) adalah suatu metode pemodelan yang menggabungkan model regresi global dengan model regresi yang terboboti namun disertai dengan adanya kondisi dependensi spasial secara bersamaan. @geniaux2017 menampilkan persamaan model sebagai berikut:
+
+$$
+y = \rho W y + \beta_v (u_i, v_i)X_v + \epsilon_i \quad (MGWR{\text -}SAR(0,0,k))
+$$ {#eq-71}
+
+$$
+y = \rho W y + \beta_c X_c + \beta_v (u_i, v_i)X_v + \epsilon_i \quad (MGWR{\text -}SAR(0,k_c,k_v))
+$$ {#eq-72}
+
+$$
+y = \rho (u_i, v_i) W y + \beta_c X_c + \epsilon_i \quad (MGWR{\text -}SAR(1,k,0))
+$$ {#eq-73}
+
+$$
+y = \rho (u_i, v_i) W y + \beta_c X_c + \beta_v (u_i, v_i)X_v + \epsilon_i \quad (MGWR{\text -}SAR(1,k_c,k_v))
+$$ {#eq-74}
+
+dengan:
+
+\begin{align*}
+
+  \rho &: \text{koefisien autokorelasi spasial (0 jika konstan, dan 1 jika bervariasi pada setiap lokasi amatan),} \\
+  
+  X_c &: \text{Peubah penjelas bersifat global,} \\
+  
+  \beta_c &: \text{Dugaan parameter peubah penjelas bersifat global,} \\
+  
+  X_v &: \text{Peubah penjelas bersifat lokal,} \\
+  
+  \beta_v &: \text{Dugaan parameter peubah penjelas bersifat lokal,} \\
+  
+  k_c &: \text{jumlah peubah bersifat global,} \\
+  
+  k_v &: \text{jumlah peubah bersifat lokal,} \\
+  
+  k &: k_c + k_v \, \text{merupakan jumlah peubah penjelas}
+  
+\end{align*}
+  

@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Data
 
-Ilustrasi RTG dirujuk dari hasil penelitian Hujjah et al. (2020). Data yang digunakan dalam penelitian bersumber dari Badan Pusat Statistik (BPS) pada 118 kabupaten/kota di Pulau Jawa tahun 2015. Peubah respon dalam penelitian ini adalah persentase penduduk miskin kabupaten/kota di Pulau Jawa, sedangkan prediktor yang digunakan selengkapnya tertera Tabel berikut. Data dan peta selengkapnya dapat diakses pada tautan [https://ipb.link/gwr](https://ipb.link/gwr).
+Ilustrasi RTG dirujuk dari hasil penelitian @hujjah2020. Data yang digunakan dalam penelitian bersumber dari Badan Pusat Statistik (BPS) pada 118 kabupaten/kota di Pulau Jawa tahun 2015. Peubah respon dalam penelitian ini adalah persentase penduduk miskin kabupaten/kota di Pulau Jawa, sedangkan prediktor yang digunakan selengkapnya tertera @tbl-rtg. Data dan peta selengkapnya dapat diakses pada tautan [https://ipb.link/gwr](https://ipb.link/gwr).
 
 | Kode   | Peubah                                          |
 |--------|-------------------------------------------------|
@@ -21,7 +21,7 @@ Ilustrasi RTG dirujuk dari hasil penelitian Hujjah et al. (2020). Data yang digu
 | $X_6$  | Penduduk kelompok umur 15-64 (%)              |
 | $X_7$  | Harapan lama sekolah (tahun)              |
 
-: Keterangan Peubah {.striped .hover}
+: Keterangan Peubah {#tbl-rtg .striped .hover}
 
 
 ## Tahapan Analisis Data
@@ -53,7 +53,7 @@ Untuk komputasi RTG, berikut daftar package yang diinstall:
 
 ### Package
 
-```{r}
+```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(car)		# Untuk menghitung nilai VIF
 library(spdep)		# Untuk pemodelan dependensi spasial
 library(spatialreg)	# Untuk pemodelan dependensi spasial

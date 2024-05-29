@@ -25,11 +25,11 @@ dengan \(y_i \sim \text{NB}(\mu_i)\)
 
 b. Spatial Durbin Model (SDM)
 
-SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut (Anselin 1988):
+SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut [@anselin1988]:
 
 $y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon $
 
-dengan \(W_2\) merupakan matriks pembobot spasial untuk \(X\) dan \(\gamma\) merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut (Glaser 2017):
+dengan \(W_2\) merupakan matriks pembobot spasial untuk \(X\) dan \(\gamma\) merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut [@glaser2017]:
 
 $\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta + w_{2i}^{\prime} x_i \gamma\right)$
 
@@ -37,7 +37,7 @@ dengan \(y_i \sim \text{NB}(\mu_i)\)
 
 c. Spatial Lag-X (SLX)
 
-SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas. Persamaan untuk SLX sebagai berikut (Vega dan Elhorst 2015):
+SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas. Persamaan untuk SLX sebagai berikut [@Vega2015]:
 
 $y = X\beta + \gamma W_2 X + \varepsilon$
 
@@ -49,7 +49,7 @@ dengan \(y_i \sim \text{NB}(\mu_i)\)
 
 ## Data
 
-Ilustrasi model SAR-BN dirujuk dari hasil penelitian Amelia et al. (2023). Data yang digunakan adalah data sekunder yang diperoleh dari Badan Pusat Statistik Jawa Barat, Dinas Kesehatan Provinsi Jawa Barat, dan Profil Kesehatan Provinsi Jawa Barat Tahun 2021 yang dikeluarkan oleh Dinas Kesehatan Jawa Barat tahun 2021. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat di Tabel berikut. Data dan peta ilustrasi SAR-BN tersedia pada tautan [https://ipb.link/sar-binomial-negatif](https://ipb.link/sar-binomial-negatif). 
+Ilustrasi model SAR-BN dirujuk dari hasil penelitian @amelia2023. Data yang digunakan adalah data sekunder yang diperoleh dari Badan Pusat Statistik Jawa Barat, Dinas Kesehatan Provinsi Jawa Barat, dan Profil Kesehatan Provinsi Jawa Barat Tahun 2021 yang dikeluarkan oleh Dinas Kesehatan Jawa Barat tahun 2021. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat di @tbl-sarbn. Data dan peta ilustrasi SAR-BN tersedia pada tautan [https://ipb.link/sar-binomial-negatif](https://ipb.link/sar-binomial-negatif). 
 
 | Kode   | Peubah                                          |
 |--------|-------------------------------------------------|
@@ -61,7 +61,7 @@ Ilustrasi model SAR-BN dirujuk dari hasil penelitian Amelia et al. (2023). Data 
 | $X_5$  | Persentase keluarga dengan akses sanitasi layak       |
 | $X_6$  | Pengeluaran per kapita dalam juta rupiah              |
 
-: Deskripsi Peubah {.striped .hover}
+: Deskripsi Peubah {#tbl-sarbn .striped .hover}
 
 
 ## Metode Analasis
@@ -103,7 +103,7 @@ Analisis data dilakukan dengan menggunakan software R dengan tahapan analisis da
 Tahap awal dalam pendugaan model SAR-BN menggunakan R Studio adalah install package yang dibutuhkan. Package yang diinstall sebagai berikut:
 
 ### Package
-```{r}
+```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(AER)
 library(car)
 library(sp)

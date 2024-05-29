@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Data
 
-Ilustrasi model spasial Durbin (spatial Durbin model/SDM) bersumber dari penelitian Febriyanti et al. (2016). Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan  DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada Tabel berikut. Data dan peta ilustrasi SDM tersedia pada tautan [https://ipb.link/sdm](https://ipb.link/sdm). 
+Ilustrasi model spasial Durbin (spatial Durbin model/SDM) bersumber dari penelitian @febriyanti2016. Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan  DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada @tbl-sdm. Data dan peta ilustrasi SDM tersedia pada tautan [https://ipb.link/sdm](https://ipb.link/sdm). 
 
 | Peubah   | Nama Peubah                                          | Sumber        |
 |--------|-------------------------------------------------|-----------------------|
@@ -22,7 +22,7 @@ Ilustrasi model spasial Durbin (spatial Durbin model/SDM) bersumber dari penelit
 | $X_7$  | Rasio keluarga yang tinggal di pemukiman kumuh dengan jumlah penduduk per kecamatan di DKI Jakarta tahun 2014 (unit/100,000 jiwa)  | Potensi Desa (PODES) BPS RI 2014 |
 | $X_8$  | Rasio sekolah dasar dengan sekolah lain per kecamatan di DKI Jakarta tahun 2014                                | Potensi Desa (PODES) BPS RI 2014       |
 
-: Daftar Peubah dan Sumber Data {.striped .hover}
+: Daftar Peubah dan Sumber Data {#tbl-sdm .striped .hover}
 
 
 ## Metode Analisis
@@ -49,7 +49,7 @@ Tahap awal dalam pemodelan menggunakan R Studio adalah melakukan input data dan 
 
 ### Package
 
-```{r}
+```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(readxl) 		# Untuk import data format .xlsx
 library(car)		# Untuk menghitung nilai VIF
 library(spdep)		# Untuk pemodelan dependensi spasial
@@ -102,6 +102,8 @@ Pada output terlihat nilai VIF dari prediktor lebih kecil dari 10, sehingga disi
 Untuk mengetahui efek dependensi spasial pada persentase kasus DBD secara eksploratif dapat menggunakan peta pola tebaran data. Syntax untuk membuat peta tematik sebagai berikut:
 
 ```{r}
+#| label: fig-plot-dbd
+#| fig-cap: "Peta persentase kasus DBD"
 #Peta persentase kasus DBD
 plotDBD = ggplot(data=gabung) +
   geom_sf(aes(fill = cut(Y, 
@@ -118,7 +120,7 @@ plotDBD = ggplot(data=gabung) +
 plotDBD
 ```
 
-Pada peta persentase kasus DBD terlihat kecamatan yang berdekatan memiliki warna yang sama. Warna pada peta tampak mengelompok.Perubahan warna antar kelompok mengikuti gradasi warna, yaitu kecamatan yang warna yang pekat berdekatan dengan warna yang lebih terang. Hal ini menunjukkan bahwa autokorelasi spasial pada persentase kasus DBD DKI Jakarta tahun 2014. \ \
+Pada peta persentase kasus DBD (@fig-plot-dbd) terlihat kecamatan yang berdekatan memiliki warna yang sama. Warna pada peta tampak mengelompok.Perubahan warna antar kelompok mengikuti gradasi warna, yaitu kecamatan yang warna yang pekat berdekatan dengan warna yang lebih terang. Hal ini menunjukkan bahwa autokorelasi spasial pada persentase kasus DBD DKI Jakarta tahun 2014. \ \
 \ \
 Pemeriksaan pencilan pada peubah Y menggunakan diagram kotak-garis. Syntax untuk membuat diagram kotak-garis sebagai berikut:
 
@@ -132,7 +134,12 @@ findoutlier <- function(x) {
 #jika nilai Y merupakan outlier, dan NA jika bukan outlier
 DBD <- DBD %>%
   mutate(outlier = ifelse(findoutlier(Y), KECAMATAN, NA))
-#
+```
+
+
+```{r}
+#| label: fig-plot-box2
+#| fig-cap: "Boxplot virus Dengue"
 #Membuat boxplot
 ggplot(DBD) + aes(x = Y, y = "") + 
   geom_boxplot(fill = "#EF562D") +
@@ -142,7 +149,7 @@ ggplot(DBD) + aes(x = Y, y = "") +
   labs(x = "Y", y ="") + theme_light()
 ```
 
-Pada diagram kotak garis terlihat bahwa kecamatan Kelapa Gading memiliki persentase penderita infeksi virus Dengue tertinggi dan merupakan amatan pencilan. Oleh karena  itu, pemeriksaan efek depedensi spasial dan efek keheterogenan spasial dilakukan pada data semua kecamatan (Model 1) dan data tanpa Kecamatan Kelapa Gading (Model 2).
+Pada diagram kotak garis @fig-plot-box2 terlihat bahwa kecamatan Kelapa Gading memiliki persentase penderita infeksi virus Dengue tertinggi dan merupakan amatan pencilan. Oleh karena  itu, pemeriksaan efek depedensi spasial dan efek keheterogenan spasial dilakukan pada data semua kecamatan (Model 1) dan data tanpa Kecamatan Kelapa Gading (Model 2).
 
 ### Matriks Pembobot Spasial
 

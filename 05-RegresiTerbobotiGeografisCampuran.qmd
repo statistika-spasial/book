@@ -7,43 +7,63 @@ source("_common.R")
 ```
 
 ## Deskripsi
-Regresi terboboti geografis campuran (RTGC) memiliki parameter yang bersifat lokal dan global (Fotheringham et al. 2002). Prosedur pendugaan parameter pada model RTGC menggabungkan metode parametrik (parameter global) dan nonparametrik (parameter lokal), sehingga model ini juga dikenal sebagai RTG semiparametrik (Nakaya et al. 2005). Model RTGC diformulasikan sebagai berikut:
+Regresi terboboti geografis campuran (RTGC) memiliki parameter yang bersifat lokal dan global [@fotheringham2005]. Prosedur pendugaan parameter pada model RTGC menggabungkan metode parametrik (parameter global) dan nonparametrik (parameter lokal), sehingga model ini juga dikenal sebagai RTG semiparametrik [@nakaya2005]. Model RTGC diformulasikan sebagai berikut:
 
-$y_i = \sum_{j=1}^{k} \alpha_j x_{ij} + \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il} + \epsilon_i \quad (6.4.1)$
+$$
+y_i = \sum_{j=1}^{k} \alpha_j x_{ij} + \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il} + \epsilon_i 
+$$ {#eq-641}
 
-dengan $\( i = 1, \ldots, n; \ j = 1, 2, \ldots, k; \ l = 0, 1, 2, \ldots, p \)$,
+dengan $i = 1, \ldots, n; j = 1, 2, \ldots, k; l = 0, 1, 2, \ldots, p$,
 
-  $\(u_i, v_i\)$: koordinat (longitude, latitude) titik lokasi ke-i,
-  $\(\beta_l(u_i, v_i)\)$: parameter beragam geografis (lokal) disetiap lokasi-i,
-  $\(\alpha_j\)$: parameter bernilai konstan (global),
-  $\(y_i\)$: peubah respon lokasi ke-i,
-  $\(x_{ij}\)$: peubah penjelas parameter global ke-j pada lokasi ke-i,
-  $\(x_{il}\)$: peubah penjelas parameter lokal ke-l pada lokasi ke-i,
-  $\(p\)$: banyaknya peubah lokal,
-  $\(k\)$: banyaknya peubah global,
-  $\(\epsilon_i\)$: pengaruh acak ke-i yang diasumsikan identik, saling bebas, dan menyebar $\(N(0, \sigma^2)\)$.
+  $(u_i, v_i)$: koordinat (longitud, latitud) titik lokasi ke-$i$,
+  
+  $\beta_l(u_i, v_i)$: parameter beragam geografis (lokal) disetiap lokasi-$i$,
+  
+  $\alpha_j$: parameter bernilai konstan (global),
+  
+  $y_i$: peubah respon lokasi ke-$i$,
+  
+  $x_{ij}$: peubah penjelas parameter global ke-$j$ pada lokasi ke-$i$,
+  
+  $x_{il}$: peubah penjelas parameter lokal ke-$l$ pada lokasi ke-$i$,
+  
+  $p$: banyaknya peubah lokal,
+  
+  $k$: banyaknya peubah global,
+  
+  $\epsilon_i$: pengaruh acak ke-$i$ yang diasumsikan identik, saling bebas, dan menyebar $N(0, \sigma^2)$.
 
 Pendugaan parameter lokal pada RTGC menggunakan metode yang sama dengan pendugaan pada RTG, yaitu menggunakan kuadrat terkecil terboboti. Model RTGC dalam bentuk matriks dinyatakan sebagai:
 
-$y = X_g a + m + \epsilon \quad (6.4.2)$
+$$
+y = X_g a + m + \epsilon 
+$$ {#eq-642}
 
-dengan elemen vektor $\(m = \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il}\)$. Penduga parameter lokal adalah:
+dengan elemen vektor $m = \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il}$. Penduga parameter lokal adalah:
 
-$\hat{m} = S_l (y - X_g a) \quad (6.4.3)$
+$$
+\hat{m} = S_l (y - X_g a)
+$$ {#eq-643}
 
 dengan matriks-Hat adalah
 
-$S_l = \begin{bmatrix} (X_{l1}' W(u_i, v_i) X_{l1})^{-1} X_{l1}' W(u_i, v_i) \\ (X_{l2}' W(u_i, v_i) X_{l2})^{-1} X_{l2}' W(u_i, v_i) \\ \vdots \\ (X_{ln}' W(u_i, v_i) X_{ln})^{-1} X_{ln}' W(u_i, v_i) \end{bmatrix} \quad (6.4.4)$
+$$
+S_l = \begin{bmatrix} (X_{l1}' W(u_i, v_i) X_{l1})^{-1} X_{l1}' W(u_i, v_i) \\ (X_{l2}' W(u_i, v_i) X_{l2})^{-1} X_{l2}' W(u_i, v_i) \\ \vdots \\ (X_{ln}' W(u_i, v_i) X_{ln})^{-1} X_{ln}' W(u_i, v_i) \end{bmatrix} 
+$$ {#eq-644}
 
-dan $\(X_{li}\)$ adalah vektor prediktor yang bersifat lokal pada lokasi-i, serta $\(W(u_i, v_i) = \text{diag}[w_1(u_i, v_i), w_2(u_i, v_i), \ldots, w_n(u_i, v_i)]\)$ adalah matriks pembobot spasial lokasi-i yang nilai elemen-elemen diagonalnya ditentukan oleh kedekatan lokasi-i dengan lokasi lainnya. Matriks $\(W(u_i, v_i)\)$ ditentukan dengan menggunakan fungsi kernel, seperti yang dibahas pada RTG.
+dan $X_{li}$ adalah vektor prediktor yang bersifat lokal pada lokasi-i, serta $W(u_i, v_i) = \text{diag}[w_1(u_i, v_i), w_2(u_i, v_i), \ldots, w_n(u_i, v_i)]$ adalah matriks pembobot spasial lokasi-i yang nilai elemen-elemen diagonalnya ditentukan oleh kedekatan lokasi-i dengan lokasi lainnya. Matriks $W(u_i, v_i)$ ditentukan dengan menggunakan fungsi kernel, seperti yang dibahas pada RTG.
 
-Untuk menentukan parameter global, Persamaan (6.4.3) disubstitusikan ke Persamaan (6.4.2) sehingga diperoleh:
+Untuk menentukan parameter global, @eq-643 disubstitusikan ke @eq-642 sehingga diperoleh:
 
-$\hat{a} = (X_g' WX_g)^{-1} X_g' Wy \quad (6.4.6)$
+$$
+\hat{a} = (X_g' WX_g)^{-1} X_g' Wy
+$$ {#eq-646}
 
-Sehingga prediksi untuk \(\hat{y}\) adalah:
+Sehingga prediksi untuk $hat{y}$ adalah:
 
-$\hat{y} = X_g (X_g' WX_g)^{-1} X_g' Wy + S_l y \quad (6.4.7)$
+$$
+\hat{y} = X_g (X_g' WX_g)^{-1} X_g' Wy + S_l y
+$$ {#eq-647}
 
 Pengujian hipotesis pada RTGC menggunakan uji-t dengan hipotesis yang diuji sebagai berikut:
 
@@ -55,15 +75,17 @@ H_1: & \ \beta_j(u_i, v_i) \neq 0 \quad \text{(peubah penjelas berpengaruh nyata
 
 Statistik uji untuk menguji hipotesis tersebut adalah:
 
-$t_{\text{hit}} = \frac{\hat{\beta}_j(u_i, v_i)}{S_{\hat{\beta}_j(u_i, v_i)}} \quad \text{untuk } i=1,2,\ldots,n; \ j=0,1,2,\ldots,p \quad (6.4.8)$
+$$
+t_{\text{hit}} = \frac{\hat{\beta}_j(u_i, v_i)}{S_{\hat{\beta}_j(u_i, v_i)}} \quad \text{untuk } i=1,2,\ldots,n; \ j=0,1,2,\ldots,p
+$$ {#eq-648}
 
-Dengan galat baku $\(\hat{\beta}_j(u_i, v_i)\)$ adalah $\(S_{\hat{\beta}_j(u_i, v_i)} = \sqrt{(I-S_l)(I-S_l)'\hat{\sigma}^2}\)$, dan penduga ragam adalah $\(\hat{\sigma}^2 = \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n-p}\)$. $\(H_0\)$ ditolak jika nilai $\(t_{\text{hit}} > t_{(\alpha/2;n-p)}\)$ (Fotheringham et al. 2002).
+Dengan galat baku $\hat{\beta}_j(u_i, v_i)$ adalah $S_{\hat{\beta}_j(u_i, v_i)} = \sqrt{(I-S_l)(I-S_l)'\hat{\sigma}^2}$, dan penduga ragam adalah $\hat{\sigma}^2 = \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n-p}$. $H_0$ ditolak jika nilai $t_{\text{hit}} > t_{(\alpha/2;n-p)}$ [@fotheringham2005].
 
 ## Data
 
-Ilustrasi untuk model RTGC merujuk hasil penelitian Pongoh (2015) dan Mar’ah et al. (2017). Penentuan peubah penjelas yang bersifat global dan lokal ada dua pendekatan, yaitu dengan menggunakan model liner koregionalisasi (MLK) dan selang kepercayaan. MLK agak rumit tetapi hasilnya lebih detil (Mar’ah et al. 2017), sedangkan metode selang kepercayaan dari koefisien RTG sangat sederhana Pongoh (2015).
+Ilustrasi untuk model RTGC merujuk hasil penelitian @pongoh2015 dan @marah2017. Penentuan peubah penjelas yang bersifat global dan lokal ada dua pendekatan, yaitu dengan menggunakan model liner koregionalisasi (MLK) dan selang kepercayaan. MLK agak rumit tetapi hasilnya lebih detil [@marah2017], sedangkan metode selang kepercayaan dari koefisien RTG sangat sederhana @pongoh2015.
 
-Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untuk Program Perlindungan Sosial Juli 2012 pada 159 kecamatan di Provinsi Sulawesi Utara, data diambil dari website TNP2K (Tim Nasional Percepatan Penanggulangan Kemiskinan). Peubah respon (Y) yang digunakan yaitu persentase status kesejahteraan rendah (%) dan prediktor yang digunakan selengkapnya tertera di Tabel 6.4.1. Data dan peta ilustrasi RTGC tersedia pada tautan [https://ipb.link/gwr-mixed](https://ipb.link/gwr-mixed). 
+Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untuk Program Perlindungan Sosial Juli 2012 pada 159 kecamatan di Provinsi Sulawesi Utara, data diambil dari website TNP2K (Tim Nasional Percepatan Penanggulangan Kemiskinan). Peubah respon (Y) yang digunakan yaitu persentase status kesejahteraan rendah (%) dan prediktor yang digunakan selengkapnya tertera di @tbl-rtgc. Data dan peta ilustrasi RTGC tersedia pada tautan [https://ipb.link/gwr-mixed](https://ipb.link/gwr-mixed). 
 
 | Kode   | Peubah                                          |
 |--------|-------------------------------------------------|
@@ -77,9 +99,9 @@ Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untu
 | $X_8$  | Persentase rumah tangga menggunakan listrik/PLN               |
 | $X_9$  | Persentase rumah tangga menggunakan kompor gas/listrik              |
 | $X_10$  | Persentase rumah tangga menggunakan jamban sendiri              |
-| $X_11$  | Persentase rumah tangga menggunakan SPAL              |
+| $X_{11}$  | Persentase rumah tangga menggunakan SPAL              |
 
-: Keterangan Peubah {.striped .hover}
+: Keterangan Peubah {#tbl-rtgc .striped .hover}
 
 
 ## Metode Analisis
@@ -112,7 +134,7 @@ Tahapan analisis data adalah sebagai berikut:
 
 Berikut daftar package yang digunakan untuk menduga RTGC:
 
-```{r}
+```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(car)		# Untuk menghitung nilai VIF
 library(classInt)  	# Untuk membuat selang nilai
 library(ggplot2)		# Untuk visualisasi data

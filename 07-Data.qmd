@@ -1,17 +1,19 @@
 # Data
 
-Data dalam penelitian ini berasal dari data sekunder Badan Pusat Statistik (BPS) mengenai aspek sosial ekonomi masyarakat dengan objek amatan 514 Kabupaten/Kota se-Indonesia pada tahun 2021. Berikut adalah peubah-peubah yang digunakan:
+Data dalam penelitian ini berasal dari data sekunder Badan Pusat Statistik (BPS) mengenai aspek sosial ekonomi masyarakat dengan objek amatan 514 Kabupaten/Kota se-Indonesia pada tahun 2021. Berikut adalah peubah-peubah yang digunakan (@tbl-sars-gwr):
 
 | Peubah | Keterangan                                                | Satuan                              |
 |--------|----------------------------------------------------------|-------------------------------------|
-| Y      | PDRB atas Dasar Harga Konstan menurut Pengeluaran       | Rupiah                              |
-| X1     | Persentase Penduduk Miskin (P0) Menurut Kabupaten/Kota | Persen                              |
-| X2     | Rata-rata Lama Sekolah Penduduk usia > 15 tahun         | Tahun                               |
-| X3     | Pengeluaran per Kapita Disesuaikan                       | Ribu Rupiah/Orang/Tahun             |
-| X4     | Indeks Pembangunan Manusia                               | -                                   |
-| X5     | Umur Harapan Hidup                                       | Tahun                               |
-| X6     | Persentase Rumah Tangga yang Memiliki Akses terhadap Sanitasi Layak | Persen                    |
-| X7     | Persentase Rumah Tangga yang Memiliki Akses terhadap Air Minum Layak | Persen                    |
-| X8     | Tingkat Pengangguran Terbuka                             | Persen                              |
-| X9     | Tingkat Partisipasi Angkatan Kerja                       | Persen                              |
+| $Y$    | PDRB atas Dasar Harga Konstan menurut Pengeluaran       | Rupiah                              |
+| $X_1$     | Persentase Penduduk Miskin (P0) Menurut Kabupaten/Kota | Persen                              |
+| $X_2$     | Rata-rata Lama Sekolah Penduduk usia > 15 tahun         | Tahun                               |
+| $X_3$     | Pengeluaran per Kapita Disesuaikan                       | Ribu Rupiah/Orang/Tahun             |
+| $X_4$     | Indeks Pembangunan Manusia                               | -                                   |
+| $X_5$     | Umur Harapan Hidup                                       | Tahun                               |
+| $X_6$     | Persentase Rumah Tangga yang Memiliki Akses terhadap Sanitasi Layak | Persen                    |
+| $X_7$     | Persentase Rumah Tangga yang Memiliki Akses terhadap Air Minum Layak | Persen                    |
+| $X_8$     | Tingkat Pengangguran Terbuka                             | Persen                              |
+| $X_9$     | Tingkat Partisipasi Angkatan Kerja                       | Persen                              |
+
+: Keterangan Peubah {#tbl-sars-gwr .striped .hover}
 

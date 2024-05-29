@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Package
 
-```{r}
+```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(dplyr)
 library(tidyverse)
 library(spdep)
