@@ -7,11 +7,13 @@ source("_common.R")
 ```
 
 ## Deskripsi
-Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda [silva2014].
+Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda [@silva2014].
 
 Model RTGBN dapat dirumuskan sebagai berikut:
 
-$y_i \sim \text{BN}\left(\exp\left(\sum_j \beta_j(u_i,v_i) x_{ij} \theta_i(u_i,v_i)\right)\right) \quad (6.6.1)$
+$$
+y_i \sim \text{BN}\left(\exp\left(\sum_j \beta_j(u_i,v_i) x_{ij} \theta_i(u_i,v_i)\right)\right) 
+$$ {eq-661}
 
 dengan $y_i$ adalah nilai amatan respon ke-i, $x_{ij}$ adalah nilai amatan prediktor ke-j pada pengamatan, $(u_i, v_i)$ adalah logitude dan latitude lokasi-i, $\beta_j(u_i, v_i)$ adalah parameter regresi prediktor ke-j untuk setiap lokasi-i, dan $\theta_i(u_i, v_i)$ adalah parameter dispersi setiap lokasi-$i$.
 
@@ -32,7 +34,7 @@ dengan statistik ujinya yaitu:
 
 $D(\hat{\beta}) = -2 \ln\left[\frac{L(\hat{\omega})}{L(\hat{\Omega})}\right] = 2\left[\ln(L(\hat{\Omega})) - \ln(L(\hat{\omega}))\right]$
 
-Keputusannya adalah tolak $H_0$ jika $D(\hat{\beta}) > \chi^2_{p,\alpha} $ dengan $p$ adalah banyaknya parameter. Tolak $H_0$ artinya minimal ada satu peubah yang berpengaruh signifikan terhadap model sehingga dilanjutkan dengan pengujian parsial.
+Keputusannya adalah tolak $H_0$ jika $D(\hat{\beta}) > \chi^2_{p,\alpha}$ dengan $p$ adalah banyaknya parameter. Tolak $H_0$ artinya minimal ada satu peubah yang berpengaruh signifikan terhadap model sehingga dilanjutkan dengan pengujian parsial.
 
 Hipotesis yang digunakan untuk pengujian parameter secara parsial. Berikut hipotesis yang digunakan untuk pengujian parameter secara parsial:
 
@@ -77,19 +79,21 @@ Tahapan untuk menganalisis data jumlah kasus TB di Provinsi Jawa Timur tahun 201
 
 3. Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai $VIF_i > 10$, maka terdapat multikolinear [@kutner2005]:
 
-$VIF_i = \frac{1}{1 - R_i^2}$
+    $VIF_i = \frac{1}{1 - R_i^2}$
 
 dengan $R_i^2$ adalah koefisien determinasi antara $X_i$ dengan prediktor lainnya. Prediktor yang memiliki nilai $VIF_i > 10$ tidak diikutsertakan dalam penyusunan model.
 
 4. Memeriksa overdispersi Regresi Poisson memiliki asumsi equidispersi, artinya nilai rataan dan ragam pada peubah $Y$ bernilai sama. Penyimpangan asumsi yang sering terjadi pada regresi Poisson yaitu overdispersi, yaitu nilai ragam lebih besar dari pada nilai rataan pada peubah $Y$. Pengujian overdispersi menggunakan nilai devians dan Khi-kuadrat Pearson yang dibagi dengan derajat bebasnya. Hipotesis yang diuji sebagai berikut:
 
-\[H_0: \text{Model mengandung overdispersi}\]
-\[H_1: \text{Model tidak mengandung overdispersi}\]
+\begin{aligned}
+H_0: \text{Model mengandung overdispersi} \\
+H_1: \text{Model tidak mengandung overdispersi}
+\end{aligned}
 
    - Statistik Uji Devians:
    
-   $\[D^2 = 2\sum_{i=1}^n \left( y_i \ln\left(\frac{y_i}{\hat{\mu}_i}\right) - (y_i - \hat{\mu}_i) \right)\]$
-   $\[\phi_1 = \frac{D^2}{db}\]$
+   $D^2 = 2\sum_{i=1}^n \left( y_i \ln\left(\frac{y_i}{\hat{\mu}_i}\right) - (y_i - \hat{\mu}_i) \right)$
+   $\phi_1 = \frac{D^2}{db}$
    
    dengan $db = n - k$ dengan $k$ merupakan banyaknya parameter (termasuk konstanta) model regresi Poisson, $n$ merupakan banyaknya amatan, dan $D^2$ adalah nilai Devians.
 
