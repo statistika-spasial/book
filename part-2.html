@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Pemodelan Statistika Pada Data Geospasial - Model Keragaman Spasial</title>
+<title>Pemodelan Statistika pada Data Geospasial - Model Keragaman Spasial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -130,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Pemodelan Statistika Pada Data Geospasial</a> 
+      <a href="./">Pemodelan Statistika pada Data Geospasial</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -321,10 +341,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>Keragaman spasial dapat terjadi karena adanya perbedaan karakteristik antara satu titik pengamatan dengan titik pengamatan lainnya. Untuk mengetahuinya dilakukan pengujian Breusch-Pagan dengan hipotesis nol adalah antar lokasi memiliki keragaman/varians yang sama. Jika p-value uji ini lebih kecil dari taraf signifikansi yang ditetapkan maka dapat ditarik kesimpulan bahwa terdapat keragaman spasial atau varian antar lokasi yang berbeda. Sehingga alternatif model spasial yang digunakan adalah model Geographically Weighted Regression (GWR). Namun dalam model GWR, koefisien regresi masing-masing lokasi memiliki nilai yang berbeda-beda sehingga dianggap masih kurang tepat sehingga dikembangkan Mixed Geographically Weighted Regression (MGWR). Pada MGWR dihasilkan estimator atau penduga parameter yang sebagian bersifat global dan sebagian yang nlain bersifat lokal sesuai dengan lokasi pengamatan <span class="citation" data-cites="purhadi2012">(<a href="references.html#ref-purhadi2012" role="doc-biblioref">Purhadi 2012</a>)</span>.</p>
 
 
 <!-- -->
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-purhadi2012" class="csl-entry" role="listitem">
+Purhadi. 2012. <span>“Mixed Geographically Weighted Regression Model (Case Study: The Percentage of Poor Households in Mojokerto 2008).”</span> <em>European Journal of Scientific Research</em> 69 (2): 188–96.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -799,7 +825,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Keragaman Spasial</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Keragaman Spasial</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Keragaman spasial dapat terjadi karena adanya perbedaan karakteristik antara satu titik pengamatan dengan titik pengamatan lainnya. Untuk mengetahuinya dilakukan pengujian Breusch-Pagan dengan hipotesis nol adalah antar lokasi memiliki keragaman/varians yang sama. Jika p-value uji ini lebih kecil dari taraf signifikansi yang ditetapkan maka dapat ditarik kesimpulan bahwa terdapat keragaman spasial atau varian antar lokasi yang berbeda. Sehingga alternatif model spasial yang digunakan adalah model Geographically Weighted Regression (GWR). Namun dalam model GWR, koefisien regresi masing-masing lokasi memiliki nilai yang berbeda-beda sehingga dianggap masih kurang tepat sehingga dikembangkan Mixed Geographically Weighted Regression (MGWR). Pada MGWR dihasilkan estimator atau penduga parameter yang sebagian bersifat global dan sebagian yang nlain bersifat lokal sesuai dengan lokasi pengamatan <span class="co">[</span><span class="ot">@purhadi2012</span><span class="co">]</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

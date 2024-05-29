@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Pemodelan Statistika Pada Data Geospasial - Pendahuluan</title>
+<title>Pemodelan Statistika pada Data Geospasial - Pendahuluan</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,7 +51,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -116,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Pemodelan Statistika Pada Data Geospasial</a> 
+      <a href="./">Pemodelan Statistika pada Data Geospasial</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -282,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Daftar isi</h2>
    
   <ul>
 <li><a href="#apa-yang-akan-anda-pelajari" id="toc-apa-yang-akan-anda-pelajari" class="nav-link active" data-scroll-target="#apa-yang-akan-anda-pelajari">Apa yang akan Anda pelajari</a></li>
@@ -298,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
 <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
   <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio">RStudio</a></li>
-  <li><a href="#paket-lain-yang-digunakan" id="toc-paket-lain-yang-digunakan" class="nav-link" data-scroll-target="#paket-lain-yang-digunakan">Paket lain yang digunakan</a></li>
+  <li><a href="#paket-yang-digunakan" id="toc-paket-yang-digunakan" class="nav-link" data-scroll-target="#paket-yang-digunakan">Paket yang digunakan</a></li>
   </ul>
 </li>
   <li><a href="#menjalankan-sintaks-r" id="toc-menjalankan-sintaks-r" class="nav-link" data-scroll-target="#menjalankan-sintaks-r">Menjalankan Sintaks R</a></li>
@@ -332,23 +352,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To download R, go to CRAN, the <strong>c</strong>omprehensive <strong>R</strong> <strong>a</strong>rchive <strong>n</strong>etwork, <a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a>. A new major version of R comes out once a year, and there are 2-3 minor releases each year. It’s a good idea to update regularly. Upgrading can be a bit of a hassle, especially for major versions that require you to re-install all your packages, but putting it off only makes it worse. We recommend R 4.2.0 or later for this book.</p>
 </section><section id="rstudio" class="level3"><h3 class="anchored" data-anchor-id="rstudio">RStudio</h3>
 <p>RStudio is an integrated development environment, or IDE, for R programming, which you can download from <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. RStudio is updated a couple of times a year, and it will automatically let you know when a new version is out, so there’s no need to check back. It’s a good idea to upgrade regularly to take advantage of the latest and greatest features. For this book, make sure you have at least RStudio 2022.02.0.</p>
-</section><section id="paket-lain-yang-digunakan" class="level3"><h3 class="anchored" data-anchor-id="paket-lain-yang-digunakan">Paket lain yang digunakan</h3>
-<p>There are many other excellent packages that are not part of the tidyverse because they solve problems in a different domain or are designed with a different set of underlying principles. This doesn’t make them better or worse; it just makes them different. In other words, the complement to the tidyverse is not the messyverse but many other universes of interrelated packages. As you tackle more data science projects with R, you’ll learn new packages and new ways of thinking about data.</p>
-<p>We’ll use many packages from outside the tidyverse in this book. For example, we’ll use the following packages because they provide interesting datasets for us to work with in the process of learning R:</p>
+</section><section id="paket-yang-digunakan" class="level3"><h3 class="anchored" data-anchor-id="paket-yang-digunakan">Paket yang digunakan</h3>
+<p>Terdapat banyak sekali package yang digunakan dalam pemodelan statistika pada data spasial. Package utama yang digunakan pada buku ini antara lain <strong>AER</strong> <span class="citation" data-cites="R-AER">(<a href="references.html#ref-R-AER" role="doc-biblioref">Kleiber and Zeileis 2024</a>)</span>, <strong>GWmodel</strong> <span class="citation" data-cites="R-GWmodel GWmodel2015">(<a href="references.html#ref-R-GWmodel" role="doc-biblioref">Lu et al. 2024</a>; <a href="references.html#ref-GWmodel2015" role="doc-biblioref">Isabella Gollini et al. 2015</a>)</span>, <strong>INLA</strong> <span class="citation" data-cites="R-INLA INLA2015a">(<a href="references.html#ref-R-INLA" role="doc-biblioref">Rue, Lindgren, and Teixeira Krainski 2024</a>; <a href="references.html#ref-INLA2015a" role="doc-biblioref">Lindgren and Rue 2015</a>)</span>, <strong>mgwrsar</strong> <span class="citation" data-cites="R-mgwrsar mgwrsar2017">(<a href="references.html#ref-R-mgwrsar" role="doc-biblioref">Geniaux and Martinetti 2023</a>, <a href="references.html#ref-mgwrsar2017" role="doc-biblioref">2017</a>)</span>, <strong>spdep</strong> <span class="citation" data-cites="R-spdep">(<a href="references.html#ref-R-spdep" role="doc-biblioref">Bivand 2024</a>)</span>, <strong>spgwr</strong> <span class="citation" data-cites="R-spgwr">(<a href="references.html#ref-R-spgwr" role="doc-biblioref">Bivand and Yu 2023</a>)</span>, <strong>spmoran</strong> <span class="citation" data-cites="R-spmoran">(<a href="references.html#ref-R-spmoran" role="doc-biblioref">Murakami 2024</a>)</span>, dan <strong>sf</strong> <span class="citation" data-cites="R-sf">(<a href="references.html#ref-R-sf" role="doc-biblioref">Pebesma 2024</a>)</span>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"arrow"</span>, <span class="st">"babynames"</span>, <span class="st">"curl"</span>, <span class="st">"duckdb"</span>, <span class="st">"gapminder"</span>, </span>
-<span>    <span class="st">"ggrepel"</span>, <span class="st">"ggridges"</span>, <span class="st">"ggthemes"</span>, <span class="st">"hexbin"</span>, <span class="st">"janitor"</span>, <span class="st">"Lahman"</span>, </span>
-<span>    <span class="st">"leaflet"</span>, <span class="st">"maps"</span>, <span class="st">"nycflights13"</span>, <span class="st">"openxlsx"</span>, <span class="st">"palmerpenguins"</span>, </span>
-<span>    <span class="st">"repurrrsive"</span>, <span class="st">"tidymodels"</span>, <span class="st">"writexl"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AER"</span>, <span class="st">"classInt"</span>, <span class="st">"fitdistrplus"</span>, <span class="st">"GWmodel"</span>, <span class="st">"INLA"</span>, </span>
+<span>    <span class="st">"mgwrsar"</span>, <span class="st">"sf"</span>,  <span class="st">"sp"</span>, <span class="st">"spatialreg"</span>, <span class="st">"spData"</span>, <span class="st">"spdep"</span>,</span>
+<span>   <span class="st">"spgwr"</span>, <span class="st">"spmoran"</span>, <span class="st">"tseries"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We’ll also use a selection of other packages for one off examples. You don’t need to install them now, just remember that whenever you see an error like this:</p>
+<p>Kami juga akan menggunakan pilihan package lain sebagai contoh. Anda tidak perlu menginstalnya sekarang, ingatlah setiap kali Anda melihat error berikut ini</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggrepel.slowkow.com/">ggrepel</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in library(ggrepel) : there is no package called ‘ggrepel’</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">INLA</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in library(mgwrsar) : there is no package called ‘mgwrsar’</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You need to run <code>install.packages("ggrepel")</code> to install the package.</p>
+<p>Anda perlu menjalankan <code>install.packages("mgwrsar")</code> untuk menginstal package tersebut.</p>
 </section></section><section id="menjalankan-sintaks-r" class="level2"><h2 class="anchored" data-anchor-id="menjalankan-sintaks-r">Menjalankan Sintaks R</h2>
 <p>The previous section showed you several examples of running R code. The code in the book looks like this:</p>
 <div class="cell">
@@ -369,6 +388,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <!-- -->
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-R-spdep" class="csl-entry" role="listitem">
+Bivand, Roger. 2024. <em>Spdep: Spatial Dependence: Weighting Schemes, Statistics</em>. <a href="https://github.com/r-spatial/spdep/">https://github.com/r-spatial/spdep/</a>.
+</div>
+<div id="ref-R-spgwr" class="csl-entry" role="listitem">
+Bivand, Roger, and Danlin Yu. 2023. <em>Spgwr: Geographically Weighted Regression</em>. <a href="https://github.com/rsbivand/spgwr/">https://github.com/rsbivand/spgwr/</a>.
+</div>
+<div id="ref-mgwrsar2017" class="csl-entry" role="listitem">
+Geniaux, Ghislain, and Davide Martinetti. 2017. <span>“A New Method for Dealing Simultaneously with Spatial Autocorrelation and Spatial Heterogeneity in Regression Models.”</span> <em>Regional Science and Urban Economics</em>. <a href="https://doi.org/10.1016/j.regsciurbeco.2017.04.001">https://doi.org/10.1016/j.regsciurbeco.2017.04.001</a>.
+</div>
+<div id="ref-R-mgwrsar" class="csl-entry" role="listitem">
+———. 2023. <em>Mgwrsar: GWR and MGWR with Spatial Autocorrelation</em>. <a href="https://CRAN.R-project.org/package=mgwrsar">https://CRAN.R-project.org/package=mgwrsar</a>.
+</div>
+<div id="ref-GWmodel2015" class="csl-entry" role="listitem">
+Isabella Gollini, Binbin Lu, Martin Charlton, Christopher Brunsdon, and Paul Harris. 2015. <span>“<span>GWmodel</span>: An <span>R</span> Package for Exploring Spatial Heterogeneity Using Geographically Weighted Models.”</span> <em>Journal of Statistical Software</em> 63 (17): 1–50. <a href="https://doi.org/10.18637/jss.v063.i17">https://doi.org/10.18637/jss.v063.i17</a>.
+</div>
+<div id="ref-R-AER" class="csl-entry" role="listitem">
+Kleiber, Christian, and Achim Zeileis. 2024. <em>AER: Applied Econometrics with r</em>. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.
+</div>
+<div id="ref-INLA2015a" class="csl-entry" role="listitem">
+Lindgren, Finn, and Håvard Rue. 2015. <span>“Bayesian Spatial Modelling with <span>R</span>-<span>INLA</span>.”</span> <em>Journal of Statistical Software</em> 63 (19): 1–25. <a href="http://www.jstatsoft.org/v63/i19/">http://www.jstatsoft.org/v63/i19/</a>.
+</div>
+<div id="ref-R-GWmodel" class="csl-entry" role="listitem">
+Lu, Binbin, Paul Harris, Martin Charlton, Chris Brunsdon, Tomoki Nakaya, Daisuke Murakami, Yigong Hu, and Fiona H Evans. 2024. <em>GWmodel: Geographically-Weighted Models</em>. <a href="http://gwr.nuim.ie/">http://gwr.nuim.ie/</a>.
+</div>
+<div id="ref-R-spmoran" class="csl-entry" role="listitem">
+Murakami, Daisuke. 2024. <em>Spmoran: Fast Spatial Regression Using Moran Eigenvectors</em>. <a href="https://CRAN.R-project.org/package=spmoran">https://CRAN.R-project.org/package=spmoran</a>.
+</div>
+<div id="ref-R-sf" class="csl-entry" role="listitem">
+Pebesma, Edzer. 2024. <em>Sf: Simple Features for r</em>. <a href="https://r-spatial.github.io/sf/">https://r-spatial.github.io/sf/</a>.
+</div>
+<div id="ref-R-INLA" class="csl-entry" role="listitem">
+Rue, Havard, Finn Lindgren, and Elias Teixeira Krainski. 2024. <em>INLA: Full Bayesian Analysis of Latent Gaussian Models Using Integrated Nested Laplace Approximations</em>.
+</div>
+</div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -883,69 +937,65 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>It's a good idea to upgrade regularly to take advantage of the latest and greatest features.</span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>For this book, make sure you have at least RStudio 2022.02.0.</span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Paket lain yang digunakan</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Paket yang digunakan</span></span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>There are many other excellent packages that are not part of the tidyverse because they solve problems in a different domain or are designed with a different set of underlying principles.</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>This doesn't make them better or worse; it just makes them different.</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>In other words, the complement to the tidyverse is not the messyverse but many other universes of interrelated packages.</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>As you tackle more data science projects with R, you'll learn new packages and new ways of thinking about data.</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>We'll use many packages from outside the tidyverse in this book.</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>For example, we'll use the following packages because they provide interesting datasets for us to work with in the process of learning R:</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"arrow"</span>, <span class="st">"babynames"</span>, <span class="st">"curl"</span>, <span class="st">"duckdb"</span>, <span class="st">"gapminder"</span>, </span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ggrepel"</span>, <span class="st">"ggridges"</span>, <span class="st">"ggthemes"</span>, <span class="st">"hexbin"</span>, <span class="st">"janitor"</span>, <span class="st">"Lahman"</span>, </span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>    <span class="st">"leaflet"</span>, <span class="st">"maps"</span>, <span class="st">"nycflights13"</span>, <span class="st">"openxlsx"</span>, <span class="st">"palmerpenguins"</span>, </span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">"repurrrsive"</span>, <span class="st">"tidymodels"</span>, <span class="st">"writexl"</span>)</span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>We'll also use a selection of other packages for one off examples.</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>You don't need to install them now, just remember that whenever you see an error like this:</span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>Terdapat banyak sekali package yang digunakan dalam pemodelan statistika pada data spasial. Package utama yang digunakan pada buku ini antara lain **AER** [@R-AER], **GWmodel** [@R-GWmodel; @GWmodel2015], **INLA** [@R-INLA; @INLA2015a], **mgwrsar** [@R-mgwrsar; @mgwrsar2017], **spdep** [@R-spdep], **spgwr** [@R-spgwr], **spmoran** [@R-spmoran], dan **sf** <span class="co">[</span><span class="ot">@R-sf</span><span class="co">]</span>.</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"AER"</span>, <span class="st">"classInt"</span>, <span class="st">"fitdistrplus"</span>, <span class="st">"GWmodel"</span>, <span class="st">"INLA"</span>, </span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mgwrsar"</span>, <span class="st">"sf"</span>,  <span class="st">"sp"</span>, <span class="st">"spatialreg"</span>, <span class="st">"spData"</span>, <span class="st">"spdep"</span>,</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>   <span class="st">"spgwr"</span>, <span class="st">"spmoran"</span>, <span class="st">"tseries"</span>)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>We'll also use a selection of other packages for one off examples.</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>You don't need to install them now, just remember that whenever you see an error like this:</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>Kami juga akan menggunakan pilihan package lain sebagai contoh.</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>Anda tidak perlu menginstalnya sekarang, ingatlah setiap kali Anda melihat error berikut ini</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(INLA)</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in library(mgwrsar) : there is no package called ‘mgwrsar’</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in library(ggrepel) : there is no package called ‘ggrepel’</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>Anda perlu menjalankan <span class="in">`install.packages("mgwrsar")`</span> untuk menginstal package tersebut.</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Menjalankan Sintaks R</span></span>
 <span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>You need to run <span class="in">`install.packages("ggrepel")`</span> to install the package.</span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Menjalankan Sintaks R</span></span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>The previous section showed you several examples of running R code.</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>The code in the book looks like this:</span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: true</span></span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>If you run the same code in your local console, it will look like this:</span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; 1 + 2</span></span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="in">[1] 3</span></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>There are two main differences.</span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>In your console, you type after the <span class="in">`&gt;`</span>, called the **prompt**; we don't show the prompt in the book.</span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>In the book, the output is commented out with <span class="in">`#&gt;`</span>; in your console, it appears directly after your code.</span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>These two differences mean that if you're working with an electronic version of the book, you can easily copy code out of the book and paste it into the console.</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>The previous section showed you several examples of running R code.</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>The code in the book looks like this:</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: true</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>If you run the same code in your local console, it will look like this:</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="in">&gt; 1 + 2</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="in">[1] 3</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>There are two main differences.</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>In your console, you type after the <span class="in">`&gt;`</span>, called the **prompt**; we don't show the prompt in the book.</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>In the book, the output is commented out with <span class="in">`#&gt;`</span>; in your console, it appears directly after your code.</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>These two differences mean that if you're working with an electronic version of the book, you can easily copy code out of the book and paste it into the console.</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>Throughout the book, we use a consistent set of conventions to refer to code:</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Functions are displayed in a code font and followed by parentheses, like <span class="in">`sum()`</span> or <span class="in">`mean()`</span>.</span>
 <span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>Throughout the book, we use a consistent set of conventions to refer to code:</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Other R objects (such as data or function arguments) are in a code font, without parentheses, like <span class="in">`flights`</span> or <span class="in">`x`</span>.</span>
 <span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Functions are displayed in a code font and followed by parentheses, like <span class="in">`sum()`</span> or <span class="in">`mean()`</span>.</span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Other R objects (such as data or function arguments) are in a code font, without parentheses, like <span class="in">`flights`</span> or <span class="in">`x`</span>.</span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sometimes, to make it clear which package an object comes from, we'll use the package name followed by two colons, like <span class="in">`dplyr::mutate()`</span> or <span class="in">`nycflights13::flights`</span>.</span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>    This is also valid R code.</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sometimes, to make it clear which package an object comes from, we'll use the package name followed by two colons, like <span class="in">`dplyr::mutate()`</span> or <span class="in">`nycflights13::flights`</span>.</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>    This is also valid R code.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
