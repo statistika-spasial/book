@@ -51,7 +51,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -346,11 +366,11 @@ window.Quarto = {
 
 </header><section id="deskripsi" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="deskripsi">
 <span class="header-section-number">6.1</span> Deskripsi</h2>
-<p>Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda (Silva &amp; Rodrigues 2014).</p>
+<p>Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda [silva2014].</p>
 <p>Model RTGBN dapat dirumuskan sebagai berikut:</p>
 <p><span class="math inline">\(y_i \sim \text{BN}\left(\exp\left(\sum_j \beta_j(u_i,v_i) x_{ij} \theta_i(u_i,v_i)\right)\right) \quad (6.6.1)\)</span></p>
 <p>dengan <span class="math inline">\(y_i\)</span> adalah nilai amatan respon ke-i, <span class="math inline">\(x_{ij}\)</span> adalah nilai amatan prediktor ke-j pada pengamatan, <span class="math inline">\((u_i, v_i)\)</span> adalah logitude dan latitude lokasi-i, <span class="math inline">\(\beta_j(u_i, v_i)\)</span> adalah parameter regresi prediktor ke-j untuk setiap lokasi-i, dan <span class="math inline">\(\theta_i(u_i, v_i)\)</span> adalah parameter dispersi setiap lokasi-<span class="math inline">\(i\)</span>.</p>
-<p>Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut (Ricardo &amp; Carvalho 2013):</p>
+<p>Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut <span class="citation" data-cites="ricardo2013">(<a href="references.html#ref-ricardo2013" role="doc-biblioref">Ricardo A 2013</a>)</span>:</p>
 <span class="math display">\[\begin{aligned}
 L(\beta(u_i, v_i), \theta_i, i=1,2,\ldots,n) = \prod_{i=1}^{n} \left(\prod_{r=0}^{y_i-1} (r + \frac{1}{\theta_i})\right) \frac{1}{y_i!} \left(\frac{1}{1 + \theta_i \mu_i}\right)^{\frac{1}{\theta_i}} \left(\frac{\theta_i \mu_i}{1 + \theta_i \mu_i}\right)^{y_i}
 \end{aligned}\]</span>
@@ -372,9 +392,12 @@ H_1: &amp; \ \beta_j(u_i,v_i) \neq 0
 <p>dengan <span class="math inline">\(\hat{\beta}_j(u_i,v_i)\)</span> merupakan penduga parameter koefisien regresi prediktor ke-j pada lokasi ke-i dan <span class="math inline">\(\text{se}(\hat{\beta}_j)\)</span> adalah galat baku penduga parameter koefisien regresi prediktor ke-j pada lokasi ke-i. Keputusan adalah tolak <span class="math inline">\(H_0\)</span> jika <span class="math inline">\(|z_{\text{hit}}| &gt; z_{\alpha/2}\)</span></p>
 </section><section id="data" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="data">
 <span class="header-section-number">6.2</span> Data</h2>
-<p>Ilustrasi untuk model RTG-BN merujuk hasil penelitian Fadila et al.&nbsp;(2021) tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (Tabel 6.6.1). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan <a href="https://ipb.link/gwr-binomial-negatif">https://ipb.link/gwr-binomial-negatif</a>.</p>
+<p>Ilustrasi untuk model RTG-BN merujuk hasil penelitian <span class="citation" data-cites="fadila2021">Fadila A (<a href="references.html#ref-fadila2021" role="doc-biblioref">2021</a>)</span> tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (<a href="#tbl-tbc" class="quarto-xref">Tabel&nbsp;<span>6.1</span></a>). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan <a href="https://ipb.link/gwr-binomial-negatif">https://ipb.link/gwr-binomial-negatif</a>.</p>
+<div id="tbl-tbc" class="striped hover quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tbc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabel&nbsp;6.1: Tabel Peubah dan Referensi
+</figcaption><div aria-describedby="tbl-tbc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover table">
-<caption>Tabel Peubah dan Referensi</caption>
 <colgroup>
 <col style="width: 10%">
 <col style="width: 61%">
@@ -422,13 +445,17 @@ H_1: &amp; \ \beta_j(u_i,v_i) \neq 0
 <td>Sarani (2019)</td>
 </tr>
 </tbody>
-</table></section><section id="metode-analisis" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="metode-analisis">
+</table>
+</div>
+</figure>
+</div>
+</section><section id="metode-analisis" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="metode-analisis">
 <span class="header-section-number">6.3</span> Metode Analisis</h2>
 <p>Tahapan untuk menganalisis data jumlah kasus TB di Provinsi Jawa Timur tahun 2019 dengan pendekatan RTG-BN adalah sebagai berikut:</p>
 <ol type="1">
 <li><p>Melakukan eksplorasi data untuk mengetahui gambaran awal data jumlah kasus TB pada balita di Provinsi Jawa Timur tahun 2019.</p></li>
 <li><p>Membuat peta sebaran dari setiap peubah respon dan prediktor yang digunakan.</p></li>
-<li><p>Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai <span class="math inline">\(VIF_i &gt; 10\)</span>, maka terdapat multikolinear (Kutner et al.&nbsp;2005):</p></li>
+<li><p>Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai <span class="math inline">\(VIF_i &gt; 10\)</span>, maka terdapat multikolinear <span class="citation" data-cites="kutner2005">(<a href="references.html#ref-kutner2005" role="doc-biblioref">Kutner MH 2005</a>)</span>:</p></li>
 </ol>
 <p><span class="math inline">\(VIF_i = \frac{1}{1 - R_i^2}\)</span></p>
 <p>dengan <span class="math inline">\(R_i^2\)</span> adalah koefisien determinasi antara <span class="math inline">\(X_i\)</span> dengan prediktor lainnya. Prediktor yang memiliki nilai <span class="math inline">\(VIF_i &gt; 10\)</span> tidak diikutsertakan dalam penyusunan model.</p>
@@ -529,7 +556,7 @@ H_1: &amp; \ \beta_j(u_i,v_i) \neq 0
 <ol type="a">
 <li>Peta sebaran</li>
 </ol>
-<p>Berikut syntax yang dapat digunakan untuk membuat peta sebaran:</p>
+<p>Berikut syntax yang dapat digunakan untuk membuat peta sebaran (<a href="#fig-plot-tb" class="quarto-xref">Gambar&nbsp;<span>6.1</span></a>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Menentukan batas kelas dari angka TB per 100000 penduduk</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html">classIntervals</a></span><span class="op">(</span><span class="va">gabung</span><span class="op">$</span><span class="va">y</span>, n <span class="op">=</span> <span class="fl">4</span>, style <span class="op">=</span> <span class="st">'kmeans'</span><span class="op">)</span></span>
@@ -552,9 +579,13 @@ H_1: &amp; \ \beta_j(u_i,v_i) \neq 0
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span></span>
 <span><span class="va">plot.tb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="06-RegresiTerbobotiGeografisBinomialNegatif_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-</figure>
+<div id="fig-plot-tb" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-RegresiTerbobotiGeografisBinomialNegatif_files/figure-html/fig-plot-tb-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;6.1: Peta kasus TB
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -896,6 +927,17 @@ H_1: &amp; \ \beta_j(u_i,v_i) \neq 0
 
 <!-- -->
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-fadila2021" class="csl-entry" role="listitem">
+Fadila A, Alamudi A, Djuraidah A. 2021. <span>“Pemodelan Jumlah Penderita Tuberkulosis Di Jawa Timur Dengan Regresi Terboboti Geografis Binomial Negatif.”</span> <em>Skripsi</em>.
+</div>
+<div id="ref-kutner2005" class="csl-entry" role="listitem">
+Kutner MH, Neter J, Nachtsheim CJ. 2005. <span>“Applied Linear Statistical Models.”</span>
+</div>
+<div id="ref-ricardo2013" class="csl-entry" role="listitem">
+Ricardo A, Carvalho T. 2013. <em>Geographically Weighted Negative Binomial Regression-Incorporating Overdispersion</em>. New York: Springer Science.
+</div>
+</div>
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1375,7 +1417,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deskripsi</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda (Silva &amp; Rodrigues 2014).</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda <span class="co">[</span><span class="ot">silva2014</span><span class="co">]</span>.</span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>Model RTGBN dapat dirumuskan sebagai berikut:</span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
@@ -1383,7 +1425,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>dengan $y_i$ adalah nilai amatan respon ke-i, $x_{ij}$ adalah nilai amatan prediktor ke-j pada pengamatan, $(u_i, v_i)$ adalah logitude dan latitude lokasi-i, $\beta_j(u_i, v_i)$ adalah parameter regresi prediktor ke-j untuk setiap lokasi-i, dan $\theta_i(u_i, v_i)$ adalah parameter dispersi setiap lokasi-$i$.</span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut (Ricardo &amp; Carvalho 2013):</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut <span class="co">[</span><span class="ot">@ricardo2013</span><span class="co">]</span>:</span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
 <span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>L(\beta(u_i, v_i), \theta_i, i=1,2,\ldots,n) = \prod_{i=1}^{n} \left(\prod_{r=0}^{y_i-1} (r + \frac{1}{\theta_i})\right) \frac{1}{y_i!} \left(\frac{1}{1 + \theta_i \mu_i}\right)^{\frac{1}{\theta_i}} \left(\frac{\theta_i \mu_i}{1 + \theta_i \mu_i}\right)^{y_i}</span>
@@ -1420,7 +1462,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
 <span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>Ilustrasi untuk model RTG-BN merujuk hasil penelitian Fadila et al. (2021) tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (Tabel 6.6.1). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan <span class="co">[</span><span class="ot">https://ipb.link/gwr-binomial-negatif</span><span class="co">](https://ipb.link/gwr-binomial-negatif)</span>.</span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>Ilustrasi untuk model RTG-BN merujuk hasil penelitian @fadila2021 tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (@tbl-tbc). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan <span class="co">[</span><span class="ot">https://ipb.link/gwr-binomial-negatif</span><span class="co">](https://ipb.link/gwr-binomial-negatif)</span>.</span>
 <span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>| Kode   | Peubah                                          | Referensi        |</span>
@@ -1433,7 +1475,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a>| $X_5$  | Rata-rata konsumsi batang rokok per minggu | Tandang et al. (2018)      |</span>
 <span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>| $X_6$  | Persentase pengobatan lengkap kasus Tuberkulosis | Sarani (2019)   |</span>
 <span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>: Tabel Peubah dan Referensi {.striped .hover}</span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>: Tabel Peubah dan Referensi {#tbl-tbc .striped .hover}</span>
 <span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metode Analisis</span></span>
 <span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a></span>
@@ -1443,7 +1485,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Membuat peta sebaran dari setiap peubah respon dan prediktor yang digunakan.</span>
 <span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai $VIF_i &gt; 10$, maka terdapat multikolinear (Kutner et al. 2005):</span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai $VIF_i &gt; 10$, maka terdapat multikolinear <span class="co">[</span><span class="ot">@kutner2005</span><span class="co">]</span>:</span>
 <span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a>$VIF_i = \frac{1}{1 - R_i^2}$</span>
 <span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a></span>
@@ -1535,7 +1577,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a>a.  Peta sebaran</span>
 <span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a>Berikut syntax yang dapat digunakan untuk membuat peta sebaran:</span>
+<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a>Berikut syntax yang dapat digunakan untuk membuat peta sebaran (@fig-plot-tb):</span>
 <span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan batas kelas dari angka TB per 100000 penduduk</span></span>
@@ -1543,209 +1585,211 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat peta</span></span>
-<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'#fbb4b9'</span>, <span class="st">'#f768a1'</span>, <span class="st">'#ae017e'</span>, <span class="st">'#551c53'</span>)</span>
-<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a>plot.tb <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">st_zm</span>(jatim)) <span class="sc">+</span></span>
-<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">cut</span>(Y, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="fl">104.5</span>, <span class="fl">153.5</span>, <span class="fl">225.5</span>,</span>
-<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a>         <span class="dv">401</span>))), <span class="at">lwd =</span> <span class="fl">0.1</span>, <span class="at">col =</span><span class="st">'black'</span>) <span class="sc">+</span></span>
-<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a>         <span class="fu">scale_fill_manual</span>(<span class="st">"TB"</span>, <span class="at">values =</span> cc,</span>
-<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a>         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"66 - 104.5"</span>, <span class="st">"104.5 - 153.5"</span>,</span>
-<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a>         <span class="st">"153.5 - 225.5"</span>, <span class="st">"225.5 - 401"</span>),</span>
-<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a>         <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T))<span class="sc">+</span></span>
-<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>)</span>
-<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a>plot.tb</span>
-<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a>b.  VIF</span>
+<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plot-tb</span></span>
+<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Peta kasus TB"</span></span>
+<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat peta</span></span>
+<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'#fbb4b9'</span>, <span class="st">'#f768a1'</span>, <span class="st">'#ae017e'</span>, <span class="st">'#551c53'</span>)</span>
+<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a>plot.tb <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">st_zm</span>(jatim)) <span class="sc">+</span></span>
+<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">cut</span>(Y, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="fl">104.5</span>, <span class="fl">153.5</span>, <span class="fl">225.5</span>,</span>
+<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a>         <span class="dv">401</span>))), <span class="at">lwd =</span> <span class="fl">0.1</span>, <span class="at">col =</span><span class="st">'black'</span>) <span class="sc">+</span></span>
+<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a>         <span class="fu">scale_fill_manual</span>(<span class="st">"TB"</span>, <span class="at">values =</span> cc,</span>
+<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a>         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"66 - 104.5"</span>, <span class="st">"104.5 - 153.5"</span>,</span>
+<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a>         <span class="st">"153.5 - 225.5"</span>, <span class="st">"225.5 - 401"</span>),</span>
+<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a>         <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T))<span class="sc">+</span></span>
+<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>)</span>
+<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a>plot.tb</span>
+<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a>VIF dihitung menggunakan syntax berikut ini:</span>
+<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a>b.  VIF</span>
 <span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a><span class="co">#VIF</span></span>
-<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(Y) <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6, </span>
-<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> jatim)</span>
-<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(<span class="fu">vif</span>(model))</span>
-<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai VIF, seluruh peubah memiliki nilai VIF &lt; 10 sehingga dapat disimpulkan tidak terdapat multikolinearitas.</span>
-<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji efek spasial</span></span>
+<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a>VIF dihitung menggunakan syntax berikut ini:</span>
+<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a><span class="co">#VIF</span></span>
+<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(Y) <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6, </span>
+<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> jatim)</span>
+<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(<span class="fu">vif</span>(model))</span>
+<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai VIF, seluruh peubah memiliki nilai VIF &lt; 10 sehingga dapat disimpulkan tidak terdapat multikolinearitas.</span>
 <span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a>a.  Indeks Moran</span>
+<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji efek spasial</span></span>
 <span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a>Untuk mengetahui efek dependensi spasial pada model regresi dengan respon ln(Y) dengan 6 (enam) prediktor (X1 sampai X6) digunakan uji Lagrange multiplier dengan syntax sebagai berikut:</span>
+<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a>a.  Indeks Moran</span>
 <span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Lagrange Multiplier</span></span>
-<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a>queenl <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(<span class="fu">st_zm</span>(jatim))</span>
-<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a>queenl <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(queenl)</span>
-<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm.LMtests</span>(model, queenl, <span class="at">zero.policy =</span> T,</span>
-<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a>        <span class="at">test =</span> <span class="fu">c</span>(<span class="st">'LMlag'</span>, <span class="st">'LMerr'</span>, <span class="st">'RLMlag'</span>, <span class="st">'RLMerr'</span>)))</span>
-<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a>Pada output di atas terlihat semua uji LM dan RLM mempunyai p-value &gt; α=0.05, sehingga tidak terdapat dependensi spasial pada ln(Y) dan sisaan. </span>
+<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a>Untuk mengetahui efek dependensi spasial pada model regresi dengan respon ln(Y) dengan 6 (enam) prediktor (X1 sampai X6) digunakan uji Lagrange multiplier dengan syntax sebagai berikut:</span>
+<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Lagrange Multiplier</span></span>
+<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a>queenl <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(<span class="fu">st_zm</span>(jatim))</span>
+<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a>queenl <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(queenl)</span>
+<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm.LMtests</span>(model, queenl, <span class="at">zero.policy =</span> T,</span>
+<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a>        <span class="at">test =</span> <span class="fu">c</span>(<span class="st">'LMlag'</span>, <span class="st">'LMerr'</span>, <span class="st">'RLMlag'</span>, <span class="st">'RLMerr'</span>)))</span>
+<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a>b.  Uji Breusch-Pagan</span>
+<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a>Pada output di atas terlihat semua uji LM dan RLM mempunyai p-value &gt; α=0.05, sehingga tidak terdapat dependensi spasial pada ln(Y) dan sisaan. </span>
 <span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a>Efek keragaman spasial diuji dengan uji Breusch-Pagan dengan syntax berikut:</span>
+<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a>b.  Uji Breusch-Pagan</span>
 <span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a><span class="co">#Model log(Y)</span></span>
-<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model)</span>
-<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a>Hasil uji Breusch-Pagan untuk data ini menghasilkan p-value &lt; α=0.05 yang berarti terdapat heterogenitas spasial. </span>
+<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a>Efek keragaman spasial diuji dengan uji Breusch-Pagan dengan syntax berikut:</span>
+<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a><span class="co">#Model log(Y)</span></span>
+<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model)</span>
+<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a>c.  Uji Overdispersi</span>
+<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a>Hasil uji Breusch-Pagan untuk data ini menghasilkan p-value &lt; α=0.05 yang berarti terdapat heterogenitas spasial. </span>
 <span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a>Untuk melakukan uji dispersi menggunakan syntax sebagai berikut:</span>
+<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a>c.  Uji Overdispersi</span>
 <span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a><span class="co">#Model Regresi Poisson</span></span>
-<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a>poisson<span class="ot">&lt;-</span><span class="fu">glm</span>(Y<span class="sc">~</span>X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6,<span class="at">data=</span>jatim, <span class="at">family =</span> <span class="fu">poisson</span>())</span>
-<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a><span class="co">#Nilai Deviance</span></span>
-<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a>dv_df<span class="ot">&lt;-</span><span class="fu">deviance</span>(poisson)<span class="sc">/</span><span class="fu">df.residual</span>(poisson)</span>
-<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a><span class="co">#Nilai Chi-Squares</span></span>
-<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a>pr_df<span class="ot">&lt;-</span><span class="fu">sum</span>(<span class="fu">residuals</span>(poisson,<span class="st">"pearson"</span>)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">df.residual</span>(poisson)</span>
-<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a><span class="co">#Overdispersi</span></span>
-<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a>overdis<span class="ot">&lt;-</span><span class="fu">cbind.data.frame</span>(dv_df,pr_df)</span>
-<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a>overdis</span>
-<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a>Kedua nilai statistik uji overdispersi bernilai lebih besar dari satu, maka pada data TB terdapat overdispersi. Untuk menangani overdispersi pada data TB digunakan model regresi binomial negatif.</span>
+<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a>Untuk melakukan uji dispersi menggunakan syntax sebagai berikut:</span>
+<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a><span class="co">#Model Regresi Poisson</span></span>
+<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a>poisson<span class="ot">&lt;-</span><span class="fu">glm</span>(Y<span class="sc">~</span>X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6,<span class="at">data=</span>jatim, <span class="at">family =</span> <span class="fu">poisson</span>())</span>
+<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a><span class="co">#Nilai Deviance</span></span>
+<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a>dv_df<span class="ot">&lt;-</span><span class="fu">deviance</span>(poisson)<span class="sc">/</span><span class="fu">df.residual</span>(poisson)</span>
+<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a><span class="co">#Nilai Chi-Squares</span></span>
+<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a>pr_df<span class="ot">&lt;-</span><span class="fu">sum</span>(<span class="fu">residuals</span>(poisson,<span class="st">"pearson"</span>)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="fu">df.residual</span>(poisson)</span>
+<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a><span class="co">#Overdispersi</span></span>
+<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a>overdis<span class="ot">&lt;-</span><span class="fu">cbind.data.frame</span>(dv_df,pr_df)</span>
+<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a>overdis</span>
+<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a><span class="fu">### Menduga model RTBNG</span></span>
+<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a>Kedua nilai statistik uji overdispersi bernilai lebih besar dari satu, maka pada data TB terdapat overdispersi. Untuk menangani overdispersi pada data TB digunakan model regresi binomial negatif.</span>
 <span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a>a.  RTBNG Fixed Gaussian</span>
+<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a><span class="fu">### Menduga model RTBNG</span></span>
 <span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan bandwidth</span></span>
-<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a>bdwt.gauss.fixed <span class="ot">&lt;-</span> <span class="fu">ggwr.sel</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6, <span class="at">data =</span> jatim, <span class="at">coords=</span>longlat, <span class="at">adapt =</span> F, <span class="at">gweight =</span> gwr.Gauss)</span>
-<span id="cb17-280"><a href="#cb17-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a><span class="co">#Optimasi Parameter Theta Binomial Negatif</span></span>
-<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a>aicvec <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>){</span>
-<span id="cb17-285"><a href="#cb17-285" aria-hidden="true" tabindex="-1"></a>  gwnbr.gauss.fixed <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(spgwr<span class="sc">::</span><span class="fu">ggwr</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2</span>
-<span id="cb17-286"><a href="#cb17-286" aria-hidden="true" tabindex="-1"></a>                       <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6, <span class="at">data =</span> jatim,</span>
-<span id="cb17-287"><a href="#cb17-287" aria-hidden="true" tabindex="-1"></a>                       <span class="at">coords=</span>longlat, <span class="at">bandwidth =</span></span>
-<span id="cb17-288"><a href="#cb17-288" aria-hidden="true" tabindex="-1"></a>                       bdwt.gauss.fixed, <span class="at">gweight =</span></span>
-<span id="cb17-289"><a href="#cb17-289" aria-hidden="true" tabindex="-1"></a>                       gwr.Gauss, <span class="at">family =</span></span>
-<span id="cb17-290"><a href="#cb17-290" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">negative.binomial</span>(<span class="at">theta=</span> i, link</span>
-<span id="cb17-291"><a href="#cb17-291" aria-hidden="true" tabindex="-1"></a>                       <span class="ot">=</span> <span class="st">"log"</span>)), <span class="at">warning=</span><span class="cf">function</span>(w) w)</span>
-<span id="cb17-292"><a href="#cb17-292" aria-hidden="true" tabindex="-1"></a>  aicvec[i] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is</span>(gwnbr.gauss.fixed, <span class="st">'warning'</span>),</span>
-<span id="cb17-293"><a href="#cb17-293" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"not converge"</span>,</span>
-<span id="cb17-294"><a href="#cb17-294" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">round</span>(gwnbr.gauss.fixed<span class="sc">$</span>lm<span class="sc">$</span>aic,<span class="dv">2</span>))</span>
-<span id="cb17-295"><a href="#cb17-295" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-296"><a href="#cb17-296" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(aicvec, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb17-297"><a href="#cb17-297" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, aicvec, <span class="at">xlab =</span> <span class="st">'theta'</span>,  <span class="at">ylab =</span> <span class="st">'AIC'</span>)</span>
-<span id="cb17-298"><a href="#cb17-298" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-299"><a href="#cb17-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-300"><a href="#cb17-300" aria-hidden="true" tabindex="-1"></a>Dalam ilustrasi ini, dilakukan optimasi parameter theta pada sebaran binomial negatif yang digunakan. Berdasarkan pemodelan RTBNG dengan nilai theta 1 sampai 30 menghasilkan algoritma yang konvergen. Nilai AIC terkecil pada theta 8 senilai 431.98. Oleh karena itu, untuk pendekatan ini digunakan theta = 8.</span>
+<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a>a.  RTBNG Fixed Gaussian</span>
+<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-280"><a href="#cb17-280" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan bandwidth</span></span>
+<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a>bdwt.gauss.fixed <span class="ot">&lt;-</span> <span class="fu">ggwr.sel</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6, <span class="at">data =</span> jatim, <span class="at">coords=</span>longlat, <span class="at">adapt =</span> F, <span class="at">gweight =</span> gwr.Gauss)</span>
+<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a><span class="co">#Optimasi Parameter Theta Binomial Negatif</span></span>
+<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a>aicvec <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb17-285"><a href="#cb17-285" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb17-286"><a href="#cb17-286" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>){</span>
+<span id="cb17-287"><a href="#cb17-287" aria-hidden="true" tabindex="-1"></a>  gwnbr.gauss.fixed <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(spgwr<span class="sc">::</span><span class="fu">ggwr</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2</span>
+<span id="cb17-288"><a href="#cb17-288" aria-hidden="true" tabindex="-1"></a>                       <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5 <span class="sc">+</span> X6, <span class="at">data =</span> jatim,</span>
+<span id="cb17-289"><a href="#cb17-289" aria-hidden="true" tabindex="-1"></a>                       <span class="at">coords=</span>longlat, <span class="at">bandwidth =</span></span>
+<span id="cb17-290"><a href="#cb17-290" aria-hidden="true" tabindex="-1"></a>                       bdwt.gauss.fixed, <span class="at">gweight =</span></span>
+<span id="cb17-291"><a href="#cb17-291" aria-hidden="true" tabindex="-1"></a>                       gwr.Gauss, <span class="at">family =</span></span>
+<span id="cb17-292"><a href="#cb17-292" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">negative.binomial</span>(<span class="at">theta=</span> i, link</span>
+<span id="cb17-293"><a href="#cb17-293" aria-hidden="true" tabindex="-1"></a>                       <span class="ot">=</span> <span class="st">"log"</span>)), <span class="at">warning=</span><span class="cf">function</span>(w) w)</span>
+<span id="cb17-294"><a href="#cb17-294" aria-hidden="true" tabindex="-1"></a>  aicvec[i] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is</span>(gwnbr.gauss.fixed, <span class="st">'warning'</span>),</span>
+<span id="cb17-295"><a href="#cb17-295" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"not converge"</span>,</span>
+<span id="cb17-296"><a href="#cb17-296" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">round</span>(gwnbr.gauss.fixed<span class="sc">$</span>lm<span class="sc">$</span>aic,<span class="dv">2</span>))</span>
+<span id="cb17-297"><a href="#cb17-297" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-298"><a href="#cb17-298" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(aicvec, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb17-299"><a href="#cb17-299" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, aicvec, <span class="at">xlab =</span> <span class="st">'theta'</span>,  <span class="at">ylab =</span> <span class="st">'AIC'</span>)</span>
+<span id="cb17-300"><a href="#cb17-300" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-301"><a href="#cb17-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-304"><a href="#cb17-304" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-305"><a href="#cb17-305" aria-hidden="true" tabindex="-1"></a><span class="co">#Pendugaan GWR-BN</span></span>
-<span id="cb17-306"><a href="#cb17-306" aria-hidden="true" tabindex="-1"></a>gwnbr.gauss.fixed <span class="ot">&lt;-</span> spgwr<span class="sc">::</span><span class="fu">ggwr</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6,</span>
-<span id="cb17-307"><a href="#cb17-307" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> jatim, <span class="at">coords=</span>longlat,</span>
-<span id="cb17-308"><a href="#cb17-308" aria-hidden="true" tabindex="-1"></a>                     <span class="at">bandwidth =</span> bdwt.gauss.fixed,</span>
-<span id="cb17-309"><a href="#cb17-309" aria-hidden="true" tabindex="-1"></a>                     <span class="at">gweight=</span>gwr.Gauss, <span class="at">family =</span></span>
-<span id="cb17-310"><a href="#cb17-310" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">negative.binomial</span>(<span class="at">theta =</span> <span class="dv">8</span>, <span class="at">link =</span></span>
-<span id="cb17-311"><a href="#cb17-311" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"log"</span>))</span>
-<span id="cb17-312"><a href="#cb17-312" aria-hidden="true" tabindex="-1"></a>gwnbr.gauss.fixed</span>
-<span id="cb17-313"><a href="#cb17-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-314"><a href="#cb17-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-315"><a href="#cb17-315" aria-hidden="true" tabindex="-1"></a>b.  RTBNG Adaptive Gaussian</span>
+<span id="cb17-302"><a href="#cb17-302" aria-hidden="true" tabindex="-1"></a>Dalam ilustrasi ini, dilakukan optimasi parameter theta pada sebaran binomial negatif yang digunakan. Berdasarkan pemodelan RTBNG dengan nilai theta 1 sampai 30 menghasilkan algoritma yang konvergen. Nilai AIC terkecil pada theta 8 senilai 431.98. Oleh karena itu, untuk pendekatan ini digunakan theta = 8.</span>
+<span id="cb17-303"><a href="#cb17-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-306"><a href="#cb17-306" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-307"><a href="#cb17-307" aria-hidden="true" tabindex="-1"></a><span class="co">#Pendugaan GWR-BN</span></span>
+<span id="cb17-308"><a href="#cb17-308" aria-hidden="true" tabindex="-1"></a>gwnbr.gauss.fixed <span class="ot">&lt;-</span> spgwr<span class="sc">::</span><span class="fu">ggwr</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6,</span>
+<span id="cb17-309"><a href="#cb17-309" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> jatim, <span class="at">coords=</span>longlat,</span>
+<span id="cb17-310"><a href="#cb17-310" aria-hidden="true" tabindex="-1"></a>                     <span class="at">bandwidth =</span> bdwt.gauss.fixed,</span>
+<span id="cb17-311"><a href="#cb17-311" aria-hidden="true" tabindex="-1"></a>                     <span class="at">gweight=</span>gwr.Gauss, <span class="at">family =</span></span>
+<span id="cb17-312"><a href="#cb17-312" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">negative.binomial</span>(<span class="at">theta =</span> <span class="dv">8</span>, <span class="at">link =</span></span>
+<span id="cb17-313"><a href="#cb17-313" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"log"</span>))</span>
+<span id="cb17-314"><a href="#cb17-314" aria-hidden="true" tabindex="-1"></a>gwnbr.gauss.fixed</span>
+<span id="cb17-315"><a href="#cb17-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-316"><a href="#cb17-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-319"><a href="#cb17-319" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-320"><a href="#cb17-320" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan Bandwidth</span></span>
-<span id="cb17-321"><a href="#cb17-321" aria-hidden="true" tabindex="-1"></a>bdwt.gauss.adapt <span class="ot">&lt;-</span> <span class="fu">ggwr.sel</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6, </span>
-<span id="cb17-322"><a href="#cb17-322" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> jatim,<span class="at">coords=</span>longlat, <span class="at">adapt =</span> T,</span>
-<span id="cb17-323"><a href="#cb17-323" aria-hidden="true" tabindex="-1"></a>              <span class="at">gweight =</span> gwr.Gauss)</span>
-<span id="cb17-324"><a href="#cb17-324" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb17-325"><a href="#cb17-325" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimasi Parameter Theta Binomial Negatif</span></span>
-<span id="cb17-326"><a href="#cb17-326" aria-hidden="true" tabindex="-1"></a>aicvec <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb17-327"><a href="#cb17-327" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>){</span>
-<span id="cb17-328"><a href="#cb17-328" aria-hidden="true" tabindex="-1"></a>  gwnbr.gauss.adapt <span class="ot">&lt;-</span> spgwr<span class="sc">::</span><span class="fu">ggwr</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5,</span>
-<span id="cb17-329"><a href="#cb17-329" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data=</span>jatim,<span class="at">coords=</span>longlat, <span class="at">adapt =</span></span>
-<span id="cb17-330"><a href="#cb17-330" aria-hidden="true" tabindex="-1"></a>                       bdwt.gauss.adapt, <span class="at">gweight =</span></span>
-<span id="cb17-331"><a href="#cb17-331" aria-hidden="true" tabindex="-1"></a>                       gwr.Gauss, <span class="at">family =</span></span>
-<span id="cb17-332"><a href="#cb17-332" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">negative.binomial</span>(<span class="at">theta =</span> i,</span>
-<span id="cb17-333"><a href="#cb17-333" aria-hidden="true" tabindex="-1"></a>                       <span class="at">link=</span><span class="st">"log"</span>))</span>
-<span id="cb17-334"><a href="#cb17-334" aria-hidden="true" tabindex="-1"></a>  aicvec[i] <span class="ot">&lt;-</span> gwnbr.gauss.adapt<span class="sc">$</span>lm<span class="sc">$</span>aic</span>
-<span id="cb17-335"><a href="#cb17-335" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-336"><a href="#cb17-336" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(aicvec, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb17-337"><a href="#cb17-337" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, aicvec, <span class="at">xlab =</span> <span class="st">'theta'</span>,  <span class="at">ylab =</span> <span class="st">'AIC'</span>)</span>
-<span id="cb17-338"><a href="#cb17-338" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-339"><a href="#cb17-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-340"><a href="#cb17-340" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai AIC, nilai theta = 8 menghasilkan AIC terkecil sehingga pada ilustrasi ini akan digunakan model RTBNG dengan nilai theta = 8.</span>
+<span id="cb17-317"><a href="#cb17-317" aria-hidden="true" tabindex="-1"></a>b.  RTBNG Adaptive Gaussian</span>
+<span id="cb17-318"><a href="#cb17-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-321"><a href="#cb17-321" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-322"><a href="#cb17-322" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan Bandwidth</span></span>
+<span id="cb17-323"><a href="#cb17-323" aria-hidden="true" tabindex="-1"></a>bdwt.gauss.adapt <span class="ot">&lt;-</span> <span class="fu">ggwr.sel</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6, </span>
+<span id="cb17-324"><a href="#cb17-324" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> jatim,<span class="at">coords=</span>longlat, <span class="at">adapt =</span> T,</span>
+<span id="cb17-325"><a href="#cb17-325" aria-hidden="true" tabindex="-1"></a>              <span class="at">gweight =</span> gwr.Gauss)</span>
+<span id="cb17-326"><a href="#cb17-326" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb17-327"><a href="#cb17-327" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimasi Parameter Theta Binomial Negatif</span></span>
+<span id="cb17-328"><a href="#cb17-328" aria-hidden="true" tabindex="-1"></a>aicvec <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb17-329"><a href="#cb17-329" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>){</span>
+<span id="cb17-330"><a href="#cb17-330" aria-hidden="true" tabindex="-1"></a>  gwnbr.gauss.adapt <span class="ot">&lt;-</span> spgwr<span class="sc">::</span><span class="fu">ggwr</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5,</span>
+<span id="cb17-331"><a href="#cb17-331" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data=</span>jatim,<span class="at">coords=</span>longlat, <span class="at">adapt =</span></span>
+<span id="cb17-332"><a href="#cb17-332" aria-hidden="true" tabindex="-1"></a>                       bdwt.gauss.adapt, <span class="at">gweight =</span></span>
+<span id="cb17-333"><a href="#cb17-333" aria-hidden="true" tabindex="-1"></a>                       gwr.Gauss, <span class="at">family =</span></span>
+<span id="cb17-334"><a href="#cb17-334" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">negative.binomial</span>(<span class="at">theta =</span> i,</span>
+<span id="cb17-335"><a href="#cb17-335" aria-hidden="true" tabindex="-1"></a>                       <span class="at">link=</span><span class="st">"log"</span>))</span>
+<span id="cb17-336"><a href="#cb17-336" aria-hidden="true" tabindex="-1"></a>  aicvec[i] <span class="ot">&lt;-</span> gwnbr.gauss.adapt<span class="sc">$</span>lm<span class="sc">$</span>aic</span>
+<span id="cb17-337"><a href="#cb17-337" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-338"><a href="#cb17-338" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(aicvec, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb17-339"><a href="#cb17-339" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, aicvec, <span class="at">xlab =</span> <span class="st">'theta'</span>,  <span class="at">ylab =</span> <span class="st">'AIC'</span>)</span>
+<span id="cb17-340"><a href="#cb17-340" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-341"><a href="#cb17-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-344"><a href="#cb17-344" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-345"><a href="#cb17-345" aria-hidden="true" tabindex="-1"></a>gwnbr.gauss.adapt <span class="ot">&lt;-</span> spgwr<span class="sc">::</span><span class="fu">ggwr</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6,</span>
-<span id="cb17-346"><a href="#cb17-346" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> jatim,<span class="at">coords=</span>longlat,</span>
-<span id="cb17-347"><a href="#cb17-347" aria-hidden="true" tabindex="-1"></a>                     <span class="at">adapt=</span>bdwt.gauss.adapt,</span>
-<span id="cb17-348"><a href="#cb17-348" aria-hidden="true" tabindex="-1"></a>                     <span class="at">gweight=</span>gwr.Gauss,</span>
-<span id="cb17-349"><a href="#cb17-349" aria-hidden="true" tabindex="-1"></a>                     <span class="at">family =</span> <span class="fu">negative.binomial</span>(<span class="at">theta =</span></span>
-<span id="cb17-350"><a href="#cb17-350" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">8</span>, <span class="at">link =</span> <span class="st">"log"</span>))</span>
-<span id="cb17-351"><a href="#cb17-351" aria-hidden="true" tabindex="-1"></a>gwnbr.gauss.adapt  </span>
-<span id="cb17-352"><a href="#cb17-352" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-353"><a href="#cb17-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-354"><a href="#cb17-354" aria-hidden="true" tabindex="-1"></a>c.  Perbandingan nilai AIC</span>
+<span id="cb17-342"><a href="#cb17-342" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai AIC, nilai theta = 8 menghasilkan AIC terkecil sehingga pada ilustrasi ini akan digunakan model RTBNG dengan nilai theta = 8.</span>
+<span id="cb17-343"><a href="#cb17-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-346"><a href="#cb17-346" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-347"><a href="#cb17-347" aria-hidden="true" tabindex="-1"></a>gwnbr.gauss.adapt <span class="ot">&lt;-</span> spgwr<span class="sc">::</span><span class="fu">ggwr</span>(Y <span class="sc">~</span> X1<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span>X5<span class="sc">+</span>X6,</span>
+<span id="cb17-348"><a href="#cb17-348" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> jatim,<span class="at">coords=</span>longlat,</span>
+<span id="cb17-349"><a href="#cb17-349" aria-hidden="true" tabindex="-1"></a>                     <span class="at">adapt=</span>bdwt.gauss.adapt,</span>
+<span id="cb17-350"><a href="#cb17-350" aria-hidden="true" tabindex="-1"></a>                     <span class="at">gweight=</span>gwr.Gauss,</span>
+<span id="cb17-351"><a href="#cb17-351" aria-hidden="true" tabindex="-1"></a>                     <span class="at">family =</span> <span class="fu">negative.binomial</span>(<span class="at">theta =</span></span>
+<span id="cb17-352"><a href="#cb17-352" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">8</span>, <span class="at">link =</span> <span class="st">"log"</span>))</span>
+<span id="cb17-353"><a href="#cb17-353" aria-hidden="true" tabindex="-1"></a>gwnbr.gauss.adapt  </span>
+<span id="cb17-354"><a href="#cb17-354" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-355"><a href="#cb17-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-356"><a href="#cb17-356" aria-hidden="true" tabindex="-1"></a>Berikut syntax untuk memperlihatkan perbandingan AIC dari setiap model:</span>
+<span id="cb17-356"><a href="#cb17-356" aria-hidden="true" tabindex="-1"></a>c.  Perbandingan nilai AIC</span>
 <span id="cb17-357"><a href="#cb17-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-360"><a href="#cb17-360" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-361"><a href="#cb17-361" aria-hidden="true" tabindex="-1"></a><span class="co">#AIC</span></span>
-<span id="cb17-362"><a href="#cb17-362" aria-hidden="true" tabindex="-1"></a>aicmod <span class="ot">&lt;-</span> <span class="fu">c</span>(gwnbr.gauss.fixed<span class="sc">$</span>lm<span class="sc">$</span>aic, gwnbr.gauss.adapt<span class="sc">$</span>lm<span class="sc">$</span>aic)</span>
-<span id="cb17-363"><a href="#cb17-363" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Fixed'</span>, <span class="st">'Adaptive'</span>)</span>
-<span id="cb17-364"><a href="#cb17-364" aria-hidden="true" tabindex="-1"></a>aicdf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(mod, <span class="fu">round</span>(aicmod,<span class="dv">2</span>)))</span>
-<span id="cb17-365"><a href="#cb17-365" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(aicdf) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Model'</span>, <span class="st">'AIC'</span>)</span>
-<span id="cb17-366"><a href="#cb17-366" aria-hidden="true" tabindex="-1"></a>aicdf</span>
-<span id="cb17-367"><a href="#cb17-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-368"><a href="#cb17-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-369"><a href="#cb17-369" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai AIC, model dengan bandwidth fixed gaussian memiliki nilai AIC yang sama dengan model dengan bandwidth adaptive gaussian sehingga model terbaik yang lebih sederhana untuk data ini adalah model dengan bandwidth fixed gaussian. </span>
+<span id="cb17-358"><a href="#cb17-358" aria-hidden="true" tabindex="-1"></a>Berikut syntax untuk memperlihatkan perbandingan AIC dari setiap model:</span>
+<span id="cb17-359"><a href="#cb17-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-362"><a href="#cb17-362" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-363"><a href="#cb17-363" aria-hidden="true" tabindex="-1"></a><span class="co">#AIC</span></span>
+<span id="cb17-364"><a href="#cb17-364" aria-hidden="true" tabindex="-1"></a>aicmod <span class="ot">&lt;-</span> <span class="fu">c</span>(gwnbr.gauss.fixed<span class="sc">$</span>lm<span class="sc">$</span>aic, gwnbr.gauss.adapt<span class="sc">$</span>lm<span class="sc">$</span>aic)</span>
+<span id="cb17-365"><a href="#cb17-365" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Fixed'</span>, <span class="st">'Adaptive'</span>)</span>
+<span id="cb17-366"><a href="#cb17-366" aria-hidden="true" tabindex="-1"></a>aicdf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(mod, <span class="fu">round</span>(aicmod,<span class="dv">2</span>)))</span>
+<span id="cb17-367"><a href="#cb17-367" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(aicdf) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Model'</span>, <span class="st">'AIC'</span>)</span>
+<span id="cb17-368"><a href="#cb17-368" aria-hidden="true" tabindex="-1"></a>aicdf</span>
+<span id="cb17-369"><a href="#cb17-369" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-370"><a href="#cb17-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-371"><a href="#cb17-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-372"><a href="#cb17-372" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interpretasi</span></span>
+<span id="cb17-371"><a href="#cb17-371" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai AIC, model dengan bandwidth fixed gaussian memiliki nilai AIC yang sama dengan model dengan bandwidth adaptive gaussian sehingga model terbaik yang lebih sederhana untuk data ini adalah model dengan bandwidth fixed gaussian. </span>
+<span id="cb17-372"><a href="#cb17-372" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-373"><a href="#cb17-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-374"><a href="#cb17-374" aria-hidden="true" tabindex="-1"></a>Interpretasi model RTBNG dapat dilakukan dengan mengelompokkan koefisien model berdasarkan metode clustering tertentu. Dalam ilustrasi ini, dilakukan pengelompokan koefisien menggunakan kmeans. </span>
+<span id="cb17-374"><a href="#cb17-374" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interpretasi</span></span>
 <span id="cb17-375"><a href="#cb17-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-378"><a href="#cb17-378" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-379"><a href="#cb17-379" aria-hidden="true" tabindex="-1"></a><span class="co">#Koefisien model</span></span>
-<span id="cb17-380"><a href="#cb17-380" aria-hidden="true" tabindex="-1"></a>hasil <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(gwnbr.gauss.fixed<span class="sc">$</span>SDF)</span>
-<span id="cb17-381"><a href="#cb17-381" aria-hidden="true" tabindex="-1"></a>hasil<span class="sc">$</span>KABKOT <span class="ot">&lt;-</span> jatim<span class="sc">$</span>KABKOT</span>
-<span id="cb17-382"><a href="#cb17-382" aria-hidden="true" tabindex="-1"></a>gabung_new <span class="ot">&lt;-</span> <span class="fu">merge</span>(jatim, hasil, <span class="at">by=</span> <span class="st">'KABKOT'</span>, <span class="at">all=</span>T)</span>
-<span id="cb17-383"><a href="#cb17-383" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb17-384"><a href="#cb17-384" aria-hidden="true" tabindex="-1"></a><span class="co">#Standarisasi koefisien</span></span>
-<span id="cb17-385"><a href="#cb17-385" aria-hidden="true" tabindex="-1"></a>clustdt<span class="ot">&lt;-</span> <span class="fu">scale</span>(<span class="fu">as.data.frame</span>(gabung_new[,<span class="dv">10</span><span class="sc">:</span><span class="dv">16</span>])[,<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>])</span>
-<span id="cb17-386"><a href="#cb17-386" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb17-387"><a href="#cb17-387" aria-hidden="true" tabindex="-1"></a><span class="co">#K-means clustering dengan 4 cluster</span></span>
-<span id="cb17-388"><a href="#cb17-388" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb17-389"><a href="#cb17-389" aria-hidden="true" tabindex="-1"></a>kcluster <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(clustdt, <span class="at">centers =</span> <span class="dv">4</span>)</span>
-<span id="cb17-390"><a href="#cb17-390" aria-hidden="true" tabindex="-1"></a>gabung_new<span class="sc">$</span>cluster <span class="ot">&lt;-</span> kcluster<span class="sc">$</span>cluster</span>
-<span id="cb17-391"><a href="#cb17-391" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb17-392"><a href="#cb17-392" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot Cluster</span></span>
-<span id="cb17-393"><a href="#cb17-393" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">st_zm</span>(gabung_new)) <span class="sc">+</span></span>
-<span id="cb17-394"><a href="#cb17-394" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(cluster)) <span class="sc">+</span></span>
-<span id="cb17-395"><a href="#cb17-395" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb17-396"><a href="#cb17-396" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="st">"Cluster"</span>, <span class="at">palette =</span> <span class="st">'Set2'</span>)<span class="sc">+</span></span>
-<span id="cb17-397"><a href="#cb17-397" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb17-398"><a href="#cb17-398" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>)</span>
-<span id="cb17-399"><a href="#cb17-399" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-400"><a href="#cb17-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-401"><a href="#cb17-401" aria-hidden="true" tabindex="-1"></a>Nilai rataan dari setiap gerombol dapat diperoleh dengan menggunakan syntax berikut ini:</span>
+<span id="cb17-376"><a href="#cb17-376" aria-hidden="true" tabindex="-1"></a>Interpretasi model RTBNG dapat dilakukan dengan mengelompokkan koefisien model berdasarkan metode clustering tertentu. Dalam ilustrasi ini, dilakukan pengelompokan koefisien menggunakan kmeans. </span>
+<span id="cb17-377"><a href="#cb17-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-380"><a href="#cb17-380" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-381"><a href="#cb17-381" aria-hidden="true" tabindex="-1"></a><span class="co">#Koefisien model</span></span>
+<span id="cb17-382"><a href="#cb17-382" aria-hidden="true" tabindex="-1"></a>hasil <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(gwnbr.gauss.fixed<span class="sc">$</span>SDF)</span>
+<span id="cb17-383"><a href="#cb17-383" aria-hidden="true" tabindex="-1"></a>hasil<span class="sc">$</span>KABKOT <span class="ot">&lt;-</span> jatim<span class="sc">$</span>KABKOT</span>
+<span id="cb17-384"><a href="#cb17-384" aria-hidden="true" tabindex="-1"></a>gabung_new <span class="ot">&lt;-</span> <span class="fu">merge</span>(jatim, hasil, <span class="at">by=</span> <span class="st">'KABKOT'</span>, <span class="at">all=</span>T)</span>
+<span id="cb17-385"><a href="#cb17-385" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb17-386"><a href="#cb17-386" aria-hidden="true" tabindex="-1"></a><span class="co">#Standarisasi koefisien</span></span>
+<span id="cb17-387"><a href="#cb17-387" aria-hidden="true" tabindex="-1"></a>clustdt<span class="ot">&lt;-</span> <span class="fu">scale</span>(<span class="fu">as.data.frame</span>(gabung_new[,<span class="dv">10</span><span class="sc">:</span><span class="dv">16</span>])[,<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>])</span>
+<span id="cb17-388"><a href="#cb17-388" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb17-389"><a href="#cb17-389" aria-hidden="true" tabindex="-1"></a><span class="co">#K-means clustering dengan 4 cluster</span></span>
+<span id="cb17-390"><a href="#cb17-390" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb17-391"><a href="#cb17-391" aria-hidden="true" tabindex="-1"></a>kcluster <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(clustdt, <span class="at">centers =</span> <span class="dv">4</span>)</span>
+<span id="cb17-392"><a href="#cb17-392" aria-hidden="true" tabindex="-1"></a>gabung_new<span class="sc">$</span>cluster <span class="ot">&lt;-</span> kcluster<span class="sc">$</span>cluster</span>
+<span id="cb17-393"><a href="#cb17-393" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb17-394"><a href="#cb17-394" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot Cluster</span></span>
+<span id="cb17-395"><a href="#cb17-395" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">st_zm</span>(gabung_new)) <span class="sc">+</span></span>
+<span id="cb17-396"><a href="#cb17-396" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(cluster)) <span class="sc">+</span></span>
+<span id="cb17-397"><a href="#cb17-397" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb17-398"><a href="#cb17-398" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="st">"Cluster"</span>, <span class="at">palette =</span> <span class="st">'Set2'</span>)<span class="sc">+</span></span>
+<span id="cb17-399"><a href="#cb17-399" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb17-400"><a href="#cb17-400" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>)</span>
+<span id="cb17-401"><a href="#cb17-401" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-402"><a href="#cb17-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-405"><a href="#cb17-405" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-406"><a href="#cb17-406" aria-hidden="true" tabindex="-1"></a><span class="co">#ringkasan pusat gerombol</span></span>
-<span id="cb17-407"><a href="#cb17-407" aria-hidden="true" tabindex="-1"></a>gabungdf <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(gabung_new)</span>
-<span id="cb17-408"><a href="#cb17-408" aria-hidden="true" tabindex="-1"></a>gabungdf <span class="sc">%&gt;%</span> <span class="fu">select</span>(cluster, X.Intercept., X1.y, X2.y, X3.y, </span>
-<span id="cb17-409"><a href="#cb17-409" aria-hidden="true" tabindex="-1"></a>           X4.y, X5.y, X6.y) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span> <span class="fu">summarise_each</span>(<span class="fu">funs</span>(mean))</span>
-<span id="cb17-410"><a href="#cb17-410" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-411"><a href="#cb17-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-412"><a href="#cb17-412" aria-hidden="true" tabindex="-1"></a>Dari output terlihat urutan rataan koefisien X1 dari terkecil sampai terbesar berturut-turut   pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1. Sebaliknya urutan koefisien untuk X2 sampai X6 dari terkecil sampai terbesar berturut-turut  pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1.</span>
+<span id="cb17-403"><a href="#cb17-403" aria-hidden="true" tabindex="-1"></a>Nilai rataan dari setiap gerombol dapat diperoleh dengan menggunakan syntax berikut ini:</span>
+<span id="cb17-404"><a href="#cb17-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-407"><a href="#cb17-407" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-408"><a href="#cb17-408" aria-hidden="true" tabindex="-1"></a><span class="co">#ringkasan pusat gerombol</span></span>
+<span id="cb17-409"><a href="#cb17-409" aria-hidden="true" tabindex="-1"></a>gabungdf <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(gabung_new)</span>
+<span id="cb17-410"><a href="#cb17-410" aria-hidden="true" tabindex="-1"></a>gabungdf <span class="sc">%&gt;%</span> <span class="fu">select</span>(cluster, X.Intercept., X1.y, X2.y, X3.y, </span>
+<span id="cb17-411"><a href="#cb17-411" aria-hidden="true" tabindex="-1"></a>           X4.y, X5.y, X6.y) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span> <span class="fu">summarise_each</span>(<span class="fu">funs</span>(mean))</span>
+<span id="cb17-412"><a href="#cb17-412" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-413"><a href="#cb17-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-414"><a href="#cb17-414" aria-hidden="true" tabindex="-1"></a>Dari output terlihat urutan rataan koefisien X1 dari terkecil sampai terbesar berturut-turut   pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1. Sebaliknya urutan koefisien untuk X2 sampai X6 dari terkecil sampai terbesar berturut-turut  pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

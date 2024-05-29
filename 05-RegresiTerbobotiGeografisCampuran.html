@@ -373,15 +373,25 @@ window.Quarto = {
 y_i = \sum_{j=1}^{k} \alpha_j x_{ij} + \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il} + \epsilon_i
 \tag{5.1}\]</span></span></p>
 <p>dengan <span class="math inline">\(i = 1, \ldots, n; j = 1, 2, \ldots, k; l = 0, 1, 2, \ldots, p\)</span>,</p>
-<p><span class="math inline">\((u_i, v_i)\)</span>: koordinat (longitud, latitud) titik lokasi ke-<span class="math inline">\(i\)</span>,</p>
-<p><span class="math inline">\(\beta_l(u_i, v_i)\)</span>: parameter beragam geografis (lokal) disetiap lokasi-<span class="math inline">\(i\)</span>,</p>
-<p><span class="math inline">\(\alpha_j\)</span>: parameter bernilai konstan (global),</p>
-<p><span class="math inline">\(y_i\)</span>: peubah respon lokasi ke-<span class="math inline">\(i\)</span>,</p>
-<p><span class="math inline">\(x_{ij}\)</span>: peubah penjelas parameter global ke-<span class="math inline">\(j\)</span> pada lokasi ke-<span class="math inline">\(i\)</span>,</p>
-<p><span class="math inline">\(x_{il}\)</span>: peubah penjelas parameter lokal ke-<span class="math inline">\(l\)</span> pada lokasi ke-<span class="math inline">\(i\)</span>,</p>
-<p><span class="math inline">\(p\)</span>: banyaknya peubah lokal,</p>
-<p><span class="math inline">\(k\)</span>: banyaknya peubah global,</p>
-<p><span class="math inline">\(\epsilon_i\)</span>: pengaruh acak ke-<span class="math inline">\(i\)</span> yang diasumsikan identik, saling bebas, dan menyebar <span class="math inline">\(N(0, \sigma^2)\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+  (u_i, v_i) &amp;: \text{koordinat (longitud, latitud) titik lokasi ke-i,}
+  
+  \beta_l(u_i, v_i) &amp;: \text{parameter beragam geografis (lokal) disetiap lokasi-i,}
+  
+  \alpha_j &amp;: \text{parameter bernilai konstan (global),}
+  
+  y_i &amp;: \text{peubah respon lokasi ke-i,}
+  
+  x_{ij} &amp;: \text{peubah penjelas parameter global ke-j pada lokasi ke-i,}
+  
+  x_{il} &amp;: \text{peubah penjelas parameter lokal ke-l pada lokasi ke-i,}
+  
+  p &amp;: \text{banyaknya peubah lokal,}
+  
+  k &amp;: \text{banyaknya peubah global,}
+  
+  \epsilon_i &amp;: \text{pengaruh acak ke-i yang diasumsikan identik, saling bebas, dan menyebar N(0, \sigma^2).}
+\end{align*}\]</span></p>
 <p>Pendugaan parameter lokal pada RTGC menggunakan metode yang sama dengan pendugaan pada RTG, yaitu menggunakan kuadrat terkecil terboboti. Model RTGC dalam bentuk matriks dinyatakan sebagai:</p>
 <p><span id="eq-642"><span class="math display">\[
 y = X_g a + m + \epsilon
@@ -607,7 +617,7 @@ Tabel&nbsp;5.1: Keterangan Peubah
 <span><span class="co">#&gt; [5.83,20.6) [20.6,35.1) [35.1,50.2) [50.2,79.8] </span></span>
 <span><span class="co">#&gt;          28          52          49          22</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Berdasarkan selang nilai yang terbentuk dibuat peta tematik SKR dengan syntax sebagai berikut:</p>
+<p>Berdasarkan selang nilai yang terbentuk dibuat peta tematik SKR (<a href="#fig-plot-skr" class="quarto-xref">Gambar&nbsp;<span>5.1</span></a>) dengan syntax sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Peta SKR</span></span>
 <span><span class="va">cc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'#fbb4b9'</span>, <span class="st">'#f768a1'</span>, <span class="st">'#ae017e'</span>, <span class="st">'#551c53'</span><span class="op">)</span></span>
@@ -622,9 +632,13 @@ Tabel&nbsp;5.1: Keterangan Peubah
 <span>          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">123</span>,<span class="fl">127.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">plot.skr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="05-RegresiTerbobotiGeografisCampuran_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-</figure>
+<div id="fig-plot-skr" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-skr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-RegresiTerbobotiGeografisCampuran_files/figure-html/fig-plot-skr-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot-skr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;5.1: Peta tematik SKR
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -751,7 +765,7 @@ Tabel&nbsp;5.1: Keterangan Peubah
 <span><span class="co">#&gt;    ***********************************************************************</span></span>
 <span><span class="co">#&gt;    *                       Package   GWmodel                             *</span></span>
 <span><span class="co">#&gt;    ***********************************************************************</span></span>
-<span><span class="co">#&gt;    Program starts at: 2024-05-29 13:23:21.141781 </span></span>
+<span><span class="co">#&gt;    Program starts at: 2024-05-29 14:17:44.882054 </span></span>
 <span><span class="co">#&gt;    Call:</span></span>
 <span><span class="co">#&gt;    gwr.basic(formula = y ~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + </span></span>
 <span><span class="co">#&gt;     x9 + x10 + x11, data = SKR, bw = band, kernel = "bisquare", </span></span>
@@ -835,7 +849,7 @@ Tabel&nbsp;5.1: Keterangan Peubah
 <span><span class="co">#&gt;    Adjusted R-square value:  0.976 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;    ***********************************************************************</span></span>
-<span><span class="co">#&gt;    Program stops at: 2024-05-29 13:23:21.183429</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;    Program stops at: 2024-05-29 14:17:44.924911</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Berdasarkan output dapat dilihat RTG mempunyai nilai R-Square yang lebih tinggi dan AIC yang lebih rendah dibandingkan model regresi linear.</p>
 </section><section id="penentuan-peubah-global-dan-peubah-lokal" class="level3"><h3 class="anchored" data-anchor-id="penentuan-peubah-global-dan-peubah-lokal">Penentuan peubah global dan peubah lokal</h3>
@@ -1518,403 +1532,408 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>dengan $i = 1, \ldots, n; j = 1, 2, \ldots, k; l = 0, 1, 2, \ldots, p$,</span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  $(u_i, v_i)$: koordinat (longitud, latitud) titik lokasi ke-$i$,</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  $\beta_l(u_i, v_i)$: parameter beragam geografis (lokal) disetiap lokasi-$i$,</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  (u_i, v_i) &amp;: \text{koordinat (longitud, latitud) titik lokasi ke-i,}</span>
 <span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  $\alpha_j$: parameter bernilai konstan (global),</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  \beta_l(u_i, v_i) &amp;: \text{parameter beragam geografis (lokal) disetiap lokasi-i,}</span>
 <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  $y_i$: peubah respon lokasi ke-$i$,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  \alpha_j &amp;: \text{parameter bernilai konstan (global),}</span>
 <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  $x_{ij}$: peubah penjelas parameter global ke-$j$ pada lokasi ke-$i$,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  y_i &amp;: \text{peubah respon lokasi ke-i,}</span>
 <span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  $x_{il}$: peubah penjelas parameter lokal ke-$l$ pada lokasi ke-$i$,</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  x_{ij} &amp;: \text{peubah penjelas parameter global ke-j pada lokasi ke-i,}</span>
 <span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  $p$: banyaknya peubah lokal,</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  x_{il} &amp;: \text{peubah penjelas parameter lokal ke-l pada lokasi ke-i,}</span>
 <span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  $k$: banyaknya peubah global,</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  p &amp;: \text{banyaknya peubah lokal,}</span>
 <span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>  $\epsilon_i$: pengaruh acak ke-$i$ yang diasumsikan identik, saling bebas, dan menyebar $N(0, \sigma^2)$.</span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter lokal pada RTGC menggunakan metode yang sama dengan pendugaan pada RTG, yaitu menggunakan kuadrat terkecil terboboti. Model RTGC dalam bentuk matriks dinyatakan sebagai:</span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>y = X_g a + m + \epsilon </span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>$$ {#eq-642}</span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>dengan elemen vektor $m = \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il}$. Penduga parameter lokal adalah:</span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>\hat{m} = S_l (y - X_g a)</span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>$$ {#eq-643}</span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>dengan matriks-Hat adalah</span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>S_l = \begin{bmatrix} (X_{l1}' W(u_i, v_i) X_{l1})^{-1} X_{l1}' W(u_i, v_i) <span class="sc">\\</span> (X_{l2}' W(u_i, v_i) X_{l2})^{-1} X_{l2}' W(u_i, v_i) <span class="sc">\\</span> \vdots <span class="sc">\\</span> (X_{ln}' W(u_i, v_i) X_{ln})^{-1} X_{ln}' W(u_i, v_i) \end{bmatrix} </span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>$$ {#eq-644}</span>
-<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>dan $X_{li}$ adalah vektor prediktor yang bersifat lokal pada lokasi-i, serta $W(u_i, v_i) = \text{diag}<span class="co">[</span><span class="ot">w_1(u_i, v_i), w_2(u_i, v_i), \ldots, w_n(u_i, v_i)</span><span class="co">]</span>$ adalah matriks pembobot spasial lokasi-i yang nilai elemen-elemen diagonalnya ditentukan oleh kedekatan lokasi-i dengan lokasi lainnya. Matriks $W(u_i, v_i)$ ditentukan dengan menggunakan fungsi kernel, seperti yang dibahas pada RTG.</span>
-<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>Untuk menentukan parameter global, @eq-643 disubstitusikan ke @eq-642 sehingga diperoleh:</span>
-<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>\hat{a} = (X_g' WX_g)^{-1} X_g' Wy</span>
-<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>$$ {#eq-646}</span>
-<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>Sehingga prediksi untuk $hat{y}$ adalah:</span>
-<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>\hat{y} = X_g (X_g' WX_g)^{-1} X_g' Wy + S_l y</span>
-<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>$$ {#eq-647}</span>
-<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a>Pengujian hipotesis pada RTGC menggunakan uji-t dengan hipotesis yang diuji sebagai berikut:</span>
-<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>  k &amp;: \text{banyaknya peubah global,}</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>  \epsilon_i &amp;: \text{pengaruh acak ke-i yang diasumsikan identik, saling bebas, dan menyebar N(0, \sigma^2).}</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter lokal pada RTGC menggunakan metode yang sama dengan pendugaan pada RTG, yaitu menggunakan kuadrat terkecil terboboti. Model RTGC dalam bentuk matriks dinyatakan sebagai:</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>y = X_g a + m + \epsilon </span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>$$ {#eq-642}</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>dengan elemen vektor $m = \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il}$. Penduga parameter lokal adalah:</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>\hat{m} = S_l (y - X_g a)</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>$$ {#eq-643}</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>dengan matriks-Hat adalah</span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>S_l = \begin{bmatrix} (X_{l1}' W(u_i, v_i) X_{l1})^{-1} X_{l1}' W(u_i, v_i) <span class="sc">\\</span> (X_{l2}' W(u_i, v_i) X_{l2})^{-1} X_{l2}' W(u_i, v_i) <span class="sc">\\</span> \vdots <span class="sc">\\</span> (X_{ln}' W(u_i, v_i) X_{ln})^{-1} X_{ln}' W(u_i, v_i) \end{bmatrix} </span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>$$ {#eq-644}</span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>dan $X_{li}$ adalah vektor prediktor yang bersifat lokal pada lokasi-i, serta $W(u_i, v_i) = \text{diag}<span class="co">[</span><span class="ot">w_1(u_i, v_i), w_2(u_i, v_i), \ldots, w_n(u_i, v_i)</span><span class="co">]</span>$ adalah matriks pembobot spasial lokasi-i yang nilai elemen-elemen diagonalnya ditentukan oleh kedekatan lokasi-i dengan lokasi lainnya. Matriks $W(u_i, v_i)$ ditentukan dengan menggunakan fungsi kernel, seperti yang dibahas pada RTG.</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>Untuk menentukan parameter global, @eq-643 disubstitusikan ke @eq-642 sehingga diperoleh:</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>\hat{a} = (X_g' WX_g)^{-1} X_g' Wy</span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>$$ {#eq-646}</span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>Sehingga prediksi untuk $hat{y}$ adalah:</span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a>\hat{y} = X_g (X_g' WX_g)^{-1} X_g' Wy + S_l y</span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>$$ {#eq-647}</span>
 <span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>H_0: &amp; \ \beta_j(u_i, v_i) = 0 \quad \text{(peubah penjelas tidak berpengaruh nyata)} <span class="sc">\\</span></span>
-<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>H_1: &amp; \ \beta_j(u_i, v_i) \neq 0 \quad \text{(peubah penjelas berpengaruh nyata)}</span>
-<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>Statistik uji untuk menguji hipotesis tersebut adalah:</span>
-<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>t_{\text{hit}} = \frac{\hat{\beta}_j(u_i, v_i)}{S_{\hat{\beta}_j(u_i, v_i)}} \quad \text{untuk } i=1,2,\ldots,n; \ j=0,1,2,\ldots,p</span>
-<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>$$ {#eq-648}</span>
-<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>Dengan galat baku $\hat{\beta}_j(u_i, v_i)$ adalah $S_{\hat{\beta}_j(u_i, v_i)} = \sqrt{(I-S_l)(I-S_l)'\hat{\sigma}^2}$, dan penduga ragam adalah $\hat{\sigma}^2 = \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n-p}$. $H_0$ ditolak jika nilai $t_{\text{hit}} &gt; t_{(\alpha/2;n-p)}$ <span class="co">[</span><span class="ot">@fotheringham2005</span><span class="co">]</span>.</span>
-<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
-<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a>Ilustrasi untuk model RTGC merujuk hasil penelitian @pongoh2015 dan @marah2017. Penentuan peubah penjelas yang bersifat global dan lokal ada dua pendekatan, yaitu dengan menggunakan model liner koregionalisasi (MLK) dan selang kepercayaan. MLK agak rumit tetapi hasilnya lebih detil <span class="co">[</span><span class="ot">@marah2017</span><span class="co">]</span>, sedangkan metode selang kepercayaan dari koefisien RTG sangat sederhana @pongoh2015.</span>
-<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a>Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untuk Program Perlindungan Sosial Juli 2012 pada 159 kecamatan di Provinsi Sulawesi Utara, data diambil dari website TNP2K (Tim Nasional Percepatan Penanggulangan Kemiskinan). Peubah respon (Y) yang digunakan yaitu persentase status kesejahteraan rendah (%) dan prediktor yang digunakan selengkapnya tertera di @tbl-rtgc. Data dan peta ilustrasi RTGC tersedia pada tautan <span class="co">[</span><span class="ot">https://ipb.link/gwr-mixed</span><span class="co">](https://ipb.link/gwr-mixed)</span>. </span>
-<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a>| Kode   | Peubah                                          |</span>
-<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>|--------|-------------------------------------------------|</span>
-<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a>| $X_1$  | Persentase kepala rumah tangga perempuan per kecamatan |</span>
-<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>| $X_2$  | Persentase anak tidak sekolah  |</span>
-<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>| $X_3$  | Persentase penderita cacat |</span>
-<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>| $X_4$  | Persentase penderita penyakit kronis             |</span>
-<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>| $X_5$  | Persentase individu tidak bekerja usia di atas 15 tahun       |</span>
-<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>| $X_6$  | Persentase rumah tangga memiliki bangunan milik sendiri             |</span>
-<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a>| $X_7$  | Persentase rumah tangga menggunakan sumber air minum air terlindung              |</span>
-<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>| $X_8$  | Persentase rumah tangga menggunakan listrik/PLN               |</span>
-<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>| $X_9$  | Persentase rumah tangga menggunakan kompor gas/listrik              |</span>
-<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>| $X_10$  | Persentase rumah tangga menggunakan jamban sendiri              |</span>
-<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>| $X_{11}$  | Persentase rumah tangga menggunakan SPAL              |</span>
-<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>: Keterangan Peubah {#tbl-rtgc .striped .hover}</span>
-<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a>Pengujian hipotesis pada RTGC menggunakan uji-t dengan hipotesis yang diuji sebagai berikut:</span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>H_0: &amp; \ \beta_j(u_i, v_i) = 0 \quad \text{(peubah penjelas tidak berpengaruh nyata)} <span class="sc">\\</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>H_1: &amp; \ \beta_j(u_i, v_i) \neq 0 \quad \text{(peubah penjelas berpengaruh nyata)}</span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>Statistik uji untuk menguji hipotesis tersebut adalah:</span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a>t_{\text{hit}} = \frac{\hat{\beta}_j(u_i, v_i)}{S_{\hat{\beta}_j(u_i, v_i)}} \quad \text{untuk } i=1,2,\ldots,n; \ j=0,1,2,\ldots,p</span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a>$$ {#eq-648}</span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>Dengan galat baku $\hat{\beta}_j(u_i, v_i)$ adalah $S_{\hat{\beta}_j(u_i, v_i)} = \sqrt{(I-S_l)(I-S_l)'\hat{\sigma}^2}$, dan penduga ragam adalah $\hat{\sigma}^2 = \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n-p}$. $H_0$ ditolak jika nilai $t_{\text{hit}} &gt; t_{(\alpha/2;n-p)}$ <span class="co">[</span><span class="ot">@fotheringham2005</span><span class="co">]</span>.</span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a>Ilustrasi untuk model RTGC merujuk hasil penelitian @pongoh2015 dan @marah2017. Penentuan peubah penjelas yang bersifat global dan lokal ada dua pendekatan, yaitu dengan menggunakan model liner koregionalisasi (MLK) dan selang kepercayaan. MLK agak rumit tetapi hasilnya lebih detil <span class="co">[</span><span class="ot">@marah2017</span><span class="co">]</span>, sedangkan metode selang kepercayaan dari koefisien RTG sangat sederhana @pongoh2015.</span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untuk Program Perlindungan Sosial Juli 2012 pada 159 kecamatan di Provinsi Sulawesi Utara, data diambil dari website TNP2K (Tim Nasional Percepatan Penanggulangan Kemiskinan). Peubah respon (Y) yang digunakan yaitu persentase status kesejahteraan rendah (%) dan prediktor yang digunakan selengkapnya tertera di @tbl-rtgc. Data dan peta ilustrasi RTGC tersedia pada tautan <span class="co">[</span><span class="ot">https://ipb.link/gwr-mixed</span><span class="co">](https://ipb.link/gwr-mixed)</span>. </span>
+<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a>| Kode   | Peubah                                          |</span>
+<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a>|--------|-------------------------------------------------|</span>
+<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>| $X_1$  | Persentase kepala rumah tangga perempuan per kecamatan |</span>
+<span id="cb16-98"><a href="#cb16-98" aria-hidden="true" tabindex="-1"></a>| $X_2$  | Persentase anak tidak sekolah  |</span>
+<span id="cb16-99"><a href="#cb16-99" aria-hidden="true" tabindex="-1"></a>| $X_3$  | Persentase penderita cacat |</span>
+<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a>| $X_4$  | Persentase penderita penyakit kronis             |</span>
+<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a>| $X_5$  | Persentase individu tidak bekerja usia di atas 15 tahun       |</span>
+<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a>| $X_6$  | Persentase rumah tangga memiliki bangunan milik sendiri             |</span>
+<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>| $X_7$  | Persentase rumah tangga menggunakan sumber air minum air terlindung              |</span>
+<span id="cb16-104"><a href="#cb16-104" aria-hidden="true" tabindex="-1"></a>| $X_8$  | Persentase rumah tangga menggunakan listrik/PLN               |</span>
+<span id="cb16-105"><a href="#cb16-105" aria-hidden="true" tabindex="-1"></a>| $X_9$  | Persentase rumah tangga menggunakan kompor gas/listrik              |</span>
+<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a>| $X_10$  | Persentase rumah tangga menggunakan jamban sendiri              |</span>
+<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a>| $X_{11}$  | Persentase rumah tangga menggunakan SPAL              |</span>
 <span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metode Analisis</span></span>
+<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a>: Keterangan Peubah {#tbl-rtgc .striped .hover}</span>
 <span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a>Tahapan analisis data adalah sebagai berikut:</span>
-<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Eksplorasi Data:**</span>
-<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Eksplorasi data dengan membentuk peta tematik dari persentase status kesejahteraan rendah (SKR).</span>
-<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Memeriksa multikolinearitas pada prediktor menggunakan Variance Inflation Factor (VIF).</span>
-<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Pengujian Efek Spasial:**</span>
-<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Uji dependensi menggunakan Lagrange Multiplier (LM).</span>
-<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Uji keragaman spasial menggunakan uji Breusch-Pagan (BP).</span>
-<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Pemodelan Regresi Terboboti Geografis (RTG):**</span>
-<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menentukan lebar jendela (bandwidth) optimum menggunakan fungsi kernel bisquare dengan lebar jendela yang bersifat tetap.</span>
-<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menduga penduga parameter RTG.</span>
-<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Penentuan peubah penjelas yang bersifat global dan lokal menggunakan Maximum Likelihood Kernel (MLK).</span>
-<span id="cb16-125"><a href="#cb16-125" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menduga semivariogram dan semivariogram silang.</span>
-<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menghitung proporsi keragaman spasial tiap prediktor.</span>
-<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Pemodelan Regresi Terboboti Geografis Campuran (RTGC):**</span>
-<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Melakukan pendugaan parameter RTGC.</span>
-<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menghitung $AIC_C$.</span>
-<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Membandingkan model RTG dan RTGC berdasarkan nilai $AIC_C$.</span>
-<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tahapan Analisis Data dengan R</span></span>
-<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a><span class="fu">### Package</span></span>
-<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a>Berikut daftar package yang digunakan untuk menduga RTGC:</span>
-<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a><span class="in">```{r cache=FALSE, message=FALSE, warning=FALSE}</span></span>
-<span id="cb16-140"><a href="#cb16-140" aria-hidden="true" tabindex="-1"></a><span class="in">library(car)        # Untuk menghitung nilai VIF</span></span>
-<span id="cb16-141"><a href="#cb16-141" aria-hidden="true" tabindex="-1"></a><span class="in">library(classInt)   # Untuk membuat selang nilai</span></span>
-<span id="cb16-142"><a href="#cb16-142" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)        # Untuk visualisasi data</span></span>
-<span id="cb16-143"><a href="#cb16-143" aria-hidden="true" tabindex="-1"></a><span class="in">library(lmtest)     # Untuk pengujian asumsi</span></span>
-<span id="cb16-144"><a href="#cb16-144" aria-hidden="true" tabindex="-1"></a><span class="in">library(spdep)      # Untuk dependensi spasial</span></span>
-<span id="cb16-145"><a href="#cb16-145" aria-hidden="true" tabindex="-1"></a><span class="in">library(gstat)      # Untuk membuat variogram</span></span>
-<span id="cb16-146"><a href="#cb16-146" aria-hidden="true" tabindex="-1"></a><span class="in">library(sp)     # Untuk membentuk Mixed GWR model</span></span>
-<span id="cb16-147"><a href="#cb16-147" aria-hidden="true" tabindex="-1"></a><span class="in">library(GWmodel)        # Untuk membentuk Mixed GWR model</span></span>
-<span id="cb16-148"><a href="#cb16-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-149"><a href="#cb16-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-150"><a href="#cb16-150" aria-hidden="true" tabindex="-1"></a><span class="fu">### Input Data</span></span>
-<span id="cb16-151"><a href="#cb16-151" aria-hidden="true" tabindex="-1"></a>Input data menggunakan syntax berikut:</span>
+<span id="cb16-111"><a href="#cb16-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-112"><a href="#cb16-112" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metode Analisis</span></span>
+<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a>Tahapan analisis data adalah sebagai berikut:</span>
+<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Eksplorasi Data:**</span>
+<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Eksplorasi data dengan membentuk peta tematik dari persentase status kesejahteraan rendah (SKR).</span>
+<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Memeriksa multikolinearitas pada prediktor menggunakan Variance Inflation Factor (VIF).</span>
+<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-120"><a href="#cb16-120" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Pengujian Efek Spasial:**</span>
+<span id="cb16-121"><a href="#cb16-121" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Uji dependensi menggunakan Lagrange Multiplier (LM).</span>
+<span id="cb16-122"><a href="#cb16-122" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Uji keragaman spasial menggunakan uji Breusch-Pagan (BP).</span>
+<span id="cb16-123"><a href="#cb16-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-124"><a href="#cb16-124" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Pemodelan Regresi Terboboti Geografis (RTG):**</span>
+<span id="cb16-125"><a href="#cb16-125" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menentukan lebar jendela (bandwidth) optimum menggunakan fungsi kernel bisquare dengan lebar jendela yang bersifat tetap.</span>
+<span id="cb16-126"><a href="#cb16-126" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menduga penduga parameter RTG.</span>
+<span id="cb16-127"><a href="#cb16-127" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Penentuan peubah penjelas yang bersifat global dan lokal menggunakan Maximum Likelihood Kernel (MLK).</span>
+<span id="cb16-128"><a href="#cb16-128" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menduga semivariogram dan semivariogram silang.</span>
+<span id="cb16-129"><a href="#cb16-129" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menghitung proporsi keragaman spasial tiap prediktor.</span>
+<span id="cb16-130"><a href="#cb16-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-131"><a href="#cb16-131" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Pemodelan Regresi Terboboti Geografis Campuran (RTGC):**</span>
+<span id="cb16-132"><a href="#cb16-132" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Melakukan pendugaan parameter RTGC.</span>
+<span id="cb16-133"><a href="#cb16-133" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Menghitung $AIC_C$.</span>
+<span id="cb16-134"><a href="#cb16-134" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Membandingkan model RTG dan RTGC berdasarkan nilai $AIC_C$.</span>
+<span id="cb16-135"><a href="#cb16-135" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb16-136"><a href="#cb16-136" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tahapan Analisis Data dengan R</span></span>
+<span id="cb16-137"><a href="#cb16-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-138"><a href="#cb16-138" aria-hidden="true" tabindex="-1"></a><span class="fu">### Package</span></span>
+<span id="cb16-139"><a href="#cb16-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-140"><a href="#cb16-140" aria-hidden="true" tabindex="-1"></a>Berikut daftar package yang digunakan untuk menduga RTGC:</span>
+<span id="cb16-141"><a href="#cb16-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-142"><a href="#cb16-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r cache=FALSE, message=FALSE, warning=FALSE}</span></span>
+<span id="cb16-143"><a href="#cb16-143" aria-hidden="true" tabindex="-1"></a><span class="in">library(car)        # Untuk menghitung nilai VIF</span></span>
+<span id="cb16-144"><a href="#cb16-144" aria-hidden="true" tabindex="-1"></a><span class="in">library(classInt)   # Untuk membuat selang nilai</span></span>
+<span id="cb16-145"><a href="#cb16-145" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)        # Untuk visualisasi data</span></span>
+<span id="cb16-146"><a href="#cb16-146" aria-hidden="true" tabindex="-1"></a><span class="in">library(lmtest)     # Untuk pengujian asumsi</span></span>
+<span id="cb16-147"><a href="#cb16-147" aria-hidden="true" tabindex="-1"></a><span class="in">library(spdep)      # Untuk dependensi spasial</span></span>
+<span id="cb16-148"><a href="#cb16-148" aria-hidden="true" tabindex="-1"></a><span class="in">library(gstat)      # Untuk membuat variogram</span></span>
+<span id="cb16-149"><a href="#cb16-149" aria-hidden="true" tabindex="-1"></a><span class="in">library(sp)     # Untuk membentuk Mixed GWR model</span></span>
+<span id="cb16-150"><a href="#cb16-150" aria-hidden="true" tabindex="-1"></a><span class="in">library(GWmodel)        # Untuk membentuk Mixed GWR model</span></span>
+<span id="cb16-151"><a href="#cb16-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-152"><a href="#cb16-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-155"><a href="#cb16-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-156"><a href="#cb16-156" aria-hidden="true" tabindex="-1"></a><span class="co">#Set Lokasi File</span></span>
-<span id="cb16-157"><a href="#cb16-157" aria-hidden="true" tabindex="-1"></a><span class="co">#Input Data</span></span>
-<span id="cb16-158"><a href="#cb16-158" aria-hidden="true" tabindex="-1"></a>SKR <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/data_gwr_mixed.csv'</span>)</span>
-<span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a><span class="co">#Daerah Singkil tidak diikutkan sementara karena tidak ada dalam peta</span></span>
-<span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a>SKR <span class="ot">&lt;-</span> SKR[SKR<span class="sc">$</span>daerah <span class="sc">!=</span> <span class="st">"SINGKIL"</span>,] </span>
-<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a><span class="co">#Input peta SHP</span></span>
-<span id="cb16-164"><a href="#cb16-164" aria-hidden="true" tabindex="-1"></a>IDN <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/shp/BATAS KECAMATAN DESEMBER 2019 DUKCAPIL.shp"</span>)</span>
+<span id="cb16-153"><a href="#cb16-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### Input Data</span></span>
+<span id="cb16-154"><a href="#cb16-154" aria-hidden="true" tabindex="-1"></a>Input data menggunakan syntax berikut:</span>
+<span id="cb16-155"><a href="#cb16-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-158"><a href="#cb16-158" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-159"><a href="#cb16-159" aria-hidden="true" tabindex="-1"></a><span class="co">#Set Lokasi File</span></span>
+<span id="cb16-160"><a href="#cb16-160" aria-hidden="true" tabindex="-1"></a><span class="co">#Input Data</span></span>
+<span id="cb16-161"><a href="#cb16-161" aria-hidden="true" tabindex="-1"></a>SKR <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/data_gwr_mixed.csv'</span>)</span>
+<span id="cb16-162"><a href="#cb16-162" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb16-163"><a href="#cb16-163" aria-hidden="true" tabindex="-1"></a><span class="co">#Daerah Singkil tidak diikutkan sementara karena tidak ada dalam peta</span></span>
+<span id="cb16-164"><a href="#cb16-164" aria-hidden="true" tabindex="-1"></a>SKR <span class="ot">&lt;-</span> SKR[SKR<span class="sc">$</span>daerah <span class="sc">!=</span> <span class="st">"SINGKIL"</span>,] </span>
 <span id="cb16-165"><a href="#cb16-165" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-166"><a href="#cb16-166" aria-hidden="true" tabindex="-1"></a><span class="co">#Menggabungkan Data ke file SHP</span></span>
-<span id="cb16-167"><a href="#cb16-167" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
-<span id="cb16-168"><a href="#cb16-168" aria-hidden="true" tabindex="-1"></a>gabung <span class="ot">&lt;-</span> <span class="fu">merge</span>(IDN, SKR, <span class="at">by.x =</span> <span class="st">"KECAMATAN"</span>,</span>
-<span id="cb16-169"><a href="#cb16-169" aria-hidden="true" tabindex="-1"></a>                <span class="at">by.y =</span> <span class="st">"daerah"</span>,</span>
-<span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a>                <span class="at">all.x =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a>                <span class="at">all.y =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb16-172"><a href="#cb16-172" aria-hidden="true" tabindex="-1"></a>longlat <span class="ot">=</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(gabung))</span>
-<span id="cb16-173"><a href="#cb16-173" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gabung)</span>
-<span id="cb16-174"><a href="#cb16-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-175"><a href="#cb16-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-176"><a href="#cb16-176" aria-hidden="true" tabindex="-1"></a><span class="fu">### Eksplorasi Data</span></span>
-<span id="cb16-177"><a href="#cb16-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-178"><a href="#cb16-178" aria-hidden="true" tabindex="-1"></a>Pemeriksaan multikolinearitas antar peubah prediktor menggunakan syntax sebagai berikut:</span>
-<span id="cb16-179"><a href="#cb16-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-182"><a href="#cb16-182" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-183"><a href="#cb16-183" aria-hidden="true" tabindex="-1"></a><span class="co"># Pemeriksaan Multikolineritas</span></span>
-<span id="cb16-184"><a href="#cb16-184" aria-hidden="true" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span> x7 <span class="sc">+</span> x8 <span class="sc">+</span> </span>
-<span id="cb16-185"><a href="#cb16-185" aria-hidden="true" tabindex="-1"></a>          x9 <span class="sc">+</span> x10 <span class="sc">+</span> x11, <span class="at">data =</span> gabung)</span>
-<span id="cb16-186"><a href="#cb16-186" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(<span class="fu">vif</span>(model))</span>
-<span id="cb16-187"><a href="#cb16-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-188"><a href="#cb16-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-189"><a href="#cb16-189" aria-hidden="true" tabindex="-1"></a>Berdasarkan output di atas, nilai VIF dari semua prediktor cukup kecil, sehingga disimpulkan tidak terdapat multikolinearitas.</span>
-<span id="cb16-190"><a href="#cb16-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-191"><a href="#cb16-191" aria-hidden="true" tabindex="-1"></a>Untuk membuat peta sebaran SKR terlebih dulu dilakukan pembentukan selang kelas menggunakan metode kmeans. Syntax untuk membuat selang kelas SKR sebagai berikut:</span>
-<span id="cb16-192"><a href="#cb16-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-196"><a href="#cb16-196" aria-hidden="true" tabindex="-1"></a><span class="co">#selang kelas kmeans</span></span>
-<span id="cb16-197"><a href="#cb16-197" aria-hidden="true" tabindex="-1"></a><span class="fu">classIntervals</span>(gabung<span class="sc">$</span>y, <span class="at">n =</span> <span class="dv">4</span>, <span class="at">style =</span> <span class="st">'kmeans'</span>)</span>
-<span id="cb16-198"><a href="#cb16-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-199"><a href="#cb16-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-200"><a href="#cb16-200" aria-hidden="true" tabindex="-1"></a>Berdasarkan selang nilai yang terbentuk dibuat peta tematik SKR dengan syntax sebagai berikut:</span>
-<span id="cb16-201"><a href="#cb16-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-204"><a href="#cb16-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-205"><a href="#cb16-205" aria-hidden="true" tabindex="-1"></a><span class="co">#Peta SKR</span></span>
-<span id="cb16-206"><a href="#cb16-206" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'#fbb4b9'</span>, <span class="st">'#f768a1'</span>, <span class="st">'#ae017e'</span>, <span class="st">'#551c53'</span>)</span>
-<span id="cb16-207"><a href="#cb16-207" aria-hidden="true" tabindex="-1"></a>plot.skr <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gabung) <span class="sc">+</span></span>
-<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">cut</span>(y, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">5.82</span>, <span class="fl">20.60</span>,</span>
-<span id="cb16-209"><a href="#cb16-209" aria-hidden="true" tabindex="-1"></a>          <span class="fl">35.12</span>, <span class="fl">51.38</span>, <span class="fl">79.79</span>))), <span class="at">lwd =</span> <span class="fl">0.1</span>, </span>
-<span id="cb16-210"><a href="#cb16-210" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> <span class="st">'black'</span>) <span class="sc">+</span></span>
-<span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="st">"SKR"</span>, <span class="at">values =</span> cc, </span>
-<span id="cb16-212"><a href="#cb16-212" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"5.83% - 20.60%"</span>, <span class="st">"20.60% - 35.12%"</span>, </span>
-<span id="cb16-213"><a href="#cb16-213" aria-hidden="true" tabindex="-1"></a>          <span class="st">"35.12% - 51.38%"</span>,<span class="st">"50.215% - 79.79%"</span>),                  </span>
-<span id="cb16-214"><a href="#cb16-214" aria-hidden="true" tabindex="-1"></a>          <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T))<span class="sc">+</span></span>
-<span id="cb16-215"><a href="#cb16-215" aria-hidden="true" tabindex="-1"></a>          <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">123</span>,<span class="fl">127.5</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">5</span>)</span>
-<span id="cb16-216"><a href="#cb16-216" aria-hidden="true" tabindex="-1"></a>plot.skr</span>
-<span id="cb16-217"><a href="#cb16-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-218"><a href="#cb16-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-219"><a href="#cb16-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji Efek Spasial</span></span>
-<span id="cb16-220"><a href="#cb16-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-221"><a href="#cb16-221" aria-hidden="true" tabindex="-1"></a>a)  Membentuk matriks pembobot spasial</span>
-<span id="cb16-222"><a href="#cb16-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-223"><a href="#cb16-223" aria-hidden="true" tabindex="-1"></a>Pada ilustrasi ini, matriks pembobot spasial yang digunakan yaitu matriks KNN dengan K = 2 menggunakan syntax sebagai berikut:</span>
-<span id="cb16-224"><a href="#cb16-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-227"><a href="#cb16-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-228"><a href="#cb16-228" aria-hidden="true" tabindex="-1"></a><span class="co">#Matriks bobot 2-NN</span></span>
-<span id="cb16-229"><a href="#cb16-229" aria-hidden="true" tabindex="-1"></a>k<span class="ot">&lt;-</span><span class="fu">knearneigh</span>(longlat, <span class="at">k=</span><span class="dv">2</span>, <span class="at">longlat =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-230"><a href="#cb16-230" aria-hidden="true" tabindex="-1"></a>k1<span class="ot">&lt;-</span><span class="fu">knn2nb</span>(k)</span>
-<span id="cb16-231"><a href="#cb16-231" aria-hidden="true" tabindex="-1"></a>klist<span class="ot">&lt;-</span><span class="fu">nb2listw</span>(k1)</span>
-<span id="cb16-232"><a href="#cb16-232" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(klist)</span>
-<span id="cb16-233"><a href="#cb16-233" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-234"><a href="#cb16-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-235"><a href="#cb16-235" aria-hidden="true" tabindex="-1"></a>b)  Uji Lagrange Multiplier</span>
-<span id="cb16-236"><a href="#cb16-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-237"><a href="#cb16-237" aria-hidden="true" tabindex="-1"></a>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier dengan syntax  sebagai berikut:</span>
-<span id="cb16-238"><a href="#cb16-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-241"><a href="#cb16-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-242"><a href="#cb16-242" aria-hidden="true" tabindex="-1"></a><span class="co"># uji LM dan RLM</span></span>
-<span id="cb16-243"><a href="#cb16-243" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm.LMtests</span>(model, klist, <span class="at">test =</span> <span class="st">"all"</span>))</span>
-<span id="cb16-244"><a href="#cb16-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-245"><a href="#cb16-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-246"><a href="#cb16-246" aria-hidden="true" tabindex="-1"></a>Pada output uji LMerr dan RLMerr memiliki p-value &lt; α=0.05, menunjukkan pada data terdapat dependensi spasial pada galat. </span>
-<span id="cb16-247"><a href="#cb16-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-248"><a href="#cb16-248" aria-hidden="true" tabindex="-1"></a>c)  Uji Breusch-Pagan</span>
-<span id="cb16-249"><a href="#cb16-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-250"><a href="#cb16-250" aria-hidden="true" tabindex="-1"></a>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial dengan syntax sebagai berikut:</span>
-<span id="cb16-251"><a href="#cb16-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-254"><a href="#cb16-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-255"><a href="#cb16-255" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Breusch-Pagan</span></span>
-<span id="cb16-256"><a href="#cb16-256" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model)</span>
-<span id="cb16-257"><a href="#cb16-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-258"><a href="#cb16-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-259"><a href="#cb16-259" aria-hidden="true" tabindex="-1"></a>Pada output uji Breusch-Pagan memiliki p-value &lt; α=0.05, menunjukkan terdapat heterogenitas spasial.</span>
-<span id="cb16-260"><a href="#cb16-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-261"><a href="#cb16-261" aria-hidden="true" tabindex="-1"></a><span class="fu">### Regresi Terboboti Geografis (RTG)</span></span>
-<span id="cb16-262"><a href="#cb16-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-263"><a href="#cb16-263" aria-hidden="true" tabindex="-1"></a>a)  Menentukan lebar jendela</span>
-<span id="cb16-264"><a href="#cb16-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-265"><a href="#cb16-265" aria-hidden="true" tabindex="-1"></a>Pada ilustrasi ini digunakan kernel bisquare dengan syntax sebagai berikut:</span>
-<span id="cb16-266"><a href="#cb16-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-269"><a href="#cb16-269" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-270"><a href="#cb16-270" aria-hidden="true" tabindex="-1"></a><span class="co"># Mengubah data menjadi class SpatialPointsDataFrame</span></span>
-<span id="cb16-271"><a href="#cb16-271" aria-hidden="true" tabindex="-1"></a>SKR <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/data_gwr_mixed.csv'</span>)</span>
-<span id="cb16-272"><a href="#cb16-272" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(SKR)<span class="ot">&lt;-</span>SKR<span class="sc">$</span>daerah</span>
-<span id="cb16-273"><a href="#cb16-273" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(SKR)<span class="ot">&lt;-</span><span class="er">~</span>longitude<span class="sc">+</span>latitude</span>
-<span id="cb16-274"><a href="#cb16-274" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-275"><a href="#cb16-275" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan nilai bandwidth</span></span>
-<span id="cb16-276"><a href="#cb16-276" aria-hidden="true" tabindex="-1"></a>band <span class="ot">&lt;-</span> <span class="fu">bw.gwr</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span> x7 <span class="sc">+</span> </span>
-<span id="cb16-277"><a href="#cb16-277" aria-hidden="true" tabindex="-1"></a>               x8 <span class="sc">+</span> x9 <span class="sc">+</span> x10 <span class="sc">+</span> x11, <span class="at">data =</span> SKR,</span>
-<span id="cb16-278"><a href="#cb16-278" aria-hidden="true" tabindex="-1"></a>               <span class="at">approach=</span><span class="st">"CV"</span>, <span class="at">kernel=</span><span class="st">"bisquare"</span>,</span>
-<span id="cb16-279"><a href="#cb16-279" aria-hidden="true" tabindex="-1"></a>               <span class="at">adaptive=</span>F, <span class="at">p=</span><span class="dv">2</span>, <span class="at">theta=</span><span class="dv">0</span>, <span class="at">longlat=</span>T)</span>
-<span id="cb16-280"><a href="#cb16-280" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-281"><a href="#cb16-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-282"><a href="#cb16-282" aria-hidden="true" tabindex="-1"></a>Pada output terlihat nilai lebar jendela optimum sebesar 284.7643 dengan nilai CV minimum sebesar 1106.087. </span>
-<span id="cb16-283"><a href="#cb16-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-284"><a href="#cb16-284" aria-hidden="true" tabindex="-1"></a>b)  Menduga parameter RTG</span>
-<span id="cb16-285"><a href="#cb16-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-286"><a href="#cb16-286" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTG dengan menggunakan kernel bisquare dapat dilakukan dengan menggunakan syntax berikut:</span>
-<span id="cb16-287"><a href="#cb16-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-290"><a href="#cb16-290" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-291"><a href="#cb16-291" aria-hidden="true" tabindex="-1"></a><span class="co"># Pendugaan parameter RTG dengan fixed bisquare </span></span>
-<span id="cb16-292"><a href="#cb16-292" aria-hidden="true" tabindex="-1"></a>gwrmod <span class="ot">&lt;-</span> <span class="fu">gwr.basic</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span> </span>
-<span id="cb16-293"><a href="#cb16-293" aria-hidden="true" tabindex="-1"></a>          x7 <span class="sc">+</span> x8 <span class="sc">+</span> x9 <span class="sc">+</span> x10 <span class="sc">+</span> x11, <span class="at">data=</span>SKR, <span class="at">bw=</span>band,</span>
-<span id="cb16-294"><a href="#cb16-294" aria-hidden="true" tabindex="-1"></a>          <span class="at">kernel=</span><span class="st">"bisquare"</span>, <span class="at">adaptive=</span>F, <span class="at">p=</span><span class="dv">2</span>, <span class="at">theta=</span><span class="dv">0</span>,</span>
-<span id="cb16-295"><a href="#cb16-295" aria-hidden="true" tabindex="-1"></a>          <span class="at">longlat=</span>T, <span class="at">F123.test=</span>F, <span class="at">cv=</span>T, <span class="at">W.vect=</span><span class="cn">NULL</span>)</span>
-<span id="cb16-296"><a href="#cb16-296" aria-hidden="true" tabindex="-1"></a>gwrmod</span>
-<span id="cb16-297"><a href="#cb16-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-298"><a href="#cb16-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-299"><a href="#cb16-299" aria-hidden="true" tabindex="-1"></a>Berdasarkan output dapat dilihat RTG mempunyai nilai R-Square yang lebih tinggi dan AIC yang lebih rendah dibandingkan model regresi linear.</span>
-<span id="cb16-300"><a href="#cb16-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-301"><a href="#cb16-301" aria-hidden="true" tabindex="-1"></a><span class="fu">### Penentuan peubah global dan peubah lokal</span></span>
-<span id="cb16-302"><a href="#cb16-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-303"><a href="#cb16-303" aria-hidden="true" tabindex="-1"></a>a)  Menduga semivariogram dan semivariogram silang</span>
-<span id="cb16-304"><a href="#cb16-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-305"><a href="#cb16-305" aria-hidden="true" tabindex="-1"></a>Untuk menduga semivariogram dan semivariogram silang, data lebih dulu di standarisasi. Selanjutnya, dibentuk objek geostatistik dari semua peubah yang digunakan. Pada ilustrasi  ini model struktur tersarang yang digunakan yaitu model Nug(0) + Sph(54) + Gau(161) dengan syntax sebagai berikut:</span>
-<span id="cb16-306"><a href="#cb16-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-309"><a href="#cb16-309" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-310"><a href="#cb16-310" aria-hidden="true" tabindex="-1"></a><span class="co">#Variogram dan semivariogram silang</span></span>
-<span id="cb16-311"><a href="#cb16-311" aria-hidden="true" tabindex="-1"></a>SKR <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/data_gwr_mixed.csv'</span>)</span>
-<span id="cb16-312"><a href="#cb16-312" aria-hidden="true" tabindex="-1"></a><span class="co"># Standarisasi data</span></span>
-<span id="cb16-313"><a href="#cb16-313" aria-hidden="true" tabindex="-1"></a>scaleSKR <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">scale</span>(SKR[,<span class="dv">4</span><span class="sc">:</span><span class="dv">15</span>]))</span>
-<span id="cb16-314"><a href="#cb16-314" aria-hidden="true" tabindex="-1"></a>coord <span class="ot">&lt;-</span> SKR[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
-<span id="cb16-315"><a href="#cb16-315" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-316"><a href="#cb16-316" aria-hidden="true" tabindex="-1"></a><span class="co">#Mengubah koordinat ke bentuk longitunde-latitude</span></span>
-<span id="cb16-317"><a href="#cb16-317" aria-hidden="true" tabindex="-1"></a>coord <span class="ot">&lt;-</span> coord<span class="sc">*</span><span class="fl">111.32</span></span>
-<span id="cb16-318"><a href="#cb16-318" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coord)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"lat"</span>,<span class="st">"long"</span>)</span>
-<span id="cb16-319"><a href="#cb16-319" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-320"><a href="#cb16-320" aria-hidden="true" tabindex="-1"></a><span class="co">#Mengubah data menjadi class SpatialPointsDataFrame</span></span>
-<span id="cb16-321"><a href="#cb16-321" aria-hidden="true" tabindex="-1"></a>SKR.sp <span class="ot">&lt;-</span><span class="fu">cbind</span>(scaleSKR,coord)</span>
-<span id="cb16-322"><a href="#cb16-322" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(SKR.sp)<span class="ot">=</span><span class="er">~</span>long<span class="sc">+</span>lat</span>
-<span id="cb16-323"><a href="#cb16-323" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-324"><a href="#cb16-324" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat objek geostatistik dari setiap peubah</span></span>
-<span id="cb16-325"><a href="#cb16-325" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(<span class="cn">NULL</span>, <span class="st">"y"</span>, y<span class="sc">~</span><span class="dv">1</span>, SKR.sp)</span>
-<span id="cb16-326"><a href="#cb16-326" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x1"</span>, x1<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-327"><a href="#cb16-327" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x2"</span>, x2<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-328"><a href="#cb16-328" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x3"</span>, x3<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-329"><a href="#cb16-329" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x4"</span>, x4<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-330"><a href="#cb16-330" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x5"</span>, x5<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-331"><a href="#cb16-331" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x6"</span>, x6<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-332"><a href="#cb16-332" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x7"</span>, x7<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-333"><a href="#cb16-333" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x8"</span>, x8<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-334"><a href="#cb16-334" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x9"</span>, x9<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-335"><a href="#cb16-335" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x10"</span>, x10<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-336"><a href="#cb16-336" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x11"</span>, x11<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
-<span id="cb16-337"><a href="#cb16-337" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-338"><a href="#cb16-338" aria-hidden="true" tabindex="-1"></a><span class="co">#Variogram, semivariogram, dan semivariogram silang</span></span>
-<span id="cb16-339"><a href="#cb16-339" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">variogram</span>(g, <span class="at">cutoff=</span><span class="dv">240</span>, <span class="at">width=</span><span class="dv">25</span>)</span>
-<span id="cb16-340"><a href="#cb16-340" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="at">model =</span> <span class="fu">vgm</span>(<span class="at">psill=</span>.<span class="dv">75</span>, <span class="at">model=</span><span class="st">"Gau"</span>, <span class="at">range=</span></span>
-<span id="cb16-341"><a href="#cb16-341" aria-hidden="true" tabindex="-1"></a>    <span class="dv">161</span>, <span class="at">add.to =</span> <span class="fu">vgm</span>(<span class="at">psill=</span>.<span class="dv">35</span>, <span class="at">model=</span><span class="st">"Sph"</span>, <span class="at">nugget=</span></span>
-<span id="cb16-342"><a href="#cb16-342" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.35</span>, <span class="at">range=</span><span class="dv">54</span>)),<span class="at">fill.all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-343"><a href="#cb16-343" aria-hidden="true" tabindex="-1"></a>g.fit <span class="ot">=</span> <span class="fu">fit.lmc</span>(v, g, <span class="at">fit.lmc =</span> <span class="cn">TRUE</span>, <span class="at">correct.diagonal =</span></span>
-<span id="cb16-344"><a href="#cb16-344" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1.01</span>)</span>
-<span id="cb16-345"><a href="#cb16-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-346"><a href="#cb16-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-347"><a href="#cb16-347" aria-hidden="true" tabindex="-1"></a>b)  Menghitung proporsi keragaman spasial setiap peubah</span>
-<span id="cb16-348"><a href="#cb16-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-349"><a href="#cb16-349" aria-hidden="true" tabindex="-1"></a>Proporsi keragaman spasial ditentukan berdasarkan selang kepercayannya. Rataan proporsi keragaman spasial diperoleh dari rasio antara sill dari nugget terhadap total sill dari tiap peubah. Batas bawah diperoleh dari rasio antara sill dari struktur Sph terhadap total sill dari tiap peubah, dan batas atas diperoleh dari rasio antara sill dari struktur Gau terhadap total sill dari tiap peubah. Berikut syntax yang digunakan:</span>
-<span id="cb16-350"><a href="#cb16-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-353"><a href="#cb16-353" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-354"><a href="#cb16-354" aria-hidden="true" tabindex="-1"></a><span class="co">#Menyiapkan tabel</span></span>
-<span id="cb16-355"><a href="#cb16-355" aria-hidden="true" tabindex="-1"></a>labelpeubah <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'y'</span>, <span class="st">'x1'</span>, <span class="st">'x2'</span>, <span class="st">'x3'</span>, <span class="st">'x4'</span>, <span class="st">'x5'</span>,</span>
-<span id="cb16-356"><a href="#cb16-356" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'x6'</span>, <span class="st">'x7'</span>, <span class="st">'x8'</span>, <span class="st">'x9'</span>, <span class="st">'x10'</span>, <span class="st">'x11'</span>)</span>
-<span id="cb16-357"><a href="#cb16-357" aria-hidden="true" tabindex="-1"></a>tabel5 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">ncol =</span> <span class="dv">4</span>))</span>
-<span id="cb16-358"><a href="#cb16-358" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabel5) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Peubah'</span>, <span class="st">'Nugget'</span>, <span class="st">'Batas bawah'</span>,</span>
-<span id="cb16-359"><a href="#cb16-359" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'Batas atas'</span>)</span>
-<span id="cb16-360"><a href="#cb16-360" aria-hidden="true" tabindex="-1"></a>sumnugget <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb16-361"><a href="#cb16-361" aria-hidden="true" tabindex="-1"></a>sumbawah <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb16-362"><a href="#cb16-362" aria-hidden="true" tabindex="-1"></a>sumatas <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb16-363"><a href="#cb16-363" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-364"><a href="#cb16-364" aria-hidden="true" tabindex="-1"></a><span class="co">#Menghitung proporsi keragaman masing-masing peubah</span></span>
-<span id="cb16-365"><a href="#cb16-365" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>){</span>
-<span id="cb16-366"><a href="#cb16-366" aria-hidden="true" tabindex="-1"></a>  nugget <span class="ot">&lt;-</span> <span class="fu">round</span>((g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">1</span>,<span class="dv">2</span>]<span class="sc">/</span></span>
-<span id="cb16-367"><a href="#cb16-367" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sum</span>(g.fit<span class="sc">$</span>model[[labelpeubah[i]]][,<span class="dv">2</span>]))<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
-<span id="cb16-368"><a href="#cb16-368" aria-hidden="true" tabindex="-1"></a>  btsbawah <span class="ot">&lt;-</span> <span class="fu">round</span>((g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">/</span></span>
-<span id="cb16-369"><a href="#cb16-369" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sum</span>(g.fit<span class="sc">$</span>model[[labelpeubah[i]]][,<span class="dv">2</span>]))<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
-<span id="cb16-370"><a href="#cb16-370" aria-hidden="true" tabindex="-1"></a>  btsatas <span class="ot">&lt;-</span> <span class="fu">round</span>((g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">3</span>,<span class="dv">2</span>]<span class="sc">/</span></span>
-<span id="cb16-371"><a href="#cb16-371" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sum</span>(g.fit<span class="sc">$</span>model[[labelpeubah[i]]][,<span class="dv">2</span>]))<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
-<span id="cb16-372"><a href="#cb16-372" aria-hidden="true" tabindex="-1"></a>  tabel5[i,] <span class="ot">&lt;-</span> <span class="fu">c</span>(labelpeubah[i], nugget, btsbawah,</span>
-<span id="cb16-373"><a href="#cb16-373" aria-hidden="true" tabindex="-1"></a>                  btsatas)</span>
-<span id="cb16-374"><a href="#cb16-374" aria-hidden="true" tabindex="-1"></a>  sumnugget<span class="ot">=</span>sumnugget<span class="sc">+</span>g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb16-375"><a href="#cb16-375" aria-hidden="true" tabindex="-1"></a>  sumbawah<span class="ot">=</span>sumbawah <span class="sc">+</span> g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">2</span>,<span class="dv">2</span>]</span>
-<span id="cb16-376"><a href="#cb16-376" aria-hidden="true" tabindex="-1"></a>  sumatas<span class="ot">=</span>sumatas <span class="sc">+</span> g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">3</span>,<span class="dv">2</span>]</span>
-<span id="cb16-377"><a href="#cb16-377" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-378"><a href="#cb16-378" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-379"><a href="#cb16-379" aria-hidden="true" tabindex="-1"></a><span class="co">#Menghitung proporsi keragaman Y dengan semua X</span></span>
-<span id="cb16-380"><a href="#cb16-380" aria-hidden="true" tabindex="-1"></a>sumofsum <span class="ot">&lt;-</span> sumnugget <span class="sc">+</span> sumbawah <span class="sc">+</span> sumatas</span>
-<span id="cb16-381"><a href="#cb16-381" aria-hidden="true" tabindex="-1"></a>totalnugget <span class="ot">&lt;-</span> <span class="fu">round</span>((sumnugget<span class="sc">/</span>sumofsum)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
-<span id="cb16-382"><a href="#cb16-382" aria-hidden="true" tabindex="-1"></a>totalatas <span class="ot">&lt;-</span> <span class="fu">round</span>((sumbawah<span class="sc">/</span>sumofsum)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
-<span id="cb16-383"><a href="#cb16-383" aria-hidden="true" tabindex="-1"></a>totalbawah <span class="ot">&lt;-</span> <span class="fu">round</span>((sumatas<span class="sc">/</span>sumofsum)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
-<span id="cb16-384"><a href="#cb16-384" aria-hidden="true" tabindex="-1"></a>tabel5[<span class="dv">13</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y dan semua x"</span> , totalnugget, totalatas, totalbawah)</span>
-<span id="cb16-385"><a href="#cb16-385" aria-hidden="true" tabindex="-1"></a>tabel5</span>
-<span id="cb16-386"><a href="#cb16-386" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-387"><a href="#cb16-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-388"><a href="#cb16-388" aria-hidden="true" tabindex="-1"></a>c)  Menghitung pengaruh spasial setiap peubah.</span>
-<span id="cb16-389"><a href="#cb16-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-390"><a href="#cb16-390" aria-hidden="true" tabindex="-1"></a>Proporsi pengaruh spasial yang dapat dimodelkan dapat dihitung berdasarkan nilai proporsi non-nugget (batas atas dan batas bawah). Berikut syntax yang dapat digunakan:</span>
-<span id="cb16-391"><a href="#cb16-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-394"><a href="#cb16-394" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-395"><a href="#cb16-395" aria-hidden="true" tabindex="-1"></a><span class="co">#Pengaruh spasial</span></span>
-<span id="cb16-396"><a href="#cb16-396" aria-hidden="true" tabindex="-1"></a>labtabel7 <span class="ot">&lt;-</span> labelpeubah[<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>]</span>
-<span id="cb16-397"><a href="#cb16-397" aria-hidden="true" tabindex="-1"></a>pspasial <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">as.numeric</span>(tabel5[<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>,<span class="dv">3</span>])) <span class="sc">+</span></span>
-<span id="cb16-398"><a href="#cb16-398" aria-hidden="true" tabindex="-1"></a>            <span class="fu">matrix</span>(<span class="fu">as.numeric</span>(tabel5[<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>,<span class="dv">4</span>]))</span>
-<span id="cb16-399"><a href="#cb16-399" aria-hidden="true" tabindex="-1"></a>tabel7 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(labtabel7, pspasial))</span>
-<span id="cb16-400"><a href="#cb16-400" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabel7) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Peubah"</span>, <span class="st">"Pengaruh Spasial"</span>)</span>
-<span id="cb16-401"><a href="#cb16-401" aria-hidden="true" tabindex="-1"></a>tabel7</span>
-<span id="cb16-402"><a href="#cb16-402" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-403"><a href="#cb16-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-404"><a href="#cb16-404" aria-hidden="true" tabindex="-1"></a>Berdasarkan output diketahui nilai pengaruh spasial, prediktor yang mempunyai pengaruh spasial lebih besar dari 70%, yaitu X2, X6, X8, dan X10, ditetapkan sebagai prediktor yang bersifat lokal. Peubah lainnya selanjutnya akan dijadikan peubah global. </span>
-<span id="cb16-405"><a href="#cb16-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-406"><a href="#cb16-406" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pemodelan Regresi Terboboti Geografis Semi-Parametrik (RTGC)</span></span>
-<span id="cb16-407"><a href="#cb16-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-408"><a href="#cb16-408" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTGC menggunakan syntax sebagai berikut:</span>
-<span id="cb16-409"><a href="#cb16-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-412"><a href="#cb16-412" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-413"><a href="#cb16-413" aria-hidden="true" tabindex="-1"></a><span class="co">#lebar jendela</span></span>
-<span id="cb16-414"><a href="#cb16-414" aria-hidden="true" tabindex="-1"></a>bandmix <span class="ot">&lt;-</span><span class="fu">bw.gwr</span>(y<span class="sc">~</span>x1<span class="sc">+</span>x2<span class="sc">+</span>x3<span class="sc">+</span>x4<span class="sc">+</span>x5<span class="sc">+</span>x6<span class="sc">+</span>x7<span class="sc">+</span>x8<span class="sc">+</span>x9<span class="sc">+</span>x10<span class="sc">+</span>x11,</span>
-<span id="cb16-415"><a href="#cb16-415" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data=</span>SKR.sp, <span class="at">approach=</span><span class="st">"CV"</span>,</span>
-<span id="cb16-416"><a href="#cb16-416" aria-hidden="true" tabindex="-1"></a>                 <span class="at">kernel=</span><span class="st">"bisquare"</span>, <span class="at">adaptive=</span>F, <span class="at">p=</span><span class="dv">2</span>,</span>
-<span id="cb16-417"><a href="#cb16-417" aria-hidden="true" tabindex="-1"></a>                 <span class="at">theta=</span><span class="dv">0</span>, <span class="at">longlat=</span>T)</span>
-<span id="cb16-418"><a href="#cb16-418" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb16-419"><a href="#cb16-419" aria-hidden="true" tabindex="-1"></a><span class="co">#RTGC</span></span>
-<span id="cb16-420"><a href="#cb16-420" aria-hidden="true" tabindex="-1"></a>gwrmixmod <span class="ot">&lt;-</span> <span class="fu">gwr.mixed</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span></span>
-<span id="cb16-421"><a href="#cb16-421" aria-hidden="true" tabindex="-1"></a>             x7 <span class="sc">+</span> x8 <span class="sc">+</span> x9 <span class="sc">+</span> x10 <span class="sc">+</span> x11, <span class="at">data =</span> SKR.sp,</span>
-<span id="cb16-422"><a href="#cb16-422" aria-hidden="true" tabindex="-1"></a>             <span class="at">fixed.vars =</span> <span class="fu">c</span>(<span class="st">"x1"</span>, <span class="st">"x3"</span>, <span class="st">"x4"</span>, <span class="st">"x5"</span>,</span>
-<span id="cb16-423"><a href="#cb16-423" aria-hidden="true" tabindex="-1"></a>             <span class="st">"x7"</span>, <span class="st">"x9"</span>, <span class="st">"x11"</span>), <span class="at">intercept.fixed=</span>F,</span>
-<span id="cb16-424"><a href="#cb16-424" aria-hidden="true" tabindex="-1"></a>             <span class="at">bw =</span> bandmix, <span class="at">diagnostic=</span>T,</span>
-<span id="cb16-425"><a href="#cb16-425" aria-hidden="true" tabindex="-1"></a>             <span class="at">kernel=</span><span class="st">"bisquare"</span>,<span class="at">adaptive=</span>F, <span class="at">p=</span><span class="dv">2</span>, <span class="at">theta=</span><span class="dv">0</span>,</span>
-<span id="cb16-426"><a href="#cb16-426" aria-hidden="true" tabindex="-1"></a>             <span class="at">longlat=</span>T)</span>
-<span id="cb16-427"><a href="#cb16-427" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-428"><a href="#cb16-428" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-429"><a href="#cb16-429" aria-hidden="true" tabindex="-1"></a><span class="fu">### Membandingkan model RTG dan RTGC berdasarkan nilai $AIC_C$</span></span>
-<span id="cb16-430"><a href="#cb16-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-431"><a href="#cb16-431" aria-hidden="true" tabindex="-1"></a>Untuk mengetahui nilai $AIC_C$ dari model RTG dan RTGC menggunakan syntax sebagai berikut:</span>
-<span id="cb16-432"><a href="#cb16-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-435"><a href="#cb16-435" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-436"><a href="#cb16-436" aria-hidden="true" tabindex="-1"></a><span class="co">#AICc RTG dan RTGC</span></span>
-<span id="cb16-437"><a href="#cb16-437" aria-hidden="true" tabindex="-1"></a>tabelbanding <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">"RTG"</span>, <span class="st">"RTGC"</span>,</span>
-<span id="cb16-438"><a href="#cb16-438" aria-hidden="true" tabindex="-1"></a>                <span class="fu">round</span>(gwrmod<span class="sc">$</span>GW.diagnostic<span class="sc">$</span>AICc,<span class="dv">2</span>),</span>
-<span id="cb16-439"><a href="#cb16-439" aria-hidden="true" tabindex="-1"></a>                <span class="fu">round</span>(gwrmixmod<span class="sc">$</span>aic,<span class="dv">2</span>)), <span class="at">ncol =</span> <span class="dv">2</span>))</span>
-<span id="cb16-440"><a href="#cb16-440" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabelbanding) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Model"</span>, <span class="st">"AICc"</span>)</span>
-<span id="cb16-441"><a href="#cb16-441" aria-hidden="true" tabindex="-1"></a>tabelbanding</span>
-<span id="cb16-442"><a href="#cb16-442" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-443"><a href="#cb16-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-444"><a href="#cb16-444" aria-hidden="true" tabindex="-1"></a>Nilai $AIC_C$ dari model RTGC lebih kecil dibandingkan RTG, sehingga dapat disimpulkan model terbaik untuk kasus ini adalah RTGC.</span>
+<span id="cb16-166"><a href="#cb16-166" aria-hidden="true" tabindex="-1"></a><span class="co">#Input peta SHP</span></span>
+<span id="cb16-167"><a href="#cb16-167" aria-hidden="true" tabindex="-1"></a>IDN <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/shp/BATAS KECAMATAN DESEMBER 2019 DUKCAPIL.shp"</span>)</span>
+<span id="cb16-168"><a href="#cb16-168" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb16-169"><a href="#cb16-169" aria-hidden="true" tabindex="-1"></a><span class="co">#Menggabungkan Data ke file SHP</span></span>
+<span id="cb16-170"><a href="#cb16-170" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb16-171"><a href="#cb16-171" aria-hidden="true" tabindex="-1"></a>gabung <span class="ot">&lt;-</span> <span class="fu">merge</span>(IDN, SKR, <span class="at">by.x =</span> <span class="st">"KECAMATAN"</span>,</span>
+<span id="cb16-172"><a href="#cb16-172" aria-hidden="true" tabindex="-1"></a>                <span class="at">by.y =</span> <span class="st">"daerah"</span>,</span>
+<span id="cb16-173"><a href="#cb16-173" aria-hidden="true" tabindex="-1"></a>                <span class="at">all.x =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb16-174"><a href="#cb16-174" aria-hidden="true" tabindex="-1"></a>                <span class="at">all.y =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb16-175"><a href="#cb16-175" aria-hidden="true" tabindex="-1"></a>longlat <span class="ot">=</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(gabung))</span>
+<span id="cb16-176"><a href="#cb16-176" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gabung)</span>
+<span id="cb16-177"><a href="#cb16-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-178"><a href="#cb16-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-179"><a href="#cb16-179" aria-hidden="true" tabindex="-1"></a><span class="fu">### Eksplorasi Data</span></span>
+<span id="cb16-180"><a href="#cb16-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-181"><a href="#cb16-181" aria-hidden="true" tabindex="-1"></a>Pemeriksaan multikolinearitas antar peubah prediktor menggunakan syntax sebagai berikut:</span>
+<span id="cb16-182"><a href="#cb16-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-185"><a href="#cb16-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-186"><a href="#cb16-186" aria-hidden="true" tabindex="-1"></a><span class="co"># Pemeriksaan Multikolineritas</span></span>
+<span id="cb16-187"><a href="#cb16-187" aria-hidden="true" tabindex="-1"></a>model<span class="ot">&lt;-</span><span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span> x7 <span class="sc">+</span> x8 <span class="sc">+</span> </span>
+<span id="cb16-188"><a href="#cb16-188" aria-hidden="true" tabindex="-1"></a>          x9 <span class="sc">+</span> x10 <span class="sc">+</span> x11, <span class="at">data =</span> gabung)</span>
+<span id="cb16-189"><a href="#cb16-189" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(<span class="fu">vif</span>(model))</span>
+<span id="cb16-190"><a href="#cb16-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-191"><a href="#cb16-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-192"><a href="#cb16-192" aria-hidden="true" tabindex="-1"></a>Berdasarkan output di atas, nilai VIF dari semua prediktor cukup kecil, sehingga disimpulkan tidak terdapat multikolinearitas.</span>
+<span id="cb16-193"><a href="#cb16-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-194"><a href="#cb16-194" aria-hidden="true" tabindex="-1"></a>Untuk membuat peta sebaran SKR terlebih dulu dilakukan pembentukan selang kelas menggunakan metode kmeans. Syntax untuk membuat selang kelas SKR sebagai berikut:</span>
+<span id="cb16-195"><a href="#cb16-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-198"><a href="#cb16-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-199"><a href="#cb16-199" aria-hidden="true" tabindex="-1"></a><span class="co">#selang kelas kmeans</span></span>
+<span id="cb16-200"><a href="#cb16-200" aria-hidden="true" tabindex="-1"></a><span class="fu">classIntervals</span>(gabung<span class="sc">$</span>y, <span class="at">n =</span> <span class="dv">4</span>, <span class="at">style =</span> <span class="st">'kmeans'</span>)</span>
+<span id="cb16-201"><a href="#cb16-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-202"><a href="#cb16-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-203"><a href="#cb16-203" aria-hidden="true" tabindex="-1"></a>Berdasarkan selang nilai yang terbentuk dibuat peta tematik SKR (@fig-plot-skr) dengan syntax sebagai berikut:</span>
+<span id="cb16-204"><a href="#cb16-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-207"><a href="#cb16-207" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plot-skr</span></span>
+<span id="cb16-209"><a href="#cb16-209" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Peta tematik SKR"</span></span>
+<span id="cb16-210"><a href="#cb16-210" aria-hidden="true" tabindex="-1"></a><span class="co">#Peta SKR</span></span>
+<span id="cb16-211"><a href="#cb16-211" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'#fbb4b9'</span>, <span class="st">'#f768a1'</span>, <span class="st">'#ae017e'</span>, <span class="st">'#551c53'</span>)</span>
+<span id="cb16-212"><a href="#cb16-212" aria-hidden="true" tabindex="-1"></a>plot.skr <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gabung) <span class="sc">+</span></span>
+<span id="cb16-213"><a href="#cb16-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">cut</span>(y, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">5.82</span>, <span class="fl">20.60</span>,</span>
+<span id="cb16-214"><a href="#cb16-214" aria-hidden="true" tabindex="-1"></a>          <span class="fl">35.12</span>, <span class="fl">51.38</span>, <span class="fl">79.79</span>))), <span class="at">lwd =</span> <span class="fl">0.1</span>, </span>
+<span id="cb16-215"><a href="#cb16-215" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> <span class="st">'black'</span>) <span class="sc">+</span></span>
+<span id="cb16-216"><a href="#cb16-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="st">"SKR"</span>, <span class="at">values =</span> cc, </span>
+<span id="cb16-217"><a href="#cb16-217" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"5.83% - 20.60%"</span>, <span class="st">"20.60% - 35.12%"</span>, </span>
+<span id="cb16-218"><a href="#cb16-218" aria-hidden="true" tabindex="-1"></a>          <span class="st">"35.12% - 51.38%"</span>,<span class="st">"50.215% - 79.79%"</span>),                  </span>
+<span id="cb16-219"><a href="#cb16-219" aria-hidden="true" tabindex="-1"></a>          <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> T))<span class="sc">+</span></span>
+<span id="cb16-220"><a href="#cb16-220" aria-hidden="true" tabindex="-1"></a>          <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">123</span>,<span class="fl">127.5</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">5</span>)</span>
+<span id="cb16-221"><a href="#cb16-221" aria-hidden="true" tabindex="-1"></a>plot.skr</span>
+<span id="cb16-222"><a href="#cb16-222" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-223"><a href="#cb16-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-224"><a href="#cb16-224" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji Efek Spasial</span></span>
+<span id="cb16-225"><a href="#cb16-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-226"><a href="#cb16-226" aria-hidden="true" tabindex="-1"></a>a)  Membentuk matriks pembobot spasial</span>
+<span id="cb16-227"><a href="#cb16-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-228"><a href="#cb16-228" aria-hidden="true" tabindex="-1"></a>Pada ilustrasi ini, matriks pembobot spasial yang digunakan yaitu matriks KNN dengan K = 2 menggunakan syntax sebagai berikut:</span>
+<span id="cb16-229"><a href="#cb16-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-232"><a href="#cb16-232" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-233"><a href="#cb16-233" aria-hidden="true" tabindex="-1"></a><span class="co">#Matriks bobot 2-NN</span></span>
+<span id="cb16-234"><a href="#cb16-234" aria-hidden="true" tabindex="-1"></a>k<span class="ot">&lt;-</span><span class="fu">knearneigh</span>(longlat, <span class="at">k=</span><span class="dv">2</span>, <span class="at">longlat =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-235"><a href="#cb16-235" aria-hidden="true" tabindex="-1"></a>k1<span class="ot">&lt;-</span><span class="fu">knn2nb</span>(k)</span>
+<span id="cb16-236"><a href="#cb16-236" aria-hidden="true" tabindex="-1"></a>klist<span class="ot">&lt;-</span><span class="fu">nb2listw</span>(k1)</span>
+<span id="cb16-237"><a href="#cb16-237" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(klist)</span>
+<span id="cb16-238"><a href="#cb16-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-239"><a href="#cb16-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-240"><a href="#cb16-240" aria-hidden="true" tabindex="-1"></a>b)  Uji Lagrange Multiplier</span>
+<span id="cb16-241"><a href="#cb16-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-242"><a href="#cb16-242" aria-hidden="true" tabindex="-1"></a>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier dengan syntax  sebagai berikut:</span>
+<span id="cb16-243"><a href="#cb16-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-246"><a href="#cb16-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-247"><a href="#cb16-247" aria-hidden="true" tabindex="-1"></a><span class="co"># uji LM dan RLM</span></span>
+<span id="cb16-248"><a href="#cb16-248" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm.LMtests</span>(model, klist, <span class="at">test =</span> <span class="st">"all"</span>))</span>
+<span id="cb16-249"><a href="#cb16-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-250"><a href="#cb16-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-251"><a href="#cb16-251" aria-hidden="true" tabindex="-1"></a>Pada output uji LMerr dan RLMerr memiliki p-value &lt; α=0.05, menunjukkan pada data terdapat dependensi spasial pada galat. </span>
+<span id="cb16-252"><a href="#cb16-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-253"><a href="#cb16-253" aria-hidden="true" tabindex="-1"></a>c)  Uji Breusch-Pagan</span>
+<span id="cb16-254"><a href="#cb16-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-255"><a href="#cb16-255" aria-hidden="true" tabindex="-1"></a>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial dengan syntax sebagai berikut:</span>
+<span id="cb16-256"><a href="#cb16-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-259"><a href="#cb16-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-260"><a href="#cb16-260" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Breusch-Pagan</span></span>
+<span id="cb16-261"><a href="#cb16-261" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model)</span>
+<span id="cb16-262"><a href="#cb16-262" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-263"><a href="#cb16-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-264"><a href="#cb16-264" aria-hidden="true" tabindex="-1"></a>Pada output uji Breusch-Pagan memiliki p-value &lt; α=0.05, menunjukkan terdapat heterogenitas spasial.</span>
+<span id="cb16-265"><a href="#cb16-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-266"><a href="#cb16-266" aria-hidden="true" tabindex="-1"></a><span class="fu">### Regresi Terboboti Geografis (RTG)</span></span>
+<span id="cb16-267"><a href="#cb16-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-268"><a href="#cb16-268" aria-hidden="true" tabindex="-1"></a>a)  Menentukan lebar jendela</span>
+<span id="cb16-269"><a href="#cb16-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-270"><a href="#cb16-270" aria-hidden="true" tabindex="-1"></a>Pada ilustrasi ini digunakan kernel bisquare dengan syntax sebagai berikut:</span>
+<span id="cb16-271"><a href="#cb16-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-274"><a href="#cb16-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-275"><a href="#cb16-275" aria-hidden="true" tabindex="-1"></a><span class="co"># Mengubah data menjadi class SpatialPointsDataFrame</span></span>
+<span id="cb16-276"><a href="#cb16-276" aria-hidden="true" tabindex="-1"></a>SKR <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/data_gwr_mixed.csv'</span>)</span>
+<span id="cb16-277"><a href="#cb16-277" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(SKR)<span class="ot">&lt;-</span>SKR<span class="sc">$</span>daerah</span>
+<span id="cb16-278"><a href="#cb16-278" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(SKR)<span class="ot">&lt;-</span><span class="er">~</span>longitude<span class="sc">+</span>latitude</span>
+<span id="cb16-279"><a href="#cb16-279" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb16-280"><a href="#cb16-280" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan nilai bandwidth</span></span>
+<span id="cb16-281"><a href="#cb16-281" aria-hidden="true" tabindex="-1"></a>band <span class="ot">&lt;-</span> <span class="fu">bw.gwr</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span> x7 <span class="sc">+</span> </span>
+<span id="cb16-282"><a href="#cb16-282" aria-hidden="true" tabindex="-1"></a>               x8 <span class="sc">+</span> x9 <span class="sc">+</span> x10 <span class="sc">+</span> x11, <span class="at">data =</span> SKR,</span>
+<span id="cb16-283"><a href="#cb16-283" aria-hidden="true" tabindex="-1"></a>               <span class="at">approach=</span><span class="st">"CV"</span>, <span class="at">kernel=</span><span class="st">"bisquare"</span>,</span>
+<span id="cb16-284"><a href="#cb16-284" aria-hidden="true" tabindex="-1"></a>               <span class="at">adaptive=</span>F, <span class="at">p=</span><span class="dv">2</span>, <span class="at">theta=</span><span class="dv">0</span>, <span class="at">longlat=</span>T)</span>
+<span id="cb16-285"><a href="#cb16-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-286"><a href="#cb16-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-287"><a href="#cb16-287" aria-hidden="true" tabindex="-1"></a>Pada output terlihat nilai lebar jendela optimum sebesar 284.7643 dengan nilai CV minimum sebesar 1106.087. </span>
+<span id="cb16-288"><a href="#cb16-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-289"><a href="#cb16-289" aria-hidden="true" tabindex="-1"></a>b)  Menduga parameter RTG</span>
+<span id="cb16-290"><a href="#cb16-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-291"><a href="#cb16-291" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTG dengan menggunakan kernel bisquare dapat dilakukan dengan menggunakan syntax berikut:</span>
+<span id="cb16-292"><a href="#cb16-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-295"><a href="#cb16-295" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-296"><a href="#cb16-296" aria-hidden="true" tabindex="-1"></a><span class="co"># Pendugaan parameter RTG dengan fixed bisquare </span></span>
+<span id="cb16-297"><a href="#cb16-297" aria-hidden="true" tabindex="-1"></a>gwrmod <span class="ot">&lt;-</span> <span class="fu">gwr.basic</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span> </span>
+<span id="cb16-298"><a href="#cb16-298" aria-hidden="true" tabindex="-1"></a>          x7 <span class="sc">+</span> x8 <span class="sc">+</span> x9 <span class="sc">+</span> x10 <span class="sc">+</span> x11, <span class="at">data=</span>SKR, <span class="at">bw=</span>band,</span>
+<span id="cb16-299"><a href="#cb16-299" aria-hidden="true" tabindex="-1"></a>          <span class="at">kernel=</span><span class="st">"bisquare"</span>, <span class="at">adaptive=</span>F, <span class="at">p=</span><span class="dv">2</span>, <span class="at">theta=</span><span class="dv">0</span>,</span>
+<span id="cb16-300"><a href="#cb16-300" aria-hidden="true" tabindex="-1"></a>          <span class="at">longlat=</span>T, <span class="at">F123.test=</span>F, <span class="at">cv=</span>T, <span class="at">W.vect=</span><span class="cn">NULL</span>)</span>
+<span id="cb16-301"><a href="#cb16-301" aria-hidden="true" tabindex="-1"></a>gwrmod</span>
+<span id="cb16-302"><a href="#cb16-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-303"><a href="#cb16-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-304"><a href="#cb16-304" aria-hidden="true" tabindex="-1"></a>Berdasarkan output dapat dilihat RTG mempunyai nilai R-Square yang lebih tinggi dan AIC yang lebih rendah dibandingkan model regresi linear.</span>
+<span id="cb16-305"><a href="#cb16-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-306"><a href="#cb16-306" aria-hidden="true" tabindex="-1"></a><span class="fu">### Penentuan peubah global dan peubah lokal</span></span>
+<span id="cb16-307"><a href="#cb16-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-308"><a href="#cb16-308" aria-hidden="true" tabindex="-1"></a>a)  Menduga semivariogram dan semivariogram silang</span>
+<span id="cb16-309"><a href="#cb16-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-310"><a href="#cb16-310" aria-hidden="true" tabindex="-1"></a>Untuk menduga semivariogram dan semivariogram silang, data lebih dulu di standarisasi. Selanjutnya, dibentuk objek geostatistik dari semua peubah yang digunakan. Pada ilustrasi  ini model struktur tersarang yang digunakan yaitu model Nug(0) + Sph(54) + Gau(161) dengan syntax sebagai berikut:</span>
+<span id="cb16-311"><a href="#cb16-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-314"><a href="#cb16-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-315"><a href="#cb16-315" aria-hidden="true" tabindex="-1"></a><span class="co">#Variogram dan semivariogram silang</span></span>
+<span id="cb16-316"><a href="#cb16-316" aria-hidden="true" tabindex="-1"></a>SKR <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/data_gwr_mixed.csv'</span>)</span>
+<span id="cb16-317"><a href="#cb16-317" aria-hidden="true" tabindex="-1"></a><span class="co"># Standarisasi data</span></span>
+<span id="cb16-318"><a href="#cb16-318" aria-hidden="true" tabindex="-1"></a>scaleSKR <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">scale</span>(SKR[,<span class="dv">4</span><span class="sc">:</span><span class="dv">15</span>]))</span>
+<span id="cb16-319"><a href="#cb16-319" aria-hidden="true" tabindex="-1"></a>coord <span class="ot">&lt;-</span> SKR[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb16-320"><a href="#cb16-320" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb16-321"><a href="#cb16-321" aria-hidden="true" tabindex="-1"></a><span class="co">#Mengubah koordinat ke bentuk longitunde-latitude</span></span>
+<span id="cb16-322"><a href="#cb16-322" aria-hidden="true" tabindex="-1"></a>coord <span class="ot">&lt;-</span> coord<span class="sc">*</span><span class="fl">111.32</span></span>
+<span id="cb16-323"><a href="#cb16-323" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coord)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"lat"</span>,<span class="st">"long"</span>)</span>
+<span id="cb16-324"><a href="#cb16-324" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb16-325"><a href="#cb16-325" aria-hidden="true" tabindex="-1"></a><span class="co">#Mengubah data menjadi class SpatialPointsDataFrame</span></span>
+<span id="cb16-326"><a href="#cb16-326" aria-hidden="true" tabindex="-1"></a>SKR.sp <span class="ot">&lt;-</span><span class="fu">cbind</span>(scaleSKR,coord)</span>
+<span id="cb16-327"><a href="#cb16-327" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(SKR.sp)<span class="ot">=</span><span class="er">~</span>long<span class="sc">+</span>lat</span>
+<span id="cb16-328"><a href="#cb16-328" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb16-329"><a href="#cb16-329" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat objek geostatistik dari setiap peubah</span></span>
+<span id="cb16-330"><a href="#cb16-330" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(<span class="cn">NULL</span>, <span class="st">"y"</span>, y<span class="sc">~</span><span class="dv">1</span>, SKR.sp)</span>
+<span id="cb16-331"><a href="#cb16-331" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x1"</span>, x1<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-332"><a href="#cb16-332" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x2"</span>, x2<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-333"><a href="#cb16-333" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x3"</span>, x3<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-334"><a href="#cb16-334" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x4"</span>, x4<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-335"><a href="#cb16-335" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x5"</span>, x5<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-336"><a href="#cb16-336" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x6"</span>, x6<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-337"><a href="#cb16-337" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x7"</span>, x7<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-338"><a href="#cb16-338" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x8"</span>, x8<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-339"><a href="#cb16-339" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x9"</span>, x9<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-340"><a href="#cb16-340" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x10"</span>, x10<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-341"><a href="#cb16-341" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="st">"x11"</span>, x11<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>SKR.sp)</span>
+<span id="cb16-342"><a href="#cb16-342" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb16-343"><a href="#cb16-343" aria-hidden="true" tabindex="-1"></a><span class="co">#Variogram, semivariogram, dan semivariogram silang</span></span>
+<span id="cb16-344"><a href="#cb16-344" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">variogram</span>(g, <span class="at">cutoff=</span><span class="dv">240</span>, <span class="at">width=</span><span class="dv">25</span>)</span>
+<span id="cb16-345"><a href="#cb16-345" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">gstat</span>(g, <span class="at">model =</span> <span class="fu">vgm</span>(<span class="at">psill=</span>.<span class="dv">75</span>, <span class="at">model=</span><span class="st">"Gau"</span>, <span class="at">range=</span></span>
+<span id="cb16-346"><a href="#cb16-346" aria-hidden="true" tabindex="-1"></a>    <span class="dv">161</span>, <span class="at">add.to =</span> <span class="fu">vgm</span>(<span class="at">psill=</span>.<span class="dv">35</span>, <span class="at">model=</span><span class="st">"Sph"</span>, <span class="at">nugget=</span></span>
+<span id="cb16-347"><a href="#cb16-347" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.35</span>, <span class="at">range=</span><span class="dv">54</span>)),<span class="at">fill.all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-348"><a href="#cb16-348" aria-hidden="true" tabindex="-1"></a>g.fit <span class="ot">=</span> <span class="fu">fit.lmc</span>(v, g, <span class="at">fit.lmc =</span> <span class="cn">TRUE</span>, <span class="at">correct.diagonal =</span></span>
+<span id="cb16-349"><a href="#cb16-349" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1.01</span>)</span>
+<span id="cb16-350"><a href="#cb16-350" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-351"><a href="#cb16-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-352"><a href="#cb16-352" aria-hidden="true" tabindex="-1"></a>b)  Menghitung proporsi keragaman spasial setiap peubah</span>
+<span id="cb16-353"><a href="#cb16-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-354"><a href="#cb16-354" aria-hidden="true" tabindex="-1"></a>Proporsi keragaman spasial ditentukan berdasarkan selang kepercayannya. Rataan proporsi keragaman spasial diperoleh dari rasio antara sill dari nugget terhadap total sill dari tiap peubah. Batas bawah diperoleh dari rasio antara sill dari struktur Sph terhadap total sill dari tiap peubah, dan batas atas diperoleh dari rasio antara sill dari struktur Gau terhadap total sill dari tiap peubah. Berikut syntax yang digunakan:</span>
+<span id="cb16-355"><a href="#cb16-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-358"><a href="#cb16-358" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-359"><a href="#cb16-359" aria-hidden="true" tabindex="-1"></a><span class="co">#Menyiapkan tabel</span></span>
+<span id="cb16-360"><a href="#cb16-360" aria-hidden="true" tabindex="-1"></a>labelpeubah <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'y'</span>, <span class="st">'x1'</span>, <span class="st">'x2'</span>, <span class="st">'x3'</span>, <span class="st">'x4'</span>, <span class="st">'x5'</span>,</span>
+<span id="cb16-361"><a href="#cb16-361" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'x6'</span>, <span class="st">'x7'</span>, <span class="st">'x8'</span>, <span class="st">'x9'</span>, <span class="st">'x10'</span>, <span class="st">'x11'</span>)</span>
+<span id="cb16-362"><a href="#cb16-362" aria-hidden="true" tabindex="-1"></a>tabel5 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">ncol =</span> <span class="dv">4</span>))</span>
+<span id="cb16-363"><a href="#cb16-363" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabel5) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Peubah'</span>, <span class="st">'Nugget'</span>, <span class="st">'Batas bawah'</span>,</span>
+<span id="cb16-364"><a href="#cb16-364" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'Batas atas'</span>)</span>
+<span id="cb16-365"><a href="#cb16-365" aria-hidden="true" tabindex="-1"></a>sumnugget <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-366"><a href="#cb16-366" aria-hidden="true" tabindex="-1"></a>sumbawah <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-367"><a href="#cb16-367" aria-hidden="true" tabindex="-1"></a>sumatas <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-368"><a href="#cb16-368" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb16-369"><a href="#cb16-369" aria-hidden="true" tabindex="-1"></a><span class="co">#Menghitung proporsi keragaman masing-masing peubah</span></span>
+<span id="cb16-370"><a href="#cb16-370" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>){</span>
+<span id="cb16-371"><a href="#cb16-371" aria-hidden="true" tabindex="-1"></a>  nugget <span class="ot">&lt;-</span> <span class="fu">round</span>((g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">1</span>,<span class="dv">2</span>]<span class="sc">/</span></span>
+<span id="cb16-372"><a href="#cb16-372" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sum</span>(g.fit<span class="sc">$</span>model[[labelpeubah[i]]][,<span class="dv">2</span>]))<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
+<span id="cb16-373"><a href="#cb16-373" aria-hidden="true" tabindex="-1"></a>  btsbawah <span class="ot">&lt;-</span> <span class="fu">round</span>((g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">/</span></span>
+<span id="cb16-374"><a href="#cb16-374" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sum</span>(g.fit<span class="sc">$</span>model[[labelpeubah[i]]][,<span class="dv">2</span>]))<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
+<span id="cb16-375"><a href="#cb16-375" aria-hidden="true" tabindex="-1"></a>  btsatas <span class="ot">&lt;-</span> <span class="fu">round</span>((g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">3</span>,<span class="dv">2</span>]<span class="sc">/</span></span>
+<span id="cb16-376"><a href="#cb16-376" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sum</span>(g.fit<span class="sc">$</span>model[[labelpeubah[i]]][,<span class="dv">2</span>]))<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
+<span id="cb16-377"><a href="#cb16-377" aria-hidden="true" tabindex="-1"></a>  tabel5[i,] <span class="ot">&lt;-</span> <span class="fu">c</span>(labelpeubah[i], nugget, btsbawah,</span>
+<span id="cb16-378"><a href="#cb16-378" aria-hidden="true" tabindex="-1"></a>                  btsatas)</span>
+<span id="cb16-379"><a href="#cb16-379" aria-hidden="true" tabindex="-1"></a>  sumnugget<span class="ot">=</span>sumnugget<span class="sc">+</span>g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb16-380"><a href="#cb16-380" aria-hidden="true" tabindex="-1"></a>  sumbawah<span class="ot">=</span>sumbawah <span class="sc">+</span> g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb16-381"><a href="#cb16-381" aria-hidden="true" tabindex="-1"></a>  sumatas<span class="ot">=</span>sumatas <span class="sc">+</span> g.fit<span class="sc">$</span>model[[labelpeubah[i]]][<span class="dv">3</span>,<span class="dv">2</span>]</span>
+<span id="cb16-382"><a href="#cb16-382" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-383"><a href="#cb16-383" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb16-384"><a href="#cb16-384" aria-hidden="true" tabindex="-1"></a><span class="co">#Menghitung proporsi keragaman Y dengan semua X</span></span>
+<span id="cb16-385"><a href="#cb16-385" aria-hidden="true" tabindex="-1"></a>sumofsum <span class="ot">&lt;-</span> sumnugget <span class="sc">+</span> sumbawah <span class="sc">+</span> sumatas</span>
+<span id="cb16-386"><a href="#cb16-386" aria-hidden="true" tabindex="-1"></a>totalnugget <span class="ot">&lt;-</span> <span class="fu">round</span>((sumnugget<span class="sc">/</span>sumofsum)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
+<span id="cb16-387"><a href="#cb16-387" aria-hidden="true" tabindex="-1"></a>totalatas <span class="ot">&lt;-</span> <span class="fu">round</span>((sumbawah<span class="sc">/</span>sumofsum)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
+<span id="cb16-388"><a href="#cb16-388" aria-hidden="true" tabindex="-1"></a>totalbawah <span class="ot">&lt;-</span> <span class="fu">round</span>((sumatas<span class="sc">/</span>sumofsum)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)</span>
+<span id="cb16-389"><a href="#cb16-389" aria-hidden="true" tabindex="-1"></a>tabel5[<span class="dv">13</span>,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y dan semua x"</span> , totalnugget, totalatas, totalbawah)</span>
+<span id="cb16-390"><a href="#cb16-390" aria-hidden="true" tabindex="-1"></a>tabel5</span>
+<span id="cb16-391"><a href="#cb16-391" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-392"><a href="#cb16-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-393"><a href="#cb16-393" aria-hidden="true" tabindex="-1"></a>c)  Menghitung pengaruh spasial setiap peubah.</span>
+<span id="cb16-394"><a href="#cb16-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-395"><a href="#cb16-395" aria-hidden="true" tabindex="-1"></a>Proporsi pengaruh spasial yang dapat dimodelkan dapat dihitung berdasarkan nilai proporsi non-nugget (batas atas dan batas bawah). Berikut syntax yang dapat digunakan:</span>
+<span id="cb16-396"><a href="#cb16-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-399"><a href="#cb16-399" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-400"><a href="#cb16-400" aria-hidden="true" tabindex="-1"></a><span class="co">#Pengaruh spasial</span></span>
+<span id="cb16-401"><a href="#cb16-401" aria-hidden="true" tabindex="-1"></a>labtabel7 <span class="ot">&lt;-</span> labelpeubah[<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>]</span>
+<span id="cb16-402"><a href="#cb16-402" aria-hidden="true" tabindex="-1"></a>pspasial <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">as.numeric</span>(tabel5[<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>,<span class="dv">3</span>])) <span class="sc">+</span></span>
+<span id="cb16-403"><a href="#cb16-403" aria-hidden="true" tabindex="-1"></a>            <span class="fu">matrix</span>(<span class="fu">as.numeric</span>(tabel5[<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>,<span class="dv">4</span>]))</span>
+<span id="cb16-404"><a href="#cb16-404" aria-hidden="true" tabindex="-1"></a>tabel7 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(labtabel7, pspasial))</span>
+<span id="cb16-405"><a href="#cb16-405" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabel7) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Peubah"</span>, <span class="st">"Pengaruh Spasial"</span>)</span>
+<span id="cb16-406"><a href="#cb16-406" aria-hidden="true" tabindex="-1"></a>tabel7</span>
+<span id="cb16-407"><a href="#cb16-407" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-408"><a href="#cb16-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-409"><a href="#cb16-409" aria-hidden="true" tabindex="-1"></a>Berdasarkan output diketahui nilai pengaruh spasial, prediktor yang mempunyai pengaruh spasial lebih besar dari 70%, yaitu X2, X6, X8, dan X10, ditetapkan sebagai prediktor yang bersifat lokal. Peubah lainnya selanjutnya akan dijadikan peubah global. </span>
+<span id="cb16-410"><a href="#cb16-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-411"><a href="#cb16-411" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pemodelan Regresi Terboboti Geografis Semi-Parametrik (RTGC)</span></span>
+<span id="cb16-412"><a href="#cb16-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-413"><a href="#cb16-413" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTGC menggunakan syntax sebagai berikut:</span>
+<span id="cb16-414"><a href="#cb16-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-417"><a href="#cb16-417" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-418"><a href="#cb16-418" aria-hidden="true" tabindex="-1"></a><span class="co">#lebar jendela</span></span>
+<span id="cb16-419"><a href="#cb16-419" aria-hidden="true" tabindex="-1"></a>bandmix <span class="ot">&lt;-</span><span class="fu">bw.gwr</span>(y<span class="sc">~</span>x1<span class="sc">+</span>x2<span class="sc">+</span>x3<span class="sc">+</span>x4<span class="sc">+</span>x5<span class="sc">+</span>x6<span class="sc">+</span>x7<span class="sc">+</span>x8<span class="sc">+</span>x9<span class="sc">+</span>x10<span class="sc">+</span>x11,</span>
+<span id="cb16-420"><a href="#cb16-420" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data=</span>SKR.sp, <span class="at">approach=</span><span class="st">"CV"</span>,</span>
+<span id="cb16-421"><a href="#cb16-421" aria-hidden="true" tabindex="-1"></a>                 <span class="at">kernel=</span><span class="st">"bisquare"</span>, <span class="at">adaptive=</span>F, <span class="at">p=</span><span class="dv">2</span>,</span>
+<span id="cb16-422"><a href="#cb16-422" aria-hidden="true" tabindex="-1"></a>                 <span class="at">theta=</span><span class="dv">0</span>, <span class="at">longlat=</span>T)</span>
+<span id="cb16-423"><a href="#cb16-423" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb16-424"><a href="#cb16-424" aria-hidden="true" tabindex="-1"></a><span class="co">#RTGC</span></span>
+<span id="cb16-425"><a href="#cb16-425" aria-hidden="true" tabindex="-1"></a>gwrmixmod <span class="ot">&lt;-</span> <span class="fu">gwr.mixed</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5 <span class="sc">+</span> x6 <span class="sc">+</span></span>
+<span id="cb16-426"><a href="#cb16-426" aria-hidden="true" tabindex="-1"></a>             x7 <span class="sc">+</span> x8 <span class="sc">+</span> x9 <span class="sc">+</span> x10 <span class="sc">+</span> x11, <span class="at">data =</span> SKR.sp,</span>
+<span id="cb16-427"><a href="#cb16-427" aria-hidden="true" tabindex="-1"></a>             <span class="at">fixed.vars =</span> <span class="fu">c</span>(<span class="st">"x1"</span>, <span class="st">"x3"</span>, <span class="st">"x4"</span>, <span class="st">"x5"</span>,</span>
+<span id="cb16-428"><a href="#cb16-428" aria-hidden="true" tabindex="-1"></a>             <span class="st">"x7"</span>, <span class="st">"x9"</span>, <span class="st">"x11"</span>), <span class="at">intercept.fixed=</span>F,</span>
+<span id="cb16-429"><a href="#cb16-429" aria-hidden="true" tabindex="-1"></a>             <span class="at">bw =</span> bandmix, <span class="at">diagnostic=</span>T,</span>
+<span id="cb16-430"><a href="#cb16-430" aria-hidden="true" tabindex="-1"></a>             <span class="at">kernel=</span><span class="st">"bisquare"</span>,<span class="at">adaptive=</span>F, <span class="at">p=</span><span class="dv">2</span>, <span class="at">theta=</span><span class="dv">0</span>,</span>
+<span id="cb16-431"><a href="#cb16-431" aria-hidden="true" tabindex="-1"></a>             <span class="at">longlat=</span>T)</span>
+<span id="cb16-432"><a href="#cb16-432" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-433"><a href="#cb16-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-434"><a href="#cb16-434" aria-hidden="true" tabindex="-1"></a><span class="fu">### Membandingkan model RTG dan RTGC berdasarkan nilai $AIC_C$</span></span>
+<span id="cb16-435"><a href="#cb16-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-436"><a href="#cb16-436" aria-hidden="true" tabindex="-1"></a>Untuk mengetahui nilai $AIC_C$ dari model RTG dan RTGC menggunakan syntax sebagai berikut:</span>
+<span id="cb16-437"><a href="#cb16-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-440"><a href="#cb16-440" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-441"><a href="#cb16-441" aria-hidden="true" tabindex="-1"></a><span class="co">#AICc RTG dan RTGC</span></span>
+<span id="cb16-442"><a href="#cb16-442" aria-hidden="true" tabindex="-1"></a>tabelbanding <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">"RTG"</span>, <span class="st">"RTGC"</span>,</span>
+<span id="cb16-443"><a href="#cb16-443" aria-hidden="true" tabindex="-1"></a>                <span class="fu">round</span>(gwrmod<span class="sc">$</span>GW.diagnostic<span class="sc">$</span>AICc,<span class="dv">2</span>),</span>
+<span id="cb16-444"><a href="#cb16-444" aria-hidden="true" tabindex="-1"></a>                <span class="fu">round</span>(gwrmixmod<span class="sc">$</span>aic,<span class="dv">2</span>)), <span class="at">ncol =</span> <span class="dv">2</span>))</span>
+<span id="cb16-445"><a href="#cb16-445" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabelbanding) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Model"</span>, <span class="st">"AICc"</span>)</span>
+<span id="cb16-446"><a href="#cb16-446" aria-hidden="true" tabindex="-1"></a>tabelbanding</span>
+<span id="cb16-447"><a href="#cb16-447" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb16-448"><a href="#cb16-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-449"><a href="#cb16-449" aria-hidden="true" tabindex="-1"></a>Nilai $AIC_C$ dari model RTGC lebih kecil dibandingkan RTG, sehingga dapat disimpulkan model terbaik untuk kasus ini adalah RTGC.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
