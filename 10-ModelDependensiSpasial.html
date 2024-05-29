@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.552">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>PEMODELAN STATISTIKA PADA DATA GEOSPASIAL - 10&nbsp; Model Dependensi Spasial</title>
+<title>Pemodelan Statistika Pada Data Geospasial - 10&nbsp; Model Dependensi Spasial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">PEMODELAN STATISTIKA PADA DATA GEOSPASIAL</a> 
+      <a href="./">Pemodelan Statistika Pada Data Geospasial</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -257,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Lampiran</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -318,95 +318,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">10.1</span> Package</h2>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span> <span class="co"># Untuk pemodelan dependensi spasial</span></span>
-<span><span class="co"># Warning: package 'spdep' was built under R version 4.2.3</span></span>
-<span><span class="co"># Loading required package: spData</span></span>
-<span><span class="co"># To access larger datasets in this package, install the</span></span>
-<span><span class="co"># spDataLarge package with: `install.packages('spDataLarge',</span></span>
-<span><span class="co"># repos='https://nowosad.github.io/drat/', type='source')`</span></span>
-<span><span class="co"># Loading required package: sf</span></span>
-<span><span class="co"># Linking to GEOS 3.9.1, GDAL 3.4.3, PROJ 7.2.1; sf_use_s2() is TRUE</span></span>
+<span><span class="co">#&gt; Loading required package: spData</span></span>
+<span><span class="co">#&gt; To access larger datasets in this package, install the</span></span>
+<span><span class="co">#&gt; spDataLarge package with: `install.packages('spDataLarge',</span></span>
+<span><span class="co">#&gt; repos='https://nowosad.github.io/drat/', type='source')`</span></span>
+<span><span class="co">#&gt; Loading required package: sf</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.11.2, GDAL 3.8.2, PROJ 9.3.1; sf_use_s2() is TRUE</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span> <span class="co"># Untuk pemodelan dependensi spasial</span></span>
-<span><span class="co"># Loading required package: Matrix</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Attaching package: 'spatialreg'</span></span>
-<span><span class="co"># The following objects are masked from 'package:spdep':</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#     get.ClusterOption, get.coresOption, get.mcOption,</span></span>
-<span><span class="co">#     get.VerboseOption, get.ZeroPolicyOption,</span></span>
-<span><span class="co">#     set.ClusterOption, set.coresOption, set.mcOption,</span></span>
-<span><span class="co">#     set.VerboseOption, set.ZeroPolicyOption</span></span>
+<span><span class="co">#&gt; Loading required package: Matrix</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'spatialreg'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:spdep':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     get.ClusterOption, get.coresOption, get.mcOption,</span></span>
+<span><span class="co">#&gt;     get.VerboseOption, get.ZeroPolicyOption,</span></span>
+<span><span class="co">#&gt;     set.ClusterOption, set.coresOption, set.mcOption,</span></span>
+<span><span class="co">#&gt;     set.VerboseOption, set.ZeroPolicyOption</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span> <span class="co"># Untuk operasi matematis</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span> <span class="co"># Untuk menghitung VIF</span></span>
-<span><span class="co"># Loading required package: carData</span></span>
+<span><span class="co">#&gt; Loading required package: carData</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">nortest</span><span class="op">)</span> <span class="co"># Untuk uji kenormalan</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span> <span class="co"># Untuk menginput peta</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span> <span class="co"># Untuk visualisasi data</span></span>
-<span><span class="co"># Warning: package 'ggplot2' was built under R version 4.2.2</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span> <span class="co"># Untuk mengolah dataframe</span></span>
-<span><span class="co"># Warning: package 'tidyr' was built under R version 4.2.3</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Attaching package: 'tidyr'</span></span>
-<span><span class="co"># The following objects are masked from 'package:Matrix':</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#     expand, pack, unpack</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'tidyr'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:Matrix':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     expand, pack, unpack</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span> <span class="co"># Untuk mengolah dataframe</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Attaching package: 'dplyr'</span></span>
-<span><span class="co"># The following object is masked from 'package:car':</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#     recode</span></span>
-<span><span class="co"># The following objects are masked from 'package:stats':</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#     filter, lag</span></span>
-<span><span class="co"># The following objects are masked from 'package:base':</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#     intersect, setdiff, setequal, union</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:car':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     recode</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># Struktur matriks</span></span>
-<span><span class="co"># ── Attaching packages</span></span>
-<span><span class="co"># ─────────────────────────── tidyverse</span></span>
-<span><span class="co"># 1.3.2 ──</span></span>
-<span><span class="co"># ✔ tibble  3.1.8     ✔ stringr 1.5.0</span></span>
-<span><span class="co"># ✔ readr   2.1.2     ✔ forcats 0.5.2</span></span>
-<span><span class="co"># ✔ purrr   1.0.2</span></span>
-<span><span class="co"># Warning: package 'purrr' was built under R version 4.2.3</span></span>
-<span><span class="co"># Warning: package 'stringr' was built under R version 4.2.3</span></span>
-<span><span class="co"># Warning: package 'forcats' was built under R version 4.2.2</span></span>
-<span><span class="co"># ── Conflicts ────────────────────────────── tidyverse_conflicts() ──</span></span>
-<span><span class="co"># ✖ tidyr::expand() masks Matrix::expand()</span></span>
-<span><span class="co"># ✖ dplyr::filter() masks stats::filter()</span></span>
-<span><span class="co"># ✖ dplyr::lag()    masks stats::lag()</span></span>
-<span><span class="co"># ✖ tidyr::pack()   masks Matrix::pack()</span></span>
-<span><span class="co"># ✖ dplyr::recode() masks car::recode()</span></span>
-<span><span class="co"># ✖ purrr::some()   masks car::some()</span></span>
-<span><span class="co"># ✖ tidyr::unpack() masks Matrix::unpack()</span></span>
+<span><span class="co">#&gt; ── Attaching core tidyverse packages ──────────── tidyverse 2.0.0 ──</span></span>
+<span><span class="co">#&gt; ✔ forcats   1.0.0     ✔ readr     2.1.5</span></span>
+<span><span class="co">#&gt; ✔ lubridate 1.9.3     ✔ stringr   1.5.1</span></span>
+<span><span class="co">#&gt; ✔ purrr     1.0.2     ✔ tibble    3.2.1</span></span>
+<span><span class="co">#&gt; ── Conflicts ────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span><span class="co">#&gt; ✖ tidyr::expand() masks Matrix::expand()</span></span>
+<span><span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span></span>
+<span><span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></span>
+<span><span class="co">#&gt; ✖ tidyr::pack()   masks Matrix::pack()</span></span>
+<span><span class="co">#&gt; ✖ dplyr::recode() masks car::recode()</span></span>
+<span><span class="co">#&gt; ✖ purrr::some()   masks car::some()</span></span>
+<span><span class="co">#&gt; ✖ tidyr::unpack() masks Matrix::unpack()</span></span>
+<span><span class="co">#&gt; ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">lmtest</span><span class="op">)</span> <span class="co"># Uji model linier</span></span>
-<span><span class="co"># Loading required package: zoo</span></span>
-<span><span class="co"># Warning: package 'zoo' was built under R version 4.2.3</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Attaching package: 'zoo'</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># The following objects are masked from 'package:base':</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#     as.Date, as.Date.numeric</span></span>
+<span><span class="co">#&gt; Loading required package: zoo</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'zoo'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     as.Date, as.Date.numeric</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">spmoran</span><span class="op">)</span> <span class="co"># ESF</span></span>
-<span><span class="co"># Warning: package 'spmoran' was built under R version 4.2.3</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/emmanuelparadis/ape">ape</a></span><span class="op">)</span></span>
-<span><span class="co"># Warning: package 'ape' was built under R version 4.2.3</span></span>
-<span><span class="co"># Registered S3 method overwritten by 'ape':</span></span>
-<span><span class="co">#   method   from </span></span>
-<span><span class="co">#   plot.mst spdep</span></span>
+<span><span class="co">#&gt; Registered S3 method overwritten by 'ape':</span></span>
+<span><span class="co">#&gt;   method   from </span></span>
+<span><span class="co">#&gt;   plot.mst spdep</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'ape'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:dplyr':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     where</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lbbe.univ-lyon1.fr/fr/fitdistrplus">fitdistrplus</a></span><span class="op">)</span></span>
-<span><span class="co"># Warning: package 'fitdistrplus' was built under R version 4.2.3</span></span>
-<span><span class="co"># Loading required package: MASS</span></span>
-<span><span class="co"># Warning: package 'MASS' was built under R version 4.2.3</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Attaching package: 'MASS'</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># The following object is masked from 'package:dplyr':</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#     select</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Loading required package: survival</span></span>
+<span><span class="co">#&gt; Loading required package: MASS</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'MASS'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:dplyr':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     select</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Loading required package: survival</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="data-dan-peta" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="data-dan-peta">
@@ -427,10 +421,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span></span>
 <span><span class="va">dfix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">dfix</span><span class="op">)</span></span>
 <span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co"># Spherical geometry (s2) switched off</span></span>
+<span><span class="co">#&gt; Spherical geometry (s2) switched off</span></span>
 <span><span class="va">longlat</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html">st_coordinates</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">dfix</span><span class="op">$</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># Warning in st_centroid.sfc(dfix$geometry): st_centroid does not give</span></span>
-<span><span class="co"># correct centroids for longitude/latitude data</span></span>
+<span><span class="co">#&gt; Warning in st_centroid.sfc(dfix$geometry): st_centroid does not</span></span>
+<span><span class="co">#&gt; give correct centroids for longitude/latitude data</span></span>
 <span></span>
 <span><span class="co">#library("writexl")</span></span>
 <span><span class="co">#write_xlsx(dfix,"datacek.xlsx")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -448,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Stunting"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="10-ModelDependensiSpasial_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="10-ModelDependensiSpasial_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -472,44 +466,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji Moran Indeks (Autokorelasi)</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/moran.test.html">moran.test</a></span><span class="op">(</span><span class="va">dfix</span><span class="op">$</span><span class="va">Y</span>, <span class="va">wmoran</span><span class="op">)</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#   Moran I test under randomisation</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># data:  dfix$Y  </span></span>
-<span><span class="co"># weights: wmoran    </span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Moran I statistic standard deviate = 29, p-value &lt;2e-16</span></span>
-<span><span class="co"># alternative hypothesis: greater</span></span>
-<span><span class="co"># sample estimates:</span></span>
-<span><span class="co"># Moran I statistic       Expectation          Variance </span></span>
-<span><span class="co">#          1.84e-01         -1.97e-03          4.06e-05</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Moran I test under randomisation</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; data:  dfix$Y  </span></span>
+<span><span class="co">#&gt; weights: wmoran    </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Moran I statistic standard deviate = 29, p-value &lt;2e-16</span></span>
+<span><span class="co">#&gt; alternative hypothesis: greater</span></span>
+<span><span class="co">#&gt; sample estimates:</span></span>
+<span><span class="co">#&gt; Moran I statistic       Expectation          Variance </span></span>
+<span><span class="co">#&gt;          1.84e-01         -1.97e-03          4.06e-05</span></span>
 <span></span>
 <span><span class="co"># Uji Breusch-Pagan (Heteroskesdasitas)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/bptest.html">bptest</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span>, data <span class="op">=</span> <span class="va">dfix</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#   studentized Breusch-Pagan test</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># data:  lm(Y ~ X1 + X2 + X3 + X4 + X5, data = dfix)</span></span>
-<span><span class="co"># BP = 57, df = 63, p-value = 0.7</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  studentized Breusch-Pagan test</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; data:  lm(Y ~ X1 + X2 + X3 + X4 + X5, data = dfix)</span></span>
+<span><span class="co">#&gt; BP = 57, df = 63, p-value = 0.7</span></span>
 <span></span>
 <span><span class="co">#LM Test (Model Spsial)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span>, data <span class="op">=</span> <span class="va">dfix</span><span class="op">)</span></span>
 <span><span class="va">LM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.LMtests</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">wmoran</span>, test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'LMerr'</span>, <span class="st">'LMlag'</span>, <span class="st">'RLMerr'</span>, <span class="st">'RLMlag'</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># Please update scripts to use lm.RStests in place of lm.LMtests</span></span>
+<span><span class="co">#&gt; Please update scripts to use lm.RStests in place of lm.LMtests</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">LM</span><span class="op">)</span></span>
-<span><span class="co">#   Rao's score (a.k.a Lagrange multiplier) diagnostics for</span></span>
-<span><span class="co">#   spatial dependence</span></span>
-<span><span class="co"># data:  </span></span>
-<span><span class="co"># model: lm(formula = Y ~ X1 + X2 + X3 + X4 + X5, data = dfix)</span></span>
-<span><span class="co"># test weights: listw</span></span>
-<span><span class="co">#  </span></span>
-<span><span class="co">#          statistic parameter p.value    </span></span>
-<span><span class="co"># RSerr        126.6         1 &lt; 2e-16 ***</span></span>
-<span><span class="co"># RSlag        119.4         1 &lt; 2e-16 ***</span></span>
-<span><span class="co"># adjRSerr      27.6         1 1.5e-07 ***</span></span>
-<span><span class="co"># adjRSlag      20.4         1 6.2e-06 ***</span></span>
-<span><span class="co"># ---</span></span>
-<span><span class="co"># Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;  Rao's score (a.k.a Lagrange multiplier) diagnostics for</span></span>
+<span><span class="co">#&gt;  spatial dependence</span></span>
+<span><span class="co">#&gt; data:  </span></span>
+<span><span class="co">#&gt; model: lm(formula = Y ~ X1 + X2 + X3 + X4 + X5, data = dfix)</span></span>
+<span><span class="co">#&gt; test weights: listw</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;          statistic parameter p.value    </span></span>
+<span><span class="co">#&gt; RSerr        126.6         1 &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; RSlag        119.4         1 &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; adjRSerr      27.6         1 1.5e-07 ***</span></span>
+<span><span class="co">#&gt; adjRSlag      20.4         1 6.2e-06 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="fixed-esf" class="level2" data-number="10.7"><h2 data-number="10.7" class="anchored" data-anchor-id="fixed-esf">
 <span class="header-section-number">10.7</span> Fixed ESF</h2>
@@ -518,35 +512,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">Y</span> <span class="op">=</span> <span class="va">dfix</span><span class="op">$</span><span class="va">Y</span></span>
 <span><span class="va">X</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">dfix</span><span class="op">$</span><span class="va">X1</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X2</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X3</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X4</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dfix</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">meig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spmoran/man/meigen.html">meigen</a></span><span class="op">(</span>cmat <span class="op">=</span> <span class="va">w</span><span class="op">)</span></span>
-<span><span class="co">#  149/509 eigen-pairs are extracted</span></span>
+<span><span class="co">#&gt;  149/509 eigen-pairs are extracted</span></span>
 <span><span class="va">esf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spmoran/man/esf.html">esf</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">Y</span>, x <span class="op">=</span> <span class="va">X</span>, meig <span class="op">=</span> <span class="va">meig</span><span class="op">)</span></span>
-<span><span class="co"># [1] 50</span></span>
-<span><span class="co">#   76/149 eigenvectors are selected</span></span>
+<span><span class="co">#&gt; [1] 50</span></span>
+<span><span class="co">#&gt;   76/149 eigenvectors are selected</span></span>
 <span><span class="va">esf</span></span>
-<span><span class="co"># Call:</span></span>
-<span><span class="co"># esf(y = Y, x = X, meig = meig)</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># ----Coefficients------------------------------</span></span>
-<span><span class="co">#              Estimate       SE t_value  p_value</span></span>
-<span><span class="co"># (Intercept)  3.16e+01 2.43e+00  12.976 1.08e-32</span></span>
-<span><span class="co"># V1           2.78e-01 4.53e-02   6.132 1.97e-09</span></span>
-<span><span class="co"># V2           2.36e-02 2.64e-02   0.896 3.71e-01</span></span>
-<span><span class="co"># V3           7.36e-05 4.44e-05   1.658 9.80e-02</span></span>
-<span><span class="co"># V4          -1.47e-01 2.06e-02  -7.119 4.65e-12</span></span>
-<span><span class="co"># V5           3.50e-03 2.21e-02   0.158 8.74e-01</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># ----Spatial effects (residuals)---------------</span></span>
-<span><span class="co">#                      Estimate</span></span>
-<span><span class="co"># SD                      5.581</span></span>
-<span><span class="co"># Moran.I/max(Moran.I)    0.114</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># ----Error statistics--------------------------</span></span>
-<span><span class="co">#               stat</span></span>
-<span><span class="co"># resid_SE     5.147</span></span>
-<span><span class="co"># adjR2        0.648</span></span>
-<span><span class="co"># logLik   -1511.474</span></span>
-<span><span class="co"># AIC       3188.948</span></span>
-<span><span class="co"># BIC       3540.241</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; esf(y = Y, x = X, meig = meig)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ----Coefficients------------------------------</span></span>
+<span><span class="co">#&gt;              Estimate       SE t_value  p_value</span></span>
+<span><span class="co">#&gt; (Intercept)  3.16e+01 2.43e+00  12.976 1.08e-32</span></span>
+<span><span class="co">#&gt; V1           2.78e-01 4.53e-02   6.132 1.97e-09</span></span>
+<span><span class="co">#&gt; V2           2.36e-02 2.64e-02   0.896 3.71e-01</span></span>
+<span><span class="co">#&gt; V3           7.36e-05 4.44e-05   1.658 9.80e-02</span></span>
+<span><span class="co">#&gt; V4          -1.47e-01 2.06e-02  -7.119 4.65e-12</span></span>
+<span><span class="co">#&gt; V5           3.50e-03 2.21e-02   0.158 8.74e-01</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ----Spatial effects (residuals)---------------</span></span>
+<span><span class="co">#&gt;                      Estimate</span></span>
+<span><span class="co">#&gt; SD                      5.581</span></span>
+<span><span class="co">#&gt; Moran.I/max(Moran.I)    0.114</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ----Error statistics--------------------------</span></span>
+<span><span class="co">#&gt;               stat</span></span>
+<span><span class="co">#&gt; resid_SE     5.147</span></span>
+<span><span class="co">#&gt; adjR2        0.648</span></span>
+<span><span class="co">#&gt; logLik   -1511.474</span></span>
+<span><span class="co">#&gt; AIC       3188.948</span></span>
+<span><span class="co">#&gt; BIC       3540.241</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="random-effect-esf" class="level2" data-number="10.8"><h2 data-number="10.8" class="anchored" data-anchor-id="random-effect-esf">
 <span class="header-section-number">10.8</span> Random Effect-ESF</h2>
@@ -555,41 +549,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">Y</span> <span class="op">=</span> <span class="va">dfix</span><span class="op">$</span><span class="va">Y</span></span>
 <span><span class="va">X</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">dfix</span><span class="op">$</span><span class="va">X1</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X2</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X3</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X4</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dfix</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">meig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spmoran/man/meigen.html">meigen</a></span><span class="op">(</span>cmat <span class="op">=</span> <span class="va">w</span><span class="op">)</span></span>
-<span><span class="co">#  149/509 eigen-pairs are extracted</span></span>
+<span><span class="co">#&gt;  149/509 eigen-pairs are extracted</span></span>
 <span><span class="va">resf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spmoran/man/resf.html">resf</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">Y</span>, x <span class="op">=</span> <span class="va">X</span>, meig <span class="op">=</span> <span class="va">meig</span><span class="op">)</span></span>
 <span><span class="va">resf</span></span>
-<span><span class="co"># Call:</span></span>
-<span><span class="co"># resf(y = Y, x = X, meig = meig)</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># ----Coefficients------------------------------</span></span>
-<span><span class="co">#              Estimate       SE t_value  p_value</span></span>
-<span><span class="co"># (Intercept)  3.43e+01 2.46e+00  13.972 0.00e+00</span></span>
-<span><span class="co"># V1           3.35e-01 5.65e-02   5.925 6.45e-09</span></span>
-<span><span class="co"># V2           7.91e-03 2.54e-02   0.311 7.56e-01</span></span>
-<span><span class="co"># V3           5.75e-05 4.54e-05   1.268 2.05e-01</span></span>
-<span><span class="co"># V4          -1.41e-01 2.07e-02  -6.788 3.81e-11</span></span>
-<span><span class="co"># V5          -3.74e-02 2.23e-02  -1.680 9.38e-02</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># ----Variance parameter------------------------</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Spatial effects (residuals):</span></span>
-<span><span class="co">#                      (Intercept)</span></span>
-<span><span class="co"># random_SD                  2.568</span></span>
-<span><span class="co"># Moran.I/max(Moran.I)       0.146</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># ----Error statistics--------------------------</span></span>
-<span><span class="co">#                  stat</span></span>
-<span><span class="co"># resid_SE        5.076</span></span>
-<span><span class="co"># adjR2(cond)     0.654</span></span>
-<span><span class="co"># rlogLik     -1675.614</span></span>
-<span><span class="co"># AIC          3369.228</span></span>
-<span><span class="co"># BIC          3407.320</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># NULL model: lm( y ~ x )</span></span>
-<span><span class="co">#    (r)loglik: -1711.8 ( AIC: 3437.6,  BIC: 3467.227 )</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Note: AIC and BIC are based on the restricted/marginal likelihood.</span></span>
-<span><span class="co">#       Use method="ml" for comparison of models with different fixed effects (x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; resf(y = Y, x = X, meig = meig)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ----Coefficients------------------------------</span></span>
+<span><span class="co">#&gt;              Estimate       SE t_value  p_value</span></span>
+<span><span class="co">#&gt; (Intercept)  3.43e+01 2.46e+00  13.972 0.00e+00</span></span>
+<span><span class="co">#&gt; V1           3.35e-01 5.65e-02   5.925 6.45e-09</span></span>
+<span><span class="co">#&gt; V2           7.91e-03 2.54e-02   0.311 7.56e-01</span></span>
+<span><span class="co">#&gt; V3           5.75e-05 4.54e-05   1.268 2.05e-01</span></span>
+<span><span class="co">#&gt; V4          -1.41e-01 2.07e-02  -6.788 3.81e-11</span></span>
+<span><span class="co">#&gt; V5          -3.74e-02 2.23e-02  -1.680 9.38e-02</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ----Variance parameter------------------------</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Spatial effects (residuals):</span></span>
+<span><span class="co">#&gt;                      (Intercept)</span></span>
+<span><span class="co">#&gt; random_SD                  2.568</span></span>
+<span><span class="co">#&gt; Moran.I/max(Moran.I)       0.146</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ----Error statistics--------------------------</span></span>
+<span><span class="co">#&gt;                  stat</span></span>
+<span><span class="co">#&gt; resid_SE        5.076</span></span>
+<span><span class="co">#&gt; adjR2(cond)     0.654</span></span>
+<span><span class="co">#&gt; rlogLik     -1675.614</span></span>
+<span><span class="co">#&gt; AIC          3369.228</span></span>
+<span><span class="co">#&gt; BIC          3407.320</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; NULL model: lm( y ~ x )</span></span>
+<span><span class="co">#&gt;    (r)loglik: -1711.8 ( AIC: 3437.6,  BIC: 3467.227 )</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Note: AIC and BIC are based on the restricted/marginal likelihood.</span></span>
+<span><span class="co">#&gt;       Use method="ml" for comparison of models with different fixed effects (x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="random-effect-esf---vc" class="level2" data-number="10.9"><h2 data-number="10.9" class="anchored" data-anchor-id="random-effect-esf---vc">
 <span class="header-section-number">10.9</span> Random Effect ESF - VC</h2>
@@ -598,123 +592,123 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">Y</span> <span class="op">=</span> <span class="va">dfix</span><span class="op">$</span><span class="va">Y</span></span>
 <span><span class="va">X</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">dfix</span><span class="op">$</span><span class="va">X1</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X2</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X3</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X4</span>, <span class="va">dfix</span><span class="op">$</span><span class="va">X5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dfix</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">meig</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spmoran/man/meigen.html">meigen</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="va">longlat</span><span class="op">)</span></span>
-<span><span class="co">#  64/509 eigen-pairs are extracted</span></span>
+<span><span class="co">#&gt;  64/509 eigen-pairs are extracted</span></span>
 <span><span class="va">resf_vc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spmoran/man/resf_vc.html">resf_vc</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">Y</span>,</span>
 <span>                   x <span class="op">=</span> <span class="va">X</span>,</span>
 <span>                   meig <span class="op">=</span> <span class="va">meig</span>,</span>
 <span>                   x_sel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co"># [1] "-------  Iteration 1  -------"</span></span>
-<span><span class="co"># [1] "1/6"</span></span>
-<span><span class="co"># [1] "2/6"</span></span>
-<span><span class="co"># [1] "3/6"</span></span>
-<span><span class="co"># [1] "4/6"</span></span>
-<span><span class="co"># [1] "5/6"</span></span>
-<span><span class="co"># [1] "6/6"</span></span>
-<span><span class="co"># [1] "BIC: 3597.845"</span></span>
-<span><span class="co"># [1] "-------  Iteration 2  -------"</span></span>
-<span><span class="co"># [1] "1/6"</span></span>
-<span><span class="co"># [1] "2/6"</span></span>
-<span><span class="co"># [1] "3/6"</span></span>
-<span><span class="co"># [1] "4/6"</span></span>
-<span><span class="co"># [1] "5/6"</span></span>
-<span><span class="co"># [1] "6/6"</span></span>
-<span><span class="co"># [1] "BIC: 3453.959"</span></span>
-<span><span class="co"># [1] "-------  Iteration 3  -------"</span></span>
-<span><span class="co"># [1] "1/6"</span></span>
-<span><span class="co"># [1] "2/6"</span></span>
-<span><span class="co"># [1] "3/6"</span></span>
-<span><span class="co"># [1] "4/6"</span></span>
-<span><span class="co"># [1] "5/6"</span></span>
-<span><span class="co"># [1] "6/6"</span></span>
-<span><span class="co"># [1] "BIC: 3449.425"</span></span>
-<span><span class="co"># [1] "-------  Iteration 4  -------"</span></span>
-<span><span class="co"># [1] "1/6"</span></span>
-<span><span class="co"># [1] "2/6"</span></span>
-<span><span class="co"># [1] "3/6"</span></span>
-<span><span class="co"># [1] "4/6"</span></span>
-<span><span class="co"># [1] "5/6"</span></span>
-<span><span class="co"># [1] "6/6"</span></span>
-<span><span class="co"># [1] "BIC: 3449.28"</span></span>
-<span><span class="co"># [1] "-------  Iteration 5  -------"</span></span>
-<span><span class="co"># [1] "1/6"</span></span>
-<span><span class="co"># [1] "2/6"</span></span>
-<span><span class="co"># [1] "3/6"</span></span>
-<span><span class="co"># [1] "4/6"</span></span>
-<span><span class="co"># [1] "5/6"</span></span>
-<span><span class="co"># [1] "6/6"</span></span>
-<span><span class="co"># [1] "BIC: 3449.252"</span></span>
-<span><span class="co"># [1] "-------  Iteration 6  -------"</span></span>
-<span><span class="co"># [1] "1/6"</span></span>
-<span><span class="co"># [1] "2/6"</span></span>
-<span><span class="co"># [1] "3/6"</span></span>
-<span><span class="co"># [1] "4/6"</span></span>
-<span><span class="co"># [1] "5/6"</span></span>
-<span><span class="co"># [1] "6/6"</span></span>
-<span><span class="co"># [1] "BIC: 3449.252"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; [1] "-------  Iteration 1  -------"</span></span>
+<span><span class="co">#&gt; [1] "1/6"</span></span>
+<span><span class="co">#&gt; [1] "2/6"</span></span>
+<span><span class="co">#&gt; [1] "3/6"</span></span>
+<span><span class="co">#&gt; [1] "4/6"</span></span>
+<span><span class="co">#&gt; [1] "5/6"</span></span>
+<span><span class="co">#&gt; [1] "6/6"</span></span>
+<span><span class="co">#&gt; [1] "BIC: 3597.845"</span></span>
+<span><span class="co">#&gt; [1] "-------  Iteration 2  -------"</span></span>
+<span><span class="co">#&gt; [1] "1/6"</span></span>
+<span><span class="co">#&gt; [1] "2/6"</span></span>
+<span><span class="co">#&gt; [1] "3/6"</span></span>
+<span><span class="co">#&gt; [1] "4/6"</span></span>
+<span><span class="co">#&gt; [1] "5/6"</span></span>
+<span><span class="co">#&gt; [1] "6/6"</span></span>
+<span><span class="co">#&gt; [1] "BIC: 3453.959"</span></span>
+<span><span class="co">#&gt; [1] "-------  Iteration 3  -------"</span></span>
+<span><span class="co">#&gt; [1] "1/6"</span></span>
+<span><span class="co">#&gt; [1] "2/6"</span></span>
+<span><span class="co">#&gt; [1] "3/6"</span></span>
+<span><span class="co">#&gt; [1] "4/6"</span></span>
+<span><span class="co">#&gt; [1] "5/6"</span></span>
+<span><span class="co">#&gt; [1] "6/6"</span></span>
+<span><span class="co">#&gt; [1] "BIC: 3449.442"</span></span>
+<span><span class="co">#&gt; [1] "-------  Iteration 4  -------"</span></span>
+<span><span class="co">#&gt; [1] "1/6"</span></span>
+<span><span class="co">#&gt; [1] "2/6"</span></span>
+<span><span class="co">#&gt; [1] "3/6"</span></span>
+<span><span class="co">#&gt; [1] "4/6"</span></span>
+<span><span class="co">#&gt; [1] "5/6"</span></span>
+<span><span class="co">#&gt; [1] "6/6"</span></span>
+<span><span class="co">#&gt; [1] "BIC: 3449.264"</span></span>
+<span><span class="co">#&gt; [1] "-------  Iteration 5  -------"</span></span>
+<span><span class="co">#&gt; [1] "1/6"</span></span>
+<span><span class="co">#&gt; [1] "2/6"</span></span>
+<span><span class="co">#&gt; [1] "3/6"</span></span>
+<span><span class="co">#&gt; [1] "4/6"</span></span>
+<span><span class="co">#&gt; [1] "5/6"</span></span>
+<span><span class="co">#&gt; [1] "6/6"</span></span>
+<span><span class="co">#&gt; [1] "BIC: 3449.253"</span></span>
+<span><span class="co">#&gt; [1] "-------  Iteration 6  -------"</span></span>
+<span><span class="co">#&gt; [1] "1/6"</span></span>
+<span><span class="co">#&gt; [1] "2/6"</span></span>
+<span><span class="co">#&gt; [1] "3/6"</span></span>
+<span><span class="co">#&gt; [1] "4/6"</span></span>
+<span><span class="co">#&gt; [1] "5/6"</span></span>
+<span><span class="co">#&gt; [1] "6/6"</span></span>
+<span><span class="co">#&gt; [1] "BIC: 3449.253"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resf_vc</span></span>
-<span><span class="co"># Call:</span></span>
-<span><span class="co"># resf_vc(y = Y, x = X, x_sel = FALSE, meig = meig)</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># ----Spatially varying coefficients on x (summary)----</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Coefficient estimates:</span></span>
-<span><span class="co">#   (Intercept)         V1               V2           </span></span>
-<span><span class="co">#  Min.   :29.5   Min.   :-0.095   Min.   :-0.000115  </span></span>
-<span><span class="co">#  1st Qu.:32.3   1st Qu.: 0.321   1st Qu.:-0.000115  </span></span>
-<span><span class="co">#  Median :34.9   Median : 0.414   Median :-0.000115  </span></span>
-<span><span class="co">#  Mean   :34.1   Mean   : 0.403   Mean   :-0.000115  </span></span>
-<span><span class="co">#  3rd Qu.:35.8   3rd Qu.: 0.486   3rd Qu.:-0.000115  </span></span>
-<span><span class="co">#  Max.   :37.9   Max.   : 0.798   Max.   :-0.000115  </span></span>
-<span><span class="co">#        V3                 V4               V5         </span></span>
-<span><span class="co">#  Min.   :6.92e-05   Min.   :-0.179   Min.   :-0.0557  </span></span>
-<span><span class="co">#  1st Qu.:6.92e-05   1st Qu.:-0.159   1st Qu.:-0.0342  </span></span>
-<span><span class="co">#  Median :6.92e-05   Median :-0.151   Median :-0.0291  </span></span>
-<span><span class="co">#  Mean   :6.92e-05   Mean   :-0.153   Mean   :-0.0298  </span></span>
-<span><span class="co">#  3rd Qu.:6.92e-05   3rd Qu.:-0.147   3rd Qu.:-0.0243  </span></span>
-<span><span class="co">#  Max.   :6.92e-05   Max.   :-0.141   Max.   :-0.0118  </span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Statistical significance:</span></span>
-<span><span class="co">#                         Intercept  V1  V2  V3  V4  V5</span></span>
-<span><span class="co"># Not significant                 0  86 509 509   0 487</span></span>
-<span><span class="co"># Significant (10% level)         0  44   0   0   0  22</span></span>
-<span><span class="co"># Significant ( 5% level)         0 152   0   0   0   0</span></span>
-<span><span class="co"># Significant ( 1% level)       509 227   0   0 509   0</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># ----Variance parameters----------------------------------</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Spatial effects (coefficients on x):</span></span>
-<span><span class="co">#                      (Intercept)    V1       V2       V3     V4</span></span>
-<span><span class="co"># random_SD                  3.578 0.262 3.99e-05 1.29e-07 0.0228</span></span>
-<span><span class="co"># Moran.I/max(Moran.I)       0.927 0.161 8.13e-01 9.88e-01 0.3095</span></span>
-<span><span class="co">#                          V5</span></span>
-<span><span class="co"># random_SD            0.0220</span></span>
-<span><span class="co"># Moran.I/max(Moran.I) 0.0558</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># ----Error statistics-------------------------------------</span></span>
-<span><span class="co">#                  stat</span></span>
-<span><span class="co"># resid_SE        5.342</span></span>
-<span><span class="co"># adjR2(cond)     0.609</span></span>
-<span><span class="co"># rlogLik     -1665.418</span></span>
-<span><span class="co"># AIC          3368.835</span></span>
-<span><span class="co"># BIC          3449.252</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># NULL model: lm( y ~ x )</span></span>
-<span><span class="co">#    (r)loglik: Inf ( AIC: -Inf,  BIC: -Inf )</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co"># Note: AIC and BIC are based on the restricted/marginal likelihood.</span></span>
-<span><span class="co">#       Use method="ml" for comparison of models with different fixed effects (x and xconst)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; resf_vc(y = Y, x = X, x_sel = FALSE, meig = meig)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ----Spatially varying coefficients on x (summary)----</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficient estimates:</span></span>
+<span><span class="co">#&gt;   (Intercept)         V1               V2           </span></span>
+<span><span class="co">#&gt;  Min.   :29.5   Min.   :-0.096   Min.   :-0.000131  </span></span>
+<span><span class="co">#&gt;  1st Qu.:32.3   1st Qu.: 0.320   1st Qu.:-0.000131  </span></span>
+<span><span class="co">#&gt;  Median :34.9   Median : 0.413   Median :-0.000131  </span></span>
+<span><span class="co">#&gt;  Mean   :34.1   Mean   : 0.403   Mean   :-0.000131  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:35.8   3rd Qu.: 0.485   3rd Qu.:-0.000131  </span></span>
+<span><span class="co">#&gt;  Max.   :38.0   Max.   : 0.797   Max.   :-0.000131  </span></span>
+<span><span class="co">#&gt;        V3                 V4               V5         </span></span>
+<span><span class="co">#&gt;  Min.   :6.92e-05   Min.   :-0.180   Min.   :-0.0551  </span></span>
+<span><span class="co">#&gt;  1st Qu.:6.92e-05   1st Qu.:-0.159   1st Qu.:-0.0341  </span></span>
+<span><span class="co">#&gt;  Median :6.92e-05   Median :-0.151   Median :-0.0291  </span></span>
+<span><span class="co">#&gt;  Mean   :6.92e-05   Mean   :-0.153   Mean   :-0.0298  </span></span>
+<span><span class="co">#&gt;  3rd Qu.:6.92e-05   3rd Qu.:-0.147   3rd Qu.:-0.0244  </span></span>
+<span><span class="co">#&gt;  Max.   :6.92e-05   Max.   :-0.141   Max.   :-0.0121  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Statistical significance:</span></span>
+<span><span class="co">#&gt;                         Intercept  V1  V2  V3  V4  V5</span></span>
+<span><span class="co">#&gt; Not significant                 0  86 509 509   0 487</span></span>
+<span><span class="co">#&gt; Significant (10% level)         0  43   0   0   0  22</span></span>
+<span><span class="co">#&gt; Significant ( 5% level)         0 153   0   0   0   0</span></span>
+<span><span class="co">#&gt; Significant ( 1% level)       509 227   0   0 509   0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ----Variance parameters----------------------------------</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Spatial effects (coefficients on x):</span></span>
+<span><span class="co">#&gt;                      (Intercept)    V1       V2       V3    V4</span></span>
+<span><span class="co">#&gt; random_SD                  3.573 0.262 6.97e-05 5.61e-08 0.023</span></span>
+<span><span class="co">#&gt; Moran.I/max(Moran.I)       0.927 0.161 8.13e-01 9.95e-01 0.307</span></span>
+<span><span class="co">#&gt;                          V5</span></span>
+<span><span class="co">#&gt; random_SD            0.0218</span></span>
+<span><span class="co">#&gt; Moran.I/max(Moran.I) 0.0556</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ----Error statistics-------------------------------------</span></span>
+<span><span class="co">#&gt;                  stat</span></span>
+<span><span class="co">#&gt; resid_SE        5.342</span></span>
+<span><span class="co">#&gt; adjR2(cond)     0.609</span></span>
+<span><span class="co">#&gt; rlogLik     -1665.418</span></span>
+<span><span class="co">#&gt; AIC          3368.836</span></span>
+<span><span class="co">#&gt; BIC          3449.253</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; NULL model: lm( y ~ x )</span></span>
+<span><span class="co">#&gt;    (r)loglik: Inf ( AIC: -Inf,  BIC: -Inf )</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Note: AIC and BIC are based on the restricted/marginal likelihood.</span></span>
+<span><span class="co">#&gt;       Use method="ml" for comparison of models with different fixed effects (x and xconst)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">resf_vc</span><span class="op">$</span><span class="va">b_vc</span><span class="op">)</span></span>
-<span><span class="co">#   (Intercept)    V1        V2       V3     V4      V5</span></span>
-<span><span class="co"># 1        35.2 0.546 -0.000115 6.92e-05 -0.143 -0.0225</span></span>
-<span><span class="co"># 2        35.3 0.667 -0.000115 6.92e-05 -0.142 -0.0150</span></span>
-<span><span class="co"># 3        35.2 0.373 -0.000115 6.92e-05 -0.146 -0.0298</span></span>
-<span><span class="co"># 4        35.2 0.441 -0.000115 6.92e-05 -0.145 -0.0267</span></span>
-<span><span class="co"># 5        35.2 0.658 -0.000115 6.92e-05 -0.142 -0.0147</span></span>
-<span><span class="co"># 6        35.2 0.478 -0.000115 6.92e-05 -0.141 -0.0240</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt;   (Intercept)    V1        V2       V3     V4      V5</span></span>
+<span><span class="co">#&gt; 1        35.2 0.546 -0.000131 6.92e-05 -0.143 -0.0226</span></span>
+<span><span class="co">#&gt; 2        35.3 0.667 -0.000131 6.92e-05 -0.142 -0.0152</span></span>
+<span><span class="co">#&gt; 3        35.2 0.372 -0.000131 6.92e-05 -0.146 -0.0298</span></span>
+<span><span class="co">#&gt; 4        35.2 0.441 -0.000131 6.92e-05 -0.144 -0.0267</span></span>
+<span><span class="co">#&gt; 5        35.2 0.658 -0.000131 6.92e-05 -0.142 -0.0149</span></span>
+<span><span class="co">#&gt; 6        35.2 0.478 -0.000131 6.92e-05 -0.141 -0.0241</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1192,138 +1186,144 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Dependensi Spasial </span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Package</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep) <span class="co"># Untuk pemodelan dependensi spasial</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatialreg) <span class="co"># Untuk pemodelan dependensi spasial</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats) <span class="co"># Untuk operasi matematis</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car) <span class="co"># Untuk menghitung VIF</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nortest) <span class="co"># Untuk uji kenormalan</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf) <span class="co"># Untuk menginput peta</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># Untuk visualisasi data</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># Untuk mengolah dataframe</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># Untuk mengolah dataframe</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Struktur matriks</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest) <span class="co"># Uji model linier</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spmoran) <span class="co"># ESF</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fitdistrplus)</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data dan Peta</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co">#Input Data</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>stunting <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/data_stunting_indo.xlsx"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"_common.R"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Package</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep) <span class="co"># Untuk pemodelan dependensi spasial</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatialreg) <span class="co"># Untuk pemodelan dependensi spasial</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats) <span class="co"># Untuk operasi matematis</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car) <span class="co"># Untuk menghitung VIF</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nortest) <span class="co"># Untuk uji kenormalan</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf) <span class="co"># Untuk menginput peta</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># Untuk visualisasi data</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># Untuk mengolah dataframe</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># Untuk mengolah dataframe</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Struktur matriks</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest) <span class="co"># Uji model linier</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spmoran) <span class="co"># ESF</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fitdistrplus)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co">#Import peta SHP</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>peta <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/shp/BATAS KABUPATEN KOTA DESEMBER 2019 DUKCAPIL.shp"</span>)</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modifikasi Data</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="co">#Menggabungkan Data ke file SHP</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co">#df = cbind(stunting,KAB_KOTA=shp.jabar$KAB_KOTA)</span></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>dfix <span class="ot">=</span> <span class="fu">left_join</span>(peta, stunting, <span class="at">by =</span> <span class="st">"KAB_KOTA"</span>)</span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>dfix <span class="ot">=</span> <span class="fu">na.omit</span>(dfix)</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>longlat <span class="ot">=</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(dfix<span class="sc">$</span>geometry))</span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="co">#library("writexl")</span></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="co">#write_xlsx(dfix,"datacek.xlsx")</span></span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data dan Peta</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co">#Input Data</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>stunting <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/data_stunting_indo.xlsx"</span>)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co">#Import peta SHP</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>peta <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/shp/BATAS KABUPATEN KOTA DESEMBER 2019 DUKCAPIL.shp"</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modifikasi Data</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="co">#Menggabungkan Data ke file SHP</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="co">#df = cbind(stunting,KAB_KOTA=shp.jabar$KAB_KOTA)</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>dfix <span class="ot">=</span> <span class="fu">left_join</span>(peta, stunting, <span class="at">by =</span> <span class="st">"KAB_KOTA"</span>)</span>
 <span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot Spasial</span></span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="co">#Pemetaan Kasus Stunting</span></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dfix) <span class="sc">+</span></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Y)) <span class="sc">+</span></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(longlat[, <span class="dv">1</span>], longlat[, <span class="dv">2</span>], <span class="at">label =</span> KAB_KOTA), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Stunting di Indonesia"</span>) <span class="sc">+</span></span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Stunting"</span>)</span>
-<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bobot Spasial</span></span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a><span class="co">#Bobot Spasial</span></span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(longlat, <span class="at">method =</span> <span class="st">"euclidean"</span>))</span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a><span class="co">#inverse weight matrix</span></span>
-<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> D</span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a><span class="co"># inverse weight matrix - row-normalized</span></span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(w) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>rtot <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(w, <span class="at">na.rm =</span> T)</span>
-<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>w_std <span class="ot">&lt;-</span> w <span class="sc">/</span> rtot</span>
-<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>cekrowsum <span class="ot">=</span> <span class="fu">rowSums</span>(w_std, <span class="at">na.rm =</span> T)</span>
-<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>wmoran <span class="ot">=</span> <span class="fu">mat2listw</span>(w_std, <span class="at">style =</span> <span class="st">"W"</span>)</span>
-<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Uji Asumsi</span></span>
-<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Moran Indeks (Autokorelasi)</span></span>
-<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a><span class="fu">moran.test</span>(dfix<span class="sc">$</span>Y, wmoran)</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>dfix <span class="ot">=</span> <span class="fu">na.omit</span>(dfix)</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>longlat <span class="ot">=</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(dfix<span class="sc">$</span>geometry))</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="co">#library("writexl")</span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="co">#write_xlsx(dfix,"datacek.xlsx")</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot Spasial</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="co">#Pemetaan Kasus Stunting</span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dfix) <span class="sc">+</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Y)) <span class="sc">+</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(longlat[, <span class="dv">1</span>], longlat[, <span class="dv">2</span>], <span class="at">label =</span> KAB_KOTA), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Stunting di Indonesia"</span>) <span class="sc">+</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Stunting"</span>)</span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bobot Spasial</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a><span class="co">#Bobot Spasial</span></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(longlat, <span class="at">method =</span> <span class="st">"euclidean"</span>))</span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a><span class="co">#inverse weight matrix</span></span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> D</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a><span class="co"># inverse weight matrix - row-normalized</span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(w) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>rtot <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(w, <span class="at">na.rm =</span> T)</span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>w_std <span class="ot">&lt;-</span> w <span class="sc">/</span> rtot</span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>cekrowsum <span class="ot">=</span> <span class="fu">rowSums</span>(w_std, <span class="at">na.rm =</span> T)</span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>wmoran <span class="ot">=</span> <span class="fu">mat2listw</span>(w_std, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a><span class="co"># Uji Breusch-Pagan (Heteroskesdasitas)</span></span>
-<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> dfix))</span>
-<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a><span class="co">#LM Test (Model Spsial)</span></span>
-<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> dfix)</span>
-<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm.LMtests</span>(model, wmoran, <span class="at">test =</span> <span class="fu">c</span>(<span class="st">'LMerr'</span>, <span class="st">'LMlag'</span>, <span class="st">'RLMerr'</span>, <span class="st">'RLMlag'</span>))</span>
-<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(LM)</span>
-<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fixed ESF</span></span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Uji Asumsi</span></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Moran Indeks (Autokorelasi)</span></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a><span class="fu">moran.test</span>(dfix<span class="sc">$</span>Y, wmoran)</span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Uji Breusch-Pagan (Heteroskesdasitas)</span></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> dfix))</span>
 <span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF Fixed</span></span>
-<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
-<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
-<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">cmat =</span> w)</span>
-<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>esf <span class="ot">&lt;-</span> <span class="fu">esf</span>(<span class="at">y =</span> Y, <span class="at">x =</span> X, <span class="at">meig =</span> meig)</span>
-<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>esf</span>
-<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Effect-ESF</span></span>
-<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF Random</span></span>
-<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
-<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
-<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">cmat =</span> w)</span>
-<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>resf <span class="ot">&lt;-</span> <span class="fu">resf</span>(<span class="at">y =</span> Y, <span class="at">x =</span> X, <span class="at">meig =</span> meig)</span>
-<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>resf</span>
-<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Effect ESF - VC</span></span>
-<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF VC</span></span>
-<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
-<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
-<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">coords =</span> longlat)</span>
-<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>resf_vc <span class="ot">&lt;-</span> <span class="fu">resf_vc</span>(<span class="at">y =</span> Y,</span>
-<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x =</span> X,</span>
-<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>                   <span class="at">meig =</span> meig,</span>
-<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x_sel =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>resf_vc</span>
-<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a><span class="co">#LM Test (Model Spsial)</span></span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> dfix)</span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm.LMtests</span>(model, wmoran, <span class="at">test =</span> <span class="fu">c</span>(<span class="st">'LMerr'</span>, <span class="st">'LMlag'</span>, <span class="st">'RLMerr'</span>, <span class="st">'RLMlag'</span>))</span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(LM)</span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fixed ESF</span></span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF Fixed</span></span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">cmat =</span> w)</span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>esf <span class="ot">&lt;-</span> <span class="fu">esf</span>(<span class="at">y =</span> Y, <span class="at">x =</span> X, <span class="at">meig =</span> meig)</span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>esf</span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Effect-ESF</span></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF Random</span></span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">cmat =</span> w)</span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>resf <span class="ot">&lt;-</span> <span class="fu">resf</span>(<span class="at">y =</span> Y, <span class="at">x =</span> X, <span class="at">meig =</span> meig)</span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>resf</span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random Effect ESF - VC</span></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF VC</span></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">coords =</span> longlat)</span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>resf_vc <span class="ot">&lt;-</span> <span class="fu">resf_vc</span>(<span class="at">y =</span> Y,</span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x =</span> X,</span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>                   <span class="at">meig =</span> meig,</span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x_sel =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(resf_vc<span class="sc">$</span>b_vc)</span>
-<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a>resf_vc</span>
+<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(resf_vc<span class="sc">$</span>b_vc)</span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
