@@ -15,23 +15,26 @@ $$ {#eq-641}
 
 dengan $i = 1, \ldots, n; j = 1, 2, \ldots, k; l = 0, 1, 2, \ldots, p$,
 
-  $(u_i, v_i)$: koordinat (longitud, latitud) titik lokasi ke-$i$,
+
+\begin{align*}
+  (u_i, v_i) &: \text{koordinat (longitud, latitud) titik lokasi ke-i,}
   
-  $\beta_l(u_i, v_i)$: parameter beragam geografis (lokal) disetiap lokasi-$i$,
+  \beta_l(u_i, v_i) &: \text{parameter beragam geografis (lokal) disetiap lokasi-i,}
   
-  $\alpha_j$: parameter bernilai konstan (global),
+  \alpha_j &: \text{parameter bernilai konstan (global),}
   
-  $y_i$: peubah respon lokasi ke-$i$,
+  y_i &: \text{peubah respon lokasi ke-i,}
   
-  $x_{ij}$: peubah penjelas parameter global ke-$j$ pada lokasi ke-$i$,
+  x_{ij} &: \text{peubah penjelas parameter global ke-j pada lokasi ke-i,}
   
-  $x_{il}$: peubah penjelas parameter lokal ke-$l$ pada lokasi ke-$i$,
+  x_{il} &: \text{peubah penjelas parameter lokal ke-l pada lokasi ke-i,}
   
-  $p$: banyaknya peubah lokal,
+  p &: \text{banyaknya peubah lokal,}
   
-  $k$: banyaknya peubah global,
+  k &: \text{banyaknya peubah global,}
   
-  $\epsilon_i$: pengaruh acak ke-$i$ yang diasumsikan identik, saling bebas, dan menyebar $N(0, \sigma^2)$.
+  \epsilon_i &: \text{pengaruh acak ke-i yang diasumsikan identik, saling bebas, dan menyebar N(0, \sigma^2).}
+\end{align*}
 
 Pendugaan parameter lokal pada RTGC menggunakan metode yang sama dengan pendugaan pada RTG, yaitu menggunakan kuadrat terkecil terboboti. Model RTGC dalam bentuk matriks dinyatakan sebagai:
 
@@ -189,9 +192,11 @@ Untuk membuat peta sebaran SKR terlebih dulu dilakukan pembentukan selang kelas 
 classIntervals(gabung$y, n = 4, style = 'kmeans')
 ```
 
-Berdasarkan selang nilai yang terbentuk dibuat peta tematik SKR dengan syntax sebagai berikut:
+Berdasarkan selang nilai yang terbentuk dibuat peta tematik SKR (@fig-plot-skr) dengan syntax sebagai berikut:
 
 ```{r}
+#| label: fig-plot-skr
+#| fig-cap: "Peta tematik SKR"
 #Peta SKR
 cc <- c('#fbb4b9', '#f768a1', '#ae017e', '#551c53')
 plot.skr = ggplot(data=gabung) +

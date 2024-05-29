@@ -37,7 +37,7 @@ dengan \(y_i \sim \text{NB}(\mu_i)\)
 
 c. Spatial Lag-X (SLX)
 
-SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas. Persamaan untuk SLX sebagai berikut [@Vega2015]:
+SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas. Persamaan untuk SLX sebagai berikut [@vega2015]:
 
 $y = X\beta + \gamma W_2 X + \varepsilon$
 
@@ -157,8 +157,12 @@ petajabar$daerah = data1$Kabupaten...Kota
 ```
 
 #### Eksplorasi Data
-Untuk membuat peta tentang sebaran banyaknya stunting per 100.000 balita digunakan syntax sebagai berikut:
+
+Untuk membuat peta tentang sebaran banyaknya stunting per 100.000 balita (@fig-plot-stunting) digunakan syntax sebagai berikut:
+
 ```{r}
+#| label: fig-plot-stunting
+#| fig-cap: "Peta stunting"
 #menambahkan list untuk memberi label pada peta
 sp.label <- function(x, label) {list("sp.text", coordinates(x), label, cex=0.7, col="black", fontface="bold")}
 NUMB.sp.label <- function(x) {sp.label(x, as.vector(petajabar$KABKOT))}
@@ -174,6 +178,7 @@ spplot(petajabar, "Stunting", col.regions=color, sp.layout = make.NUMB.sp.label(
 ```
 
 Diagram kotak garis untuk banyaknya stunting per 100.000 balita dibuat dengan syntax sebagai berikut:
+
 ```{r}
 #Box-plot Stunting
 boxplot(data1$Stunting, ylab="Banyaknya Stunting per 100.000 balita")

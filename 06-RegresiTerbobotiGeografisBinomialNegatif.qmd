@@ -7,7 +7,7 @@ source("_common.R")
 ```
 
 ## Deskripsi
-Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda (Silva & Rodrigues 2014).
+Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda [silva2014].
 
 Model RTGBN dapat dirumuskan sebagai berikut:
 
@@ -15,7 +15,7 @@ $y_i \sim \text{BN}\left(\exp\left(\sum_j \beta_j(u_i,v_i) x_{ij} \theta_i(u_i,v
 
 dengan $y_i$ adalah nilai amatan respon ke-i, $x_{ij}$ adalah nilai amatan prediktor ke-j pada pengamatan, $(u_i, v_i)$ adalah logitude dan latitude lokasi-i, $\beta_j(u_i, v_i)$ adalah parameter regresi prediktor ke-j untuk setiap lokasi-i, dan $\theta_i(u_i, v_i)$ adalah parameter dispersi setiap lokasi-$i$.
 
-Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut (Ricardo & Carvalho 2013):
+Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut [@ricardo2013]:
 
 \begin{aligned}
 L(\beta(u_i, v_i), \theta_i, i=1,2,\ldots,n) = \prod_{i=1}^{n} \left(\prod_{r=0}^{y_i-1} (r + \frac{1}{\theta_i})\right) \frac{1}{y_i!} \left(\frac{1}{1 + \theta_i \mu_i}\right)^{\frac{1}{\theta_i}} \left(\frac{\theta_i \mu_i}{1 + \theta_i \mu_i}\right)^{y_i}
@@ -52,7 +52,7 @@ adalah galat baku penduga parameter koefisien regresi prediktor ke-j pada lokasi
 
 ## Data
 
-Ilustrasi untuk model RTG-BN merujuk hasil penelitian Fadila et al. (2021) tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (Tabel 6.6.1). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan [https://ipb.link/gwr-binomial-negatif](https://ipb.link/gwr-binomial-negatif).
+Ilustrasi untuk model RTG-BN merujuk hasil penelitian @fadila2021 tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (@tbl-tbc). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan [https://ipb.link/gwr-binomial-negatif](https://ipb.link/gwr-binomial-negatif).
 
 
 | Kode   | Peubah                                          | Referensi        |
@@ -65,7 +65,7 @@ Ilustrasi untuk model RTG-BN merujuk hasil penelitian Fadila et al. (2021) tenta
 | $X_5$  | Rata-rata konsumsi batang rokok per minggu | Tandang et al. (2018)      |
 | $X_6$  | Persentase pengobatan lengkap kasus Tuberkulosis | Sarani (2019)   |
 
-: Tabel Peubah dan Referensi {.striped .hover}
+: Tabel Peubah dan Referensi {#tbl-tbc .striped .hover}
 
 ## Metode Analisis
 
@@ -75,7 +75,7 @@ Tahapan untuk menganalisis data jumlah kasus TB di Provinsi Jawa Timur tahun 201
 
 2. Membuat peta sebaran dari setiap peubah respon dan prediktor yang digunakan.
 
-3. Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai $VIF_i > 10$, maka terdapat multikolinear (Kutner et al. 2005):
+3. Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai $VIF_i > 10$, maka terdapat multikolinear [@kutner2005]:
 
 $VIF_i = \frac{1}{1 - R_i^2}$
 
@@ -167,7 +167,7 @@ head(jatim)
 
 a.	Peta sebaran
 
-Berikut syntax yang dapat digunakan untuk membuat peta sebaran:
+Berikut syntax yang dapat digunakan untuk membuat peta sebaran (@fig-plot-tb):
 
 ```{r}
 #Menentukan batas kelas dari angka TB per 100000 penduduk
@@ -175,6 +175,8 @@ classIntervals(gabung$y, n = 4, style = 'kmeans')
 ```
 
 ```{r}
+#| label: fig-plot-tb
+#| fig-cap: "Peta kasus TB"
 #Membuat peta
 cc <- c('#fbb4b9', '#f768a1', '#ae017e', '#551c53')
 plot.tb <- ggplot(data=st_zm(jatim)) +

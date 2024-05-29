@@ -103,9 +103,11 @@ Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dala
 classIntervals(gabung$Y, n = 4, style = 'kmeans')
 ```
 
-Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan dengan menggunakan syntax sebagai berikut:
+Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan (@fig-plot-miskin) dengan menggunakan syntax sebagai berikut:
 
 ```{r}
+#| label: fig-plot-miskin
+#| fig-cap: "Peta kemiskinan"
 #Peta kemiskinan
 cc <- c('#fbb4b9', '#f768a1', '#ae017e', '#551c53')
 plot.miskin = ggplot(data=gabung) +
