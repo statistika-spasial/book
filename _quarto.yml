@@ -53,7 +53,7 @@ book:
         - 10-ModelDependensiSpasial.qmd 
         - 11-ModelKeragamanSpasial.qmd
     
-    - ModelEpidemiologi.qmd
+    - part: ModelEpidemiologi.qmd
   
   appendices: 
     - summary.qmd

@@ -17,23 +17,25 @@ dengan $i = 1, \ldots, n; j = 1, 2, \ldots, k; l = 0, 1, 2, \ldots, p$,
 
 
 \begin{align*}
-  (u_i, v_i) &: \text{koordinat (longitud, latitud) titik lokasi ke-i,}
+
+  (u_i, v_i) &: \text{koordinat (longitud, latitud) titik lokasi ke-i,} \\
   
-  \beta_l(u_i, v_i) &: \text{parameter beragam geografis (lokal) disetiap lokasi-i,}
+  \beta_l(u_i, v_i) &: \text{parameter beragam geografis (lokal) disetiap lokasi-i,} \\
+   
+  \alpha_j &: \text{parameter bernilai konstan (global),} \\
   
-  \alpha_j &: \text{parameter bernilai konstan (global),}
+  y_i &: \text{peubah respon lokasi ke-i,} \\
   
-  y_i &: \text{peubah respon lokasi ke-i,}
+  x_{ij} &: \text{peubah penjelas parameter global ke-j pada lokasi ke-i,} \\
   
-  x_{ij} &: \text{peubah penjelas parameter global ke-j pada lokasi ke-i,}
+  x_{il} &: \text{peubah penjelas parameter lokal ke-l pada lokasi ke-i,}  \\
   
-  x_{il} &: \text{peubah penjelas parameter lokal ke-l pada lokasi ke-i,}
+  p &: \text{banyaknya peubah lokal,} \\
   
-  p &: \text{banyaknya peubah lokal,}
+  k &: \text{banyaknya peubah global,} \\
   
-  k &: \text{banyaknya peubah global,}
+  \epsilon_i &: \text{pengaruh acak ke-i yang diasumsikan identik, saling bebas, dan menyebar }N(0, \sigma^2).
   
-  \epsilon_i &: \text{pengaruh acak ke-i yang diasumsikan identik, saling bebas, dan menyebar N(0, \sigma^2).}
 \end{align*}
 
 Pendugaan parameter lokal pada RTGC menggunakan metode yang sama dengan pendugaan pada RTG, yaitu menggunakan kuadrat terkecil terboboti. Model RTGC dalam bentuk matriks dinyatakan sebagai:

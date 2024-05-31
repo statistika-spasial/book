@@ -17,11 +17,11 @@ SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peuba
 
 $y = \rho W_1 y + X\beta + \varepsilon$
 
-dengan \(y\) merupakan peubah respon, \(W_1\) merupakan matriks pembobot spasial untuk \(y\), \(\beta\) adalah koefisien parameter regresi, \(\varepsilon\) merupakan sisaan, dan \(\rho\) merupakan koefisien autoregressive lag spasial. Model SAR binomial negatif (SAR BN) dinyatakan sebagai berikut:
+dengan $y$ merupakan peubah respon, $W_1$ merupakan matriks pembobot spasial untuk $y$, $\beta$ adalah koefisien parameter regresi, $\varepsilon$ merupakan sisaan, dan $\rho$ merupakan koefisien autoregressive lag spasial. Model SAR binomial negatif (SAR BN) dinyatakan sebagai berikut:
 
 $\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta\right)$
 
-dengan \(y_i \sim \text{NB}(\mu_i)\)
+dengan $y_i \sim \text{NB}(\mu_i)$
 
 b. Spatial Durbin Model (SDM)
 
@@ -29,11 +29,11 @@ SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependen
 
 $y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon $
 
-dengan \(W_2\) merupakan matriks pembobot spasial untuk \(X\) dan \(\gamma\) merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut [@glaser2017]:
+dengan $W_2$ merupakan matriks pembobot spasial untuk $X$ dan $\gamma$ merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut [@glaser2017]:
 
 $\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta + w_{2i}^{\prime} x_i \gamma\right)$
 
-dengan \(y_i \sim \text{NB}(\mu_i)\)
+dengan $y_i \sim \text{NB}(\mu_i)$
 
 c. Spatial Lag-X (SLX)
 
@@ -45,7 +45,7 @@ Spatial lag-x binomial negatif (SLX BN) merupakan model regresi spasial untuk da
 
 $\mu_i = \exp\left(x_i \beta + w_{2i}^{\prime} x_i \gamma\right)$
 
-dengan \(y_i \sim \text{NB}(\mu_i)\)
+dengan $y_i \sim \text{NB}(\mu_i)$
 
 ## Data
 
@@ -197,7 +197,7 @@ binom.negatif <- fitdist(data1$Stunting, "nbinom", method =
 descdist(data1$Stunting, discrete = TRUE, boot=1000)
 ```
 
-Pemeriksaan sebaran yang sesuai untuk data stunting dapat juga dilakukan menggunakan plot kuantil-kauntil dengan menggunakan syntax berikut ini:
+Pemeriksaan sebaran yang sesuai untuk data stunting dapat juga dilakukan menggunakan plot kuantil-kuantil dengan menggunakan syntax berikut ini:
 
 ```{r}
 #Pemeriksaan sebaran menggunakan plot Q-Q
