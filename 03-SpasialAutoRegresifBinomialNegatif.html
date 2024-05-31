@@ -368,17 +368,17 @@ window.Quarto = {
 </ol>
 <p>SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR sebagai berikut (Anselin 1988):</p>
 <p><span class="math inline">\(y = \rho W_1 y + X\beta + \varepsilon\)</span></p>
-<p>dengan (y) merupakan peubah respon, (W_1) merupakan matriks pembobot spasial untuk (y), () adalah koefisien parameter regresi, () merupakan sisaan, dan () merupakan koefisien autoregressive lag spasial. Model SAR binomial negatif (SAR BN) dinyatakan sebagai berikut:</p>
+<p>dengan <span class="math inline">\(y\)</span> merupakan peubah respon, <span class="math inline">\(W_1\)</span> merupakan matriks pembobot spasial untuk <span class="math inline">\(y\)</span>, <span class="math inline">\(\beta\)</span> adalah koefisien parameter regresi, <span class="math inline">\(\varepsilon\)</span> merupakan sisaan, dan <span class="math inline">\(\rho\)</span> merupakan koefisien autoregressive lag spasial. Model SAR binomial negatif (SAR BN) dinyatakan sebagai berikut:</p>
 <p><span class="math inline">\(\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta\right)\)</span></p>
-<p>dengan (y_i (_i))</p>
+<p>dengan <span class="math inline">\(y_i \sim \text{NB}(\mu_i)\)</span></p>
 <ol start="2" type="a">
 <li>Spatial Durbin Model (SDM)</li>
 </ol>
 <p>SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut <span class="citation" data-cites="anselin1988">(<a href="references.html#ref-anselin1988" role="doc-biblioref">Anselin 1988</a>)</span>:</p>
 <p>$y = W_1 y + X+ W_2 X + $</p>
-<p>dengan (W_2) merupakan matriks pembobot spasial untuk (X) dan () merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut <span class="citation" data-cites="glaser2017">(<a href="references.html#ref-glaser2017" role="doc-biblioref">S 2017</a>)</span>:</p>
+<p>dengan <span class="math inline">\(W_2\)</span> merupakan matriks pembobot spasial untuk <span class="math inline">\(X\)</span> dan <span class="math inline">\(\gamma\)</span> merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut <span class="citation" data-cites="glaser2017">(<a href="references.html#ref-glaser2017" role="doc-biblioref">S 2017</a>)</span>:</p>
 <p><span class="math inline">\(\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta + w_{2i}^{\prime} x_i \gamma\right)\)</span></p>
-<p>dengan (y_i (_i))</p>
+<p>dengan <span class="math inline">\(y_i \sim \text{NB}(\mu_i)\)</span></p>
 <ol start="3" type="a">
 <li>Spatial Lag-X (SLX)</li>
 </ol>
@@ -386,7 +386,7 @@ window.Quarto = {
 <p><span class="math inline">\(y = X\beta + \gamma W_2 X + \varepsilon\)</span></p>
 <p>Spatial lag-x binomial negatif (SLX BN) merupakan model regresi spasial untuk data cacah dengan overdispersi dan terdapat dependensi spasial pada prediktor. Persamaan dari SLX BN sebagai berikut:</p>
 <p><span class="math inline">\(\mu_i = \exp\left(x_i \beta + w_{2i}^{\prime} x_i \gamma\right)\)</span></p>
-<p>dengan (y_i (_i))</p>
+<p>dengan <span class="math inline">\(y_i \sim \text{NB}(\mu_i)\)</span></p>
 </section><section id="data" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="data">
 <span class="header-section-number">3.2</span> Data</h2>
 <p>Ilustrasi model SAR-BN dirujuk dari hasil penelitian <span class="citation" data-cites="amelia2023">Amelia M (<a href="references.html#ref-amelia2023" role="doc-biblioref">2023</a>)</span>. Data yang digunakan adalah data sekunder yang diperoleh dari Badan Pusat Statistik Jawa Barat, Dinas Kesehatan Provinsi Jawa Barat, dan Profil Kesehatan Provinsi Jawa Barat Tahun 2021 yang dikeluarkan oleh Dinas Kesehatan Jawa Barat tahun 2021. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat di <a href="#tbl-sarbn" class="quarto-xref">Tabel&nbsp;<span>3.1</span></a>. Data dan peta ilustrasi SAR-BN tersedia pada tautan <a href="https://ipb.link/sar-binomial-negatif">https://ipb.link/sar-binomial-negatif</a>.</p>
@@ -622,7 +622,7 @@ Gambar&nbsp;3.1: Peta stunting
 </div>
 </div>
 </div>
-<p>Pemeriksaan sebaran yang sesuai untuk data stunting dapat juga dilakukan menggunakan plot kuantil-kauntil dengan menggunakan syntax berikut ini:</p>
+<p>Pemeriksaan sebaran yang sesuai untuk data stunting dapat juga dilakukan menggunakan plot kuantil-kuantil dengan menggunakan syntax berikut ini:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Pemeriksaan sebaran menggunakan plot Q-Q</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/fitdistrplus/man/graphcomp.html">qqcomp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">poisson</span>, <span class="va">binom.negatif</span><span class="op">)</span>, legendtext <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pois"</span>, </span>
@@ -1844,11 +1844,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>$y = \rho W_1 y + X\beta + \varepsilon$</span>
 <span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>dengan <span class="sc">\(</span>y<span class="sc">\)</span> merupakan peubah respon, <span class="sc">\(</span>W_1<span class="sc">\)</span> merupakan matriks pembobot spasial untuk <span class="sc">\(</span>y<span class="sc">\)</span>, <span class="sc">\(</span>\beta<span class="sc">\)</span> adalah koefisien parameter regresi, <span class="sc">\(</span>\varepsilon<span class="sc">\)</span> merupakan sisaan, dan <span class="sc">\(</span>\rho<span class="sc">\)</span> merupakan koefisien autoregressive lag spasial. Model SAR binomial negatif (SAR BN) dinyatakan sebagai berikut:</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>dengan $y$ merupakan peubah respon, $W_1$ merupakan matriks pembobot spasial untuk $y$, $\beta$ adalah koefisien parameter regresi, $\varepsilon$ merupakan sisaan, dan $\rho$ merupakan koefisien autoregressive lag spasial. Model SAR binomial negatif (SAR BN) dinyatakan sebagai berikut:</span>
 <span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>$\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta\right)$</span>
 <span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>dengan <span class="sc">\(</span>y_i \sim \text{NB}(\mu_i)<span class="sc">\)</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>dengan $y_i \sim \text{NB}(\mu_i)$</span>
 <span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>b. Spatial Durbin Model (SDM)</span>
 <span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
@@ -1856,11 +1856,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>$y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon $</span>
 <span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>dengan <span class="sc">\(</span>W_2<span class="sc">\)</span> merupakan matriks pembobot spasial untuk <span class="sc">\(</span>X<span class="sc">\)</span> dan <span class="sc">\(</span>\gamma<span class="sc">\)</span> merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut <span class="co">[</span><span class="ot">@glaser2017</span><span class="co">]</span>:</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>dengan $W_2$ merupakan matriks pembobot spasial untuk $X$ dan $\gamma$ merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut <span class="co">[</span><span class="ot">@glaser2017</span><span class="co">]</span>:</span>
 <span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>$\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta + w_{2i}^{\prime} x_i \gamma\right)$</span>
 <span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>dengan <span class="sc">\(</span>y_i \sim \text{NB}(\mu_i)<span class="sc">\)</span></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>dengan $y_i \sim \text{NB}(\mu_i)$</span>
 <span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>c. Spatial Lag-X (SLX)</span>
 <span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a></span>
@@ -1872,7 +1872,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>$\mu_i = \exp\left(x_i \beta + w_{2i}^{\prime} x_i \gamma\right)$</span>
 <span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>dengan <span class="sc">\(</span>y_i \sim \text{NB}(\mu_i)<span class="sc">\)</span></span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>dengan $y_i \sim \text{NB}(\mu_i)$</span>
 <span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
 <span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a></span>
@@ -2024,7 +2024,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-207"><a href="#cb27-207" aria-hidden="true" tabindex="-1"></a><span class="fu">descdist</span>(data1<span class="sc">$</span>Stunting, <span class="at">discrete =</span> <span class="cn">TRUE</span>, <span class="at">boot=</span><span class="dv">1000</span>)</span>
 <span id="cb27-208"><a href="#cb27-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb27-209"><a href="#cb27-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-210"><a href="#cb27-210" aria-hidden="true" tabindex="-1"></a>Pemeriksaan sebaran yang sesuai untuk data stunting dapat juga dilakukan menggunakan plot kuantil-kauntil dengan menggunakan syntax berikut ini:</span>
+<span id="cb27-210"><a href="#cb27-210" aria-hidden="true" tabindex="-1"></a>Pemeriksaan sebaran yang sesuai untuk data stunting dapat juga dilakukan menggunakan plot kuantil-kuantil dengan menggunakan syntax berikut ini:</span>
 <span id="cb27-211"><a href="#cb27-211" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-214"><a href="#cb27-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb27-215"><a href="#cb27-215" aria-hidden="true" tabindex="-1"></a><span class="co">#Pemeriksaan sebaran menggunakan plot Q-Q</span></span>
