@@ -1,4 +1,4 @@
-# Regresi Terboboti Geografis
+# Regresi Terboboti Geografis {#sec-rtg}
 
 ```{r}
 #| echo: false

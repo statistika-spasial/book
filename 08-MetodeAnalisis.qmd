@@ -1,4 +1,4 @@
-# Metode Analisis
+# Metode Analisis {#sec-mix-sargwr-method}
 
 Langkah-langkah yang dilakukan untuk menganalisis data adalah sebagai berikut:
 

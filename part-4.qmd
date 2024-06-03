@@ -1,1 +1,1 @@
-# Spatial Filtering
+# Spatial Filtering {#sec-spasial-filtering-intro .unnumbered}

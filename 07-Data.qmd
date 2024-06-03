@@ -1,4 +1,4 @@
-# Data
+# Data {#sec-mix-sargwr-data}
 
 Data dalam penelitian ini berasal dari data sekunder Badan Pusat Statistik (BPS) mengenai aspek sosial ekonomi masyarakat dengan objek amatan 514 Kabupaten/Kota se-Indonesia pada tahun 2021. Berikut adalah peubah-peubah yang digunakan (@tbl-sars-gwr):
 

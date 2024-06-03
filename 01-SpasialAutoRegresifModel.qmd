@@ -1,4 +1,4 @@
-# Spasial Autoregresif Model 
+# Spasial Autoregresif Model   {#sec-sar-model}
 
 ```{r}
 #| echo: false

@@ -1,4 +1,4 @@
-# Model Dependensi Spasial 
+# Model Dependensi Spasial {#sec-dependensi-model}
 
 ```{r}
 #| echo: false
@@ -6,7 +6,161 @@
 source("_common.R")
 ```
 
-## Package
+## Deskripsi
+
+Analisis regresi spasial digunakan untuk melakukan pemodelan hubungan antara peubah respon dan prediktor dalam bentuk model regresi dengan mempertimbangkan efek spasial. Efek spasial antar lokasi dapat disebabkan oleh dependensi spasial dan heterogenitas spasial [@anselin1988]. Dependensi spasial adalah ketergantungan antara suatu lokasi dengan lokasi di sekitarnya sedangkan heterogenitas spasial adalah perbedaan pengaruh peubah prediktor terhadap respon di lokasi yang diamati. **Eigenvector Spasial Filtering (ESF)** adalah metode untuk mengatasi masalah dependensi spasial dengan menambahkan kombinasi linier dari vektor ciri matriks pembobot spasial pada spesifikasi model regresi (Chun & Griffith, 2014). Eigenvector Spasial Filtering (ESF) dapat mengurangi kesalahan spesifikasi spasial, meningkatkan kesesuaian model, serta kenormalan dan homogenitas ragam sisaan. Metode lain yang dapat mengatasi masalah dependensi spasial adalah **Random Effect Eigenvector Spatial Filtering (RE-ESF)**.
+
+Murakami dan Griffith (2015) memperluas Eigenvector Spatial Filtering (ESF) yang merupakan pendekatan efek tetap, ke pendekatan efek acak yaitu Random Effect Eigenvector Spatial Filtering (RE-ESF). Random Effect Eigenvector Spatial Filtering (RE-ESF) mempertimbangkan efek spasial sebagai variabel acak yang bervariasi di antara wilayah-wilayah yang diamati. Hughes dan Haran (2013) membahas kegunaan Random Effect Eigenvector Spatial Filtering (RE-ESF) untuk analisis dependensi spasial yang meminimumkan nilai ragam yang disebabkan oleh faktor acak antara peubah prediktor dan proses spasial laten.
+
+Eigenvector Spatial Filtering (ESF) yang juga disebut koordinat utama matriks ketetanggaan (Dray et.al. 2006) atau pemetaan vektor ciri Moran didasarkan pada koefisien Moran (MC). Koefisien Moran untuk vektor peubah acak $y$ didefinisikan sebagai berikut:
+
+$$ 
+MC[y] = \frac{n}{(1' W1)} \left( y' MWMy \right) / \left( y' My \right) 
+$$ {#eq-1001}
+
+dengan $W$ adalah matriks bobot spasial simetris berukuran $n \times n$ dengan diagonal nol, dan $M = (I-11'/n)$ adalah matriks pemusatan. Misalkan dekomposisi eigen matriks $MWM$ sebagai $E^* \Lambda^* E^{*'}$, dengan $E^* = [e_1, \ldots, e_n]$ adalah matriks vektor ciri. $\Lambda^* = \text{diag}(\lambda_1, \ldots, \lambda_n)$ adalah matriks diagonal yang elemennya adalah akar ciri $\{\lambda_1, \ldots, \lambda_N\}$. Nilai koefisien Moran untuk hasil vektor ciri ke-$l$ adalah:
+
+$$
+MC[e_l] = \frac{n}{(1' W1)} \left( e_l' MWMye_l \right) / \left( e_l' Me_l \right) = \frac{n}{(1' W1)} \left( e_l' E^* \Lambda^* E^{*'} y e_l \right) / \left( e_l' Me_l \right) = \frac{n}{(1' W1)} \lambda_l
+$$ {#eq-1002}
+
+### Fixed Effect Eigenvector Spatial Filtering (ESF)
+
+Kombinasi linier dari akar ciri masih dapat diinterpretasikan dalam istilah MC. Misalkan $E = [e_1, \ldots, e_L]$ adalah matriks yang terdiri dari vektor ciri $L (< n)$ di $E^*$, dan $\gamma = [\gamma_1, \ldots, \gamma_L]'$ adalah vektor parameter. Model dasar dari ESF adalah:
+
+$$
+y = X\beta + E\gamma + \varepsilon, \quad \varepsilon \sim N(0, \sigma^2 I) 
+$$ {#eq-1003}
+
+dengan $y$ adalah vektor peubah respon berukuran $n \times 1$, $E$ adalah matriks berukuran $n \times L$ yang terdiri dari subset $L$ ($L < n$) vektor ciri dari $E^*$, $\varepsilon$ adalah vektor galat berukuran $n \times 1$, $\beta$ adalah vektor parameter berukuran $K \times 1$, $\gamma = [\gamma_1, \ldots, \gamma_l, \ldots, \gamma_L]'$ adalah vektor parameter berukuran $L \times 1$, $\sigma^2$ adalah parameter ragam, dan $0$ adalah vektor nol berukuran $n \times 1$.
+
+Pemilihan $L$ vektor ciri pada $E$ yang signifikan dilakukan menggunakan metode regresi bertatar. @eq-1003 identik dengan model regresi linier standar, sehingga linier standar, pemilihan vektor ciri yang signifikan dapat dilakukan dengan metode pemilihan bertatar dengan menggunakan metode kuadrat terkecil. Penduga parameter $\beta$ dan $\gamma$ sebagai berikut:
+
+$$ 
+\begin{bmatrix} \hat{\beta} \\ \hat{\gamma} \end{bmatrix} = \left( X^T X \quad X^T E \quad E^T X \quad I \right)^{-1} 
+$$ {#eq-1004}
+
+### Random Effect Eigenvector Spatial Filtering (RE-ESF)
+
+Berdasarkan Hughes dan Haran (2013), model linier RE-ESF yang didasarkan pada model dengan autoregresif prior bersyarat intrinsik dirumuskan sebagai berikut:
+
+$$
+y = X\beta + E\gamma + \varepsilon, \quad \gamma \sim N(0, \sigma_{\gamma}^2 \Lambda), \quad \varepsilon \sim N(0, \sigma^2 I) 
+$$ {#eq-1005}
+
+dengan $\sigma_{\gamma}^2$ adalah parameter ragam dan $\Lambda$ adalah matriks diagonal berukuran $L \times L$ yang elemennya adalah $L$ pertama akar ciri dari $MWM$, $\gamma_1, \ldots, \gamma_L$, sesuai dengan $L$ vektor ciri di $E$. Persamaan di atas identik dengan model campuran linier (linear mixed model atau LMM). Model campuran linier merupakan perluasan dari model linear yaitu dengan menambahkan efek acak. Metode ini banyak digunakan dalam rancangan percobaan untuk data yang berkorelasi. Bentuk umum model linear campuran adalah
+
+$$
+y = X\beta + Zu + \varepsilon 
+$$ {#eq-1006}
+
+dengan $X$ adalah matriks desain dari efek tetap yang teramati, $\beta$ adalah vektor parameter pengaruh efek tetap yang tidak diketahui, $Z$ adalah matriks desain efek acak yang teramati, $u$ adalah vektor efek acak yang tidak diketahui, dan $\varepsilon$ vektor galat acak yang tidak diketahui.
+
+Hughes dan Haran (2013) memperkenalkan vektor ciri ke dalam $E$ yang akar cirinya lebih besar dari nol. Penduga linear tak bias terbaik (best linear unbiased estimator atau BLUE) dari $\beta$ dan $\gamma$ diperoleh sebagai berikut (Henderson 1975),
+
+$$ 
+\begin{bmatrix} \hat{\beta} \\ \hat{\gamma} \end{bmatrix} = \left( X^T X \quad X^T E \quad E^T X \quad I + \frac{\sigma^2}{\sigma_{\gamma}^2} \Lambda^{-1} \right)^{-1} \begin{bmatrix} X^T y \\ E^T y \end{bmatrix} 
+$$ {#eq-1007}
+
+dengan $\Lambda^{-1}$ adalah matriks diagonal berukuran $L \times L$ yang elemennya adalah $1/\lambda_1, \ldots, 1/\lambda_L$. Pada @eq-1007, diagonal ke-$l$ ($l = 1, \ldots, L$) dari $(\sigma^2/(\sigma_{\gamma}^2)) \Lambda^{-1}$, yang diberikan oleh $(\sigma^2/(\sigma_{\gamma}^2)) \gamma_l^{-1}$, menyusutkan koefisien ke-$l$ ($\gamma_l$) menuju nol. Penyusutan ini signifikan untuk vektor eigen yang berhubungan dengan akar ciri yang lebih kecil, $\gamma_l$. Penyusutan seperti itu yang berguna untuk menduga model sambil mempertahankan derajat kebebasan yang konstan (Hodges 2013), memungkinkan menduga model RE-ESF tanpa menerapkan pemilihan vektor ciri bertahap (stepwise eigenvector selection). Ragam dari pendugaan $\beta$ dan $\gamma$ diberikan sebagai berikut:
+
+$$
+\text{Var}[\hat{\beta}, \hat{\gamma}] = \sigma^2 \left( X^T X \quad X^T E \quad E^T X \quad I + \frac{\sigma^2}{\sigma_{\gamma}^2} \Lambda^{-1} \right)^{-1} 
+$$ {#eq-1008}
+
+### Penduga Parameter Model
+
+@eq-1007 dapat ditulis sebagai berikut:
+
+$$ 
+y = X\beta + EV(\theta)u + \varepsilon, \quad u \sim N(0, \sigma^2 I), \quad \varepsilon \sim N(0, \sigma^2 I) 
+$$ {#eq-1009}
+
+dengan $V(\theta)u = \gamma$ dengan $\theta = \left\{ \left( \frac{\sigma_{\gamma}^2}{\sigma^2} \right), \alpha \right\}$, dan $V(\theta)$ adalah matriks diagonal berukuran $L \times L$ yang elemen ke-$(l, l)$ adalah $\left( \frac{\sigma_{\gamma}}{\sigma} \right) \lambda_l \sqrt{\alpha}$. Berdasarkan Bates (2010), @eq-1010 identik dengan model linear campuran yang pendugaannya menggunakan metode kemungkinan maksimum (maximum likelihood atau ML) dan kemungkinan maksimum terbatas (restricted maximum likelihood atau REML). Loglikelihood pada @eq-1011 dapat dituliskan sebagai berikut:
+
+$$
+\text{log} L(\beta, \theta, \sigma^2) = -\frac{n}{2} \text{log}(2\pi\sigma^2) - \text{log}(|V(\theta)|^2) - \frac{d(\theta)}{\sigma^2} 
+$$ {#eq-1010}
+
+$$
+d(\theta) = \lVert y - X\beta + EV(\theta)u \rVert^2 + \lVert u \rVert^2 
+$$ {#eq-1011}
+
+Penduga linear tak bias terbaik dari $\beta$ dan $u$ diperoleh dengan memaksimumkan @eq-1012 sebagai berikut:
+
+$$ 
+\begin{bmatrix} \hat{\beta} \\ \hat{u} \end{bmatrix} = \left( X^T X \quad X^T EV(\theta) \quad V(\theta)E^T X \quad V(\theta)^2 + I \right)^{-1} \begin{bmatrix} X^T y \\ V(\theta)E^T y \end{bmatrix}
+$$ {#eq-1012}
+
+dengan $V(\theta)^2$ adalah matriks diagonal berukuran $L \times L$ yang elemen ke-$(l, l)$ adalah $\left( \frac{\sigma_{\gamma}^2}{\sigma^2} \right) \gamma_l \alpha$. @eq-1011 identik dengan @eq-1007 dengan penambahan $\alpha$. $\theta$ dapat diduga dengan memaksimumkan @eq-1010. Penduga kemungkinan maksimum dari parameter ragam ($\theta$ dan $\sigma^2$) diketahui berbias (Bates 2010). Oleh karena itu, digunakan pendugaan REML yang memberikan pendugaan parameter ragam yang tidak bias. Residual log-likehood untuk parameter ragam diformulasikan sebagai berikut:
+
+$$
+\text{log} L_R(\theta, \sigma^2) = \int \text{log} L(\beta, \theta, \sigma^2) d\beta 
+$$ {#eq-1013}
+
+Dengan memaksimumkan @eq-1014, penduga tak bias diperoleh sebagai berikut:
+
+$$
+\sigma^2 = \frac{\lVert y - X\beta + EV(\theta)u \rVert^2}{(n-K)} \quad (13) 
+$$ {#eq-1014}
+
+Berdasarkan Bates (2010), $\theta$ diduga dengan memaksimumkan profil residual log-likelihood, $\text{log} L_R(\theta)$ yang diturunkan dengan langkah (a) mensubstitusikan @eq-1010 pada @eq-1012 dan menurunkan fungsi $\text{log} L_R(\theta, \sigma^2)$ dan (b) mensubstitusikan @eq-1013 pada $\text{log} L_R(\theta, \sigma^2)$ dan menurunkan fungsi $\text{log} L_R(\theta)$. Hasil fungsi profil residual log-likelihood diberikan sebagai berikut:
+
+$$
+\text{log} L_R(\theta) = -\frac{1}{2} \text{log} \left| \begin{bmatrix} X^T X & X^T EV(\theta) \\ V(\theta) E^T X & V(\theta)^2 + I \end{bmatrix} \right| - \frac{(n-K)}{2} \left( 1 + \text{log} \left( \frac{2\pi d(\theta)}{(n-K)} \right) \right) 
+$$ {#eq-1015}
+
+Maksimalisasi @eq-1016 membutuhkan penghitungan determinan pada suku pertama. Beban komputasi dapat diringankan dengan mengurangi jumlah vektor eigen di $E$. Ragam dari $\hat{\beta}$ dan $\hat{\gamma}$ yang diduga adalah sebagai berikut:
+
+$$
+\text{Var}[\hat{\beta}\hat{u}] = \text{Var}[\hat{\beta}V(\theta)\hat{u}] = \sigma^2 \left(X'X \quad X'E \atop E'X \quad I + \frac{\sigma^2}{\sigma_{\gamma}^2}\Lambda^{-1} \right)^{-1} \quad \text{(15)}
+$$ {#eq-1016}
+
+dengan $V(\theta)^{-2}$ adalah matriks diagonal berukuran $L \times L$ yang elemen ke-$l$ adalah $\left(\frac{\sigma^2}{\sigma_{\gamma}^2}\right) \lambda_l(\alpha)^{-1}$.
+
+## Data
+
+Data yang digunakan pada penelitian ini adalah data empiris Stunting per Kabupaten/Kota di Indonesia tahun 2021 dari Badan Pusat Statistika yang terdiri dari 513 Kabupaten/Kota. Data tersebut terdiri dari peubah respon dan peubah penjelas. Peubah-peubah tersebut sebagai berikut: 
+
+$$Y = \text{Stunting}$$
+
+$$X_1 = \text{Tingkat Kemiskinan}$$
+
+$$X_2 = \text{Akses Layanan Kesehatan}$$
+
+$$X_3 = \text{Gizi Ibu Hamil}$$
+
+$$X_4 = \text{Akses Sanitasi}$$
+
+$$X_5 = \text{Akses Air Bersih}$$
+
+## Tahapan Analisis Data
+
+Penelitian ini dilakukan dengan langkah-langkah sebagai berikut:
+
+1. Melakukan analisis eksplorasi data pada data stunting di Indonesia tahun 2021 untuk melihat gambaran umum setiap peubah yang diamati.
+
+2. Melakukan tahap pra-pemrosesan data dengan mengidentifikasi pencilan pada peubah respon dan menanganinya.
+
+3. Memodelkan data stunting menggunakan metode Regresi Linier, memeriksa asumsinya, dan mengevaluasi model.
+
+4. Memodelkan data stunting menggunakan metode Eigenvector Spatial Filtering (ESF), dengan rincian tahapan sebagai berikut:
+    a. Menguji data stunting dengan indeks Moran dan Lagrange-Multiplier
+    b. Menghitung bobot spasial menggunakan pendekatan matriks invers jarak dan eksponensial.
+    c. Memodelkan data stunting menggunakan metode ESF efek tetap (fixed effects) untuk setiap unit spasial.
+    d. Memodelkan data stunting menggunakan metode ESF efek acak (random effect) dengan asumsi peubah acak berasal dari sebaran normal.
+    e. Memodelkan data stunting menggunakan metode ESF efek acak dengan pendekatan Varying Coefficient (Random Effect-ESF VC).
+    f. Melakukan uji hipotesis untuk efek peubah penjelas terhadap peubah respon.
+    g. Mengevaluasi model.
+
+5. Membandingkan kinerja model Regresi Linier, Fixed Effect-ESF, Random Effect-ESF, dan Random Effect-ESF VC menggunakan nilai Koefisien Determinasi (R-Sqrd) dan Akaike Information Criterion (AIC).
+
+6. Menguji kelayakan dari model terbaik.
+
+
+## Tahapan Analisis Data dengan R
+
+### Package
 
 ```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(spdep) # Untuk pemodelan dependensi spasial
@@ -26,7 +180,7 @@ library(fitdistrplus)
 library(readxl)
 ```
 
-## Data dan Peta
+### Data dan Peta
 
 ```{r}
 #Input Data
@@ -36,7 +190,7 @@ stunting <- read_excel("data/data_stunting_indo.xlsx")
 peta <- read_sf("data/shp/BATAS KABUPATEN KOTA DESEMBER 2019 DUKCAPIL.shp")
 ```
 
-## Modifikasi Data
+### Modifikasi Data
 
 ```{r}
 #Menggabungkan Data ke file SHP
@@ -51,7 +205,7 @@ longlat = st_coordinates(st_centroid(dfix$geometry))
 #write_xlsx(dfix,"datacek.xlsx")
 ```
 
-## Plot Spasial
+### Plot Spasial
 
 ```{r}
 #Pemetaan Kasus Stunting
@@ -64,7 +218,7 @@ ggplot(dfix) +
   labs(fill = "Stunting")
 ```
 
-## Bobot Spasial
+### Bobot Spasial
 
 ```{r}
 #Bobot Spasial
@@ -79,7 +233,7 @@ cekrowsum = rowSums(w_std, na.rm = T)
 wmoran = mat2listw(w_std, style = "W")
 ```
 
-## Uji Asumsi
+### Uji Asumsi
 
 ```{r}
 #Uji Moran Indeks (Autokorelasi)
@@ -94,7 +248,7 @@ LM <- lm.LMtests(model, wmoran, test = c('LMerr', 'LMlag', 'RLMerr', 'RLMlag'))
 summary(LM)
 ```
 
-## Fixed ESF
+### Fixed ESF
 
 ```{r}
 #ESF Fixed
@@ -105,7 +259,7 @@ esf <- esf(y = Y, x = X, meig = meig)
 esf
 ```
 
-## Random Effect-ESF
+### Random Effect-ESF
 
 ```{r}
 #ESF Random
@@ -116,7 +270,7 @@ resf <- resf(y = Y, x = X, meig = meig)
 resf
 ```
 
-## Random Effect ESF - VC
+### Random Effect ESF - VC
 
 ```{r}
 #ESF VC

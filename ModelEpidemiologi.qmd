@@ -1,10 +1,234 @@
-# Model Epidemiologi
+# Model Epidemiologi {#sec-model-epidemiologi-intro .unnumbered}
 
 ```{r}
 #| echo: false
 
 source("_common.R")
 ```
+
+## Deskripsi
+
+Regresi binomial negatif digunakan untuk mengatasi overdisversi pada regresi Poisson. Pada regresi binomial negatif dapat ditambahkan efek dependensi spasial dan dapat dimodelkan  menggunakan **GLMM (Generalized Linear Mixed Models)**. Model ini juga dikenal sebagai *conditional autoregressive regression (CAR)*. Pemodelan CAR umumnya menggunakan metode pendugaan Bayes dengan pendugaan sebaran posterior yang efisien menggunakan **Integrated Nested Laplace Aproximation (INLA)**. 
+
+
+GLMM adalah pengembangan GLM yang terdapat penambahan komponen acak pada bagian prediktor model. GLMM dapat digunakan untuk menangani situasi yang terdapat korelasi antar observasi atau terdapat beberapa jenis kelompok dalam data, maupun juga data longitudinal [@mcculloch2003]. Persamaan umum dari GLMM bisa dibentuk dengan memodifikasi model GLM dengan menambahkan efek acak $\theta_i$ [@tufvesson2019] sebagai berikut:
+
+$$
+g(\mu_i) = X_i^T \beta + \theta_i 
+$$ {#eq-1201}
+
+
+dengan $\theta_i$ merupakan efek acak yang independen (*unstructured random effect*) dapat berupa suatu noise yang memiliki sebaran normal. 
+
+Pengembangan lain dari GLMM yaitu mempertimbangkan unsur efek acak spasial terstruktur (*structured random effect*) pada prediktor melalui prior CAR. Model ini sering digunakan pada beberapa ilmu seperti demografi, ekonomi, epidemiologi, dan geografi [@oliveira2020]. Misalkan peubah respon $Y = (y_1, \ldots, y_n)$ merupakan vektor univariat yang menyatakan jumlah kasus pada lokasi ke-$i$ dan vektor predictor pada lokasi ke-$i$ adalah $X_i^T = (1, x_{1i}, x_{2i}, \ldots, x_{pi})$ dengan $i = 1, 2, 3, \ldots, n$ dengan jumlah peubah bebas $p$. Adapun unsur efek acak spasial terstruktur direpresentasikan oleh $\phi = (\phi_1, \phi_2, \ldots, \phi_n)$, dengan formulasi model CAR sebagai berikut:
+
+$$
+y_i \mid \mu_i \sim f(y_i \mid \mu_i, v^2) 
+$$ {#eq-1202}
+
+$$
+g(\mu_i) = X_i^T \beta + \phi_i 
+$$ {#eq-1203}
+
+Seperti halnya pada GLM, peubah respon $y_i$ berasal dari anggota keluarga sebaran eksponensial $f(y_i \mid \mu_i, v^2)$ dengan $v^2$ merupakan parameter skala yang digunakan untuk sebaran normal. Untuk sebaran binomial negatif dengan dua parameter, dengan asumsi tambahan $v^2 = \gamma$, maka dari @eq-1202 dan @eq-1203 dapat dibentuk model CAR dengan fungsi sebaran binomial negatif yaitu sebagai berikut (Sparks, 2020):
+
+$$
+y_i \mid \mu_i \sim \text{NB}(y_i \mid \mu_i, \gamma)
+$$ {#eq-1204}
+
+$$
+\log(\mu_i) = X_i^T \beta + \phi_i
+$$ {#eq-1205}
+
+Efek acak $\phi_i$ dimodelkan dengan kelas sebaran prior CAR, yang merupakan jenis sebaran **Gaussian Markov Random Field (GMRF)**. Sebaran tersebut dapat ditulis dalam bentuk $\phi \sim N(0, \tau^2 Q^{-1})$, dengan $Q$ merupakan matriks presisi yang mungkin berupa matriks tunggal (*noninvertible matrix*). Korelasi spasial antara efek acak ditentukan oleh matriks ketetanggaan biner $W$ berukuran $n \times n$, dengan elemen $w_{ji}$ sama dengan satu jika area $(j,i)$ didefinisikan sebagai tetangga, dan nol jika tidak. Kemudian apabila dua area didefinisikan sebagai tetangga, maka efek randomnya akan berkorelasi, sedangkan efek random di area yang tidak bertetangga akan bebas bersyarat dengan mempertimbangkan elemen-elemen lain dari $\phi$. Pendekatan ini paling umum yaitu, $w_{ji}=1$ jika dan hanya jika mereka memiliki batas yang sama, yaitu dilambangkan dengan $j \sim i$ sebagai notasi selanjutnya. Namun, setiap area harus memiliki setidaknya satu elemen positif $w_{ji}$, sehingga jumlah suatu baris dari matriks $W$ tidak boleh nol.
+
+Umumnya prior CAR dispesifikasikan oleh satu set data berjumlah $n$ memiliki sebaran bersyarat penuh univariat $f(\phi_i \mid \phi_{-i})$ di mana $\phi_{-i} = (\phi_1, \ldots, \phi_{i-1}, \phi_{i+1}, \ldots, \phi_i)$. Berbagai sebaran prior CAR telah banyak diperkenalkan oleh berbagai ahli terutama dalam konteks pemetaan penyakit, yaitu seperti **Intrinsic CAR (ICAR)**, **Besag York Mollié (BYM)** (Besag et al, 1991), [@stern1999], dan [@leroux2000]. Namun pada penelitian ini hanya akan membahas prior ICAR dan BYM.
+
+### 1. ICAR 
+
+Prior CAR yang paling sederhana saat ini adalah **Intrinsic autoregressive (IAR)**, yang diusulkan oleh Besag et al, (1991) dan memiliki sebaran bersyarat penuh yaitu,
+
+$$
+\phi_i = \psi_i 
+$$ {#eq-1206}
+
+$$
+\psi_i \mid \psi_{-i}, W, \tau^2 \sim N\left(\frac{\sum_{j \sim i} w_{ji} \psi_i}{\sum_{j \sim i} w_{ji}}, \frac{\tau^2}{\sum_{j \sim i} w_{ji}}\right) 
+$$ {#eq-1207}
+
+$$
+\tau^2 \sim \text{Inverse-Gamma}(a, b)
+$$ {#eq-1208}
+
+Nilai harapan bersyarat dari $\psi_i$ sama dengan rata-rata dari efek acak di area tetangga, sedangkan ragam bersyarat berbanding terbalik dengan jumlah tetangga. Kemudian struktur ragam dari $\psi_i$ ini akan memiliki korelasi spasial yang kuat, apabila semakin banyak tetangga yang dimiliki oleh suatu area. Parameter ragam $\tau^2$ digunakan untuk mengontrol besarnya variasi antara efek acak, yang pada umumnya mengikuti proses sebaran invers gamma. 
+
+### 2. BYM 
+
+Prior konvolusi atau **Besag-York-Mollie (BYM)** pertama kali dijelaskan oleh Besag et al, (1991). Memiliki efek acak yang dari dua komponen, yaitu mengkombinasikan efek acak spasial terstruktur (*structured random effect*) pada Persamaan @eq-1206 dengan efek acak yang independen (*unstructured random effect*) seperti pada @eq-1207. Model ini memiliki bentuk sebagai berikut,
+
+$$
+\phi_i = \psi_i + \theta_i
+$$ {#eq-1209}
+
+$$
+\psi_i \mid \psi_{-i}, W, \tau^2 \sim N\left(\frac{\sum_{j \sim i} w_{ji} \psi_i}{\sum_{j \sim i} w_{ji}}, \frac{\tau^2}{\sum_{j \sim i} w_{ji}}\right) 
+$$ {#eq-1210}
+
+$$
+\theta_i \sim N(0, \sigma^2) 
+$$ {#eq-1211}
+
+$$
+\tau^2, \sigma^2 \sim \text{Inverse-Gamma}(a, b) 
+$$ {#eq-1212}
+
+Efek acak $\theta = (\theta_1, \theta_2, \ldots, \theta_n)$ bersifat independen dengan mean nol dan ragam konstan, sedangkan efek acak autokorelasi spasial dimodelkan melalui $\psi$. Model ini merupakan model CAR yang paling sering digunakan dalam praktiknya.
+
+## Data
+
+Penelitian ini menggunakan data Profil Kesehatan 2021 dari setiap provinsi di Pulau Jawa, yaitu Provinsi Banten, DKI Jakarta, Jawa Barat, DI Yogyakarta, Jawa Tengah, dan Jawa Timur. Satuan pengamatan pada penelitian ini adalah kabupaten/ kota di seluruh Pulau Jawa, yakni 119 kabupaten/kota. Peubah yang digunakan pada penelitian ini dapat dilihat pada @tbl-epidemi. Penelitian selengkapnya terdapat [@fitri2024].
+
+| Peubah | Keterangan                                              | Faktor             | Literatur               |
+|--------|---------------------------------------------------------|--------------------|-------------------------|
+| $Y$      | Banyaknya stunting per 100.000 balita                 |                    |                         |
+| $X_1$    | Persentase balita yang mendapatkan ASI eksklusif       | Faktor asupan gizi | Hasiru et al, (2022)    |
+| $X_2$    | Persentase balita yang mendapatkan imunisasi dasar lengkap | Faktor pelayanan kesehatan | Manaf et al, (2022) |
+| $X_3$    | Persentase keluarga dengan akses sanitasi layak        | Faktor pola asuh   | Fadliana dan Drajat (2021) |
+| $X_4$    | Persentase penduduk miskin                              | Faktor ekonomi     | Bele et al, (2022)      |
+
+: Peubah yang digunakan {#tbl-epidemi .striped .hover}
+
+## Tahapan Analisis Data
+
+Metode yang digunakan dalam analisis data stunting *Negative Binomial Conditional Autoregressive* (CAR) dengan pendekatan INLA. Pengolahan data menggunakan software R Studio. Tahapan analisis data yang dilakukan adalah sebagai berikut:
+
+1. Melakukan eksplorasi pada data penelitian
+
+2. Medeteksi multikolinieritas antar peubah penjelas menggunakan nilai VIF (*Variance Inflation Factor*), jika didapatkan nilai `VIF > 10` maka dapat dikatakan bahwa terjadi multikolinearitas pada data [@kutner2005], sehingga perlu dilakukan penanganan lebih lanjut sebelum dilakukannya pemodelan.
+
+3. Memeriksa overdispersi, dengan melihat nilai devians dan chi-kuadrat pearson dibagi dengan derajat bebasnya. Jika nilai tersebut bernilai lebih dari satu maka terdapat overdispersi pada data, sehingga dapat menggunakan sebaran yang lebih fleksibel seperti sebaran binomial negatif.
+
+4. Menghitung Matriks Pembobotan Spasial ($W$) dengan menggunakan *queen contiguity*, eksponensial jarak (*exponential weight*), kebalikan jarak (*inverse distance weight*), dan pembobot tetangga terdekat (*k-Nearest Neighbor Weight*) berikut rincian setiap pembobotan yang dilakukan (Djuraidah et al, 2022):
+
+   a. Untuk *queen contiguity*, pembobotan dilakukan dengan menggunakan rumus berikut:
+   
+      $$
+      w_{ij} = \begin{cases}
+      1 & \text{jika } i \text{ dan } j \text{ bersinggungan} \\
+      0 & \text{jika } i \text{ dan } j \text{ tidak bersinggungan}
+      \end{cases}
+      $$
+      
+   b. Untuk bobot eksponensial (*exponential weight*), pembobotan dilakukan dengan menggunakan rumus berikut:
+   
+      $$
+      w_{ij} = \exp(-d_{ij})
+      $$
+      
+      dengan $d_{ij}$ adalah jarak antara luas ke-$i$ dan luas ke-$j$.
+      
+   c. Untuk bobot jarak terbalik (*inverse distance weight*), pembobotan dilakukan dengan menggunakan rumus berikut:
+   
+      $$
+      w_{ij} = d_{ij}^{-1}
+      $$
+      
+   d. Untuk pembobot KNN:
+   
+      (i) Hitung jarak pusat antara unit ke-$i$ terhadap seluruh unit lainnya $j \neq i$.
+      (ii) Beri peringkat sebagai berikut $d_{ij}(1) \leq d_{ij}(2) \leq \dots \leq d_{ij}(n-1)$.
+      (iii) Kemudian untuk setiap $k=1,\dots,n-1$, atur $N_k (i) = \{j(1),j(2),\dots,j(k)\}$ yang berisi $k$ unit terdekat terhadap $i$.
+      (iv) Untuk setiap $k$, matriks pembobot $W$ memiliki elemen $w_{ij}$ bernilai 1 jika daerah $i$ berdekatan dengan daerah $j$, sedangkan elemen diagonal utama akan selalu bernilai nol.
+
+5. Melakukan uji autokorelasi spasial dengan menghitung nilai indeks Moran pada peubah respon [@anselin1988], dengan langkah-langkah berikut:
+   Hipotesis
+   
+   $$
+   H_0 : \text{Tidak terdapat autokorelasi spasial pada data}
+   $$
+   
+   $$
+   H_1 : \text{Terdapat autokorelasi spasial pada data}
+   $$
+   
+   Statistik Uji 
+   $$
+   z = \frac{(I - E(I))}{\sqrt{\text{var}(I)}}
+   $$
+   
+   dengan
+   $$
+   I = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}W_{ij}(x_i-\bar{x})(x_j-\bar{x})}{S_0 \sum_{i=1}^{n}(x_i-\bar{x})^2}
+   $$
+   
+   Kriteria pengujiannya 
+   $H_0$ ditolak jika nilai $|Z| > Z_{(\alpha/2)}$
+
+6. Melakukan pendugaan model Negative Binomial CAR dengan pendekatan INLA, 
+
+   6.1 Membuat model yang terdapat empat model yang akan dilihat (Sparks, 2018):
+       
+       Model GLM:
+       $$
+       \eta_i = X_i^T \beta
+       $$
+       
+       Model GLMM:
+       $$
+       \eta_i = X_i^T \beta + \theta_i
+       $$
+       
+       Model ICAR:
+       $$
+       \eta_i = X_i^T \beta + \psi_i
+       $$
+       
+       Model BYM:
+       $$
+       \eta_i = X_i^T \beta + \psi_i + \theta_i
+       $$
+      
+   6.2 Menentukan sebaran prior untuk hiperparameter pada model dengan ketentuan nilai prior:
+   
+       Model GLM, prior ~ Normal 
+       Structured Random Effect, $\psi_i|\psi_{(-i)} \sim N\left(\frac{\sum_{j\sim i} w_{ji} \psi_i}{\sum_{j\sim i} w_{ji}}, \frac{\tau^2}{\sum_{j\sim i} w_{ji}}\right)$
+       Unstructured Random Effect, $\theta_i \sim N(0, \sigma^2)$ 
+       Ragam $\psi_i$,  $\tau^2 \sim \text{Inverse-Gamma}(1, 0.0005)$
+       Ragam $\theta_i$,  $\sigma^2 \sim \text{Inverse-Gamma}(1, 0.0005)$
+      
+   7. Memilih model terbaik dengan mempertimbangkan beberapa kriteria sebagai berikut:
+      
+      **Defiance Information Criterion (DIC)** (Wang et al, 2018)
+      $$
+      \text{DIC} = \overline{D} + 2PD
+      $$
+      
+      dengan
+      $$
+      PD = E(D(\theta)) - D(E(\theta)) = \overline{D} - D(\theta_{\overline{}})
+      $$
+      
+      dan
+      $$
+      D(\theta) = -2\log(p(y^*|\theta))
+      $$
+      
+      Semakin kecil nilai AIC, maka model yang dibangun semakin baik.
+      Mean Absolute Deviance (MAD)
+      $$
+      \text{MAD} = \frac{\sum_{i=1}^{n}|y_i-\hat{y}_i|}{N}
+      $$
+      
+      dengan $y_i$ adalah respon pada lokasi ke $i$, $\hat{y}_i$ adalah hasil prediksi pada lokasi ke $i$ dan $N$ adalah jumlah lokasi pengamatan. Semakin kecil nilai MAD, maka semakin kecil kesalahan hasil pendugaan.
+      
+8. Menghitung nilai resiko relatif dari model terbaik berdasarkan kriteria dari kebaikan model pada langkah ke-7. Risiko relatif ditentukan dengan cara mengeksponensialkan komponen acak terstruktur spasial $\psi_i$ dari model terbaik menggunakan rumus sebagai berikut (Blangiardo dan Cameletti, 2015) dengan formula:
+
+   $$
+   \text{RR}_i = e^{\psi_i}
+   $$
+   dengan $\psi_i$ adalah efek acak terstruktur spasial.
+   
+9. Menginterpretasikan hasil penelitian dan menarik kesimpulan
 
 ## Package
 

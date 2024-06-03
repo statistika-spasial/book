@@ -1,4 +1,4 @@
-# Model Keragaman Spasial 
+# Model Keragaman Spasial  {#sec-keragaman-spasial}
 
 ```{r}
 #| echo: false
@@ -6,7 +6,190 @@
 source("_common.R")
 ```
 
-## Package
+## Deskripsi
+
+### Regresi Terboboti Geografis
+
+Regresi Terboboti Geografis (RTG) merupakan pengembangan dari kerangka model regresi klasik yang menghasilkan penduga koefisien regresi yang bervariasi untuk setiap lokasi. Semakin jauh suatu lokasi dari lokasi yang diduga model regresinya, semakin rendah bobot untuk data pada lokasi tersebut (Djuraidah, 2020). Model RTG dituliskan sebagai berikut (Huang et al., 2010):
+
+$$
+y_i = \beta_0 (u_i v_i) + \sum_{k=1}^{p} \beta_k (u_i v_i) x_{ik} + \epsilon_i
+$$ {#eq-1101}
+
+dimana:
+
+
+\begin{align*}
+
+y_i &: \text{nilai pengamatan peubah respon untuk lokasi ke-i} \\
+(u_i v_i) &: \text{identifikasi lokasi dari titik ke-i pada suatu lokasi geografis} \\
+\beta_0 (u_i v_i) &: \text{intersep pada lokasi pengamatan ke-i} \\
+\beta_k (u_i v_i) &: \text{koefisien regresi peubah penjelas ke-k pada lokasi ke-i} \\
+x_{ik} &: \text{nilai pengamatan peubah penjelas ke-k pada lokasi ke-i} \\
+\epsilon_i &: \text{nilai galat regresi antara peubah penjelas dengan peubah respon di lokasi ke-i} 
+  
+\end{align*}
+
+Djuraidah (2020) menyatakan parameter koefisien regresi $\beta_k (u_i v_i)$ diduga dengan menggunakan metode Kuadrat Terkecil Terboboti, sehingga pendugaan koefisien regresi $\hat{\beta}(u_i v_i)$ dituliskan sebagai berikut:
+
+$$
+\hat{\beta}(u_i v_i) = [X'W(u_i v_i)X]^{-1} X' W(u_i v_i) y
+$$ {#eq-1102}
+
+dimana $W(u_i v_i)$ adalah matriks $n \times n$ yang merupakan matriks pembobot spasial lokasi ke-i dengan nilai unsur-unsur diagonalnya ditentukan oleh jarak antar lokasi pengamatan ke-i dengan lokasi lainnya.
+
+### Moran Eigenvectors
+
+Vektor eigen moral (MEs) $\{e_1,…,e_L\}$ adalah vektor eigen yang diekstraksi dari dua kali lipat matriks kedekatan spasial terpusat di mana $e_1$ adalah ME yang sesuai dengan nilai eigen terbesar $\lambda_1$, $e_2$ adalah ME yang sesuai dengan nilai eigen terbesar kedua $\lambda_2$, dan seterusnya. MEs dapat diinterpretasikan dalam bentuk koefisien moran (MC; atau Moran I), yang merupakan statistik diagnostik ketergantungan spasial yang menunjukkan nilai positif yang lebih besar dengan adanya ketergantungan spasial positif yang lebih kuat.
+
+Moran Coefficienct (MC) mengkuantifikasi ketergantungan spasial dalam y, yaitu $n \times 1$ vektor variabel respon menggunakan persamaan berikut:
+
+$$ 
+MC[y] = \frac{n}{1' C1} \frac{(y' MCMy)}{(y' My)} 
+$$ {#eq-1103}
+
+Di mana “ ' ” menunjukan matrix transpose, 1 adalah $n \times 1$ vektor satuan. $M = I-11'/n$ adalah $n \times n$ matriks pemusatan, di mana $I$ adalah matriks identitas, dan $C$ adalah konektivitas simetris $n \times n$ matriks yang entri diagonalnya 0 (Dray, Legendre, and Peres-Neto, 2006).
+
+Akan dilakukan dekomposisi eigen matriks MCM menjadi $E_{\text{full}} \Lambda_{\text{full}} E_{\text{full}}'$, di mana $E_{\text{full}}$ adalah $n \times n$ matriks yang kolom ke-$l$, sama dengan vektor eigen ke-$l$. MC ditunjukkan sebagai berikut:
+
+$$
+MC[e_l] = \frac{n}{1' C1} \frac{(e_l' MCMe_l)}{(e_l' Me_l)} = \frac{n}{1' C1} \frac{(e_l' E_{\text{full}} \Lambda_{\text{full}} E_{\text{full}}')}{(e_l' e_l)} = \frac{n}{1' C1} \lambda_l
+$$ {#eq-1104}
+
+Persamaan di atas menunjukkan bahwa vektor eigen dapat diinterpretasikan dalam bentuk MC. Secara khusus, vektor eigen ke-1, $e_1$ adalah himpunan bilangan real yang mempunyai nilai MC terbesar yang dapat dicapai dengan himpunan bilangan real apa pun untuk struktur spasial yang ditentukan oleh $C$; $e_2$ adalah himpunan bilangan real yang mempunyai nilai MC terbesar yang dapat dicapai oleh himpunan mana pun yang ortogonal dan tidak berkolerasi dengan $e_1$, dan seterusnya hingga vektor eigen ke-$l$. Jadi, $E_{\text{full}}=\{e_1,…,e_n\}$ menyediakan semua kemungkinan perbedaan deskripsi pola peta ketergantungan spasial laten dengan setiap besaran indeks melalui nilai yang sesuai di $\{\lambda_1,…,\lambda_n\}$ (Griffith, 2003).
+
+### Pendekatan Regresi Terboboti Geografis Menggunakan Eigenvector Spatial Filtering (ESF)
+
+Pendekatan RTG dapat ditingkatkan dengan memasukkan penyaringan spasial berbasis eigenvector. Ini melibatkan penggunaan kombinasi linear dari eigenvector untuk menangkap asosiasi spasial lokal dan menjelaskan autokorelasi spasial dalam $y_i$ (Griffith, 2008). Salah satu pendekatan yang sering digunakan dalam konteks ini adalah Eigenvector Spatial Filtering (ESF), yang juga disebut koordinat utama matriks ketetanggaan (Dray et al., 2006).
+
+ESF didasarkan pada koefisien Moran (MC) dan mampu memetakan vektor ciri spasial untuk mengidentifikasi dan mengukur struktur spasial dalam data. Dengan mengintegrasikan konsep ESF ke dalam pendekatan RTG, model tersebut menjadi lebih efektif dalam memahami dan menggambarkan pola hubungan spasial antar peubah yang diamati. Model ESF Varying Coefficient (VC) dikembangkan berdasarkan model GWR dan Fixed Effect ESF:
+
+$$
+y_i = (\beta_0 + \sum_{k_0=1}^{K_0} E_{ik_0} \gamma_{k_0}) + \sum_{p=1}^{P} (\beta_p + \sum_{k_p=1}^{K_p} E_{ik_p} \gamma_{k_p}) X_{ip} + \epsilon_i
+$$ {#eq-1105}
+
+yang juga dapat ditulis sebagai:
+
+$$
+y = \sum_{p=1}^{P} x_p \odot \beta_p^{ESF} + \epsilon
+$$ {#eq-1106}
+
+dimana:
+
+$\beta_p^{ESF} = \beta_p + E_p \gamma_p$ dengan $\epsilon \sim N(0, \sigma^2 I)$
+
+### Random Effect Eigenvector Spatial Filtering Varying Coefficient (RE-ESF VC)
+
+Model Fixed Effect ESF-VC pada awalnya fokus pada penggunaan eigenvector spatial filtering untuk mengendalikan dan mengeksplorasi efek tetap yang terkait dengan variabilitas spasial dalam data. Namun, perkembangan terbaru telah melihat konsep ini dikembangkan menjadi model Random Effect ESF-VC, di mana pendekatan ini tidak hanya mempertimbangkan efek tetap, tetapi juga mampu menangkap variasi acak yang mungkin ada dalam struktur spasial data tersebut. Model RE ESF-VC menurut (Murakami et al., 2017) sebagai berikut:
+
+$$
+y = \sum_{k=1}^{K} x_k \beta_K^{(RE-ESF)} + \epsilon, \quad \epsilon \sim N(0,\sigma^2 I)
+$$ {#eq-1107}
+
+$$
+\beta_K^{(RE-ESF)} = \beta_k 1 + E_k \gamma_k, \quad \gamma_k \sim N(0_L,\sigma_{(\gamma,k)}^2 \Lambda_{(\alpha k)})
+$$
+
+Di mana $0_L$ adalah vektor nol berukuran $L \times 1$, sedangkan $E$ adalah matriks vektor eigen sepanjang $L$ yang sesuai dengan eigenvalues positif. Dari persamaan sebelumnya, dibuat model lanjutan seperti berikut:
+
+$$
+y = X\beta + \tilde{E} \tilde{\Lambda}(\theta) \tilde{u} + \epsilon, \quad \epsilon \sim N(0,\sigma^2 I)
+$$ {#eq-1108}
+
+$\tilde{E} = [x_1 \quad E \ldots X_K \quad E]$
+
+Persamaan di atas menunjukkan bahwa model RE-ESF adalah model dengan efek campuran linier. Selain itu, $\beta$ dan $\tilde{u}$ memiliki estimasi linier terbaik tanpa bias sebagai berikut:
+
+$$
+\begin{bmatrix} \hat{\beta} \\ \hat{u} \end{bmatrix} = \left[ \begin{array}{cc} X'X & X'\tilde{E}\tilde{\Lambda}(\theta) \\ \tilde{\Lambda}(\theta)(\tilde{E'})X & \tilde{\Lambda}(\theta)(\tilde{E'})\tilde{E}\tilde{\Lambda}(\theta) + I_{KL} \end{array} \right]^{-1} \begin{bmatrix} Xy' \\ \tilde{\Lambda}(\theta) \tilde{E}y' \end{bmatrix} 
+$$
+
+Ketika $\theta$ diestimasi secara numerik dengan maksimisasi.
+
+### Transformasi Box-Cox
+
+Draper & Smith (1992) menyatakan bahwa transformasi Box-Cox adalah transformasi pangkat pada variabel respons yang dikembangkan oleh Box dan Cox. Transformasi ini bertujuan memenuhi ketiga asumsi model linier, yaitu keheterogenan ragam, ketaknormalan galat, dan keaditifan/ketaklinieran pengaruh sistematik. Box-Cox menggunakan kriteria yang menggabungkan tujuan memperoleh model yang sederhana dan ragam yang homogen pada satu sisi serta tujuan kenormalan data pada sisi lain.
+
+Transformasi Box-Cox hanya diberlakukan pada variabel respons $Y$ yang bernilai positif. Prosedur utama yang dilakukan pada Transformasi Box-Cox adalah menduga parameter $\lambda$. Dengan mengetahui nilai $\lambda$ pada pengolahan data, kita dapat mengetahui nilai dari transformasi yang digunakan pada model. Pada Tabel, disajikan nilai $\lambda$ dan transformasinya.
+
+| $\lambda$ | Transformasi |
+|:-----------:|:------------:|
+|     2       |     $Y^2$      |
+|     1       |     $Y^1$      |
+|    0.5      |   $\sqrt{Y}$  |
+|     0       |    $\ln(Y)$   |
+|    -0.5     |   $\frac{1}{\sqrt{Y}}$  |
+|    -1       |   $\frac{1}{Y}$  |
+
+Dengan menggunakan transformasi Box-Cox akan diperoleh sebaran yang simetrik mendekati Normal. Ketakhomogenan ragam pun dapat dikurangi dengan transformasi ini (Hadi et al., 2007).
+
+### Transformasi SAL
+
+Transformasi SAL (SinhArcsinh dan Affine Linear) adalah teknik yang digunakan dalam statistika untuk memodifikasi distribusi data sehingga lebih mendekati distribusi normal atau Gaussian. Transformasi ini berguna ketika data tidak memenuhi asumsi kenormalan yang diperlukan dalam banyak analisis statistik. Rois dan Tober (2019) menjelaskan iterasi transformasi SAL mendekati berbagai macam distribusi non-Gaussian tanpa mengasumsikan distribusi data secara eksplisit.
+
+Lebih lanjut, persamaan SinhArcsinh disajikan sebagai berikut:
+
+$$
+\varphi_{\text{arcsinh}}(y) = a + b \text{arcsinh} \left( \frac{y-c}{d} \right) 
+$$ {#eq-sinharcsinh}
+
+Di mana $a, c \in \mathbb{R}^+$ dan $b, d \in \mathbb{R}^+$, biasa disebut dengan distribusi Johnson (Johnson, 1949). Adapun untuk persamaan Affine sebagai berikut:
+
+$$
+\varphi_{\text{affine}}(y) = a + by, \quad a, b \in \mathbb{R}
+$$ {#eq-affine}
+
+Sehingga persamaan transformasi SAL adalah:
+
+$$
+l(y) = a + b \sinh(c \text{arsinh}(y) - d)
+$$ {#eq-sal}
+
+Di mana $a, b, c, d \in \mathbb{R}$.
+
+Melalui penerapan transformasi SAL yang mengombinasikan metode SinhArcsinh dan Affine Linear, dapat membantu mengubah distribusi data yang awalnya tidak normal menjadi lebih mendekati distribusi normal.
+
+### Data
+
+Data yang digunakan berasal dari Badan Pusat Statistik (BPS) pada tahun 2021 dengan observasi sebanyak 514 kabupaten/kota di Indonesia. Tabel berikut menunjukkan deskripsi peubah yang akan digunakan.
+
+| Peubah | Deskripsi                                                  | Satuan                        | Tipe    |
+|--------|------------------------------------------------------------|-------------------------------|---------|
+| Y      | Indeks Ketahanan Pangan                                    | -                             | Numerik |
+| X1     | Persentase penduduk miskin (P0) menurut kabupaten/kota    | Persen                        | Numerik |
+| X2     | Pengeluaran per kapita disesuaikan                         | Ribu Rupiah/Orang/Tahun      | Numerik |
+| X3     | Umur harapan hidup                                         | Tahun                         | Numerik |
+| X4     | Rata-rata lama sekolah penduduk umur 15 tahun ke atas     | Tahun                         | Numerik |
+| X5     | Persentase rumah tangga yang memiliki akses terhadap sanitasi layak | Persen             | Numerik |
+| X6     | Persentase rumah tangga yang memiliki akses terhadap air minum | Persen                   | Numerik |
+
+## Tahapan Analisis Data
+
+Berikut adalah langkah prosedur analisis yang dilakukan:
+1. Eksplorasi data berupa interpretasi pola persebaran Indeks Ketahanan Pangan di Indonesia dan boxplot dari peubah yang digunakan.
+
+2. Pemodelan regresi antara Indeks Ketahanan Pangan terhadap enam peubah penjelas.
+
+3. Pengujian asumsi, yaitu: 
+    - Uji normalitas sisaan regresi dengan Uji Liliefors,
+    - Uji heterogenitas regresi dengan Uji Breusch-Pagan,
+    - Uji multikolinearitas antar peubah penjelas dengan nilai VIF,
+    - Uji autokorelasi spasial data dengan Indeks Moran, serta
+    - Uji autokorelasi spasial sisaan regresi dengan Global Moran.
+
+4. Penerapan transformasi Box-Cox dan SAL transformation dengan iterasi sebanyak D kali.
+
+5. Pemodelan dengan Random Effect Eigenvector Spatial Filtering Varying Coefficient (RE-ESF VC).
+
+6. Interpretasi hasil analisis model RE-ESF VC dengan melihat pola persebaran masing-masing peubah penjelas di Indonesia dan melihat peubah yang signifikan pada kabupaten/kota di Indonesia.
+
+7. Interpretasi hasil estimasi efek marginal dan efek spasial dari model RE-ESF VC.
+
+8. Membandingkan kinerja hasil dari model regresi dan RE-ESF VC dengan nilai residual SE, AIC, BIC, dan adjusted R2.
+
+## Tahapan Analisis Data dengan R
+
+### Package
 
 ```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(spdep) # Untuk pemodelan dependensi spasial 
@@ -26,7 +209,7 @@ library(fitdistrplus)
 library(readxl) 
 ```
 
-## Data dan Peta
+### Data dan Peta
 
 ```{r}
 hasil2 <- readRDS("data/hasil.RDS")
@@ -37,7 +220,7 @@ ikp <- read_excel("data/IKP2022.xlsx")
 peta <- read_sf("data/shp/BATAS KABUPATEN KOTA DESEMBER 2019 DUKCAPIL.shp")
 ```
 
-## Modifikasi Data
+### Modifikasi Data
 
 ```{r}
 ikp$KAB_KOTA = toupper(ikp$KAB_KOTA)
@@ -51,7 +234,7 @@ sf::sf_use_s2(FALSE)
 longlat = st_coordinates(st_centroid(dfix$geometry))
 ```
 
-## Plot Spasial
+### Plot Spasial
 
 ```{r}
 #peta ikp
@@ -72,7 +255,7 @@ ggplot(dfix) +
   )
 ```
 
-## Boxplot
+### Boxplot
 
 ```{r}
 # Boxplot
@@ -125,7 +308,7 @@ ggplot(X, aes(y = Value)) +
   theme_bw()
 ```
 
-## Bobot Spasial
+### Bobot Spasial
 
 ```{r}
 #Bobot Spasial
@@ -139,7 +322,7 @@ wmoran = mat2listw(w, style = "W")
 moran.test(dfix$Y, wmoran, zero.policy = T)
 ```
 
-## Uji Asumsi
+### Uji Asumsi
 
 ```{r}
 #Uji asumsi
@@ -151,7 +334,7 @@ model <- lm(formula, data = dfix)
 lm.morantest(model, wmoran, alternative = "two.sided", zero.policy = T)
 ```
 
-## Histogram
+### Histogram
 
 ```{r}
 # Histogram Normalitas Sebelum Transformasi
@@ -171,7 +354,7 @@ hist(
 )
 ```
 
-## Identifikasi Model Spasial dan Sebaran
+### Identifikasi Model Spasial dan Sebaran
 
 ```{r}
 #LM Test (Model Spasial)
@@ -182,7 +365,7 @@ descdist(residuals(lm(formula, data = dfix)), boot = 500)
 descdist(dfix$Y, boot = 500)
 ```
 
-## Transformasi dan Pemodelan
+### Transformasi dan Pemodelan
 
 ```{r}
 #| eval: false
@@ -223,7 +406,7 @@ for (i in 1:25) {
 hasil2
 ```
 
-## Model ESF-VC
+### Model ESF-VC
 
 ```{r}
 #RESF VC
@@ -247,7 +430,7 @@ resf_vc <- resf_vc(
 resf_vc
 ```
 
-## Hitogram Setelah Transformasi
+### Hitogram Setelah Transformasi
 
 ```{r}
 # Histogram sesudah transformasi
@@ -269,7 +452,7 @@ hist(
 lillie.test(resf_vc$resid)
 ```
 
-## Peta Signifikansi Peubah Varying Coefficient
+### Peta Signifikansi Peubah Varying Coefficient
 
 ```{r}
 # Peta Signifikansi Variabel
@@ -306,7 +489,7 @@ ggplot(dfix) +
   )
 ```
 
-## Peta Koefisien
+### Peta Koefisien
 
 ```{r}
 # Peta Koefisien Beta

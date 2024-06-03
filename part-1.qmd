@@ -1,4 +1,4 @@
-# Model Dependensi Spasial
+# Model Dependensi Spasial {#sec-model-dependensi-spasial-intro .unnumbered}
 
 Dependensi spasial merupakan suatu hubungan korelasi antara variabel dengan dirinya sendiri atau suatu ukuran dari kemiripan objek di dalam suatu ruang (jarak, waktu dan wilayah). Adanya kemiripan nilai dari lokasi-lokasi yang berdekatan dan cenderung berkelompok akan ditunjukkan dengan dependensi spasial positif. Sedangkan jika lokasi-lokasi yang berdekatan mempunyai nilai yang berbeda dan cenderung menyebar maka akan ditunjukkan dengan dependensi spasial yang negatif [@kosfeld2006].
 

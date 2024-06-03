@@ -1,4 +1,4 @@
-# Tahapan Analisis dengan R
+# Tahapan Analisis dengan R {#sec-mix-sargwr-r}
 
 ```{r}
 #| echo: false

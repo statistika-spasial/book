@@ -1,4 +1,4 @@
-# Mixed SAR-GWR
+# Mixed SAR-GWR {#sec-mix-sargwr-intro .unnumbered}
 
 Metode **Mixed Geographically Weighted Regression-Spatial Autoregressive (MGWR-SAR)** adalah suatu metode pemodelan yang menggabungkan model regresi global dengan model regresi yang terboboti namun disertai dengan adanya kondisi dependensi spasial secara bersamaan. @geniaux2017 menampilkan persamaan model sebagai berikut:
 

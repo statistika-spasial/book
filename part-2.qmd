@@ -1,4 +1,4 @@
-# Model Keragaman Spasial
+# Model Keragaman Spasial {#sec-model-keragaman-spasial-intro .unnumbered}
 
 Keragaman spasial dapat terjadi karena adanya perbedaan karakteristik antara satu titik pengamatan dengan titik pengamatan lainnya. Untuk mengetahuinya dilakukan pengujian Breusch-Pagan dengan hipotesis nol adalah antar lokasi memiliki keragaman/varians yang sama. Jika `p-value` uji ini lebih kecil dari taraf signifikansi yang ditetapkan maka dapat ditarik kesimpulan bahwa terdapat keragaman spasial atau varian antar lokasi yang berbeda. Sehingga alternatif model spasial yang digunakan adalah model **Geographically Weighted Regression (GWR)**.
 
