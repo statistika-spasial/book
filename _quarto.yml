@@ -25,6 +25,8 @@ book:
       - name: Departemen Statistika IPB University
         city: Bogor
         country: Indonesia
+  repo-url: https://github.com/statistika-spasial/book
+  site-url: https://statistika-spasial.github.io/book
   search: true
   chapters:
     - index.qmd
@@ -53,7 +55,7 @@ book:
         - 10-ModelDependensiSpasial.qmd 
         - 11-ModelKeragamanSpasial.qmd
     
-    - part: ModelEpidemiologi.qmd
+    - ModelEpidemiologi.qmd
   
   appendices: 
     - summary.qmd
