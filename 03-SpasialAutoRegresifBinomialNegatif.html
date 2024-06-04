@@ -293,31 +293,29 @@ window.Quarto = {
 </li>
       </ul>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./ModelEpidemiologi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Model Epidemiologi</span></span></a>
-  </div>
-</li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Model Epidemiologi</span></span>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text">Summary</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Referensi</span></a>
   </div>
 </li>
       </ul>
@@ -344,9 +342,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-1.html">Model Dependensi Spasial</a></li><li class="breadcrumb-item"><a href="./03-SpasialAutoRegresifBinomialNegatif.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Spasial Autoregresif Binomial Negatif</span></a></li></ol></nav><div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">
-<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Spasial Autoregresif Binomial Negatif</span>
-</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-sar-bn" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Spasial Autoregresif Binomial Negatif</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -376,7 +372,7 @@ window.Quarto = {
 </ol>
 <p>SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut <span class="citation" data-cites="anselin1988">(<a href="references.html#ref-anselin1988" role="doc-biblioref">Anselin 1988</a>)</span>:</p>
 <p>$y = W_1 y + X+ W_2 X + $</p>
-<p>dengan <span class="math inline">\(W_2\)</span> merupakan matriks pembobot spasial untuk <span class="math inline">\(X\)</span> dan <span class="math inline">\(\gamma\)</span> merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut <span class="citation" data-cites="glaser2017">(<a href="references.html#ref-glaser2017" role="doc-biblioref">S 2017</a>)</span>:</p>
+<p>dengan <span class="math inline">\(W_2\)</span> merupakan matriks pembobot spasial untuk <span class="math inline">\(X\)</span> dan <span class="math inline">\(\gamma\)</span> merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut <span class="citation" data-cites="glaser2017">(<a href="references.html#ref-glaser2017" role="doc-biblioref">Glaser 2017</a>)</span>:</p>
 <p><span class="math inline">\(\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta + w_{2i}^{\prime} x_i \gamma\right)\)</span></p>
 <p>dengan <span class="math inline">\(y_i \sim \text{NB}(\mu_i)\)</span></p>
 <ol start="3" type="a">
@@ -538,7 +534,7 @@ Tabel&nbsp;3.1: Deskripsi Peubah
 <span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
 <span><span class="co">#&gt; others</span></span>
 <span><span class="co">#&gt; OGR data source with driver: ESRI Shapefile </span></span>
-<span><span class="co">#&gt; Source: "E:\Materi_Orasi\bookdown\data\shp\jawa.shp", layer: "jawa"</span></span>
+<span><span class="co">#&gt; Source: "E:\Materi_Orasi\book\data\shp\jawa.shp", layer: "jawa"</span></span>
 <span><span class="co">#&gt; with 119 features</span></span>
 <span><span class="co">#&gt; It has 5 fields</span></span>
 <span><span class="co">#</span></span>
@@ -1288,7 +1284,7 @@ Pendugaan model SDM-BN dengan matriks pembobot untuk lag-prediktor sesuai hasil 
 <span></span>
 <span><span class="va">dat.map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"data/shp/jawa.shp"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Reading layer `jawa' from data source </span></span>
-<span><span class="co">#&gt;   `E:\Materi_Orasi\bookdown\data\shp\jawa.shp' using driver `ESRI Shapefile'</span></span>
+<span><span class="co">#&gt;   `E:\Materi_Orasi\book\data\shp\jawa.shp' using driver `ESRI Shapefile'</span></span>
 <span><span class="co">#&gt; Simple feature collection with 119 features and 5 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
@@ -1349,7 +1345,7 @@ Amelia M, Anisa R, Djuraidah A. 2023. <span>“Estimation of Factors Affecting S
 Anselin, Luc. 1988. <em>Spatial Econometrics: Methods and Models</em>. Dordrecht: Kluwer Academic Publisher.
 </div>
 <div id="ref-glaser2017" class="csl-entry" role="listitem">
-S, Glaser. 2017. <span>“A Review of Spatial Econometric Models for Count Data.”</span> <em>Hohenheim Discussion Papers in Business, Economics and Social Sicences</em>.
+Glaser, Stephanie. 2017. <span>“A Review of Spatial Econometric Models for Count Data.”</span> <em>Hohenheim Discussion Papers in Business, Economics and Social Sicences</em>.
 </div>
 <div id="ref-vega2015" class="csl-entry" role="listitem">
 Vega SH, Elhorst JP. 2015. <span>“The SLX Model.”</span> <em>J Of Regional Science</em> 0 (0): 1–25. <a href="https://doi.org/10.1111/jors.12188">https://doi.org/10.1111/jors.12188</a>.
@@ -1825,7 +1821,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb27" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Spasial Autoregresif Binomial Negatif</span></span>
+<div class="sourceCode" id="cb27" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Spasial Autoregresif Binomial Negatif {#sec-sar-bn}</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>

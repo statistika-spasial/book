@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -103,6 +123,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -262,31 +311,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./ModelEpidemiologi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Model Epidemiologi</span></span></a>
-  </div>
-</li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Model Epidemiologi</span></span>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text">Summary</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Referensi</span></a>
   </div>
 </li>
       </ul>
@@ -304,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Model Dependensi Spasial</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-model-dependensi-spasial-intro" class="quarto-section-identifier">Model Dependensi Spasial</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -321,14 +368,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Dependensi spasial merupakan suatu hubungan korelasi antara variabel dengan dirinya sendiri atau suatu ukuran dari kemiripan objek di dalam suatu ruang (jarak, waktu dan wilayah). Adanya kemiripan nilai dari lokasi-lokasi yang berdekatan dan cenderung berkelompok akan ditunjukkan dengan dependensi spasial positif. Sedangkan jika lokasi-lokasi yang berdekatan mempunyai nilai yang berbeda dan cenderung menyebar maka akan ditunjukkan dengan dependensi spasial yang negatif (Kosfeld, 2006).</p>
-<p>Untuk mengetahui adanya dependensi spasial dilakukan melalui uji statistik Moran’s I dan uji Pengganda Lagrange (Lagrange Multiplier, LM). Hipotesis nol pada kedua pengujian ini adalah dalam model tidak ada efek spasial. Jika p-value uji tersebut lebih kecil dari taraf signifikansi yang ditetapkan maka dapat dikatakan bahwa dalam model terdapat efek spasial.</p>
-<p>Pemodelan pada regresi spasial dilakukan dengan menambahkan matrik spasial/ contiguity (W) pada model regresi yang digunakan. Penambahan matriks W tersebut dapat dilakukan pada variabel-variabel dependen (parameter koefisien regresinya akan disimbolkan dengan ρ), pada variabel independen (parameter koefisien regresinya akan disimbolkan dengan γ), maupun pada error term (parameter koefisien akan regresinya disimbolkan dengan λ) atau kombinasi dari dua maupun ketiga efeknya.</p>
-<p>Jika efeknya hanya nyata terhadap parameter ρ maka model disebut model Spatial Autoregressive Regression (SAR). Jika efeknya hanya nyata terhadap parameter γ maka model disebut model Spatial Lag-X (SLX). Jika efeknya hanya nyata terhadap parameter λ maka model disebut Spatial Error Model (SEM). Jika efeknya hanya nyata terhadap parameter ρ dan λ maka model disebut General Spatial Model (GSM). Jika efeknya hanya nyata terhadap parameter ρ dan γ maka model disebut Spatial Durbin Model (SDM). Jika efeknya hanya nyata terhadap parameter λ dan γ maka model disebut Spatial Durbin Error Model (SDEM). Jika efeknya nyata terhadap ketiga parameter (ρ, λ dan γ) maka model disebut General Spasial Nested (GNS).</p>
+<p>Dependensi spasial merupakan suatu hubungan korelasi antara variabel dengan dirinya sendiri atau suatu ukuran dari kemiripan objek di dalam suatu ruang (jarak, waktu dan wilayah). Adanya kemiripan nilai dari lokasi-lokasi yang berdekatan dan cenderung berkelompok akan ditunjukkan dengan dependensi spasial positif. Sedangkan jika lokasi-lokasi yang berdekatan mempunyai nilai yang berbeda dan cenderung menyebar maka akan ditunjukkan dengan dependensi spasial yang negatif <span class="citation" data-cites="kosfeld2006">(<a href="references.html#ref-kosfeld2006" role="doc-biblioref">Kosfeld 2006</a>)</span>.</p>
+<p>Untuk mengetahui adanya dependensi spasial dilakukan melalui uji statistik Moran’s I dan uji Pengganda Lagrange (Lagrange Multiplier, LM). Hipotesis nol pada kedua pengujian ini adalah dalam model tidak ada efek spasial. Jika <code>p-value</code> uji tersebut lebih kecil dari taraf signifikansi yang ditetapkan maka dapat dikatakan bahwa dalam model terdapat efek spasial.</p>
+<p>Pemodelan pada regresi spasial dilakukan dengan menambahkan matriks spasial atau <em>contiguity</em> (<span class="math inline">\(W\)</span>) pada model regresi yang digunakan. Penambahan matriks <span class="math inline">\(W\)</span> tersebut dapat dilakukan pada variabel-variabel dependen (parameter koefisien regresinya akan disimbolkan dengan <span class="math inline">\(\rho\)</span>), pada variabel independen (parameter koefisien regresinya akan disimbolkan dengan γ), maupun pada error term (parameter koefisien akan regresinya disimbolkan dengan <span class="math inline">\(\lambda\)</span>) atau kombinasi dari dua maupun ketiga efeknya.</p>
+<p>Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\rho\)</span> maka model disebut model <strong>Spatial Autoregressive Regression (SAR)</strong>. Jika efeknya hanya nyata terhadap parameter γ maka model disebut model <strong>Spatial Lag-X (SLX)</strong>. Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\lambda\)</span> maka model disebut <strong>Spatial Error Model (SEM)</strong>. Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\rho\)</span> dan <span class="math inline">\(\lambda\)</span> maka model disebut <strong>General Spatial Model (GSM)</strong>. Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\rho\)</span> dan γ maka model disebut <strong>Spatial Durbin Model (SDM)</strong>. Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\lambda\)</span> dan γ maka model disebut <strong>Spatial Durbin Error Model (SDEM)</strong>. Jika efeknya nyata terhadap ketiga parameter (<span class="math inline">\(\rho\)</span>, <span class="math inline">\(\lambda\)</span> dan γ) maka model disebut <strong>General Spasial Nested (GNS)</strong>.</p>
 
 
 <!-- -->
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-kosfeld2006" class="csl-entry" role="listitem">
+Kosfeld, Reinhold. 2006. <em>Spatial Econometric</em>. Germany: University of Kassel.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -803,15 +855,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Dependensi Spasial</span></span>
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Dependensi Spasial {#sec-model-dependensi-spasial-intro .unnumbered}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Dependensi spasial merupakan suatu hubungan korelasi antara variabel dengan dirinya sendiri atau suatu ukuran dari kemiripan objek di dalam suatu ruang (jarak, waktu dan wilayah). Adanya kemiripan nilai dari lokasi-lokasi yang berdekatan dan cenderung berkelompok akan ditunjukkan dengan dependensi spasial positif. Sedangkan jika lokasi-lokasi yang berdekatan mempunyai nilai yang berbeda dan cenderung menyebar maka akan ditunjukkan dengan dependensi spasial yang negatif (Kosfeld, 2006).</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Dependensi spasial merupakan suatu hubungan korelasi antara variabel dengan dirinya sendiri atau suatu ukuran dari kemiripan objek di dalam suatu ruang (jarak, waktu dan wilayah). Adanya kemiripan nilai dari lokasi-lokasi yang berdekatan dan cenderung berkelompok akan ditunjukkan dengan dependensi spasial positif. Sedangkan jika lokasi-lokasi yang berdekatan mempunyai nilai yang berbeda dan cenderung menyebar maka akan ditunjukkan dengan dependensi spasial yang negatif <span class="co">[</span><span class="ot">@kosfeld2006</span><span class="co">]</span>.</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Untuk mengetahui adanya dependensi spasial dilakukan melalui uji statistik Moran’s I dan uji Pengganda Lagrange (Lagrange Multiplier, LM). Hipotesis nol pada kedua pengujian ini adalah dalam model tidak ada efek spasial. Jika p-value uji tersebut lebih kecil dari taraf signifikansi yang ditetapkan maka dapat dikatakan bahwa dalam model terdapat efek spasial. </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Untuk mengetahui adanya dependensi spasial dilakukan melalui uji statistik Moran’s I dan uji Pengganda Lagrange (Lagrange Multiplier, LM). Hipotesis nol pada kedua pengujian ini adalah dalam model tidak ada efek spasial. Jika <span class="in">`p-value`</span> uji tersebut lebih kecil dari taraf signifikansi yang ditetapkan maka dapat dikatakan bahwa dalam model terdapat efek spasial. </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Pemodelan pada regresi spasial dilakukan dengan menambahkan matrik spasial/ contiguity (W) pada model regresi yang digunakan. Penambahan matriks W tersebut dapat dilakukan pada variabel-variabel dependen (parameter koefisien regresinya akan disimbolkan dengan ρ), pada variabel independen (parameter koefisien regresinya akan disimbolkan dengan γ), maupun pada error term (parameter koefisien akan regresinya disimbolkan dengan λ) atau kombinasi dari dua maupun ketiga efeknya. </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Pemodelan pada regresi spasial dilakukan dengan menambahkan matriks spasial atau *contiguity* ($W$) pada model regresi yang digunakan. Penambahan matriks $W$ tersebut dapat dilakukan pada variabel-variabel dependen (parameter koefisien regresinya akan disimbolkan dengan $\rho$), pada variabel independen (parameter koefisien regresinya akan disimbolkan dengan γ), maupun pada error term (parameter koefisien akan regresinya disimbolkan dengan $\lambda$) atau kombinasi dari dua maupun ketiga efeknya. </span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Jika efeknya hanya nyata terhadap parameter ρ maka model disebut model Spatial Autoregressive Regression (SAR). Jika efeknya hanya nyata terhadap parameter γ maka model disebut model Spatial Lag-X (SLX). Jika efeknya hanya nyata terhadap parameter λ maka model disebut Spatial Error Model (SEM). Jika efeknya hanya nyata terhadap parameter ρ dan λ maka model disebut General Spatial Model (GSM). Jika efeknya hanya nyata terhadap parameter ρ dan γ maka model disebut Spatial Durbin Model (SDM). Jika efeknya hanya nyata terhadap parameter λ dan γ maka model disebut Spatial Durbin Error Model (SDEM). Jika efeknya nyata terhadap ketiga parameter (ρ, λ dan γ) maka model disebut General Spasial Nested (GNS).</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Jika efeknya hanya nyata terhadap parameter $\rho$ maka model disebut model **Spatial Autoregressive Regression (SAR)**. Jika efeknya hanya nyata terhadap parameter γ maka model disebut model **Spatial Lag-X (SLX)**. Jika efeknya hanya nyata terhadap parameter $\lambda$ maka model disebut **Spatial Error Model (SEM)**. Jika efeknya hanya nyata terhadap parameter $\rho$ dan $\lambda$ maka model disebut **General Spatial Model (GSM)**. Jika efeknya hanya nyata terhadap parameter $\rho$ dan γ maka model disebut **Spatial Durbin Model (SDM)**. Jika efeknya hanya nyata terhadap parameter $\lambda$ dan γ maka model disebut **Spatial Durbin Error Model (SDEM)**. Jika efeknya nyata terhadap ketiga parameter ($\rho$, $\lambda$ dan γ) maka model disebut **General Spasial Nested (GNS)**.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
