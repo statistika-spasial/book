@@ -312,9 +312,9 @@ Berdasarkan gambar di atas, dapat dilihat bahwa nilai 0 berada pada selang nilai
 
 ### Pengujian Efek Spasial
 
-a.	Uji Breusch-Pagan
+####	Uji Breusch-Pagan
     
-    Uji Breusch-Pagan dilakukan menggunakan syntax berikut:
+Uji Breusch-Pagan dilakukan menggunakan syntax berikut:
 
 ```{r}
 reglin2 <- lm(log(Y2)~log(X1)+X2+X3+X4+log(X5)+X6+X7+X8)
@@ -324,9 +324,9 @@ bptest(reglin2)
 Hasil uji menunjukkan nilai-p > 0.05, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial 
 
 
-b.	Uji LM dan indeks Moran
+#### Uji LM dan indeks Moran
     
-    untuk melakukan uji LM dan indeks Moran, perlu ditentukan terlebih dahulu matriks pembobot yang akan digunakan. Pada penelitian ini akan menggunakan matriks bobot ketetanggaan Queen, ketetanggaan rook, jarak eksponensial negatif, dan invers jarak. Berikut merupakan syntax yang digunakan untuk membuat matriks bobot:
+Untuk melakukan uji LM dan indeks Moran, perlu ditentukan terlebih dahulu matriks pembobot yang akan digunakan. Pada penelitian ini akan menggunakan matriks bobot ketetanggaan Queen, ketetanggaan rook, jarak eksponensial negatif, dan invers jarak. Berikut merupakan syntax yang digunakan untuk membuat matriks bobot:
 
 ```{r}
 #### Matriks queen ####

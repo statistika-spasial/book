@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Data
 
-Ilustrasi model spasial Durbin (spatial Durbin model/SDM) bersumber dari penelitian @febriyanti2016. Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan  DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada @tbl-sdm. Data dan peta ilustrasi SDM tersedia pada tautan [https://ipb.link/sdm](https://ipb.link/sdm). 
+Ilustrasi model spasial Durbin (**Spatial Durbin Model/SDM**) bersumber dari penelitian @febriyanti2016. Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan  DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada @tbl-sdm. Data dan peta ilustrasi SDM tersedia pada tautan [https://ipb.link/sdm](https://ipb.link/sdm). 
 
 | Peubah   | Nama Peubah                                          | Sumber        |
 |--------|-------------------------------------------------|-----------------------|
@@ -30,7 +30,7 @@ Ilustrasi model spasial Durbin (spatial Durbin model/SDM) bersumber dari penelit
 Langkah-langkah metode analisis data pada penelitian ini adalah sebagai berikut:
 
   1. Melakukan eksplorasi data untuk memeriksa multikolinearitas pada prediktor yang digunakan dengan variance inflation factors (VIF), menentukan efek spasial secara eksploratif dengan peta tematik, dan memeriksa pencilan spasial dengan menggunakan diagram kotak garis dan plot pencaran Moran.
-  2. Membuat matriks pembobot spasial (W) dengan metode pembobotan Queen Contiguity.
+  2. Membuat matriks pembobot spasial ($W$) dengan metode pembobotan *Queen Contiguity*.
   3. Menguji efek  spasial: 
 
       a) depedensi spasial pada peubah respon dan sisaan dari model regresi linier berganda dengan indeks Moran.
@@ -40,7 +40,7 @@ Langkah-langkah metode analisis data pada penelitian ini adalah sebagai berikut:
   4. Memeriksa efek depedensi spasial pada prediktor dengan indeks Moran.
   5. Menduga parameter model regresi spasial sesuai hasil butir (3) dan (4). 
   6. Memeriksa asumsi pada model regresi spasial pada butir (5).
-  7. Mengukur kebaikan model dengan pseudo R2 dan AIC.
+  7. Mengukur kebaikan model dengan pseudo $R^2$ dan AIC.
   8. Interpretasi Model terbaik.
 
 ## Tahapan Analisis Data dengan R
@@ -89,7 +89,7 @@ gabung
 
 ### Eksplorasi Data
 
-Untuk mengetahui multikolinearitas pada prediktor digunakan yaitu VIF. Syntax  untuk menghitung VIF setiap prediktor sebagai berikut:
+Untuk mengetahui multikolinearitas pada prediktor digunakan yaitu VIF. Sintaks  untuk menghitung VIF setiap prediktor sebagai berikut:
 
 ```{r}
 #Multikolinier 
@@ -99,7 +99,7 @@ as.matrix(vif(model))
 
 Pada output terlihat nilai VIF dari prediktor lebih kecil dari 10, sehingga disimpulkan tidak terdapat multikolinearitas pada prediktor. \ \
 \ \
-Untuk mengetahui efek dependensi spasial pada persentase kasus DBD secara eksploratif dapat menggunakan peta pola tebaran data. Syntax untuk membuat peta tematik sebagai berikut:
+Untuk mengetahui efek dependensi spasial pada persentase kasus DBD secara eksploratif dapat menggunakan peta pola tebaran data. Sintaks untuk membuat peta tematik sebagai berikut:
 
 ```{r}
 #| label: fig-plot-dbd
@@ -122,7 +122,7 @@ plotDBD
 
 Pada peta persentase kasus DBD (@fig-plot-dbd) terlihat kecamatan yang berdekatan memiliki warna yang sama. Warna pada peta tampak mengelompok.Perubahan warna antar kelompok mengikuti gradasi warna, yaitu kecamatan yang warna yang pekat berdekatan dengan warna yang lebih terang. Hal ini menunjukkan bahwa autokorelasi spasial pada persentase kasus DBD DKI Jakarta tahun 2014. \ \
 \ \
-Pemeriksaan pencilan pada peubah Y menggunakan diagram kotak-garis. Syntax untuk membuat diagram kotak-garis sebagai berikut:
+Pemeriksaan pencilan pada peubah Y menggunakan diagram kotak-garis. Sintaks untuk membuat diagram kotak-garis sebagai berikut:
 
 ```{r}
 #Membuat fungsi untuk menemukan outlier
@@ -153,7 +153,7 @@ Pada diagram kotak garis @fig-plot-box2 terlihat bahwa kecamatan Kelapa Gading m
 
 ### Matriks Pembobot Spasial
 
-Syntax untuk membuat matriks pembobot spasial langka ratu untuk Model 1 dan Model 2 sebagai berikut:
+Sintaks untuk membuat matriks pembobot spasial langka ratu untuk Model 1 dan Model 2 sebagai berikut:
 
 ```{r}
 #Membentuk dataset tanpa pencilan
@@ -176,7 +176,7 @@ summary(queen.listw2)
 
 ### Efek Spasial
 
-Perhitungan indeks Moran dan uji efek heterogenitas spasial dilakukan pada Model 1 dan Model 2 dengan menggunakan syntax sebagai berikut:
+Perhitungan indeks Moran dan uji efek heterogenitas spasial dilakukan pada Model 1 dan Model 2 dengan menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Regresi untuk Model 1 
@@ -224,7 +224,7 @@ IMoran
 
 Berdasarkan hasil uji Indeks Moran dan Uji Breusch Pagan dapat disimpulkan bahwa Model 1 memiliki ragam yang heterogen. Untuk Model 2 hanya memiliki autokorelasi spasial pada peubah responnya. Pada ilustrasi ini hanya dilakukan pembahasan untuk Model 2.
 
-Pengujian efek dependensi spasial menggunakan uji Lagrange Multiplier dengan syntax sebagai berikut:
+Pengujian efek dependensi spasial menggunakan uji Lagrange Multiplier dengan sintaks sebagai berikut:
 
 ```{r}
 #Uji LM dan RLM
@@ -237,7 +237,7 @@ Pada output uji efek spasial terlihat nilai-p dari uji RLMlag dan RLMerr bernila
 
 ### Efek dependensi spasial pada prediktor
 
-Penentuan prediktor yang mempunyai autokorelasi spasial menggunakan indeks Moran dengan syntax sebagai berikut:
+Penentuan prediktor yang mempunyai autokorelasi spasial menggunakan indeks Moran dengan sintaks sebagai berikut:
 
 ```{r}
 #Uji Moran pada prediktor
@@ -288,7 +288,7 @@ Pada output indeks Moran tampak peubah X1, X3, X5, dan X8 memiliki autokorelasi 
 
 ### Pendugaan parameter model SAR dan SDM
 
-Pendugaan parameter model SAR menggunakan syntax sebagai berikut:
+Pendugaan parameter model SAR menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Model SAR
@@ -296,7 +296,7 @@ modelSAR<-lagsarlm(model2,queen.listw2,data=gabung2)
 summary(modelSAR,Nagelkerke=T)
 ```
 
-Pemodelan SDM dengan lag-prediktor X1, X3, X5, dan X8 menggunakan syntax berikut:
+Pemodelan SDM dengan lag-prediktor X1, X3, X5, dan X8 menggunakan sintaks berikut:
 
 ```{r}
 #Model SDM
@@ -306,7 +306,7 @@ summary(modelSDM,Nagelkerke=T)
 ```
 
 ### Pemeriksaan asumsi model regresi spasial
-Pemeriksaan asumsi untuk Model SAR dan SDM yang terdiri dari kenormalan sisaan, homogenitas ragam, dan kebebasan sisan menggunakan syntax sebagai berikut:
+Pemeriksaan asumsi untuk Model SAR dan SDM yang terdiri dari kenormalan sisaan, homogenitas ragam, dan kebebasan sisan menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Asumsi model SAR
@@ -345,7 +345,7 @@ Berdasarkan hasil pemeriksaan asumsi pada sisaan,  model SDM memenuhi seluruh as
 
 ### Evaluasi kebaikan model
 
-Evaluasi kebaikan model menggunakan nilai AIC dan Pseudo R-Square dengan syntax sebagai berikut:
+Evaluasi kebaikan model menggunakan nilai AIC dan Pseudo R-Square dengan sintaks sebagai berikut:
 ```{r}
 #Nilai AIC dan Pseudo-R2
 sumSAR <- summary(modelSAR, Nagelkerke=T)
@@ -362,7 +362,7 @@ evaluasi
 
 Pada output terlihat model SDM dibandingkan SAR mempunyai nilai AIC yang lebih rendah dan nilai Pseudo R-Square yang lebih tinggi. \ \
 \ \
-Pemilihan model yang lebih efisien antara SAR dan SDM dapat menggunakan uji Likelihood Ratio (LR). Uji LR antara SAR dan SDM digunakan untuk mengetahui efek penambahan lag-X pada SAR. Syntax untuk uji LR sebagai berikut:
+Pemilihan model yang lebih efisien antara SAR dan SDM dapat menggunakan uji Likelihood Ratio (LR). Uji LR antara SAR dan SDM digunakan untuk mengetahui efek penambahan lag-X pada SAR. Sintaks untuk uji LR sebagai berikut:
 
 ```{r}
 #Uji LR SAR dan SDM
@@ -372,7 +372,7 @@ LR.Sarlm(modelSAR, modelSDM)
 Pada output uji LR terlihat model SDM lebih efisien dibandingkan model SAR. Model SDM memenuhi semua asumsi pada sisaan, sehingga model SDM merupakan model yang terbaik untuk data infeksi virus Dengue di Jakarta.
 
 ### Interpretasi model terbaik
-Interpretasi model SDM dilakukan dengan menentukan nilai efek marginal dari setiap prediktor dengan syntax sebagai berikut:
+Interpretasi model SDM dilakukan dengan menentukan nilai efek marginal dari setiap prediktor dengan sintaks sebagai berikut:
 
 ```{r}
 #Efek marginal
@@ -382,7 +382,7 @@ impacts(modelSDM, listw = queen.listw2)
 
 Berdasarkan output efek marginal terlihat bahwa TE positif tertinggi (0.0129226) berasal dari peubah rasio sekolah dasar per 100.000 penduduk (X8), sedangkan TE negatif terkecil (-0.0195118) berasal dari peubah rasio puskesmas per 100.000 penduduk (X3). TE peubah rasio sekolah dasar per 100.000 penduduk (X8) sebesar 0.0129226, artinya kenaikan satu persen X8 akan menaikkan sebanyak 0.0129226 persen kasus infeksi virus Dengue. DE X8 merupakan total efek dari perubahan pada X8 di suatu lokasi berdampak pada lokasi yang sama sebesar 0.0030936. IE X8 sebesar 0.0098290 merupakan total efek dari perubahan satu persen X8 di di suatu lokasi pada lokasi lainnya. \ \
 \ \ 
-Efek marginal dapat diuraikan berdasarkan daerah dan peubahnya. Berikut syntax yang dapat digunakan untuk menguraikan efek marginal untuk prediktor X8:
+Efek marginal dapat diuraikan berdasarkan daerah dan peubahnya. Berikut sintaks yang dapat digunakan untuk menguraikan efek marginal untuk prediktor X8:
 
 ```{r}
 #Membuat Matriks S untuk Peubah X8
@@ -405,7 +405,7 @@ ie <- rowSums(mat_s)
 te <- de+ie
 ```
 
-Efek marginal dari prediktor X1 untuk setiap kecamatan DKI Jakarta berbeda-beda. Untuk memudahkan penyajian efek marginal disajikan dalam bentuk peta dengan syntax sebagai berikut:
+Efek marginal dari prediktor X1 untuk setiap kecamatan DKI Jakarta berbeda-beda. Untuk memudahkan penyajian efek marginal disajikan dalam bentuk peta dengan sintaks sebagai berikut:
 
 ```{r}
 #Menggabungkan hasil uraian efek dengan data peta
@@ -438,7 +438,7 @@ ggplot(gabung2) + aes(fill = te) + geom_sf(size = 0.05) +
   guide = guide_legend(reverse = F))+ xlab("") + ylab("")
 ```
 
-Untuk menentukan efek besarnya perubahan Y di kecamatan DKI Jakarta akibat kenaikan nilai prediktor X8 di Kecamatan Kalideres sebesar 1% dapat dihitung menggunakan syntax sebagai berikut:
+Untuk menentukan efek besarnya perubahan Y di kecamatan DKI Jakarta akibat kenaikan nilai prediktor X8 di Kecamatan Kalideres sebesar 1% dapat dihitung menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Nilai dugaan Y sebelum ada kenaikan nilai

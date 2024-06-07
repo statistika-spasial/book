@@ -10,10 +10,9 @@ source("_common.R")
 
 Regresi autoregresif spasial binomial negatif (SAR-BN) adalah pengembangan analisis regresi binomial negatif dengan menambahkan adanya efek spasial pada data. Regresi spasial binomial negatif dapat digunakan pada data cacah yang memiliki dependensi spasial dan kondisi overdispersi. Model regresi spasial BN antara lain:
 
-a. Spatial Autoregressive Model (SAR)
+### a. Spatial Autoregressive Model (SAR)
 
-SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR sebagai berikut (Anselin 1988):
-
+SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR sebagai berikut [@anselin1988]:
 
 $y = \rho W_1 y + X\beta + \varepsilon$
 
@@ -23,11 +22,11 @@ $\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta\right)$
 
 dengan $y_i \sim \text{NB}(\mu_i)$
 
-b. Spatial Durbin Model (SDM)
+### b. Spatial Durbin Model (SDM)
 
 SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut [@anselin1988]:
 
-$y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon $
+\$y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon \$
 
 dengan $W_2$ merupakan matriks pembobot spasial untuk $X$ dan $\gamma$ merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut [@glaser2017]:
 
@@ -35,7 +34,7 @@ $\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta + w_{2i}^{\prime} x_i \gam
 
 dengan $y_i \sim \text{NB}(\mu_i)$
 
-c. Spatial Lag-X (SLX)
+### c. Spatial Lag-X (SLX)
 
 SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas. Persamaan untuk SLX sebagai berikut [@vega2015]:
 
@@ -49,60 +48,54 @@ dengan $y_i \sim \text{NB}(\mu_i)$
 
 ## Data
 
-Ilustrasi model SAR-BN dirujuk dari hasil penelitian @amelia2023. Data yang digunakan adalah data sekunder yang diperoleh dari Badan Pusat Statistik Jawa Barat, Dinas Kesehatan Provinsi Jawa Barat, dan Profil Kesehatan Provinsi Jawa Barat Tahun 2021 yang dikeluarkan oleh Dinas Kesehatan Jawa Barat tahun 2021. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat di @tbl-sarbn. Data dan peta ilustrasi SAR-BN tersedia pada tautan [https://ipb.link/sar-binomial-negatif](https://ipb.link/sar-binomial-negatif). 
+Ilustrasi model SAR-BN dirujuk dari hasil penelitian @amelia2023. Data yang digunakan adalah data sekunder yang diperoleh dari Badan Pusat Statistik Jawa Barat, Dinas Kesehatan Provinsi Jawa Barat, dan Profil Kesehatan Provinsi Jawa Barat Tahun 2021 yang dikeluarkan oleh Dinas Kesehatan Jawa Barat tahun 2021. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat di @tbl-sarbn. Data dan peta ilustrasi SAR-BN tersedia pada tautan <https://ipb.link/sar-binomial-negatif>.
 
-| Kode   | Peubah                                          |
-|--------|-------------------------------------------------|
-| $Y$    | Banyaknya stunting per 100.000 balita           |
-| $X_1$  | Persentase balita mendapatkan imunisasi dasar lengkap |
-| $X_2$  | Persentase bayi berusia kurang dari 6 bulan mendapat ASI |
-| $X_3$  | Persentase tempat pengelolaan makanan memenuhi syarat |
-| $X_4$  | Persentase bayi berat badan lahir rendah              |
-| $X_5$  | Persentase keluarga dengan akses sanitasi layak       |
-| $X_6$  | Pengeluaran per kapita dalam juta rupiah              |
+| Kode  | Peubah                                                   |
+|-------|----------------------------------------------------------|
+| $Y$   | Banyaknya stunting per 100.000 balita                    |
+| $X_1$ | Persentase balita mendapatkan imunisasi dasar lengkap    |
+| $X_2$ | Persentase bayi berusia kurang dari 6 bulan mendapat ASI |
+| $X_3$ | Persentase tempat pengelolaan makanan memenuhi syarat    |
+| $X_4$ | Persentase bayi berat badan lahir rendah                 |
+| $X_5$ | Persentase keluarga dengan akses sanitasi layak          |
+| $X_6$ | Pengeluaran per kapita dalam juta rupiah                 |
 
 : Deskripsi Peubah {#tbl-sarbn .striped .hover}
-
 
 ## Metode Analasis
 
 Analisis data dilakukan dengan menggunakan software R dengan tahapan analisis data sebagai berikut:
 
-1. **Eksplorasi Data:**
-   - Melakukan eksplorasi data dengan membuat peta sebaran dari peubah respon.
-   - Membuat diagram kotak garis peubah respon.
-   - Membuat plot antara peubah respon dengan peubah penjelas.
-   - Memeriksa sebaran dari peubah respon.
-
-2. **Deteksi Multikolinearitas:**
-   - Melihat nilai Variance Inflation Factor (VIF) untuk mendeteksi multikolinearitas antar peubah penjelas.
-
-3. **Pemeriksaan Overdispersi:**
-   - Memeriksa overdispersi menggunakan nilai devians dan khi kuadrat Pearson dibagi dengan derajat bebasnya.
-   - Jika kedua nilai tersebut lebih dari satu, maka terjadi overdispersi pada data.
-
-4. **Pemodelan Regresi:**
-   - Melakukan pemodelan regresi Poisson jika tidak terdapat overdispersi.
-   - Melakukan pemodelan regresi binomial negatif jika terdapat overdispersi.
-
-5. **Uji Efek Spasial:**
-   - Menguji kehomogenan ragam sisaan model regresi klasik dengan uji Breusch-Pagan.
-   - Pemilihan model dependensi spasial menggunakan uji pengganda Lagrange (Lagrange Multiplier/LM).
-   - Memeriksa efek dependensi spasial pada prediktor dengan indeks Moran.
-   - Melakukan pendugaan parameter model regresi spasial binomial negatif berdasarkan hasil uji efek spasial.
-
-6. **Evaluasi Model:**
-   - Mengukur kebaikan model berdasarkan nilai Akaike Information Criterion (AIC) terkecil.
-     Persamaan AIC: \(AIC = -2L_k + 2p\), dengan \(L_k\) merupakan fungsi kemungkinan maksimum dari model dengan \(k\) prediktor dan \(p\) adalah banyaknya parameter.
-
-7. **Interpretasi dan Kesimpulan:**
-   - Melakukan interpretasi dari model yang terpilih.
-   - Menarik kesimpulan berdasarkan hasil analisis.
+1.  **Eksplorasi Data:**
+    -   Melakukan eksplorasi data dengan membuat peta sebaran dari peubah respon.
+    -   Membuat diagram kotak garis peubah respon.
+    -   Membuat plot antara peubah respon dengan peubah penjelas.
+    -   Memeriksa sebaran dari peubah respon.
+2.  **Deteksi Multikolinearitas:**
+    -   Melihat nilai Variance Inflation Factor (VIF) untuk mendeteksi multikolinearitas antar peubah penjelas.
+3.  **Pemeriksaan Overdispersi:**
+    -   Memeriksa overdispersi menggunakan nilai devians dan khi kuadrat Pearson dibagi dengan derajat bebasnya.
+    -   Jika kedua nilai tersebut lebih dari satu, maka terjadi overdispersi pada data.
+4.  **Pemodelan Regresi:**
+    -   Melakukan pemodelan regresi Poisson jika tidak terdapat overdispersi.
+    -   Melakukan pemodelan regresi binomial negatif jika terdapat overdispersi.
+5.  **Uji Efek Spasial:**
+    -   Menguji kehomogenan ragam sisaan model regresi klasik dengan uji Breusch-Pagan.
+    -   Pemilihan model dependensi spasial menggunakan uji pengganda Lagrange (Lagrange Multiplier/LM).
+    -   Memeriksa efek dependensi spasial pada prediktor dengan indeks Moran.
+    -   Melakukan pendugaan parameter model regresi spasial binomial negatif berdasarkan hasil uji efek spasial.
+6.  **Evaluasi Model:**
+    -   Mengukur kebaikan model berdasarkan nilai Akaike Information Criterion (AIC) terkecil. Persamaan AIC: (AIC = -2L_k + 2p), dengan (L_k) merupakan fungsi kemungkinan maksimum dari model dengan (k) prediktor dan (p) adalah banyaknya parameter.
+7.  **Interpretasi dan Kesimpulan:**
+    -   Melakukan interpretasi dari model yang terpilih.
+    -   Menarik kesimpulan berdasarkan hasil analisis.
 
 ## Tahapan Analisis Data dengan R
+
 Tahap awal dalam pendugaan model SAR-BN menggunakan R Studio adalah install package yang dibutuhkan. Package yang diinstall sebagai berikut:
 
 ### Package
+
 ```{r cache=FALSE, message=FALSE, warning=FALSE}
 library(AER)
 library(car)
@@ -121,7 +114,9 @@ library(tidyverse)
 ```
 
 ### Input Data
+
 Tahap selanjutnya melakukan input data menggunakan syntax berikut:
+
 ```{r}
 #Input Data
 data1 <-read.csv("data/data_stunting.csv", header = TRUE)
@@ -204,9 +199,11 @@ Pemeriksaan sebaran yang sesuai untuk data stunting dapat juga dilakukan menggun
 qqcomp(list(poisson, binom.negatif), legendtext = c("Pois", 
      "Neg Binom"), fitpch="o", fitcol = c("red","green"))
 ```
+
 Pada output plot Q-Q terlihat mayoritas titik-titik berwarna hijau (lambang untuk sebaran binomial negatif) berada pada garis dibandingkan dengan titik-titik berwarna merah (lambang untuk sebaran Poisson). Sebaran yang paling sesuai untuk data stunting adalah binomial negatif.
 
 #### Pemeriksaan Multikolinearitas
+
 Pemeriksaan multikolinearitas menggunakan syntax sebagai berikut:
 
 ```{r}
@@ -214,6 +211,7 @@ Pemeriksaan multikolinearitas menggunakan syntax sebagai berikut:
 reglin<-lm(Y~X1+X2+X3+X4+X5+X6, data=data1)
 as.matrix(vif(reglin))
 ```
+
 Berdasarkan output terlihat nilai VIF semua prediktor kecil, sehingga dapat disimpulkan tidak terdapat multikolinearitas.
 
 #### Uji Overdispersi
@@ -245,11 +243,11 @@ nb<-glm.nb(Y~X1+X2+X3+X4+X5+X6,data=data1)
 summary(nb)
 ```
 
-Pada output regresi binomial negatif terlihat prediktor X2, X3, X4, dan X5 nyata pada  α=0.05 dengan AIC model sebesar 340.64.
+Pada output regresi binomial negatif terlihat prediktor X2, X3, X4, dan X5 nyata pada α=0.05 dengan AIC model sebesar 340.64.
 
 #### Uji efek spasial
 
-a.	Uji LM dan indeks Moran
+##### a. Uji LM dan indeks Moran
 
 Untuk menentukan Indeks Moran dan uji LM, terlebih dulu dibangun matriks bobot, Pada ilustrasi ini digunakan matriks ketetanggan langkah ratu, k-nearest neighbor, inverse distance weight, dan negative exponential. Syntax yang digunakan untuk membuat matriks bobot dan menghitung Indeks Moran sebagai berikut:
 
@@ -503,8 +501,8 @@ tab <- as.table(tab)
 tab
 ```
 
-Pada output di atas terlihat bahwa pada pengujian indeks Moran peubah X6, matriks bobot exponential alpha = 1 memiliki nilai-p paling kecil dan nyata pada α=0.05. \ \
-\ \
+Pada output di atas terlihat bahwa pada pengujian indeks Moran peubah X6, matriks bobot exponential alpha = 1 memiliki nilai-p paling kecil dan nyata pada α=0.05. 
+
 Pengujian LM dengan matriks pembobot Queen menggunakan syntax sebagai berikut:
 
 ```{r}
@@ -517,9 +515,9 @@ LM_Queen<-lm.RStests(reglin, queen.jabar,
 summary(LM_Queen)
 ```
 
-Output uji menunjukan RLMlag nyata pada α=0.05, sehingga model yang cocok digunakan adalah SAR. \ \
-\ \
-b.	Uji Breusch-Pagan
+Output uji menunjukan RLMlag nyata pada $\alpha=0.05$, sehingga model yang cocok digunakan adalah SAR. 
+
+##### b. Uji Breusch-Pagan
 
 Uji Breusch-Pagan dihitung menggunakan syntax berikut:
 
@@ -528,10 +526,9 @@ Uji Breusch-Pagan dihitung menggunakan syntax berikut:
 bptest(reglin)
 ```
 
-Nilai statistik uji Breusch-Pagan mempunyai nilai-p > α=0.05, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial.
+Nilai statistik uji Breusch-Pagan mempunyai nilai-p > $\alpha=0.05$, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial.
 
 #### Pendugaan Model Spasial Binomial Negatif
-
 
 Pendugaan model SAR-BN dengan matriks pembobot Queen menggunakan syntax sebagai berikut:
 
@@ -543,8 +540,8 @@ SAR<-glm.nb(petajabar$Stunting~lagY+imunisasi+ASI+TPM+BBLR
 summary(SAR)
 ```
 
-Pada output model SAR-BN terlihat prediktor signifikan pada kasus stunting adalah ASI, TPM, dan BBLR. Nilai AIC model sebesar 339.13. \ \
-\ \
+Pada output model SAR-BN terlihat prediktor signifikan pada kasus stunting adalah ASI, TPM, dan BBLR. Nilai AIC model sebesar 339.13. 
+
 Pendugaan model SLX-BN dengan matriks pembobot untuk lag-prediktor sesuai hasil pada langkah (5) menggunakan syntax sebagai berikut:
 
 ```{r}
@@ -565,8 +562,8 @@ slx_reg<-glm.nb(Stunting ~imunisasi+ASI+TPM+BBLR+sanitasi
 summary(slx_reg)
 ```
 
-Pada output model SLX-BN terlihat prediktor signifikan pada kasus stunting adalah ASI, BBLR, dan sanitasi. Nilai AIC model sebesar 344.51.\ \
-\ \
+Pada output model SLX-BN terlihat prediktor signifikan pada kasus stunting adalah ASI, BBLR, dan sanitasi. Nilai AIC model sebesar 344.51.
+
 Pendugaan model SDM-BN dengan matriks pembobot untuk lag-prediktor sesuai hasil pada langkah (5) dan matriks pembobot Queen untuk Y menggunakan syntax sebagai berikut:
 
 ```{r}
@@ -576,6 +573,7 @@ sdm_reg<-glm.nb(Stunting ~ imunisasi+ASI+TPM+BBLR+sanitasi
       data=petajabar)
 summary(sdm_reg)
 ```
+
 Pada output model SDM-BN terlihat prediktor signifikan pada kasus stunting adalah TPM dan BBLR. Nilai AIC model sebesar 344.62.
 
 #### Kebaikan Model
@@ -597,6 +595,7 @@ rownames(nilai.aic) <- c('Regresi Binomial Negatif',
 nilai.aic <- as.table(nilai.aic)
 nilai.aic
 ```
+
 Pada output terlihat nilai AIC terkecil dimiliki model SAR-BN, sehingga disimpulkan model SAR-BN merupakan model terbaik.
 
 #### Interpretasi Model
@@ -666,9 +665,11 @@ dat.map$long <- longlat[,1]
 dat.map$lat <- longlat[,2]
 ```
 
-Selanjutnya membuat peta untuk nilai DE X2 tiap Kabupaten/Kota menggunakan syntax berikut:
+Selanjutnya membuat peta *direct effect* peubah $X_2$ pada @fig-plot-dex2 tiap Kabupaten/Kota menggunakan sintaks berikut:
 
 ```{r}
+#| label: fig-plot-dex2
+#| fig-cap: "Peta efek tak langsung peubah $X_2$"
 #Peta DE untuk X2
 dat.map$de_x2<-as.numeric(direct_b2)
 mycol <- c("green", "yellow", "red")
@@ -682,9 +683,11 @@ peta.de <- ggplot() +
 peta.de
 ```
 
-Untuk membuat peta IE X2 menggunakan syntax berikut ini:
+Untuk membuat peta *indirect effect* peubah $X_2$ pada @fig-plot-iex2 menggunakan sintaks berikut ini:
 
 ```{r}
+#| label: fig-plot-iex2
+#| fig-cap: "Peta efek tak langsung peubah $X_2$"
 #Peta IE
 dat.map$ie_x2<-as.numeric(indirect_b2)
 peta.ie <- ggplot() +

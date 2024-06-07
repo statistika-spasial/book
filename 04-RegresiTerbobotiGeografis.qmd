@@ -65,7 +65,7 @@ library(spgwr)		# Untuk membentuk model GWR
 
 ### Input Data
 
-Input data dilakukan dengan syntax berikut:
+Input data dilakukan dengan sintaks berikut:
 
 ```{r}
 #Set Lokasi File
@@ -86,7 +86,7 @@ head(gabung)
 
 ### Eksplorasi Data
 
-Eksplorasi data yang dilakukan meliputi pemeriksaan mulitkolinearitas dan pemetaan nilai persentase penduduk miskin. Pemeriksaan multikolinearitas dilakukan dengan syntax berikut:
+Eksplorasi data yang dilakukan meliputi pemeriksaan mulitkolinearitas dan pemetaan nilai persentase penduduk miskin. Pemeriksaan multikolinearitas dilakukan dengan sintaks berikut:
 
 ```{r}
 # Multikolinier
@@ -94,16 +94,16 @@ model <- lm(Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7, data = gabung)
          as.matrix(vif(model))
 ```
 
-Nilai VIF dari semua prediktor berkisar antara 1.34 sampai 3.62, sehingga disimpulkan tidak terdapat multikolinearitas. \ \
-\ \
-Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dalam 4 (empat) kelas interval menggunakan style = 'kmeans. Syntax untuk membuat kelas interval sebagai berikut:
+Nilai VIF dari semua prediktor berkisar antara 1.34 sampai 3.62, sehingga disimpulkan tidak terdapat multikolinearitas. 
+
+Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dalam 4 (empat) kelas interval menggunakan `style = "kmeans"`. Sintaks untuk membuat kelas interval sebagai berikut:
 
 ```{r}
 #Membuat kelas interval data kemiskinan
 classIntervals(gabung$Y, n = 4, style = 'kmeans')
 ```
 
-Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan (@fig-plot-miskin) dengan menggunakan syntax sebagai berikut:
+Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan (@fig-plot-miskin) dengan menggunakan sintaks sebagai berikut:
 
 ```{r}
 #| label: fig-plot-miskin
@@ -122,9 +122,9 @@ plot.miskin
 
 ### Uji Efek Spasial
 
-a)	Membentuk matriks pembobot spasial
+#### a.	Membentuk matriks pembobot spasial
 
-Pada ilustrasi ini digunakan matriks pembobot spasial KNN dengan K = 3 dengan syntax sebagai berikut:
+Pada ilustrasi ini digunakan matriks pembobot spasial KNN dengan `K = 3` dengan sintaks sebagai berikut:
 
 ```{r}
 #Membuat matriks bobot K-NN
@@ -134,9 +134,9 @@ klist<-nb2listw(k1)
 klist
 ```
 
-b)	Uji Lagrange Multiplier
+#### b.	Uji Lagrange Multiplier
 
-Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier menggunakan syntax sebagai berikut:
+Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Uji LM dan RLM
@@ -145,24 +145,24 @@ lmtestmod <- lm.LMtests(model, klist, zero.policy = T,
 summary(lmtestmod)
 ```
 
-Hasil uji LMlag, LMerr, RLMerr, dan SARMA memiliki nilai-p yang lebih kecil dari α=0.05. Untuk menentukan efek dependensi pada data cukup diperhatikan pada hasil uji robustLM yang nyata pada α=0.05. Berdasarkan hasil uji RLM dapat disimpulkan terdapat dependensi spasial pada galat.
+Hasil uji LMlag, LMerr, RLMerr, dan SARMA memiliki nilai-p yang lebih kecil dari $\alpha=0.05$. Untuk menentukan efek dependensi pada data cukup diperhatikan pada hasil uji robustLM yang nyata pada $\alpha=0.05$. Berdasarkan hasil uji RLM dapat disimpulkan terdapat dependensi spasial pada galat.
 
-c)	Uji Breusch-Pagan
+#### c.	Uji Breusch-Pagan
 
-Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial. Syntax uji ini sebagai berikut:
+Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial. Sintaks uji ini sebagai berikut:
 
 ```{r}
 #Uji Breusch-Pagan
 bptest(model)
 ```
 
-Nilai-p uji Breusch-Pagan lebih kecil dari α=0.05, sehingga dapat disimpulkan bawa terdapat keragaman spasial pada data. Hasil butir (2b) dan (2c) menunjukkan bahwa pada data yang digunakan mengandung efek dependensi pada galat dan efek keragaman.  Pada ilustrasi ini, efek dependensi diabaikan dan hanya memperhatikan efek keragaman spasial. Model yang digunakan untuk menangani keragaman spasial adalah regresi terboboti geografis (RTG). \ \
+Nilai-p uji Breusch-Pagan lebih kecil dari $\alpha=0.05$, sehingga dapat disimpulkan bawa terdapat keragaman spasial pada data. Hasil butir (2b) dan (2c) menunjukkan bahwa pada data yang digunakan mengandung efek dependensi pada galat dan efek keragaman.  Pada ilustrasi ini, efek dependensi diabaikan dan hanya memperhatikan efek keragaman spasial. Model yang digunakan untuk menangani keragaman spasial adalah regresi terboboti geografis (RTG).
 
 ### Melakukan pendugaan parameter RTG
 
-a)	Menentukan nilai lebar jendela optimum
+#### a.	Menentukan nilai lebar jendela optimum
 
-Lebar jendela dari fungsi kernel dapat bersifat adaptif atau tetap. Penentuan lebar jendela optimum menggunakan validasi silang (CV). Untuk menentukan lebar jendela tetap pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:
+Lebar jendela dari fungsi kernel dapat bersifat adaptif atau tetap. Penentuan lebar jendela optimum menggunakan validasi silang (CV). Untuk menentukan lebar jendela tetap pada fungsi kernel Gaussian menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Mengubah class data PDRB menjadi class SpatialPointsDataFrame
@@ -175,7 +175,7 @@ bw1 <- gwr.sel(Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7,
 bw1
 ```
 
-Untuk menentukan lebar jendela adaptif pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:
+Untuk menentukan lebar jendela adaptif pada fungsi kernel Gaussian menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Menentukan lebar jendela adaptive gaussian
@@ -184,9 +184,9 @@ bw2 <- gwr.sel(Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7,
 bw2
 ```
 
-b)	Menduga parameter RTG
+#### b.	Menduga parameter RTG
 
-Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat tetap dilakukan dengan menggunakan syntax berikut:
+Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat tetap dilakukan dengan menggunakan sintaks berikut:
 
 ```{r}
 #Pendugaan parameter RTG Fixed Gaussian
@@ -195,7 +195,7 @@ modgwr1 <- gwr(Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7,
 modgwr1
 ```
 
-Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat adaptif dilakukan dengan menggunakan syntax berikut:
+Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat adaptif dilakukan dengan menggunakan sintaks berikut:
 
 ```{r}
 #Pendugaan parameter RTG Adaptive Gaussian
@@ -204,7 +204,7 @@ modgwr2 <- gwr(Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7,
 modgwr2
 ```
 
-Untuk menampilkan 5 baris pertama dari koefisien RTG menggunakan syntax sebagai berikut:
+Untuk menampilkan 5 baris pertama dari koefisien RTG menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Koefisien RTG Fixed Gaussian
@@ -218,7 +218,7 @@ hasil2 <-as.data.frame(modgwr2$SDF)
 head(hasil2[,2:9])
 ```
 
-Untuk menampilkan ringkasan koefisien RTG menggunakan syntax sebagai berikut:
+Untuk menampilkan ringkasan koefisien RTG menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Membuat fungsi ringkasan RTG fixed Gaussian
@@ -264,9 +264,9 @@ ringkasan2
 
 Berdasarkan output ringkasan koefisien RTG terlihat nilai rataan koefisien X7 bernilai positif  tertinggi pada kedua model (RTG dengan lebar jendela tetap dan adaptif). Untuk koefisien yang bernilai negatif terendah, terlihat X3 pada model dengan lebar jendela tetap dan X6 pada model adaptif. Ragam koefisien untuk model tetap Gaussian cenderung lebih rendah dibandingkan model adaptif Gaussian. Berdasarkan nilai IQR pada kedua model terlihat koefisien X4 memiliki nilai yang lebih tinggi dibandingkan koefisien lainnya, hal ini menunjukan bahwa koefisien X4 pada setiap kabupaten/kota di Jawa lebih beragam dibandingkan koefisien prediktor lainnya. 
 
-c)	ANOVA
+#### c.	ANOVA
 
-Untuk membandingkan kebaikan antara model regresi linier berganda dengan RTG, digunakan perbandingan kuadrat tengah antara kedua model dengan analisis ragam (ANOVA). Berikut syntax yang digunakan untuk menampilkan ANOVA dan nilai-p dari statistik uji F:
+Untuk membandingkan kebaikan antara model regresi linier berganda dengan RTG, digunakan perbandingan kuadrat tengah antara kedua model dengan analisis ragam (ANOVA). Berikut sintaks yang digunakan untuk menampilkan ANOVA dan nilai-p dari statistik uji F:
 
 ```{r}
 #ANOVA RTG Fixed Gaussian
@@ -282,11 +282,11 @@ round(anova(modgwr2), 4)
 pf(3.418, 10.64, 99.36, lower.tail = F)
 ```
 
-Nilai-p dari statistik uji F lebih kecil dari α=0.05, sehingga dapat disimpulkan bahwa model RTG mempunyai kuadrat tengah galat lebih kecil dari pada model regresi linier berganda.
+Nilai-p dari statistik uji F lebih kecil dari $\alpha=0.05$, sehingga dapat disimpulkan bahwa model RTG mempunyai kuadrat tengah galat lebih kecil dari pada model regresi linier berganda.
 
-d)	Evaluasi kebaikan RTG
+#### d.	Evaluasi kebaikan RTG
 
-Untuk mengetahui kebaikan model antara regresi linier berganda dengan RTG, selain menggunakan ANOVA (butir 3d), dapat juga dibandingkani nilai AIC dan R-square kedua model tersebut. Syntax untuk menghitung nilai AIC dan R-square sebagai berikut:
+Untuk mengetahui kebaikan model antara regresi linier berganda dengan RTG, selain menggunakan ANOVA (butir 3d), dapat juga dibandingkani nilai AIC dan R-square kedua model tersebut. sintaks untuk menghitung nilai AIC dan R-square sebagai berikut:
 
 ```{r}
 #Nilai AIC dan R-square
@@ -306,7 +306,7 @@ Berdasarkan nilai AIC dan R-Square, model RTG adaptif  dibandingkan model regres
 
 ### Uji asumsi model RTG terbaik
 
-Uji asumsi pada sisaan RTG meliputi uji normalitas, homogenitas ragam, dan kebebasan sisaan. Untuk uji normalitas menggunakan uji Shapiro-Wik dengan syntax sebagai berikut:
+Uji asumsi pada sisaan RTG meliputi uji normalitas, homogenitas ragam, dan kebebasan sisaan. Untuk uji normalitas menggunakan uji Shapiro-Wik dengan sintaks sebagai berikut:
 
 ```{r}
 #Uji Normalitas
@@ -316,7 +316,7 @@ shapiro.test(sisaan)
 
 Hasil uji normalitas menunjukkan statistik uji Shapiro-Wilk mempunyai nilai-p> α=0.05, sehingga disimpulkan sebaran sisaan dapat dihampiri dengan sebaran normal. 
 
-Uji homogenitas sisaan menggunakan uji Breusch-Pagan, dan hasil uji menunjukkan p-value = 0.04612< α=0.05, sehingga dapat disimpulkan sisaan bersifat heterogen. Nilai-p dari uji B-P sisaan sudah lebih kecil dibandingkan pada model yaitu sebesar p-value = 0.00542. Dengan demikian dapat disimpulkan Model RTG mampu mengatasi heterogenitas.
+Uji homogenitas sisaan menggunakan uji Breusch-Pagan, dan hasil uji menunjukkan `p-value = 0.04612` < $\alpha=0.05$, sehingga dapat disimpulkan sisaan bersifat heterogen. Nilai-p dari uji B-P sisaan sudah lebih kecil dibandingkan pada model yaitu sebesar `p-value = 0.00542`. Dengan demikian dapat disimpulkan Model RTG mampu mengatasi heterogenitas.
 
 ```{r}
 #Uji Heteroskedastisitas
@@ -325,7 +325,7 @@ modres <- lm(sisaan ~ X1 + X2 + X3 + X4 + X5 + X6 + X7, data =
 bptest(modres)
 ```
 
-Uji kebebasan sisaan dilakukan menggunakan uji indeks Moran pada sisaan untuk mengetahui apakah ada autokorelasi spasial pada sisaan. Hasil uji Moran mempunyai p-value = 0.7293, sehingga dapat disimpulkan tidak terdapat autokorelasi spasial antar sisaan RTG.
+Uji kebebasan sisaan dilakukan menggunakan uji indeks Moran pada sisaan untuk mengetahui apakah ada autokorelasi spasial pada sisaan. Hasil uji Moran mempunyai `p-value = 0.7293`, sehingga dapat disimpulkan tidak terdapat autokorelasi spasial antar sisaan RTG.
 
 ```{r}
 #| eval: false
@@ -335,7 +335,7 @@ gwr.morantest(modgwr2, klist)
 
 ### Uji signifikansi parameter pada tiap lokasi amatan
 
-Parameter dari model RTG pada tiap kabupaten/kota di Jawa diuji menggunakan uji t-student dengan syntax sebagai berikut:
+Parameter dari model RTG pada tiap kabupaten/kota di Jawa diuji menggunakan uji t-student dengan sintaks sebagai berikut:
 
 ```{r}
 #Uji T untuk koefisien RTG
@@ -378,14 +378,18 @@ miskin.sp$Peubah_Signifikan <- strings
 as.matrix(summary(as.factor(miskin.sp$Peubah_Signifikan)))
 ```
 
-Output hasil uji t menunjukkan prediktor yang signifikan dan banyaknya kabupaten/kota yang masuk dalam kategorinya. Prediktor X1 tidak nyata pada semua kabupaten/kota di Jawa. Untuk memudahkan mengetahui kabupaten/kota sesuai kategori peubah yang nyata disajikan dalam peta. Syntax yang digunakan untuk membuat peta sebagai berikut:
+Output hasil uji t menunjukkan prediktor yang signifikan dan banyaknya kabupaten/kota yang masuk dalam kategorinya. Prediktor $X_1$ tidak nyata pada semua kabupaten/kota di Jawa. Untuk memudahkan mengetahui kabupaten/kota sesuai kategori peubah yang nyata disajikan dalam peta. Sintaks yang digunakan untuk membuat peta sebagai berikut:
 
 ```{r}
+#| label: fig-plot-rtg
+#| fig-cap: "Peta koefisien RTG"
+
 #Peta koefisien RTG
 Peubah <- cbind(miskin.sp$Wilayah, miskin.sp$Peubah_Signifikan)
 colnames(Peubah) <- c("Wilayah", "Peubah_Signifikan")
 gabung <- merge(gabung, Peubah, by.x = "KABKOT", by.y = 
           "Wilayah")
+
 ggplot(gabung) +
   aes(fill = Peubah_Signifikan) +
   geom_sf(size = 0.05) +
@@ -394,4 +398,4 @@ ggplot(gabung) +
   theme_minimal()
 ```
 
-Dari peta terlihat mayoritas kabupaten/kota di Jawa berwarna merah, menunjukkan prediktor X2 sampai X7 berpengaruh nyata. Beberapa kabupate/kota di bagian barat  Provinsi Jawa Barat dan bagian tengah Provinsi Jawa Timur berwarna biru yang menunjukkan prediktor X1 dan X4 tidak nyata.
+Dari peta pada @fig-plot-rtg terlihat mayoritas kabupaten/kota di Jawa berwarna merah, menunjukkan prediktor $X_2$ sampai $X_7$ berpengaruh nyata. Beberapa kabupaten/kota di bagian barat Provinsi Jawa Barat dan bagian tengah Provinsi Jawa Timur berwarna biru yang menunjukkan prediktor $X_1$ dan $X_4$ tidak nyata.

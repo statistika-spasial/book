@@ -8,11 +8,11 @@ source("_common.R")
 
 ## Deskripsi
 
-Analisis regresi spasial digunakan untuk melakukan pemodelan hubungan antara peubah respon dan prediktor dalam bentuk model regresi dengan mempertimbangkan efek spasial. Efek spasial antar lokasi dapat disebabkan oleh dependensi spasial dan heterogenitas spasial [@anselin1988]. Dependensi spasial adalah ketergantungan antara suatu lokasi dengan lokasi di sekitarnya sedangkan heterogenitas spasial adalah perbedaan pengaruh peubah prediktor terhadap respon di lokasi yang diamati. **Eigenvector Spasial Filtering (ESF)** adalah metode untuk mengatasi masalah dependensi spasial dengan menambahkan kombinasi linier dari vektor ciri matriks pembobot spasial pada spesifikasi model regresi (Chun & Griffith, 2014). Eigenvector Spasial Filtering (ESF) dapat mengurangi kesalahan spesifikasi spasial, meningkatkan kesesuaian model, serta kenormalan dan homogenitas ragam sisaan. Metode lain yang dapat mengatasi masalah dependensi spasial adalah **Random Effect Eigenvector Spatial Filtering (RE-ESF)**.
+Analisis regresi spasial digunakan untuk melakukan pemodelan hubungan antara peubah respon dan prediktor dalam bentuk model regresi dengan mempertimbangkan efek spasial. Efek spasial antar lokasi dapat disebabkan oleh dependensi spasial dan heterogenitas spasial [@anselin1988]. Dependensi spasial adalah ketergantungan antara suatu lokasi dengan lokasi di sekitarnya sedangkan heterogenitas spasial adalah perbedaan pengaruh peubah prediktor terhadap respon di lokasi yang diamati. **Eigenvector Spasial Filtering (ESF)** adalah metode untuk mengatasi masalah dependensi spasial dengan menambahkan kombinasi linier dari vektor ciri matriks pembobot spasial pada spesifikasi model regresi [@chun2014]. Eigenvector Spasial Filtering (ESF) dapat mengurangi kesalahan spesifikasi spasial, meningkatkan kesesuaian model, serta kenormalan dan homogenitas ragam sisaan. Metode lain yang dapat mengatasi masalah dependensi spasial adalah **Random Effect Eigenvector Spatial Filtering (RE-ESF)**.
 
-Murakami dan Griffith (2015) memperluas Eigenvector Spatial Filtering (ESF) yang merupakan pendekatan efek tetap, ke pendekatan efek acak yaitu Random Effect Eigenvector Spatial Filtering (RE-ESF). Random Effect Eigenvector Spatial Filtering (RE-ESF) mempertimbangkan efek spasial sebagai variabel acak yang bervariasi di antara wilayah-wilayah yang diamati. Hughes dan Haran (2013) membahas kegunaan Random Effect Eigenvector Spatial Filtering (RE-ESF) untuk analisis dependensi spasial yang meminimumkan nilai ragam yang disebabkan oleh faktor acak antara peubah prediktor dan proses spasial laten.
+@murakami2015 memperluas Eigenvector Spatial Filtering (ESF) yang merupakan pendekatan efek tetap, ke pendekatan efek acak yaitu Random Effect Eigenvector Spatial Filtering (RE-ESF). Random Effect Eigenvector Spatial Filtering (RE-ESF) mempertimbangkan efek spasial sebagai variabel acak yang bervariasi di antara wilayah-wilayah yang diamati. @hughes2013 membahas kegunaan Random Effect Eigenvector Spatial Filtering (RE-ESF) untuk analisis dependensi spasial yang meminimumkan nilai ragam yang disebabkan oleh faktor acak antara peubah prediktor dan proses spasial laten.
 
-Eigenvector Spatial Filtering (ESF) yang juga disebut koordinat utama matriks ketetanggaan (Dray et.al. 2006) atau pemetaan vektor ciri Moran didasarkan pada koefisien Moran (MC). Koefisien Moran untuk vektor peubah acak $y$ didefinisikan sebagai berikut:
+Eigenvector Spatial Filtering (ESF) yang juga disebut koordinat utama matriks ketetanggaan [@dray2006] atau pemetaan vektor ciri Moran didasarkan pada koefisien Moran (MC). Koefisien Moran untuk vektor peubah acak $y$ didefinisikan sebagai berikut:
 
 $$ 
 MC[y] = \frac{n}{(1' W1)} \left( y' MWMy \right) / \left( y' My \right) 
@@ -42,7 +42,7 @@ $$ {#eq-1004}
 
 ### Random Effect Eigenvector Spatial Filtering (RE-ESF)
 
-Berdasarkan Hughes dan Haran (2013), model linier RE-ESF yang didasarkan pada model dengan autoregresif prior bersyarat intrinsik dirumuskan sebagai berikut:
+Berdasarkan @hughes2013, model linier RE-ESF yang didasarkan pada model dengan autoregresif prior bersyarat intrinsik dirumuskan sebagai berikut:
 
 $$
 y = X\beta + E\gamma + \varepsilon, \quad \gamma \sim N(0, \sigma_{\gamma}^2 \Lambda), \quad \varepsilon \sim N(0, \sigma^2 I) 
@@ -56,13 +56,13 @@ $$ {#eq-1006}
 
 dengan $X$ adalah matriks desain dari efek tetap yang teramati, $\beta$ adalah vektor parameter pengaruh efek tetap yang tidak diketahui, $Z$ adalah matriks desain efek acak yang teramati, $u$ adalah vektor efek acak yang tidak diketahui, dan $\varepsilon$ vektor galat acak yang tidak diketahui.
 
-Hughes dan Haran (2013) memperkenalkan vektor ciri ke dalam $E$ yang akar cirinya lebih besar dari nol. Penduga linear tak bias terbaik (best linear unbiased estimator atau BLUE) dari $\beta$ dan $\gamma$ diperoleh sebagai berikut (Henderson 1975),
+@hughes2013 memperkenalkan vektor ciri ke dalam $E$ yang akar cirinya lebih besar dari nol. Penduga linear tak bias terbaik (best linear unbiased estimator atau BLUE) dari $\beta$ dan $\gamma$ diperoleh sebagai berikut [@henderson1975],
 
 $$ 
 \begin{bmatrix} \hat{\beta} \\ \hat{\gamma} \end{bmatrix} = \left( X^T X \quad X^T E \quad E^T X \quad I + \frac{\sigma^2}{\sigma_{\gamma}^2} \Lambda^{-1} \right)^{-1} \begin{bmatrix} X^T y \\ E^T y \end{bmatrix} 
 $$ {#eq-1007}
 
-dengan $\Lambda^{-1}$ adalah matriks diagonal berukuran $L \times L$ yang elemennya adalah $1/\lambda_1, \ldots, 1/\lambda_L$. Pada @eq-1007, diagonal ke-$l$ ($l = 1, \ldots, L$) dari $(\sigma^2/(\sigma_{\gamma}^2)) \Lambda^{-1}$, yang diberikan oleh $(\sigma^2/(\sigma_{\gamma}^2)) \gamma_l^{-1}$, menyusutkan koefisien ke-$l$ ($\gamma_l$) menuju nol. Penyusutan ini signifikan untuk vektor eigen yang berhubungan dengan akar ciri yang lebih kecil, $\gamma_l$. Penyusutan seperti itu yang berguna untuk menduga model sambil mempertahankan derajat kebebasan yang konstan (Hodges 2013), memungkinkan menduga model RE-ESF tanpa menerapkan pemilihan vektor ciri bertahap (stepwise eigenvector selection). Ragam dari pendugaan $\beta$ dan $\gamma$ diberikan sebagai berikut:
+dengan $\Lambda^{-1}$ adalah matriks diagonal berukuran $L \times L$ yang elemennya adalah $1/\lambda_1, \ldots, 1/\lambda_L$. Pada @eq-1007, diagonal ke-$l$ ($l = 1, \ldots, L$) dari $(\sigma^2/(\sigma_{\gamma}^2)) \Lambda^{-1}$, yang diberikan oleh $(\sigma^2/(\sigma_{\gamma}^2)) \gamma_l^{-1}$, menyusutkan koefisien ke-$l$ ($\gamma_l$) menuju nol. Penyusutan ini signifikan untuk vektor eigen yang berhubungan dengan akar ciri yang lebih kecil, $\gamma_l$. Penyusutan seperti itu yang berguna untuk menduga model sambil mempertahankan derajat kebebasan yang konstan [@hodges2013], memungkinkan menduga model RE-ESF tanpa menerapkan pemilihan vektor ciri bertahap (*stepwise eigenvector selection*). Ragam dari pendugaan $\beta$ dan $\gamma$ diberikan sebagai berikut:
 
 $$
 \text{Var}[\hat{\beta}, \hat{\gamma}] = \sigma^2 \left( X^T X \quad X^T E \quad E^T X \quad I + \frac{\sigma^2}{\sigma_{\gamma}^2} \Lambda^{-1} \right)^{-1} 
@@ -76,7 +76,7 @@ $$
 y = X\beta + EV(\theta)u + \varepsilon, \quad u \sim N(0, \sigma^2 I), \quad \varepsilon \sim N(0, \sigma^2 I) 
 $$ {#eq-1009}
 
-dengan $V(\theta)u = \gamma$ dengan $\theta = \left\{ \left( \frac{\sigma_{\gamma}^2}{\sigma^2} \right), \alpha \right\}$, dan $V(\theta)$ adalah matriks diagonal berukuran $L \times L$ yang elemen ke-$(l, l)$ adalah $\left( \frac{\sigma_{\gamma}}{\sigma} \right) \lambda_l \sqrt{\alpha}$. Berdasarkan Bates (2010), @eq-1010 identik dengan model linear campuran yang pendugaannya menggunakan metode kemungkinan maksimum (maximum likelihood atau ML) dan kemungkinan maksimum terbatas (restricted maximum likelihood atau REML). Loglikelihood pada @eq-1011 dapat dituliskan sebagai berikut:
+dengan $V(\theta)u = \gamma$ dengan $\theta = \left\{ \left( \frac{\sigma_{\gamma}^2}{\sigma^2} \right), \alpha \right\}$, dan $V(\theta)$ adalah matriks diagonal berukuran $L \times L$ yang elemen ke-$(l, l)$ adalah $\left( \frac{\sigma_{\gamma}}{\sigma} \right) \lambda_l \sqrt{\alpha}$. Berdasarkan @bates2010, @eq-1010 identik dengan model linear campuran yang pendugaannya menggunakan metode kemungkinan maksimum (maximum likelihood atau ML) dan kemungkinan maksimum terbatas (*restricted maximum likelihood* atau REML). Loglikelihood pada @eq-1011 dapat dituliskan sebagai berikut:
 
 $$
 \text{log} L(\beta, \theta, \sigma^2) = -\frac{n}{2} \text{log}(2\pi\sigma^2) - \text{log}(|V(\theta)|^2) - \frac{d(\theta)}{\sigma^2} 
@@ -92,7 +92,7 @@ $$
 \begin{bmatrix} \hat{\beta} \\ \hat{u} \end{bmatrix} = \left( X^T X \quad X^T EV(\theta) \quad V(\theta)E^T X \quad V(\theta)^2 + I \right)^{-1} \begin{bmatrix} X^T y \\ V(\theta)E^T y \end{bmatrix}
 $$ {#eq-1012}
 
-dengan $V(\theta)^2$ adalah matriks diagonal berukuran $L \times L$ yang elemen ke-$(l, l)$ adalah $\left( \frac{\sigma_{\gamma}^2}{\sigma^2} \right) \gamma_l \alpha$. @eq-1011 identik dengan @eq-1007 dengan penambahan $\alpha$. $\theta$ dapat diduga dengan memaksimumkan @eq-1010. Penduga kemungkinan maksimum dari parameter ragam ($\theta$ dan $\sigma^2$) diketahui berbias (Bates 2010). Oleh karena itu, digunakan pendugaan REML yang memberikan pendugaan parameter ragam yang tidak bias. Residual log-likehood untuk parameter ragam diformulasikan sebagai berikut:
+dengan $V(\theta)^2$ adalah matriks diagonal berukuran $L \times L$ yang elemen ke-$(l, l)$ adalah $\left( \frac{\sigma_{\gamma}^2}{\sigma^2} \right) \gamma_l \alpha$. @eq-1011 identik dengan @eq-1007 dengan penambahan $\alpha$. $\theta$ dapat diduga dengan memaksimumkan @eq-1010. Penduga kemungkinan maksimum dari parameter ragam ($\theta$ dan $\sigma^2$) diketahui berbias [@bates2010]. Oleh karena itu, digunakan pendugaan REML yang memberikan pendugaan parameter ragam yang tidak bias. Residual log-likehood untuk parameter ragam diformulasikan sebagai berikut:
 
 $$
 \text{log} L_R(\theta, \sigma^2) = \int \text{log} L(\beta, \theta, \sigma^2) d\beta 
@@ -104,7 +104,7 @@ $$
 \sigma^2 = \frac{\lVert y - X\beta + EV(\theta)u \rVert^2}{(n-K)} \quad (13) 
 $$ {#eq-1014}
 
-Berdasarkan Bates (2010), $\theta$ diduga dengan memaksimumkan profil residual log-likelihood, $\text{log} L_R(\theta)$ yang diturunkan dengan langkah (a) mensubstitusikan @eq-1010 pada @eq-1012 dan menurunkan fungsi $\text{log} L_R(\theta, \sigma^2)$ dan (b) mensubstitusikan @eq-1013 pada $\text{log} L_R(\theta, \sigma^2)$ dan menurunkan fungsi $\text{log} L_R(\theta)$. Hasil fungsi profil residual log-likelihood diberikan sebagai berikut:
+Berdasarkan @bates2010, $\theta$ diduga dengan memaksimumkan profil residual log-likelihood, $\text{log} L_R(\theta)$ yang diturunkan dengan langkah (a) mensubstitusikan @eq-1010 pada @eq-1012 dan menurunkan fungsi $\text{log} L_R(\theta, \sigma^2)$ dan (b) mensubstitusikan @eq-1013 pada $\text{log} L_R(\theta, \sigma^2)$ dan menurunkan fungsi $\text{log} L_R(\theta)$. Hasil fungsi profil residual log-likelihood diberikan sebagai berikut:
 
 $$
 \text{log} L_R(\theta) = -\frac{1}{2} \text{log} \left| \begin{bmatrix} X^T X & X^T EV(\theta) \\ V(\theta) E^T X & V(\theta)^2 + I \end{bmatrix} \right| - \frac{(n-K)}{2} \left( 1 + \text{log} \left( \frac{2\pi d(\theta)}{(n-K)} \right) \right) 

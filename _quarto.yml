@@ -58,7 +58,6 @@ book:
     - ModelEpidemiologi.qmd
   
   appendices: 
-    - summary.qmd
     - references.qmd
 
 bibliography: 
@@ -79,7 +78,7 @@ knitr:
 
 format:
   html:
-    number-depth: 2
+    number-depth: 3
     theme: cosmo
     code-fold: false
     code-summary: "Code"

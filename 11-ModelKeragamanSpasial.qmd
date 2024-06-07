@@ -10,7 +10,7 @@ source("_common.R")
 
 ### Regresi Terboboti Geografis
 
-Regresi Terboboti Geografis (RTG) merupakan pengembangan dari kerangka model regresi klasik yang menghasilkan penduga koefisien regresi yang bervariasi untuk setiap lokasi. Semakin jauh suatu lokasi dari lokasi yang diduga model regresinya, semakin rendah bobot untuk data pada lokasi tersebut (Djuraidah, 2020). Model RTG dituliskan sebagai berikut (Huang et al., 2010):
+Regresi Terboboti Geografis (RTG) merupakan pengembangan dari kerangka model regresi klasik yang menghasilkan penduga koefisien regresi yang bervariasi untuk setiap lokasi. Semakin jauh suatu lokasi dari lokasi yang diduga model regresinya, semakin rendah bobot untuk data pada lokasi tersebut [@djuraidah2020]. Model RTG dituliskan sebagai berikut [@huang2010]:
 
 $$
 y_i = \beta_0 (u_i v_i) + \sum_{k=1}^{p} \beta_k (u_i v_i) x_{ik} + \epsilon_i
@@ -30,25 +30,25 @@ x_{ik} &: \text{nilai pengamatan peubah penjelas ke-k pada lokasi ke-i} \\
   
 \end{align*}
 
-Djuraidah (2020) menyatakan parameter koefisien regresi $\beta_k (u_i v_i)$ diduga dengan menggunakan metode Kuadrat Terkecil Terboboti, sehingga pendugaan koefisien regresi $\hat{\beta}(u_i v_i)$ dituliskan sebagai berikut:
+@djuraidah2020 menyatakan parameter koefisien regresi $\beta_k (u_i v_i)$ diduga dengan menggunakan metode Kuadrat Terkecil Terboboti, sehingga pendugaan koefisien regresi $\hat{\beta}(u_i v_i)$ dituliskan sebagai berikut:
 
 $$
 \hat{\beta}(u_i v_i) = [X'W(u_i v_i)X]^{-1} X' W(u_i v_i) y
 $$ {#eq-1102}
 
-dimana $W(u_i v_i)$ adalah matriks $n \times n$ yang merupakan matriks pembobot spasial lokasi ke-i dengan nilai unsur-unsur diagonalnya ditentukan oleh jarak antar lokasi pengamatan ke-i dengan lokasi lainnya.
+dimana $W(u_i v_i)$ adalah matriks $n \times n$ yang merupakan matriks pembobot spasial lokasi ke-$i$ dengan nilai unsur-unsur diagonalnya ditentukan oleh jarak antar lokasi pengamatan ke-$i$ dengan lokasi lainnya.
 
 ### Moran Eigenvectors
 
 Vektor eigen moral (MEs) $\{e_1,…,e_L\}$ adalah vektor eigen yang diekstraksi dari dua kali lipat matriks kedekatan spasial terpusat di mana $e_1$ adalah ME yang sesuai dengan nilai eigen terbesar $\lambda_1$, $e_2$ adalah ME yang sesuai dengan nilai eigen terbesar kedua $\lambda_2$, dan seterusnya. MEs dapat diinterpretasikan dalam bentuk koefisien moran (MC; atau Moran I), yang merupakan statistik diagnostik ketergantungan spasial yang menunjukkan nilai positif yang lebih besar dengan adanya ketergantungan spasial positif yang lebih kuat.
 
-Moran Coefficienct (MC) mengkuantifikasi ketergantungan spasial dalam y, yaitu $n \times 1$ vektor variabel respon menggunakan persamaan berikut:
+Moran Coefficienct (MC) mengkuantifikasi ketergantungan spasial dalam $y$, yaitu $n \times 1$ vektor variabel respon menggunakan persamaan berikut:
 
 $$ 
 MC[y] = \frac{n}{1' C1} \frac{(y' MCMy)}{(y' My)} 
 $$ {#eq-1103}
 
-Di mana “ ' ” menunjukan matrix transpose, 1 adalah $n \times 1$ vektor satuan. $M = I-11'/n$ adalah $n \times n$ matriks pemusatan, di mana $I$ adalah matriks identitas, dan $C$ adalah konektivitas simetris $n \times n$ matriks yang entri diagonalnya 0 (Dray, Legendre, and Peres-Neto, 2006).
+Di mana “$'$” menunjukan matrix transpose, 1 adalah $n \times 1$ vektor satuan. $M = I-11'/n$ adalah $n \times n$ matriks pemusatan, di mana $I$ adalah matriks identitas, dan $C$ adalah konektivitas simetris $n \times n$ matriks yang entri diagonalnya 0 [@dray2006].
 
 Akan dilakukan dekomposisi eigen matriks MCM menjadi $E_{\text{full}} \Lambda_{\text{full}} E_{\text{full}}'$, di mana $E_{\text{full}}$ adalah $n \times n$ matriks yang kolom ke-$l$, sama dengan vektor eigen ke-$l$. MC ditunjukkan sebagai berikut:
 
@@ -56,11 +56,11 @@ $$
 MC[e_l] = \frac{n}{1' C1} \frac{(e_l' MCMe_l)}{(e_l' Me_l)} = \frac{n}{1' C1} \frac{(e_l' E_{\text{full}} \Lambda_{\text{full}} E_{\text{full}}')}{(e_l' e_l)} = \frac{n}{1' C1} \lambda_l
 $$ {#eq-1104}
 
-Persamaan di atas menunjukkan bahwa vektor eigen dapat diinterpretasikan dalam bentuk MC. Secara khusus, vektor eigen ke-1, $e_1$ adalah himpunan bilangan real yang mempunyai nilai MC terbesar yang dapat dicapai dengan himpunan bilangan real apa pun untuk struktur spasial yang ditentukan oleh $C$; $e_2$ adalah himpunan bilangan real yang mempunyai nilai MC terbesar yang dapat dicapai oleh himpunan mana pun yang ortogonal dan tidak berkolerasi dengan $e_1$, dan seterusnya hingga vektor eigen ke-$l$. Jadi, $E_{\text{full}}=\{e_1,…,e_n\}$ menyediakan semua kemungkinan perbedaan deskripsi pola peta ketergantungan spasial laten dengan setiap besaran indeks melalui nilai yang sesuai di $\{\lambda_1,…,\lambda_n\}$ (Griffith, 2003).
+Persamaan di atas menunjukkan bahwa vektor eigen dapat diinterpretasikan dalam bentuk MC. Secara khusus, vektor eigen ke-1, $e_1$ adalah himpunan bilangan real yang mempunyai nilai MC terbesar yang dapat dicapai dengan himpunan bilangan real apa pun untuk struktur spasial yang ditentukan oleh $C$; $e_2$ adalah himpunan bilangan real yang mempunyai nilai MC terbesar yang dapat dicapai oleh himpunan mana pun yang ortogonal dan tidak berkolerasi dengan $e_1$, dan seterusnya hingga vektor eigen ke-$l$. Jadi, $E_{\text{full}}=\{e_1,…,e_n\}$ menyediakan semua kemungkinan perbedaan deskripsi pola peta ketergantungan spasial laten dengan setiap besaran indeks melalui nilai yang sesuai di $\{\lambda_1,…,\lambda_n\}$ [@griffith2003].
 
 ### Pendekatan Regresi Terboboti Geografis Menggunakan Eigenvector Spatial Filtering (ESF)
 
-Pendekatan RTG dapat ditingkatkan dengan memasukkan penyaringan spasial berbasis eigenvector. Ini melibatkan penggunaan kombinasi linear dari eigenvector untuk menangkap asosiasi spasial lokal dan menjelaskan autokorelasi spasial dalam $y_i$ (Griffith, 2008). Salah satu pendekatan yang sering digunakan dalam konteks ini adalah Eigenvector Spatial Filtering (ESF), yang juga disebut koordinat utama matriks ketetanggaan (Dray et al., 2006).
+Pendekatan RTG dapat ditingkatkan dengan memasukkan penyaringan spasial berbasis eigenvector. Ini melibatkan penggunaan kombinasi linear dari eigenvector untuk menangkap asosiasi spasial lokal dan menjelaskan autokorelasi spasial dalam $y_i$ (Griffith, 2008). Salah satu pendekatan yang sering digunakan dalam konteks ini adalah Eigenvector Spatial Filtering (ESF), yang juga disebut koordinat utama matriks ketetanggaan [@dray2006].
 
 ESF didasarkan pada koefisien Moran (MC) dan mampu memetakan vektor ciri spasial untuk mengidentifikasi dan mengukur struktur spasial dalam data. Dengan mengintegrasikan konsep ESF ke dalam pendekatan RTG, model tersebut menjadi lebih efektif dalam memahami dan menggambarkan pola hubungan spasial antar peubah yang diamati. Model ESF Varying Coefficient (VC) dikembangkan berdasarkan model GWR dan Fixed Effect ESF:
 
@@ -80,7 +80,7 @@ $\beta_p^{ESF} = \beta_p + E_p \gamma_p$ dengan $\epsilon \sim N(0, \sigma^2 I)$
 
 ### Random Effect Eigenvector Spatial Filtering Varying Coefficient (RE-ESF VC)
 
-Model Fixed Effect ESF-VC pada awalnya fokus pada penggunaan eigenvector spatial filtering untuk mengendalikan dan mengeksplorasi efek tetap yang terkait dengan variabilitas spasial dalam data. Namun, perkembangan terbaru telah melihat konsep ini dikembangkan menjadi model Random Effect ESF-VC, di mana pendekatan ini tidak hanya mempertimbangkan efek tetap, tetapi juga mampu menangkap variasi acak yang mungkin ada dalam struktur spasial data tersebut. Model RE ESF-VC menurut (Murakami et al., 2017) sebagai berikut:
+Model Fixed Effect ESF-VC pada awalnya fokus pada penggunaan eigenvector spatial filtering untuk mengendalikan dan mengeksplorasi efek tetap yang terkait dengan variabilitas spasial dalam data. Namun, perkembangan terbaru telah melihat konsep ini dikembangkan menjadi model Random Effect ESF-VC, di mana pendekatan ini tidak hanya mempertimbangkan efek tetap, tetapi juga mampu menangkap variasi acak yang mungkin ada dalam struktur spasial data tersebut. Model RE ESF-VC menurut [@murakami2017] sebagai berikut:
 
 $$
 y = \sum_{k=1}^{K} x_k \beta_K^{(RE-ESF)} + \epsilon, \quad \epsilon \sim N(0,\sigma^2 I)
@@ -121,7 +121,7 @@ Transformasi Box-Cox hanya diberlakukan pada variabel respons $Y$ yang bernilai 
 |    -0.5     |   $\frac{1}{\sqrt{Y}}$  |
 |    -1       |   $\frac{1}{Y}$  |
 
-Dengan menggunakan transformasi Box-Cox akan diperoleh sebaran yang simetrik mendekati Normal. Ketakhomogenan ragam pun dapat dikurangi dengan transformasi ini (Hadi et al., 2007).
+Dengan menggunakan transformasi Box-Cox akan diperoleh sebaran yang simetrik mendekati Normal. Ketakhomogenan ragam pun dapat dikurangi dengan transformasi ini [@hadi2007].
 
 ### Transformasi SAL
 
@@ -133,7 +133,7 @@ $$
 \varphi_{\text{arcsinh}}(y) = a + b \text{arcsinh} \left( \frac{y-c}{d} \right) 
 $$ {#eq-sinharcsinh}
 
-Di mana $a, c \in \mathbb{R}^+$ dan $b, d \in \mathbb{R}^+$, biasa disebut dengan distribusi Johnson (Johnson, 1949). Adapun untuk persamaan Affine sebagai berikut:
+Di mana $a, c \in \mathbb{R}^+$ dan $b, d \in \mathbb{R}^+$, biasa disebut dengan distribusi Johnson [@johnsonNL1949]. Adapun untuk persamaan Affine sebagai berikut:
 
 $$
 \varphi_{\text{affine}}(y) = a + by, \quad a, b \in \mathbb{R}
@@ -166,6 +166,7 @@ Data yang digunakan berasal dari Badan Pusat Statistik (BPS) pada tahun 2021 den
 ## Tahapan Analisis Data
 
 Berikut adalah langkah prosedur analisis yang dilakukan:
+
 1. Eksplorasi data berupa interpretasi pola persebaran Indeks Ketahanan Pangan di Indonesia dan boxplot dari peubah yang digunakan.
 
 2. Pemodelan regresi antara Indeks Ketahanan Pangan terhadap enam peubah penjelas.
@@ -179,7 +180,7 @@ Berikut adalah langkah prosedur analisis yang dilakukan:
 
 4. Penerapan transformasi Box-Cox dan SAL transformation dengan iterasi sebanyak D kali.
 
-5. Pemodelan dengan Random Effect Eigenvector Spatial Filtering Varying Coefficient (RE-ESF VC).
+5. Pemodelan dengan **Random Effect Eigenvector Spatial Filtering Varying Coefficient** (RE-ESF VC).
 
 6. Interpretasi hasil analisis model RE-ESF VC dengan melihat pola persebaran masing-masing peubah penjelas di Indonesia dan melihat peubah yang signifikan pada kabupaten/kota di Indonesia.
 

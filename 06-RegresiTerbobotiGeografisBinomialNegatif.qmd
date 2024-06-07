@@ -4,9 +4,11 @@
 #| echo: false
 
 source("_common.R")
+gabung <- readRDS('data/gabung.RDS')
 ```
 
 ## Deskripsi
+
 Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda [@silva2014].
 
 Model RTGBN dapat dirumuskan sebagai berikut:
@@ -15,7 +17,7 @@ $$
 y_i \sim \text{BN}\left(\exp\left(\sum_j \beta_j(u_i,v_i) x_{ij} \theta_i(u_i,v_i)\right)\right) 
 $$ {#eq-661}
 
-dengan $y_i$ adalah nilai amatan respon ke-i, $x_{ij}$ adalah nilai amatan prediktor ke-j pada pengamatan, $(u_i, v_i)$ adalah logitude dan latitude lokasi-i, $\beta_j(u_i, v_i)$ adalah parameter regresi prediktor ke-j untuk setiap lokasi-i, dan $\theta_i(u_i, v_i)$ adalah parameter dispersi setiap lokasi-$i$.
+dengan $y_i$ adalah nilai amatan respon ke-$i$, $x_{ij}$ adalah nilai amatan prediktor ke-$j$ pada pengamatan, $(u_i, v_i)$ adalah longitud dan latitud lokasi-$i$, $\beta_j(u_i, v_i)$ adalah parameter regresi prediktor ke-$j$ untuk setiap lokasi-$i$, dan $\theta_i(u_i, v_i)$ adalah parameter dispersi setiap lokasi-$i$.
 
 Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut [@ricardo2013]:
 
@@ -49,8 +51,8 @@ dengan statistik ujinya dinyatakan dalam formula berikut:
 $Z = \frac{\hat{\beta}_j(u_i,v_i)}{\text{se}(\hat{\beta}_j(u_i,v_i))} \sim \mathcal{N}(0,1)$
 
 dengan $\hat{\beta}_j(u_i,v_i)$ merupakan penduga parameter koefisien
-regresi prediktor ke-j pada lokasi ke-i dan $\text{se}(\hat{\beta}_j)$
-adalah galat baku penduga parameter koefisien regresi prediktor ke-j pada lokasi ke-i. Keputusan adalah tolak $H_0$ jika $|z_{\text{hit}}| > z_{\alpha/2}$
+regresi prediktor ke-$j$ pada lokasi ke-$i$ dan $\text{se}(\hat{\beta}_j)$
+adalah galat baku penduga parameter koefisien regresi prediktor ke-$j$ pada lokasi ke-$i$. Keputusan adalah tolak $H_0$ jika $|z_{\text{hit}}| > z_{\alpha/2}$
 
 ## Data
 
@@ -95,16 +97,16 @@ H_1: & \text{Model tidak mengandung overdispersi}
      $D^2 = 2\sum_{i=1}^n \left( y_i \ln\left(\frac{y_i}{\hat{\mu}_i}\right) - (y_i - \hat{\mu}_i) \right)$ \\
      $\phi_1 = \frac{D^2}{db}$
    
-   dengan $db = n - k$ dengan $k$ merupakan banyaknya parameter (termasuk konstanta) model regresi Poisson, $n$ merupakan banyaknya amatan, dan $D^2$ adalah nilai Devians.
+     dengan $db = n - k$ dengan $k$ merupakan banyaknya parameter (termasuk konstanta) model regresi Poisson, $n$ merupakan banyaknya amatan, dan $D^2$ adalah nilai Devians.
 
    - Khi-kuadrat Pearson:
    
      $\chi^2 = 2\sum_{i=1}^n \frac{(y_i - \mu_i)^2}{\text{var}(y_i)}$ \\
      $\phi_2 = \frac{\chi^2}{db}$
    
-   dengan $db = n - k$ dengan $k$ merupakan banyaknya parameter termasuk konstanta, $n$ merupakan banyaknya pengamatan, dan $\chi^2$ adalah nilai Khi-kuadrat Pearson.
-
-   Jika $\phi_1$ atau $\phi_2$ bernilai lebih dari 1 maka terjadi overdispersi pada data. Jika tidak terdapat overdispersi maka model yang digunakan adalah model regresi Poisson, sedangkan jika terdapat overdispersi lebih cocok menggunakan model regresi binomial negatif.
+     dengan $db = n - k$ dengan $k$ merupakan banyaknya parameter termasuk konstanta, $n$ merupakan banyaknya pengamatan, dan $\chi^2$ adalah nilai Khi-kuadrat Pearson.
+ 
+     Jika $\phi_1$ atau $\phi_2$ bernilai lebih dari 1 maka terjadi overdispersi pada data. Jika tidak terdapat overdispersi maka model yang digunakan adalah model regresi Poisson, sedangkan jika terdapat overdispersi lebih cocok menggunakan model regresi binomial negatif.
 
 5. Melakukan uji efek spasial yaitu:
    - Uji dependensi spasial dengan uji LM dan Robust LM
@@ -143,7 +145,6 @@ library(sf)
 ```{r}
 #Set Lokasi File
 # Input Data
-gabung <- readRDS('data/gabung.RDS')
 tb <- read.csv('data/tb_jatim.csv')
 tb$KABUPATEN..KOTA <- toupper(tb$KABUPATEN..KOTA)
 ```
@@ -169,9 +170,9 @@ head(jatim)
 
 ### Eksplorasi Data
 
-a.	Peta sebaran
+#### Peta sebaran
 
-    Berikut syntax yang dapat digunakan untuk membuat peta sebaran (@fig-plot-tb):
+Berikut sintaks yang dapat digunakan untuk membuat peta sebaran (@fig-plot-tb):
 
 ```{r}
 #Menentukan batas kelas dari angka TB per 100000 penduduk
@@ -196,9 +197,9 @@ plot.tb
 ```
 
 
-b.	VIF
+####	VIF
 
-    VIF dihitung menggunakan syntax berikut ini:
+VIF dihitung menggunakan sintaks berikut ini:
 
 ```{r}
 #VIF
@@ -206,13 +207,14 @@ model <- lm(log(Y) ~ X1 + X2 + X3 + X4 + X5 + X6,
             data = jatim)
 as.matrix(vif(model))
 ```
-Berdasarkan nilai VIF, seluruh peubah memiliki nilai VIF < 10 sehingga dapat disimpulkan tidak terdapat multikolinearitas.
+
+Berdasarkan nilai VIF, seluruh peubah memiliki nilai `VIF < 10` sehingga dapat disimpulkan tidak terdapat multikolinearitas.
 
 ### Uji efek spasial
 
-a.	Indeks Moran
+#### a.	Indeks Moran
 
-    Untuk mengetahui efek dependensi spasial pada model regresi dengan respon ln(Y) dengan 6 (enam) prediktor (X1 sampai X6) digunakan uji Lagrange multiplier dengan syntax sebagai berikut:
+Untuk mengetahui efek dependensi spasial pada model regresi dengan respon `ln(Y)` dengan 6 (enam) prediktor ($X_1$ sampai $X_6$) digunakan uji Lagrange multiplier dengan sintaks sebagai berikut:
 
 ```{r}
 #Uji Lagrange Multiplier
@@ -222,22 +224,22 @@ summary(lm.LMtests(model, queenl, zero.policy = T,
         test = c('LMlag', 'LMerr', 'RLMlag', 'RLMerr')))
 ```
 
-Pada output di atas terlihat semua uji LM dan RLM mempunyai p-value > α=0.05, sehingga tidak terdapat dependensi spasial pada ln(Y) dan sisaan. 
+Pada output di atas terlihat semua uji LM dan RLM mempunyai `p-value` > $\alpha=0.05$, sehingga tidak terdapat dependensi spasial pada `ln(Y)` dan sisaan. 
 
-b.	Uji Breusch-Pagan
+#### b.	Uji Breusch-Pagan
 
-    Efek keragaman spasial diuji dengan uji Breusch-Pagan dengan syntax berikut:
+Efek keragaman spasial diuji dengan uji Breusch-Pagan dengan sintaks berikut:
 
 ```{r}
 #Model log(Y)
 bptest(model)
 ```
 
-Hasil uji Breusch-Pagan untuk data ini menghasilkan p-value < α=0.05 yang berarti terdapat heterogenitas spasial. 
+Hasil uji Breusch-Pagan untuk data ini menghasilkan `p-value` < $\alpha=0.05$ yang berarti terdapat heterogenitas spasial. 
 
-c.	Uji Overdispersi
+#### c.	Uji Overdispersi
 
-    Untuk melakukan uji dispersi menggunakan syntax sebagai berikut:
+Untuk melakukan uji dispersi menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Model Regresi Poisson
@@ -258,7 +260,7 @@ Kedua nilai statistik uji overdispersi bernilai lebih besar dari satu, maka pada
 
 ### Menduga model RTBNG
 
-a.	RTBNG Fixed Gaussian
+#### a.	RTBNG Fixed Gaussian
 
 ```{r}
 #Menentukan bandwidth
@@ -296,7 +298,7 @@ gwnbr.gauss.fixed <- spgwr::ggwr(Y ~ X1+X2+X3+X4+X5+X6,
 gwnbr.gauss.fixed
 ```
 
-b.	RTBNG Adaptive Gaussian
+#### b.	RTBNG Adaptive Gaussian
 
 ```{r}
 #Menentukan Bandwidth
@@ -331,9 +333,10 @@ gwnbr.gauss.adapt <- spgwr::ggwr(Y ~ X1+X2+X3+X4+X5+X6,
 gwnbr.gauss.adapt  
 ```
 
-c.	Perbandingan nilai AIC
 
-    Berikut syntax untuk memperlihatkan perbandingan AIC dari setiap model:
+#### c.	Perbandingan nilai AIC
+
+Berikut sintaks untuk memperlihatkan perbandingan AIC dari setiap model:
 
 ```{r}
 #AIC
@@ -374,7 +377,7 @@ ggplot(st_zm(gabung_new)) +
   ylab("")
 ```
 
-Nilai rataan dari setiap gerombol dapat diperoleh dengan menggunakan syntax berikut ini:
+Nilai rataan dari setiap gerombol dapat diperoleh dengan menggunakan sintaks berikut ini:
 
 ```{r}
 #ringkasan pusat gerombol
@@ -383,4 +386,4 @@ gabungdf %>% select(cluster, X.Intercept., X1.y, X2.y, X3.y,
            X4.y, X5.y, X6.y) %>% group_by(cluster) %>% summarise_each(funs(mean))
 ```
 
-Dari output terlihat urutan rataan koefisien X1 dari terkecil sampai terbesar berturut-turut   pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1. Sebaliknya urutan koefisien untuk X2 sampai X6 dari terkecil sampai terbesar berturut-turut  pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1.
+Dari output terlihat urutan rataan koefisien $X_1$ dari terkecil sampai terbesar berturut-turut pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1. Sebaliknya urutan koefisien untuk $X_2$ sampai $X_6$ dari terkecil sampai terbesar berturut-turut pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1.

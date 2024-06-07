@@ -4,6 +4,8 @@
 #| echo: false
 
 source("_common.R")
+load('data/W.rook.queen.RData')
+load('data/mgwrsar_models.RData')
 ```
 
 ## Package
@@ -32,11 +34,6 @@ library(tseries)
 ```
 
 ## Load Data
-
-```{r}
-load('data/W.rook.queen.RData')
-load('data/mgwrsar_models.RData')
-```
 
 
 ```{r}
@@ -74,6 +71,7 @@ summary(datagwr)
 ```
 
 ## Korelasi
+
 ```{r , warning=FALSE, message=FALSE}
 
 #nilai p value dari korelasi antar peubah Y dan X
@@ -92,9 +90,9 @@ corrplot(cor(pdrb[,4:13]), method="color", col=col2(200),
          )
 ```
 
-Peubah yang memiliki korelasi positif taraf sedang yaitu X1 dan X5 sedangkan X2 dan X5 memiliki korelasi negatif taraf sedang
+Peubah yang memiliki korelasi positif taraf sedang yaitu $X_1$ dan $X_5$ sedangkan $X_2$ dan $X_5$ memiliki korelasi negatif taraf sedang
 
-Pada peubah X2 dengan X4, dan X3 dengan X4 terlihat korelasi yang cukup tinggi yaitu sebesar 0.87. Hal ini mengindikasikan adanya multikolinearitas.
+Pada peubah $X_2$ dengan $X_4$, dan $X_3$ dengan $X_4$ terlihat korelasi yang cukup tinggi yaitu sebesar 0.87. Hal ini mengindikasikan adanya multikolinearitas.
 
 ## Matriks Bobot
 
@@ -300,7 +298,7 @@ Hipotesis yang digunakan adalah
 > H0: sisaan model menyebar normal 
 > H1: sisaan model tidak menyebar normal 
 
-Hasil dari pengujian asumsi normlitas nilai p value yang diperoleh < alpha 5% baik dengan jarque bera ataupun anderson darling. Sehingga tolak H0 yang menandakan bahwa sisaan belum menyebar normal. (Asumsi kenormalam belum terpenuhi)
+Hasil dari pengujian asumsi normlitas nilai p value yang diperoleh < alpha 5% baik dengan jarque bera ataupun anderson darling. Sehingga tolak $H_0$ yang menandakan bahwa sisaan belum menyebar normal. (Asumsi kenormalam belum terpenuhi)
 
 #### Heteroscedasticity
 
@@ -313,7 +311,7 @@ Hipotesis yang digunakan adalah
 > H0: ragam sisaan homogen 
 > H1: ragam sisaan tidak homogen 
 
-Nilai p value yang diperoleh < alpha (5%) sehingga tolak H0 dan dapat disimpulkan bahwa ragam dari sisaan tidak homogen. \ 
+Nilai `p-value` yang diperoleh < alpha (5%) sehingga tolak $H_0$ dan dapat disimpulkan bahwa ragam dari sisaan tidak homogen. \ 
 
 #### VIF
 
@@ -321,7 +319,7 @@ Nilai p value yang diperoleh < alpha (5%) sehingga tolak H0 dan dapat disimpulka
 vif(ols)
 ```
 
-Berdasarkan pengujian vif untuk melihat adanya multikolinearitas, diperoleh nilai vif yang > 5 pada peubah X2, X3, X4 yang mengindikasikan terdapat multikolinearitas. 
+Berdasarkan pengujian vif untuk melihat adanya multikolinearitas, diperoleh nilai vif yang > 5 pada peubah $X_2$, $X_3$, $X_4$ yang mengindikasikan terdapat multikolinearitas. 
 
 #### Autocorrelation 
 
@@ -336,7 +334,7 @@ Hipotesis yang digunakan adalah
 > H0: tidak ada autokorelasi 
 > H1: terdapat autokorelasi 
 
-Nilai p=value yang diperoleh 2.2e-16 < alpha (5%) sehingga tolak H0 sehingga dapat dikatakan terdapat gejala autokorelasi pada sisaan. 
+Nilai `p=value` yang diperoleh `2.2e-16` < alpha (5%) sehingga tolak H0 sehingga dapat dikatakan terdapat gejala autokorelasi pada sisaan. 
 
 Melihat autokorelasi dengan moran test dan matriks jarak yang digunakan adalah KNN dengan k=5.
 
@@ -354,7 +352,7 @@ Hipotesis yang digunakan :
 > H1 : Terdapat autokorelasi pada sisaan 
 
 
-Berdasarkan output diatas, hasil pengujian dengan lm.moran test dan moran.test diperoleh p-value yang sangat kecil. Nilai p-value < alpha (5%) sehingga dapat menolak H0. Artinya kita dapat menyimpulkan bahwa terdapat cukup bukti untuk menyatakan bahwa terdapat autokorelasi  pada sisaan model ols dengan taraf nyata 5%. Atau dengan kata lain, model dengan regresi klasik saja tidak cukup, karena terjadi dependensi spasial sehingga diperlukan uji Lagrange Multiplier (LM) untuk mengidentifikasi model regresi dependensi spasial yang sesuai.
+Berdasarkan output diatas, hasil pengujian dengan lm.moran test dan moran.test diperoleh `p-value` yang sangat kecil. Nilai `p-value` < alpha (5%) sehingga dapat menolak H0. Artinya kita dapat menyimpulkan bahwa terdapat cukup bukti untuk menyatakan bahwa terdapat autokorelasi  pada sisaan model OLS dengan taraf nyata 5%. Atau dengan kata lain, model dengan regresi klasik saja tidak cukup, karena terjadi dependensi spasial sehingga diperlukan uji Lagrange Multiplier (LM) untuk mengidentifikasi model regresi dependensi spasial yang sesuai.
 
 ## Seleksi peubah 
 
@@ -407,7 +405,7 @@ Hipotesis yang digunakan adalah
 > H0: sisaan model menyebar normal 
 > H1: sisaan model tidak menyebar normal 
 
-Hasil dari pengujian asumsi normlitas nilai p value yang diperoleh > alpha 5% anderson darling. Sehingga terima H0 yang menandakan bahwa sisaan  menyebar normal. (Asumsi kenormalam  terpenuhi)  
+Hasil dari pengujian asumsi normalitas nilai p value yang diperoleh > alpha 5% anderson darling. Sehingga terima $H_0$ yang menandakan bahwa sisaanmenyebar normal. (Asumsi kenormalan terpenuhi)  
 
 
 #### Heteroscedasticity
@@ -421,11 +419,11 @@ Hipotesis yang digunakan adalah
 > H0: ragam sisaan homogen 
 > H1: ragam sisaan tidak homogen 
 
-Nilai p value yang diperoleh < alpha (5%) sehingga tolak H0 dan dapat disimpulkan bahwa ragam dari sisaan tidak homogen. \ 
+Nilai `p-value` yang diperoleh < alpha (5%) sehingga tolak H0 dan dapat disimpulkan bahwa ragam dari sisaan tidak homogen. 
 
 #### Autocorrelation 
 
-Dengan durbin watson, tanpa memasukkan weight
+Dengan Durbin Watson, tanpa memasukkan bobot
 
 ```{r}
 dwtest(ols1)
@@ -436,25 +434,19 @@ Hipotesis yang digunakan adalah
 > H0: tidak ada autokorelasi 
 > H1: terdapat autokorelasi
 
-Nilai p=value yang diperoleh 2.2e-16 , < alpha (5%) sehingga tolak H0 sehingga dapat dikatakan terdapat gejala autokorelasi pada sisaan.
+Nilai `p-value` yang diperoleh `2.2e-16`, < alpha (5%) sehingga tolak $H_0$ sehingga dapat dikatakan terdapat gejala autokorelasi pada sisaan.
 
 ```{r}
 vif(ols1)
 ```
 
-Setelah dilakukan reduksi peubah X2, X3, dan X4 tidak ditemukan adanya masalah multikolinearitas. \ \
-
-Setelah dilakukan treatment berupa log pada Y dan membuang peubah X2, X3, dan X4, asumsi kenormalan dan Vif dapat tertangani. \ \
-
-Akan tetapi untuk asumsi kebebasan sisaan dan kehomogenan ragam belum dapat tertangani. \ \
-
-Oleh karena itu diperlukan pemodelan lain yang dapat mengakomodir hal tersebut yaitu Mixed GWR.
+Setelah dilakukan reduksi peubah $X_2$, $X_3$, dan $X_4$ tidak ditemukan adanya masalah multikolinearitas. Setelah dilakukan treatment berupa `log` pada `Y` dan membuang peubah $X_2$, $X_3$, dan $X_4$, asumsi kenormalan dan VIF dapat tertangani.Akan tetapi untuk asumsi kebebasan sisaan dan kehomogenan ragam belum dapat tertangani. Oleh karena itu diperlukan pemodelan lain yang dapat mengakomodir hal tersebut yaitu Mixed GWR.
 
 ## UJI LM
 
-Pengujian dilakukan untuk melihat k optimum yang dapat digunakan untuk memberikan model terbaik.
+Pengujian dilakukan untuk melihat `k` optimum yang dapat digunakan untuk memberikan model terbaik.
 
-Menentukan K atau NN optimal.
+Menentukan `k` atau NN optimal.
 
 ```{r}
 #menghitung matriks jarak
@@ -584,7 +576,8 @@ LM10<-lm.LMtests(ols1, W.knn10a,
 summary(LM10)
 ```
 
-Rangkuman k atau NN optimum
+Rangkuman `k` atau NN optimum
+
 ```{r}
 LM_k <- data.frame(k = c(1,2,3,4,5,6,7,8,9,10),
                       
@@ -634,7 +627,7 @@ Berdasarkan pengujian dengan LMTest pada model SAR dan bobot KNN dengan k=2 sd. 
 
 ## GWR 
 
-### Bandwith 
+### *Bandwith* 
 
 #### Bisquare
 
@@ -691,7 +684,8 @@ data.frame(Rincian = c( "bisquare","gauss"),
 
 
 ```
-Bandwith dengan gauss memberikan nilai AIC yang sedikit lebih baik. Sehingga bandwith optimal dengan gauss (bwgauss) akan digunakan untuk membentuk matriks pembobot W_gauss.
+
+Bandwith dengan gauss memberikan nilai AIC yang sedikit lebih baik. Sehingga bandwith optimal dengan gauss (`bwgauss`) akan digunakan untuk membentuk matriks pembobot `W_gauss.`
 
 ## MGWR
 

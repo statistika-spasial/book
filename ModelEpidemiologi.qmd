@@ -42,11 +42,11 @@ $$ {#eq-1205}
 
 Efek acak $\phi_i$ dimodelkan dengan kelas sebaran prior CAR, yang merupakan jenis sebaran **Gaussian Markov Random Field (GMRF)**. Sebaran tersebut dapat ditulis dalam bentuk $\phi \sim N(0, \tau^2 Q^{-1})$, dengan $Q$ merupakan matriks presisi yang mungkin berupa matriks tunggal (*noninvertible matrix*). Korelasi spasial antara efek acak ditentukan oleh matriks ketetanggaan biner $W$ berukuran $n \times n$, dengan elemen $w_{ji}$ sama dengan satu jika area $(j,i)$ didefinisikan sebagai tetangga, dan nol jika tidak. Kemudian apabila dua area didefinisikan sebagai tetangga, maka efek randomnya akan berkorelasi, sedangkan efek random di area yang tidak bertetangga akan bebas bersyarat dengan mempertimbangkan elemen-elemen lain dari $\phi$. Pendekatan ini paling umum yaitu, $w_{ji}=1$ jika dan hanya jika mereka memiliki batas yang sama, yaitu dilambangkan dengan $j \sim i$ sebagai notasi selanjutnya. Namun, setiap area harus memiliki setidaknya satu elemen positif $w_{ji}$, sehingga jumlah suatu baris dari matriks $W$ tidak boleh nol.
 
-Umumnya prior CAR dispesifikasikan oleh satu set data berjumlah $n$ memiliki sebaran bersyarat penuh univariat $f(\phi_i \mid \phi_{-i})$ di mana $\phi_{-i} = (\phi_1, \ldots, \phi_{i-1}, \phi_{i+1}, \ldots, \phi_i)$. Berbagai sebaran prior CAR telah banyak diperkenalkan oleh berbagai ahli terutama dalam konteks pemetaan penyakit, yaitu seperti **Intrinsic CAR (ICAR)**, **Besag York Mollié (BYM)** (Besag et al, 1991), [@stern1999], dan [@leroux2000]. Namun pada penelitian ini hanya akan membahas prior ICAR dan BYM.
+Umumnya prior CAR dispesifikasikan oleh satu set data berjumlah $n$ memiliki sebaran bersyarat penuh univariat $f(\phi_i \mid \phi_{-i})$ di mana $\phi_{-i} = (\phi_1, \ldots, \phi_{i-1}, \phi_{i+1}, \ldots, \phi_i)$. Berbagai sebaran prior CAR telah banyak diperkenalkan oleh berbagai ahli terutama dalam konteks pemetaan penyakit, yaitu seperti **Intrinsic CAR (ICAR)**, **Besag York Mollié (BYM)** [@besag1991], [@stern1999], dan [@leroux2000]. Namun pada penelitian ini hanya akan membahas prior ICAR dan BYM.
 
 ### 1. ICAR 
 
-Prior CAR yang paling sederhana saat ini adalah **Intrinsic autoregressive (IAR)**, yang diusulkan oleh Besag et al, (1991) dan memiliki sebaran bersyarat penuh yaitu,
+Prior CAR yang paling sederhana saat ini adalah **Intrinsic autoregressive (IAR)**, yang diusulkan oleh @besag1991 dan memiliki sebaran bersyarat penuh yaitu,
 
 $$
 \phi_i = \psi_i 
@@ -64,7 +64,7 @@ Nilai harapan bersyarat dari $\psi_i$ sama dengan rata-rata dari efek acak di ar
 
 ### 2. BYM 
 
-Prior konvolusi atau **Besag-York-Mollie (BYM)** pertama kali dijelaskan oleh Besag et al, (1991). Memiliki efek acak yang dari dua komponen, yaitu mengkombinasikan efek acak spasial terstruktur (*structured random effect*) pada Persamaan @eq-1206 dengan efek acak yang independen (*unstructured random effect*) seperti pada @eq-1207. Model ini memiliki bentuk sebagai berikut,
+Prior konvolusi atau **Besag-York-Mollie (BYM)** pertama kali dijelaskan oleh @besag1991. Memiliki efek acak yang dari dua komponen, yaitu mengkombinasikan efek acak spasial terstruktur (*structured random effect*) pada Persamaan @eq-1206 dengan efek acak yang independen (*unstructured random effect*) seperti pada @eq-1207. Model ini memiliki bentuk sebagai berikut,
 
 $$
 \phi_i = \psi_i + \theta_i
@@ -141,6 +141,7 @@ Metode yang digunakan dalam analisis data stunting *Negative Binomial Conditiona
       (iv) Untuk setiap $k$, matriks pembobot $W$ memiliki elemen $w_{ij}$ bernilai 1 jika daerah $i$ berdekatan dengan daerah $j$, sedangkan elemen diagonal utama akan selalu bernilai nol.
 
 5. Melakukan uji autokorelasi spasial dengan menghitung nilai indeks Moran pada peubah respon [@anselin1988], dengan langkah-langkah berikut:
+
    Hipotesis
    
    $$
@@ -168,64 +169,70 @@ Metode yang digunakan dalam analisis data stunting *Negative Binomial Conditiona
 
    6.1 Membuat model yang terdapat empat model yang akan dilihat (Sparks, 2018):
        
-       Model GLM:
-       $$
-       \eta_i = X_i^T \beta
-       $$
-       
-       Model GLMM:
-       $$
-       \eta_i = X_i^T \beta + \theta_i
-       $$
-       
-       Model ICAR:
-       $$
-       \eta_i = X_i^T \beta + \psi_i
-       $$
-       
-       Model BYM:
-       $$
-       \eta_i = X_i^T \beta + \psi_i + \theta_i
-       $$
+   Model GLM:
+   $$
+   \eta_i = X_i^T \beta
+   $$
+   
+   Model GLMM:
+   $$
+   \eta_i = X_i^T \beta + \theta_i
+   $$
+   
+   Model ICAR:
+   $$
+   \eta_i = X_i^T \beta + \psi_i
+   $$
+   
+   Model BYM:
+   $$
+   \eta_i = X_i^T \beta + \psi_i + \theta_i
+   $$
       
    6.2 Menentukan sebaran prior untuk hiperparameter pada model dengan ketentuan nilai prior:
    
-       Model GLM, prior ~ Normal 
-       Structured Random Effect, $\psi_i|\psi_{(-i)} \sim N\left(\frac{\sum_{j\sim i} w_{ji} \psi_i}{\sum_{j\sim i} w_{ji}}, \frac{\tau^2}{\sum_{j\sim i} w_{ji}}\right)$
-       Unstructured Random Effect, $\theta_i \sim N(0, \sigma^2)$ 
-       Ragam $\psi_i$,  $\tau^2 \sim \text{Inverse-Gamma}(1, 0.0005)$
-       Ragam $\theta_i$,  $\sigma^2 \sim \text{Inverse-Gamma}(1, 0.0005)$
+   Model GLM, prior ~ Normal 
+   Structured Random Effect, $\psi_i|\psi_{(-i)} \sim N\left(\frac{\sum_{j\sim i} w_{ji} \psi_i}{\sum_{j\sim i} w_{ji}}, \frac{\tau^2}{\sum_{j\sim i} w_{ji}}\right)$
+   Unstructured Random Effect, $\theta_i \sim N(0, \sigma^2)$ 
+   Ragam $\psi_i$,  $\tau^2 \sim \text{Inverse-Gamma}(1, 0.0005)$
+   Ragam $\theta_i$,  $\sigma^2 \sim \text{Inverse-Gamma}(1, 0.0005)$
       
-   7. Memilih model terbaik dengan mempertimbangkan beberapa kriteria sebagai berikut:
+7. Memilih model terbaik dengan mempertimbangkan beberapa kriteria sebagai berikut:
       
-      **Defiance Information Criterion (DIC)** (Wang et al, 2018)
-      $$
-      \text{DIC} = \overline{D} + 2PD
-      $$
+   **Defiance Information Criterion (DIC)** (Wang et al, 2018)
+   $$
+   \text{DIC} = \overline{D} + 2PD
+   $$
+  
+   dengan
+   
+   $$
+   PD = E(D(\theta)) - D(E(\theta)) = \overline{D} - D(\theta_{\overline{}})
+   $$
+  
+   dan
+   
+   $$
+   D(\theta) = -2\log(p(y^*|\theta))
+   $$
+  
+   Semakin kecil nilai AIC, maka model yang dibangun semakin baik.
+   
+   Mean Absolute Deviance (MAD)
+   
+   $$
+   \text{MAD} = \frac{\sum_{i=1}^{n}|y_i-\hat{y}_i|}{N}
+   $$
+   
       
-      dengan
-      $$
-      PD = E(D(\theta)) - D(E(\theta)) = \overline{D} - D(\theta_{\overline{}})
-      $$
-      
-      dan
-      $$
-      D(\theta) = -2\log(p(y^*|\theta))
-      $$
-      
-      Semakin kecil nilai AIC, maka model yang dibangun semakin baik.
-      Mean Absolute Deviance (MAD)
-      $$
-      \text{MAD} = \frac{\sum_{i=1}^{n}|y_i-\hat{y}_i|}{N}
-      $$
-      
-      dengan $y_i$ adalah respon pada lokasi ke $i$, $\hat{y}_i$ adalah hasil prediksi pada lokasi ke $i$ dan $N$ adalah jumlah lokasi pengamatan. Semakin kecil nilai MAD, maka semakin kecil kesalahan hasil pendugaan.
+   dengan $y_i$ adalah respon pada lokasi ke $i$, $\hat{y}_i$ adalah hasil prediksi pada lokasi ke $i$ dan $N$ adalah jumlah lokasi pengamatan. Semakin kecil nilai MAD, maka semakin kecil kesalahan hasil pendugaan.
       
 8. Menghitung nilai resiko relatif dari model terbaik berdasarkan kriteria dari kebaikan model pada langkah ke-7. Risiko relatif ditentukan dengan cara mengeksponensialkan komponen acak terstruktur spasial $\psi_i$ dari model terbaik menggunakan rumus sebagai berikut (Blangiardo dan Cameletti, 2015) dengan formula:
 
    $$
    \text{RR}_i = e^{\psi_i}
    $$
+   
    dengan $\psi_i$ adalah efek acak terstruktur spasial.
    
 9. Menginterpretasikan hasil penelitian dan menarik kesimpulan

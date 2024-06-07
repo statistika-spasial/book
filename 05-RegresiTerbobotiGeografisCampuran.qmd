@@ -56,7 +56,7 @@ $$
 S_l = \begin{bmatrix} (X_{l1}' W(u_i, v_i) X_{l1})^{-1} X_{l1}' W(u_i, v_i) \\ (X_{l2}' W(u_i, v_i) X_{l2})^{-1} X_{l2}' W(u_i, v_i) \\ \vdots \\ (X_{ln}' W(u_i, v_i) X_{ln})^{-1} X_{ln}' W(u_i, v_i) \end{bmatrix} 
 $$ {#eq-644}
 
-dan $X_{li}$ adalah vektor prediktor yang bersifat lokal pada lokasi-i, serta $W(u_i, v_i) = \text{diag}[w_1(u_i, v_i), w_2(u_i, v_i), \ldots, w_n(u_i, v_i)]$ adalah matriks pembobot spasial lokasi-i yang nilai elemen-elemen diagonalnya ditentukan oleh kedekatan lokasi-i dengan lokasi lainnya. Matriks $W(u_i, v_i)$ ditentukan dengan menggunakan fungsi kernel, seperti yang dibahas pada RTG.
+dan $X_{li}$ adalah vektor prediktor yang bersifat lokal pada lokasi-$i$, serta $W(u_i, v_i) = \text{diag}[w_1(u_i, v_i), w_2(u_i, v_i), \ldots, w_n(u_i, v_i)]$ adalah matriks pembobot spasial lokasi-$i$ yang nilai elemen-elemen diagonalnya ditentukan oleh kedekatan lokasi-i dengan lokasi lainnya. Matriks $W(u_i, v_i)$ ditentukan dengan menggunakan fungsi kernel, seperti yang dibahas pada RTG.
 
 Untuk menentukan parameter global, @eq-643 disubstitusikan ke @eq-642 sehingga diperoleh:
 
@@ -90,7 +90,7 @@ Dengan galat baku $\hat{\beta}_j(u_i, v_i)$ adalah $S_{\hat{\beta}_j(u_i, v_i)} 
 
 Ilustrasi untuk model RTGC merujuk hasil penelitian @pongoh2015 dan @marah2017. Penentuan peubah penjelas yang bersifat global dan lokal ada dua pendekatan, yaitu dengan menggunakan model liner koregionalisasi (MLK) dan selang kepercayaan. MLK agak rumit tetapi hasilnya lebih detil [@marah2017], sedangkan metode selang kepercayaan dari koefisien RTG sangat sederhana @pongoh2015.
 
-Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untuk Program Perlindungan Sosial Juli 2012 pada 159 kecamatan di Provinsi Sulawesi Utara, data diambil dari website TNP2K (Tim Nasional Percepatan Penanggulangan Kemiskinan). Peubah respon (Y) yang digunakan yaitu persentase status kesejahteraan rendah (%) dan prediktor yang digunakan selengkapnya tertera di @tbl-rtgc. Data dan peta ilustrasi RTGC tersedia pada tautan [https://ipb.link/gwr-mixed](https://ipb.link/gwr-mixed). 
+Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untuk Program Perlindungan Sosial Juli 2012 pada 159 kecamatan di Provinsi Sulawesi Utara, data diambil dari website TNP2K (Tim Nasional Percepatan Penanggulangan Kemiskinan). Peubah respon ($Y$) yang digunakan yaitu persentase status kesejahteraan rendah (%) dan prediktor yang digunakan selengkapnya tertera di @tbl-rtgc. Data dan peta ilustrasi RTGC tersedia pada tautan [https://ipb.link/gwr-mixed](https://ipb.link/gwr-mixed). 
 
 | Kode   | Peubah                                          |
 |--------|-------------------------------------------------|
@@ -151,7 +151,7 @@ library(GWmodel)		# Untuk membentuk Mixed GWR model
 ```
 
 ### Input Data
-Input data menggunakan syntax berikut:
+Input data menggunakan sintaks berikut:
 
 ```{r}
 #Set Lokasi File
@@ -176,7 +176,7 @@ head(gabung)
 
 ### Eksplorasi Data
 
-Pemeriksaan multikolinearitas antar peubah prediktor menggunakan syntax sebagai berikut:
+Pemeriksaan multikolinearitas antar peubah prediktor menggunakan sintaks sebagai berikut:
 
 ```{r}
 # Pemeriksaan Multikolineritas
@@ -187,37 +187,46 @@ as.matrix(vif(model))
 
 Berdasarkan output di atas, nilai VIF dari semua prediktor cukup kecil, sehingga disimpulkan tidak terdapat multikolinearitas.
 
-Untuk membuat peta sebaran SKR terlebih dulu dilakukan pembentukan selang kelas menggunakan metode kmeans. Syntax untuk membuat selang kelas SKR sebagai berikut:
+Untuk membuat peta sebaran SKR terlebih dulu dilakukan pembentukan selang kelas menggunakan metode `kmeans`. Sintaks untuk membuat selang kelas SKR sebagai berikut:
 
 ```{r}
 #selang kelas kmeans
 classIntervals(gabung$y, n = 4, style = 'kmeans')
 ```
 
-Berdasarkan selang nilai yang terbentuk dibuat peta tematik SKR (@fig-plot-skr) dengan syntax sebagai berikut:
+Berdasarkan selang nilai yang terbentuk dibuat peta tematik SKR (@fig-plot-skr) dengan sintaks sebagai berikut:
 
 ```{r}
 #| label: fig-plot-skr
 #| fig-cap: "Peta tematik SKR"
 #Peta SKR
 cc <- c('#fbb4b9', '#f768a1', '#ae017e', '#551c53')
-plot.skr = ggplot(data=gabung) +
-  geom_sf(aes(fill = cut(y, breaks = c(5.82, 20.60,
-          35.12, 51.38, 79.79))), lwd = 0.1, 
-          col = 'black') +
-  scale_fill_manual("SKR", values = cc, 
-          labels = c("5.83% - 20.60%", "20.60% - 35.12%", 
-          "35.12% - 51.38%","50.215% - 79.79%"),                  
-          guide = guide_legend(reverse = T))+
-          xlab("") + ylab("") + xlim(123,127.5) + ylim(0,5)
+plot.skr <- ggplot(data = gabung) +
+  geom_sf(aes(fill = cut(
+    y, breaks = c(5.82, 20.60,
+                  35.12, 51.38, 79.79)
+  )), lwd = 0.1,
+  col = 'black') +
+  scale_fill_manual(
+    "SKR",
+    values = cc,
+    labels = c(
+      "5.83% - 20.60%",
+      "20.60% - 35.12%",
+      "35.12% - 51.38%",
+      "50.215% - 79.79%"
+    ),
+    guide = guide_legend(reverse = T)
+  ) +
+  xlab("") + ylab("") + xlim(123, 127.5) + ylim(0, 5)
 plot.skr
 ```
 
 ### Uji Efek Spasial
 
-a)	Membentuk matriks pembobot spasial
+#### a.	Membentuk matriks pembobot spasial
 
-Pada ilustrasi ini, matriks pembobot spasial yang digunakan yaitu matriks KNN dengan K = 2 menggunakan syntax sebagai berikut:
+Pada ilustrasi ini, matriks pembobot spasial yang digunakan yaitu matriks KNN dengan `K = 2` menggunakan sintaks sebagai berikut:
 
 ```{r}
 #Matriks bobot 2-NN
@@ -227,33 +236,33 @@ klist<-nb2listw(k1)
 summary(klist)
 ```
 
-b)	Uji Lagrange Multiplier
+#### b.	Uji Lagrange Multiplier
 
-Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier dengan syntax  sebagai berikut:
+Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier dengan sintaks  sebagai berikut:
 
 ```{r}
 # uji LM dan RLM
 summary(lm.LMtests(model, klist, test = "all"))
 ```
 
-Pada output uji LMerr dan RLMerr memiliki p-value < α=0.05, menunjukkan pada data terdapat dependensi spasial pada galat. 
+Pada output uji LMerr dan RLMerr memiliki `p-value` < $\alpha=0.05$, menunjukkan pada data terdapat dependensi spasial pada galat. 
 
-c)	Uji Breusch-Pagan
+#### c.	Uji Breusch-Pagan
 
-Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial dengan syntax sebagai berikut:
+Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial dengan sintaks sebagai berikut:
 
 ```{r}
 #Uji Breusch-Pagan
 bptest(model)
 ```
 
-Pada output uji Breusch-Pagan memiliki p-value < α=0.05, menunjukkan terdapat heterogenitas spasial.
+Pada output uji Breusch-Pagan memiliki `p-value` < $\alpha=0.05$, menunjukkan terdapat heterogenitas spasial.
 
 ### Regresi Terboboti Geografis (RTG)
 
-a)	Menentukan lebar jendela
+#### a.	Menentukan lebar jendela
 
-Pada ilustrasi ini digunakan kernel bisquare dengan syntax sebagai berikut:
+Pada ilustrasi ini digunakan kernel bisquare dengan sintaks sebagai berikut:
 
 ```{r}
 # Mengubah data menjadi class SpatialPointsDataFrame
@@ -262,34 +271,51 @@ rownames(SKR)<-SKR$daerah
 coordinates(SKR)<-~longitude+latitude
 #
 #Menentukan nilai bandwidth
-band <- bw.gwr(y ~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + 
-               x8 + x9 + x10 + x11, data = SKR,
-               approach="CV", kernel="bisquare",
-               adaptive=F, p=2, theta=0, longlat=T)
+band <- bw.gwr(
+  y ~ x1 + x2 + x3 + x4 + x5 + x6 + x7 +
+    x8 + x9 + x10 + x11,
+  data = SKR,
+  approach = "CV",
+  kernel = "bisquare",
+  adaptive = F,
+  p = 2,
+  theta = 0,
+  longlat = T
+)
 ```
 
 Pada output terlihat nilai lebar jendela optimum sebesar 284.7643 dengan nilai CV minimum sebesar 1106.087. 
 
-b)	Menduga parameter RTG
+#### b.	Menduga parameter RTG
 
-Pendugaan parameter RTG dengan menggunakan kernel bisquare dapat dilakukan dengan menggunakan syntax berikut:
+Pendugaan parameter RTG dengan menggunakan kernel bisquare dapat dilakukan dengan menggunakan sintaks berikut:
 
 ```{r}
 # Pendugaan parameter RTG dengan fixed bisquare 
-gwrmod <- gwr.basic(y ~ x1 + x2 + x3 + x4 + x5 + x6 + 
-          x7 + x8 + x9 + x10 + x11, data=SKR, bw=band,
-          kernel="bisquare", adaptive=F, p=2, theta=0,
-          longlat=T, F123.test=F, cv=T, W.vect=NULL)
+gwrmod <- gwr.basic(
+  y ~ x1 + x2 + x3 + x4 + x5 + x6 +
+    x7 + x8 + x9 + x10 + x11,
+  data = SKR,
+  bw = band,
+  kernel = "bisquare",
+  adaptive = F,
+  p = 2,
+  theta = 0,
+  longlat = T,
+  F123.test = F,
+  cv = T,
+  W.vect = NULL
+)
 gwrmod
 ```
 
-Berdasarkan output dapat dilihat RTG mempunyai nilai R-Square yang lebih tinggi dan AIC yang lebih rendah dibandingkan model regresi linear.
+Berdasarkan output dapat dilihat RTG mempunyai nilai $R^2$ yang lebih tinggi dan AIC yang lebih rendah dibandingkan model regresi linear.
 
 ### Penentuan peubah global dan peubah lokal
 
-a)	Menduga semivariogram dan semivariogram silang
+#### a.	Menduga semivariogram dan semivariogram silang
 
-Untuk menduga semivariogram dan semivariogram silang, data lebih dulu di standarisasi. Selanjutnya, dibentuk objek geostatistik dari semua peubah yang digunakan. Pada ilustrasi  ini model struktur tersarang yang digunakan yaitu model Nug(0) + Sph(54) + Gau(161) dengan syntax sebagai berikut:
+Untuk menduga semivariogram dan semivariogram silang, data lebih dulu di standarisasi. Selanjutnya, dibentuk objek geostatistik dari semua peubah yang digunakan. Pada ilustrasi  ini model struktur tersarang yang digunakan yaitu model Nug(0) + Sph(54) + Gau(161) dengan sintaks sebagai berikut:
 
 ```{r}
 #Variogram dan semivariogram silang
@@ -321,17 +347,31 @@ g = gstat(g, "x10", x10~1, data=SKR.sp)
 g = gstat(g, "x11", x11~1, data=SKR.sp)
 #
 #Variogram, semivariogram, dan semivariogram silang
-v = variogram(g, cutoff=240, width=25)
-g = gstat(g, model = vgm(psill=.75, model="Gau", range=
-    161, add.to = vgm(psill=.35, model="Sph", nugget=
-    0.35, range=54)),fill.all = TRUE)
+v = variogram(g, cutoff = 240, width = 25)
+g = gstat(
+  g,
+  model = vgm(
+    psill = .75,
+    model = "Gau",
+    range =
+      161,
+    add.to = vgm(
+      psill = .35,
+      model = "Sph",
+      nugget =
+        0.35,
+      range = 54
+    )
+  ),
+  fill.all = TRUE
+)
 g.fit = fit.lmc(v, g, fit.lmc = TRUE, correct.diagonal =
-        1.01)
+                  1.01)
 ```
 
-b)	Menghitung proporsi keragaman spasial setiap peubah
+#### b.	Menghitung proporsi keragaman spasial setiap peubah
 
-Proporsi keragaman spasial ditentukan berdasarkan selang kepercayannya. Rataan proporsi keragaman spasial diperoleh dari rasio antara sill dari nugget terhadap total sill dari tiap peubah. Batas bawah diperoleh dari rasio antara sill dari struktur Sph terhadap total sill dari tiap peubah, dan batas atas diperoleh dari rasio antara sill dari struktur Gau terhadap total sill dari tiap peubah. Berikut syntax yang digunakan:
+Proporsi keragaman spasial ditentukan berdasarkan selang kepercayannya. Rataan proporsi keragaman spasial diperoleh dari rasio antara *sill* dari *nugget* terhadap total *sill* dari tiap peubah. Batas bawah diperoleh dari rasio antara *sill* dari struktur Sph terhadap total *sill* dari tiap peubah, dan batas atas diperoleh dari rasio antara *sill* dari struktur Gau terhadap total *sill* dari tiap peubah. Berikut sintaks yang digunakan:
 
 ```{r}
 #Menyiapkan tabel
@@ -368,9 +408,9 @@ tabel5[13,] <- c("y dan semua x" , totalnugget, totalatas, totalbawah)
 tabel5
 ```
 
-c)	Menghitung pengaruh spasial setiap peubah.
+#### c.	Menghitung pengaruh spasial setiap peubah.
 
-Proporsi pengaruh spasial yang dapat dimodelkan dapat dihitung berdasarkan nilai proporsi non-nugget (batas atas dan batas bawah). Berikut syntax yang dapat digunakan:
+Proporsi pengaruh spasial yang dapat dimodelkan dapat dihitung berdasarkan nilai proporsi *non-nugget* (batas atas dan batas bawah). Berikut sintaks yang dapat digunakan:
 
 ```{r}
 #Pengaruh spasial
@@ -382,11 +422,11 @@ colnames(tabel7) <- c("Peubah", "Pengaruh Spasial")
 tabel7
 ```
 
-Berdasarkan output diketahui nilai pengaruh spasial, prediktor yang mempunyai pengaruh spasial lebih besar dari 70%, yaitu X2, X6, X8, dan X10, ditetapkan sebagai prediktor yang bersifat lokal. Peubah lainnya selanjutnya akan dijadikan peubah global. 
+Berdasarkan output diketahui nilai pengaruh spasial, prediktor yang mempunyai pengaruh spasial lebih besar dari 70%, yaitu $X_2$, $X_6$, $X_8$, dan $X_{10}$, ditetapkan sebagai prediktor yang bersifat lokal. Peubah lainnya selanjutnya akan dijadikan peubah global. 
 
 ### Pemodelan Regresi Terboboti Geografis Semi-Parametrik (RTGC)
 
-Pendugaan parameter RTGC menggunakan syntax sebagai berikut:
+Pendugaan parameter RTGC menggunakan sintaks sebagai berikut:
 
 ```{r}
 #lebar jendela
@@ -396,24 +436,35 @@ bandmix <-bw.gwr(y~x1+x2+x3+x4+x5+x6+x7+x8+x9+x10+x11,
                  theta=0, longlat=T)
 #
 #RTGC
-gwrmixmod <- gwr.mixed(y ~ x1 + x2 + x3 + x4 + x5 + x6 +
-             x7 + x8 + x9 + x10 + x11, data = SKR.sp,
-             fixed.vars = c("x1", "x3", "x4", "x5",
-             "x7", "x9", "x11"), intercept.fixed=F,
-             bw = bandmix, diagnostic=T,
-             kernel="bisquare",adaptive=F, p=2, theta=0,
-             longlat=T)
+gwrmixmod <- gwr.mixed(
+  y ~ x1 + x2 + x3 + x4 + x5 + x6 +
+    x7 + x8 + x9 + x10 + x11,
+  data = SKR.sp,
+  fixed.vars = c("x1", "x3", "x4", "x5",
+                 "x7", "x9", "x11"),
+  intercept.fixed = F,
+  bw = bandmix,
+  diagnostic = T,
+  kernel = "bisquare",
+  adaptive = F,
+  p = 2,
+  theta = 0,
+  longlat = T
+)
 ```
 
 ### Membandingkan model RTG dan RTGC berdasarkan nilai $AIC_C$
 
-Untuk mengetahui nilai $AIC_C$ dari model RTG dan RTGC menggunakan syntax sebagai berikut:
+Untuk mengetahui nilai $AIC_C$ dari model RTG dan RTGC menggunakan sintaks sebagai berikut:
 
 ```{r}
 #AICc RTG dan RTGC
-tabelbanding <- data.frame(matrix(c("RTG", "RTGC",
-                round(gwrmod$GW.diagnostic$AICc,2),
-                round(gwrmixmod$aic,2)), ncol = 2))
+tabelbanding <- data.frame(matrix(c(
+  "RTG",
+  "RTGC",
+  round(gwrmod$GW.diagnostic$AICc, 2),
+  round(gwrmixmod$aic, 2)
+), ncol = 2))
 colnames(tabelbanding) <- c("Model", "AICc")
 tabelbanding
 ```
