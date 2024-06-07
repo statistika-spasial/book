@@ -162,6 +162,9 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Pemodelan Statistika pada Data Geospasial</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/statistika-spasial/book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -293,26 +296,22 @@ window.Quarto = {
 </li>
       </ul>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Model Epidemiologi</span></span>
-  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ModelEpidemiologi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Epidemiologi</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referensi</span></a>
@@ -333,13 +332,13 @@ window.Quarto = {
   <li>
 <a href="#tahapan-analisis-data-dengan-r" id="toc-tahapan-analisis-data-dengan-r" class="nav-link" data-scroll-target="#tahapan-analisis-data-dengan-r"><span class="header-section-number">4.3</span> Tahapan Analisis Data dengan R</a>
   <ul class="collapse">
-<li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package">Package</a></li>
-  <li><a href="#input-data" id="toc-input-data" class="nav-link" data-scroll-target="#input-data">Input Data</a></li>
-  <li><a href="#eksplorasi-data" id="toc-eksplorasi-data" class="nav-link" data-scroll-target="#eksplorasi-data">Eksplorasi Data</a></li>
-  <li><a href="#uji-efek-spasial" id="toc-uji-efek-spasial" class="nav-link" data-scroll-target="#uji-efek-spasial">Uji Efek Spasial</a></li>
-  <li><a href="#melakukan-pendugaan-parameter-rtg" id="toc-melakukan-pendugaan-parameter-rtg" class="nav-link" data-scroll-target="#melakukan-pendugaan-parameter-rtg">Melakukan pendugaan parameter RTG</a></li>
-  <li><a href="#uji-asumsi-model-rtg-terbaik" id="toc-uji-asumsi-model-rtg-terbaik" class="nav-link" data-scroll-target="#uji-asumsi-model-rtg-terbaik">Uji asumsi model RTG terbaik</a></li>
-  <li><a href="#uji-signifikansi-parameter-pada-tiap-lokasi-amatan" id="toc-uji-signifikansi-parameter-pada-tiap-lokasi-amatan" class="nav-link" data-scroll-target="#uji-signifikansi-parameter-pada-tiap-lokasi-amatan">Uji signifikansi parameter pada tiap lokasi amatan</a></li>
+<li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package"><span class="header-section-number">4.3.1</span> Package</a></li>
+  <li><a href="#input-data" id="toc-input-data" class="nav-link" data-scroll-target="#input-data"><span class="header-section-number">4.3.2</span> Input Data</a></li>
+  <li><a href="#eksplorasi-data" id="toc-eksplorasi-data" class="nav-link" data-scroll-target="#eksplorasi-data"><span class="header-section-number">4.3.3</span> Eksplorasi Data</a></li>
+  <li><a href="#uji-efek-spasial" id="toc-uji-efek-spasial" class="nav-link" data-scroll-target="#uji-efek-spasial"><span class="header-section-number">4.3.4</span> Uji Efek Spasial</a></li>
+  <li><a href="#melakukan-pendugaan-parameter-rtg" id="toc-melakukan-pendugaan-parameter-rtg" class="nav-link" data-scroll-target="#melakukan-pendugaan-parameter-rtg"><span class="header-section-number">4.3.5</span> Melakukan pendugaan parameter RTG</a></li>
+  <li><a href="#uji-asumsi-model-rtg-terbaik" id="toc-uji-asumsi-model-rtg-terbaik" class="nav-link" data-scroll-target="#uji-asumsi-model-rtg-terbaik"><span class="header-section-number">4.3.6</span> Uji asumsi model RTG terbaik</a></li>
+  <li><a href="#uji-signifikansi-parameter-pada-tiap-lokasi-amatan" id="toc-uji-signifikansi-parameter-pada-tiap-lokasi-amatan" class="nav-link" data-scroll-target="#uji-signifikansi-parameter-pada-tiap-lokasi-amatan"><span class="header-section-number">4.3.7</span> Uji signifikansi parameter pada tiap lokasi amatan</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -452,7 +451,8 @@ Tabel&nbsp;4.1: Keterangan Peubah
 </ol></section><section id="tahapan-analisis-data-dengan-r" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="tahapan-analisis-data-dengan-r">
 <span class="header-section-number">4.3</span> Tahapan Analisis Data dengan R</h2>
 <p>Untuk komputasi RTG, berikut daftar package yang diinstall:</p>
-<section id="package" class="level3"><h3 class="anchored" data-anchor-id="package">Package</h3>
+<section id="package" class="level3" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="package">
+<span class="header-section-number">4.3.1</span> Package</h3>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span>        <span class="co"># Untuk menghitung nilai VIF</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span>      <span class="co"># Untuk pemodelan dependensi spasial</span></span>
@@ -462,8 +462,9 @@ Tabel&nbsp;4.1: Keterangan Peubah
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/classInt/">classInt</a></span><span class="op">)</span>       <span class="co"># Untuk membuat selang nilai</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rsbivand/spgwr/">spgwr</a></span><span class="op">)</span>      <span class="co"># Untuk membentuk model GWR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="input-data" class="level3"><h3 class="anchored" data-anchor-id="input-data">Input Data</h3>
-<p>Input data dilakukan dengan syntax berikut:</p>
+</section><section id="input-data" class="level3" data-number="4.3.2"><h3 data-number="4.3.2" class="anchored" data-anchor-id="input-data">
+<span class="header-section-number">4.3.2</span> Input Data</h3>
+<p>Input data dilakukan dengan sintaks berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Set Lokasi File</span></span>
 <span><span class="co">#Input Data</span></span>
@@ -512,8 +513,9 @@ Tabel&nbsp;4.1: Keterangan Peubah
 <span><span class="co">#&gt; 5 66.3 11.4 MULTIPOLYGON (((110 -7.2, 1...</span></span>
 <span><span class="co">#&gt; 6 69.0 14.7 MULTIPOLYGON (((110 -7.77, ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="eksplorasi-data" class="level3"><h3 class="anchored" data-anchor-id="eksplorasi-data">Eksplorasi Data</h3>
-<p>Eksplorasi data yang dilakukan meliputi pemeriksaan mulitkolinearitas dan pemetaan nilai persentase penduduk miskin. Pemeriksaan multikolinearitas dilakukan dengan syntax berikut:</p>
+</section><section id="eksplorasi-data" class="level3" data-number="4.3.3"><h3 data-number="4.3.3" class="anchored" data-anchor-id="eksplorasi-data">
+<span class="header-section-number">4.3.3</span> Eksplorasi Data</h3>
+<p>Eksplorasi data yang dilakukan meliputi pemeriksaan mulitkolinearitas dan pemetaan nilai persentase penduduk miskin. Pemeriksaan multikolinearitas dilakukan dengan sintaks berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Multikolinier</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, data <span class="op">=</span> <span class="va">gabung</span><span class="op">)</span></span>
@@ -527,9 +529,8 @@ Tabel&nbsp;4.1: Keterangan Peubah
 <span><span class="co">#&gt; X6 1.21</span></span>
 <span><span class="co">#&gt; X7 1.43</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Nilai VIF dari semua prediktor berkisar antara 1.34 sampai 3.62, sehingga disimpulkan tidak terdapat multikolinearitas. &nbsp;<br>
-&nbsp;<br>
-Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dalam 4 (empat) kelas interval menggunakan style = ’kmeans. Syntax untuk membuat kelas interval sebagai berikut:</p>
+<p>Nilai VIF dari semua prediktor berkisar antara 1.34 sampai 3.62, sehingga disimpulkan tidak terdapat multikolinearitas.</p>
+<p>Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dalam 4 (empat) kelas interval menggunakan <code>style = "kmeans"</code>. Sintaks untuk membuat kelas interval sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Membuat kelas interval data kemiskinan</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html">classIntervals</a></span><span class="op">(</span><span class="va">gabung</span><span class="op">$</span><span class="va">Y</span>, n <span class="op">=</span> <span class="fl">4</span>, style <span class="op">=</span> <span class="st">'kmeans'</span><span class="op">)</span></span>
@@ -538,7 +539,7 @@ Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dala
 <span><span class="co">#&gt; [5.09,9.71) [9.71,13.2) [13.2,17.9) [17.9,25.7] </span></span>
 <span><span class="co">#&gt;          23          42          24          14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan (<a href="#fig-plot-miskin" class="quarto-xref">Gambar&nbsp;<span>4.1</span></a>) dengan menggunakan syntax sebagai berikut:</p>
+<p>Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan (<a href="#fig-plot-miskin" class="quarto-xref">Gambar&nbsp;<span>4.1</span></a>) dengan menggunakan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Peta kemiskinan</span></span>
 <span><span class="va">cc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'#fbb4b9'</span>, <span class="st">'#f768a1'</span>, <span class="st">'#ae017e'</span>, <span class="st">'#551c53'</span><span class="op">)</span></span>
@@ -561,11 +562,10 @@ Gambar&nbsp;4.1: Peta kemiskinan
 </div>
 </div>
 </div>
-</section><section id="uji-efek-spasial" class="level3"><h3 class="anchored" data-anchor-id="uji-efek-spasial">Uji Efek Spasial</h3>
-<ol type="a">
-<li>Membentuk matriks pembobot spasial</li>
-</ol>
-<p>Pada ilustrasi ini digunakan matriks pembobot spasial KNN dengan K = 3 dengan syntax sebagai berikut:</p>
+</section><section id="uji-efek-spasial" class="level3" data-number="4.3.4"><h3 data-number="4.3.4" class="anchored" data-anchor-id="uji-efek-spasial">
+<span class="header-section-number">4.3.4</span> Uji Efek Spasial</h3>
+<section id="a.-membentuk-matriks-pembobot-spasial" class="level4"><h4 class="anchored" data-anchor-id="a.-membentuk-matriks-pembobot-spasial">a. Membentuk matriks pembobot spasial</h4>
+<p>Pada ilustrasi ini digunakan matriks pembobot spasial KNN dengan <code>K = 3</code> dengan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Membuat matriks bobot K-NN</span></span>
 <span><span class="va">k</span><span class="op">&lt;-</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knearneigh.html">knearneigh</a></span><span class="op">(</span><span class="va">longlat</span>, k<span class="op">=</span><span class="fl">3</span>, longlat <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -585,10 +585,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt;     n    nn  S0   S1  S2</span></span>
 <span><span class="co">#&gt; W 103 10609 103 60.8 429</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="a">
-<li>Uji Lagrange Multiplier</li>
-</ol>
-<p>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier menggunakan syntax sebagai berikut:</p>
+</section><section id="b.-uji-lagrange-multiplier" class="level4"><h4 class="anchored" data-anchor-id="b.-uji-lagrange-multiplier">b. Uji Lagrange Multiplier</h4>
+<p>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier menggunakan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji LM dan RLM</span></span>
 <span><span class="va">lmtestmod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.LMtests</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">klist</span>, zero.policy <span class="op">=</span> <span class="cn">T</span>, </span>
@@ -611,11 +609,9 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Hasil uji LMlag, LMerr, RLMerr, dan SARMA memiliki nilai-p yang lebih kecil dari α=0.05. Untuk menentukan efek dependensi pada data cukup diperhatikan pada hasil uji robustLM yang nyata pada α=0.05. Berdasarkan hasil uji RLM dapat disimpulkan terdapat dependensi spasial pada galat.</p>
-<ol start="3" type="a">
-<li>Uji Breusch-Pagan</li>
-</ol>
-<p>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial. Syntax uji ini sebagai berikut:</p>
+<p>Hasil uji LMlag, LMerr, RLMerr, dan SARMA memiliki nilai-p yang lebih kecil dari <span class="math inline">\(\alpha=0.05\)</span>. Untuk menentukan efek dependensi pada data cukup diperhatikan pada hasil uji robustLM yang nyata pada <span class="math inline">\(\alpha=0.05\)</span>. Berdasarkan hasil uji RLM dapat disimpulkan terdapat dependensi spasial pada galat.</p>
+</section><section id="c.-uji-breusch-pagan" class="level4"><h4 class="anchored" data-anchor-id="c.-uji-breusch-pagan">c.&nbsp;Uji Breusch-Pagan</h4>
+<p>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial. Sintaks uji ini sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji Breusch-Pagan</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/bptest.html">bptest</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
@@ -625,12 +621,11 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; data:  model</span></span>
 <span><span class="co">#&gt; BP = 13, df = 7, p-value = 0.06</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Nilai-p uji Breusch-Pagan lebih kecil dari α=0.05, sehingga dapat disimpulkan bawa terdapat keragaman spasial pada data. Hasil butir (2b) dan (2c) menunjukkan bahwa pada data yang digunakan mengandung efek dependensi pada galat dan efek keragaman. Pada ilustrasi ini, efek dependensi diabaikan dan hanya memperhatikan efek keragaman spasial. Model yang digunakan untuk menangani keragaman spasial adalah regresi terboboti geografis (RTG). &nbsp;<br></p>
-</section><section id="melakukan-pendugaan-parameter-rtg" class="level3"><h3 class="anchored" data-anchor-id="melakukan-pendugaan-parameter-rtg">Melakukan pendugaan parameter RTG</h3>
-<ol type="a">
-<li>Menentukan nilai lebar jendela optimum</li>
-</ol>
-<p>Lebar jendela dari fungsi kernel dapat bersifat adaptif atau tetap. Penentuan lebar jendela optimum menggunakan validasi silang (CV). Untuk menentukan lebar jendela tetap pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:</p>
+<p>Nilai-p uji Breusch-Pagan lebih kecil dari <span class="math inline">\(\alpha=0.05\)</span>, sehingga dapat disimpulkan bawa terdapat keragaman spasial pada data. Hasil butir (2b) dan (2c) menunjukkan bahwa pada data yang digunakan mengandung efek dependensi pada galat dan efek keragaman. Pada ilustrasi ini, efek dependensi diabaikan dan hanya memperhatikan efek keragaman spasial. Model yang digunakan untuk menangani keragaman spasial adalah regresi terboboti geografis (RTG).</p>
+</section></section><section id="melakukan-pendugaan-parameter-rtg" class="level3" data-number="4.3.5"><h3 data-number="4.3.5" class="anchored" data-anchor-id="melakukan-pendugaan-parameter-rtg">
+<span class="header-section-number">4.3.5</span> Melakukan pendugaan parameter RTG</h3>
+<section id="a.-menentukan-nilai-lebar-jendela-optimum" class="level4"><h4 class="anchored" data-anchor-id="a.-menentukan-nilai-lebar-jendela-optimum">a. Menentukan nilai lebar jendela optimum</h4>
+<p>Lebar jendela dari fungsi kernel dapat bersifat adaptif atau tetap. Penentuan lebar jendela optimum menggunakan validasi silang (CV). Untuk menentukan lebar jendela tetap pada fungsi kernel Gaussian menggunakan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Mengubah class data PDRB menjadi class SpatialPointsDataFrame</span></span>
 <span><span class="va">miskin.sp</span> <span class="op">&lt;-</span> <span class="va">miskin</span></span>
@@ -656,7 +651,7 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="va">bw1</span></span>
 <span><span class="co">#&gt; [1] 284</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Untuk menentukan lebar jendela adaptif pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:</p>
+<p>Untuk menentukan lebar jendela adaptif pada fungsi kernel Gaussian menggunakan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Menentukan lebar jendela adaptive gaussian</span></span>
 <span><span class="va">bw2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsbivand.github.io/spgwr/reference/gwr.cv.html">gwr.sel</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, </span>
@@ -681,10 +676,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="va">bw2</span></span>
 <span><span class="co">#&gt; [1] 0.381</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="2" type="a">
-<li>Menduga parameter RTG</li>
-</ol>
-<p>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat tetap dilakukan dengan menggunakan syntax berikut:</p>
+</section><section id="b.-menduga-parameter-rtg" class="level4"><h4 class="anchored" data-anchor-id="b.-menduga-parameter-rtg">b. Menduga parameter RTG</h4>
+<p>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat tetap dilakukan dengan menggunakan sintaks berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Pendugaan parameter RTG Fixed Gaussian</span></span>
 <span><span class="va">modgwr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsbivand.github.io/spgwr/reference/gwr.html">gwr</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, </span>
@@ -718,7 +711,7 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; Residual sum of squares: 1137 </span></span>
 <span><span class="co">#&gt; Quasi-global R2: 0.603</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat adaptif dilakukan dengan menggunakan syntax berikut:</p>
+<p>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat adaptif dilakukan dengan menggunakan sintaks berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Pendugaan parameter RTG Adaptive Gaussian</span></span>
 <span><span class="va">modgwr2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rsbivand.github.io/spgwr/reference/gwr.html">gwr</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, </span>
@@ -761,7 +754,7 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; Residual sum of squares: 832 </span></span>
 <span><span class="co">#&gt; Quasi-global R2: 0.709</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Untuk menampilkan 5 baris pertama dari koefisien RTG menggunakan syntax sebagai berikut:</p>
+<p>Untuk menampilkan 5 baris pertama dari koefisien RTG menggunakan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Koefisien RTG Fixed Gaussian</span></span>
 <span><span class="va">hasil</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">modgwr1</span><span class="op">$</span><span class="va">SDF</span><span class="op">)</span></span>
@@ -786,7 +779,7 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; 5         48.0  0.000806 0.00829 -0.237 -0.120 0.156 -0.283 0.294</span></span>
 <span><span class="co">#&gt; 6         48.6  0.000770 0.00784 -0.244 -0.118 0.155 -0.283 0.290</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Untuk menampilkan ringkasan koefisien RTG menggunakan syntax sebagai berikut:</p>
+<p>Untuk menampilkan ringkasan koefisien RTG menggunakan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Membuat fungsi ringkasan RTG fixed Gaussian</span></span>
 <span><span class="va">summarycoef</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">data</span><span class="op">)</span><span class="op">{</span></span>
@@ -867,10 +860,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; 9 0.10793  0.06222 0.4110</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Berdasarkan output ringkasan koefisien RTG terlihat nilai rataan koefisien X7 bernilai positif tertinggi pada kedua model (RTG dengan lebar jendela tetap dan adaptif). Untuk koefisien yang bernilai negatif terendah, terlihat X3 pada model dengan lebar jendela tetap dan X6 pada model adaptif. Ragam koefisien untuk model tetap Gaussian cenderung lebih rendah dibandingkan model adaptif Gaussian. Berdasarkan nilai IQR pada kedua model terlihat koefisien X4 memiliki nilai yang lebih tinggi dibandingkan koefisien lainnya, hal ini menunjukan bahwa koefisien X4 pada setiap kabupaten/kota di Jawa lebih beragam dibandingkan koefisien prediktor lainnya.</p>
-<ol start="3" type="a">
-<li>ANOVA</li>
-</ol>
-<p>Untuk membandingkan kebaikan antara model regresi linier berganda dengan RTG, digunakan perbandingan kuadrat tengah antara kedua model dengan analisis ragam (ANOVA). Berikut syntax yang digunakan untuk menampilkan ANOVA dan nilai-p dari statistik uji F:</p>
+</section><section id="c.-anova" class="level4"><h4 class="anchored" data-anchor-id="c.-anova">c.&nbsp;ANOVA</h4>
+<p>Untuk membandingkan kebaikan antara model regresi linier berganda dengan RTG, digunakan perbandingan kuadrat tengah antara kedua model dengan analisis ragam (ANOVA). Berikut sintaks yang digunakan untuk menampilkan ANOVA dan nilai-p dari statistik uji F:</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#ANOVA RTG Fixed Gaussian</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modgwr1</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span></span>
@@ -896,11 +887,9 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span><span class="fl">3.418</span>, <span class="fl">10.64</span>, <span class="fl">99.36</span>, lower.tail <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.000546</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Nilai-p dari statistik uji F lebih kecil dari α=0.05, sehingga dapat disimpulkan bahwa model RTG mempunyai kuadrat tengah galat lebih kecil dari pada model regresi linier berganda.</p>
-<ol start="4" type="a">
-<li>Evaluasi kebaikan RTG</li>
-</ol>
-<p>Untuk mengetahui kebaikan model antara regresi linier berganda dengan RTG, selain menggunakan ANOVA (butir 3d), dapat juga dibandingkani nilai AIC dan R-square kedua model tersebut. Syntax untuk menghitung nilai AIC dan R-square sebagai berikut:</p>
+<p>Nilai-p dari statistik uji F lebih kecil dari <span class="math inline">\(\alpha=0.05\)</span>, sehingga dapat disimpulkan bahwa model RTG mempunyai kuadrat tengah galat lebih kecil dari pada model regresi linier berganda.</p>
+</section><section id="d.-evaluasi-kebaikan-rtg" class="level4"><h4 class="anchored" data-anchor-id="d.-evaluasi-kebaikan-rtg">d.&nbsp;Evaluasi kebaikan RTG</h4>
+<p>Untuk mengetahui kebaikan model antara regresi linier berganda dengan RTG, selain menggunakan ANOVA (butir 3d), dapat juga dibandingkani nilai AIC dan R-square kedua model tersebut. sintaks untuk menghitung nilai AIC dan R-square sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Nilai AIC dan R-square</span></span>
 <span><span class="va">regsum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
@@ -919,8 +908,9 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; 3 RTG Adaptive Gaussian 581     70.9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Berdasarkan nilai AIC dan R-Square, model RTG adaptif dibandingkan model regresi linier dan RTG tetap memiliki AIC terkecil dan R-square terbesar. Sehingga disimpulkan bahwa model RTG adaptif merupakan model terbaik untuk memodelkan data kemiskinan.</p>
-</section><section id="uji-asumsi-model-rtg-terbaik" class="level3"><h3 class="anchored" data-anchor-id="uji-asumsi-model-rtg-terbaik">Uji asumsi model RTG terbaik</h3>
-<p>Uji asumsi pada sisaan RTG meliputi uji normalitas, homogenitas ragam, dan kebebasan sisaan. Untuk uji normalitas menggunakan uji Shapiro-Wik dengan syntax sebagai berikut:</p>
+</section></section><section id="uji-asumsi-model-rtg-terbaik" class="level3" data-number="4.3.6"><h3 data-number="4.3.6" class="anchored" data-anchor-id="uji-asumsi-model-rtg-terbaik">
+<span class="header-section-number">4.3.6</span> Uji asumsi model RTG terbaik</h3>
+<p>Uji asumsi pada sisaan RTG meliputi uji normalitas, homogenitas ragam, dan kebebasan sisaan. Untuk uji normalitas menggunakan uji Shapiro-Wik dengan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji Normalitas</span></span>
 <span><span class="va">sisaan</span><span class="op">&lt;-</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">gwr.e</span></span>
@@ -932,7 +922,7 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; W = 1, p-value = 0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Hasil uji normalitas menunjukkan statistik uji Shapiro-Wilk mempunyai nilai-p&gt; α=0.05, sehingga disimpulkan sebaran sisaan dapat dihampiri dengan sebaran normal.</p>
-<p>Uji homogenitas sisaan menggunakan uji Breusch-Pagan, dan hasil uji menunjukkan p-value = 0.04612&lt; α=0.05, sehingga dapat disimpulkan sisaan bersifat heterogen. Nilai-p dari uji B-P sisaan sudah lebih kecil dibandingkan pada model yaitu sebesar p-value = 0.00542. Dengan demikian dapat disimpulkan Model RTG mampu mengatasi heterogenitas.</p>
+<p>Uji homogenitas sisaan menggunakan uji Breusch-Pagan, dan hasil uji menunjukkan <code>p-value = 0.04612</code> &lt; <span class="math inline">\(\alpha=0.05\)</span>, sehingga dapat disimpulkan sisaan bersifat heterogen. Nilai-p dari uji B-P sisaan sudah lebih kecil dibandingkan pada model yaitu sebesar <code>p-value = 0.00542</code>. Dengan demikian dapat disimpulkan Model RTG mampu mengatasi heterogenitas.</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji Heteroskedastisitas</span></span>
 <span><span class="va">modres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">sisaan</span> <span class="op">~</span> <span class="va">X1</span> <span class="op">+</span> <span class="va">X2</span> <span class="op">+</span> <span class="va">X3</span> <span class="op">+</span> <span class="va">X4</span> <span class="op">+</span> <span class="va">X5</span> <span class="op">+</span> <span class="va">X6</span> <span class="op">+</span> <span class="va">X7</span>, data <span class="op">=</span> </span>
@@ -944,13 +934,14 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; data:  modres</span></span>
 <span><span class="co">#&gt; BP = 14, df = 7, p-value = 0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Uji kebebasan sisaan dilakukan menggunakan uji indeks Moran pada sisaan untuk mengetahui apakah ada autokorelasi spasial pada sisaan. Hasil uji Moran mempunyai p-value = 0.7293, sehingga dapat disimpulkan tidak terdapat autokorelasi spasial antar sisaan RTG.</p>
+<p>Uji kebebasan sisaan dilakukan menggunakan uji indeks Moran pada sisaan untuk mengetahui apakah ada autokorelasi spasial pada sisaan. Hasil uji Moran mempunyai <code>p-value = 0.7293</code>, sehingga dapat disimpulkan tidak terdapat autokorelasi spasial antar sisaan RTG.</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Uji Autokorelasi Galat</span></span>
 <span><span class="fu"><a href="https://rsbivand.github.io/spgwr/reference/gwr.morantest.html">gwr.morantest</a></span><span class="op">(</span><span class="va">modgwr2</span>, <span class="va">klist</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="uji-signifikansi-parameter-pada-tiap-lokasi-amatan" class="level3"><h3 class="anchored" data-anchor-id="uji-signifikansi-parameter-pada-tiap-lokasi-amatan">Uji signifikansi parameter pada tiap lokasi amatan</h3>
-<p>Parameter dari model RTG pada tiap kabupaten/kota di Jawa diuji menggunakan uji t-student dengan syntax sebagai berikut:</p>
+</section><section id="uji-signifikansi-parameter-pada-tiap-lokasi-amatan" class="level3" data-number="4.3.7"><h3 data-number="4.3.7" class="anchored" data-anchor-id="uji-signifikansi-parameter-pada-tiap-lokasi-amatan">
+<span class="header-section-number">4.3.7</span> Uji signifikansi parameter pada tiap lokasi amatan</h3>
+<p>Parameter dari model RTG pada tiap kabupaten/kota di Jawa diuji menggunakan uji t-student dengan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji T untuk koefisien RTG</span></span>
 <span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">X1.pval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1</span><span class="op">)</span> <span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">modgwr2</span><span class="op">$</span><span class="va">SDF</span><span class="op">$</span><span class="va">X1_se</span></span>
@@ -995,13 +986,14 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; X2 X3 X5 X6 X7        2</span></span>
 <span><span class="co">#&gt; X3 X4 X5 X6 X7       27</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Output hasil uji t menunjukkan prediktor yang signifikan dan banyaknya kabupaten/kota yang masuk dalam kategorinya. Prediktor X1 tidak nyata pada semua kabupaten/kota di Jawa. Untuk memudahkan mengetahui kabupaten/kota sesuai kategori peubah yang nyata disajikan dalam peta. Syntax yang digunakan untuk membuat peta sebagai berikut:</p>
+<p>Output hasil uji t menunjukkan prediktor yang signifikan dan banyaknya kabupaten/kota yang masuk dalam kategorinya. Prediktor <span class="math inline">\(X_1\)</span> tidak nyata pada semua kabupaten/kota di Jawa. Untuk memudahkan mengetahui kabupaten/kota sesuai kategori peubah yang nyata disajikan dalam peta. Sintaks yang digunakan untuk membuat peta sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Peta koefisien RTG</span></span>
 <span><span class="va">Peubah</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">miskin.sp</span><span class="op">$</span><span class="va">Wilayah</span>, <span class="va">miskin.sp</span><span class="op">$</span><span class="va">Peubah_Signifikan</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">Peubah</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Wilayah"</span>, <span class="st">"Peubah_Signifikan"</span><span class="op">)</span></span>
 <span><span class="va">gabung</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://edzer.github.io/sp/reference/merge.html">merge</a></span><span class="op">(</span><span class="va">gabung</span>, <span class="va">Peubah</span>, by.x <span class="op">=</span> <span class="st">"KABKOT"</span>, by.y <span class="op">=</span> </span>
 <span>          <span class="st">"Wilayah"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">gabung</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Peubah_Signifikan</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1009,13 +1001,17 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Peubah signifikan"</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="04-RegresiTerbobotiGeografis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-</figure>
+<div id="fig-plot-rtg" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-rtg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-RegresiTerbobotiGeografis_files/figure-html/fig-plot-rtg-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot-rtg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;4.2: Peta koefisien RTG
+</figcaption></figure>
 </div>
 </div>
 </div>
-<p>Dari peta terlihat mayoritas kabupaten/kota di Jawa berwarna merah, menunjukkan prediktor X2 sampai X7 berpengaruh nyata. Beberapa kabupate/kota di bagian barat Provinsi Jawa Barat dan bagian tengah Provinsi Jawa Timur berwarna biru yang menunjukkan prediktor X1 dan X4 tidak nyata.</p>
+<p>Dari peta pada <a href="#fig-plot-rtg" class="quarto-xref">Gambar&nbsp;<span>4.2</span></a> terlihat mayoritas kabupaten/kota di Jawa berwarna merah, menunjukkan prediktor <span class="math inline">\(X_2\)</span> sampai <span class="math inline">\(X_7\)</span> berpengaruh nyata. Beberapa kabupaten/kota di bagian barat Provinsi Jawa Barat dan bagian tengah Provinsi Jawa Timur berwarna biru yang menunjukkan prediktor <span class="math inline">\(X_1\)</span> dan <span class="math inline">\(X_4\)</span> tidak nyata.</p>
 
 
 <!-- -->
@@ -1157,7 +1153,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/statistika-spasial\.github\.io\/book");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1562,7 +1558,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Input Data</span></span>
 <span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a>Input data dilakukan dengan syntax berikut:</span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a>Input data dilakukan dengan sintaks berikut:</span>
 <span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a><span class="co">#Set Lokasi File</span></span>
@@ -1583,7 +1579,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### Eksplorasi Data</span></span>
 <span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a>Eksplorasi data yang dilakukan meliputi pemeriksaan mulitkolinearitas dan pemetaan nilai persentase penduduk miskin. Pemeriksaan multikolinearitas dilakukan dengan syntax berikut:</span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a>Eksplorasi data yang dilakukan meliputi pemeriksaan mulitkolinearitas dan pemetaan nilai persentase penduduk miskin. Pemeriksaan multikolinearitas dilakukan dengan sintaks berikut:</span>
 <span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Multikolinier</span></span>
@@ -1591,16 +1587,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a>         <span class="fu">as.matrix</span>(<span class="fu">vif</span>(model))</span>
 <span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a>Nilai VIF dari semua prediktor berkisar antara 1.34 sampai 3.62, sehingga disimpulkan tidak terdapat multikolinearitas. \ \</span>
-<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a>\ \</span>
-<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a>Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dalam 4 (empat) kelas interval menggunakan style = 'kmeans. Syntax untuk membuat kelas interval sebagai berikut:</span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a>Nilai VIF dari semua prediktor berkisar antara 1.34 sampai 3.62, sehingga disimpulkan tidak terdapat multikolinearitas. </span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a>Untuk membuat peta data persentase kemiskinan, data lebih dulu dikelompokan dalam 4 (empat) kelas interval menggunakan <span class="in">`style = "kmeans"`</span>. Sintaks untuk membuat kelas interval sebagai berikut:</span>
 <span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat kelas interval data kemiskinan</span></span>
 <span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a><span class="fu">classIntervals</span>(gabung<span class="sc">$</span>Y, <span class="at">n =</span> <span class="dv">4</span>, <span class="at">style =</span> <span class="st">'kmeans'</span>)</span>
 <span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan (@fig-plot-miskin) dengan menggunakan syntax sebagai berikut:</span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>Berdasarkan nilai selang nilai tersebut, data kemiskinan dipetakan (@fig-plot-miskin) dengan menggunakan sintaks sebagai berikut:</span>
 <span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plot-miskin</span></span>
@@ -1619,9 +1615,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji Efek Spasial</span></span>
 <span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a>a)  Membentuk matriks pembobot spasial</span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a><span class="fu">#### a. Membentuk matriks pembobot spasial</span></span>
 <span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>Pada ilustrasi ini digunakan matriks pembobot spasial KNN dengan K = 3 dengan syntax sebagai berikut:</span>
+<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>Pada ilustrasi ini digunakan matriks pembobot spasial KNN dengan <span class="in">`K = 3`</span> dengan sintaks sebagai berikut:</span>
 <span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat matriks bobot K-NN</span></span>
@@ -1631,9 +1627,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a>klist</span>
 <span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a>b)  Uji Lagrange Multiplier</span>
+<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a><span class="fu">#### b. Uji Lagrange Multiplier</span></span>
 <span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier menggunakan syntax sebagai berikut:</span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier menggunakan sintaks sebagai berikut:</span>
 <span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji LM dan RLM</span></span>
@@ -1642,24 +1638,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmtestmod)</span>
 <span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a>Hasil uji LMlag, LMerr, RLMerr, dan SARMA memiliki nilai-p yang lebih kecil dari α=0.05. Untuk menentukan efek dependensi pada data cukup diperhatikan pada hasil uji robustLM yang nyata pada α=0.05. Berdasarkan hasil uji RLM dapat disimpulkan terdapat dependensi spasial pada galat.</span>
+<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a>Hasil uji LMlag, LMerr, RLMerr, dan SARMA memiliki nilai-p yang lebih kecil dari $\alpha=0.05$. Untuk menentukan efek dependensi pada data cukup diperhatikan pada hasil uji robustLM yang nyata pada $\alpha=0.05$. Berdasarkan hasil uji RLM dapat disimpulkan terdapat dependensi spasial pada galat.</span>
 <span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a>c)  Uji Breusch-Pagan</span>
+<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a><span class="fu">#### c. Uji Breusch-Pagan</span></span>
 <span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial. Syntax uji ini sebagai berikut:</span>
+<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial. Sintaks uji ini sebagai berikut:</span>
 <span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Breusch-Pagan</span></span>
 <span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model)</span>
 <span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a>Nilai-p uji Breusch-Pagan lebih kecil dari α=0.05, sehingga dapat disimpulkan bawa terdapat keragaman spasial pada data. Hasil butir (2b) dan (2c) menunjukkan bahwa pada data yang digunakan mengandung efek dependensi pada galat dan efek keragaman.  Pada ilustrasi ini, efek dependensi diabaikan dan hanya memperhatikan efek keragaman spasial. Model yang digunakan untuk menangani keragaman spasial adalah regresi terboboti geografis (RTG). \ \</span>
+<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a>Nilai-p uji Breusch-Pagan lebih kecil dari $\alpha=0.05$, sehingga dapat disimpulkan bawa terdapat keragaman spasial pada data. Hasil butir (2b) dan (2c) menunjukkan bahwa pada data yang digunakan mengandung efek dependensi pada galat dan efek keragaman.  Pada ilustrasi ini, efek dependensi diabaikan dan hanya memperhatikan efek keragaman spasial. Model yang digunakan untuk menangani keragaman spasial adalah regresi terboboti geografis (RTG).</span>
 <span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a><span class="fu">### Melakukan pendugaan parameter RTG</span></span>
 <span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a>a)  Menentukan nilai lebar jendela optimum</span>
+<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a><span class="fu">#### a. Menentukan nilai lebar jendela optimum</span></span>
 <span id="cb24-180"><a href="#cb24-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a>Lebar jendela dari fungsi kernel dapat bersifat adaptif atau tetap. Penentuan lebar jendela optimum menggunakan validasi silang (CV). Untuk menentukan lebar jendela tetap pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:</span>
+<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a>Lebar jendela dari fungsi kernel dapat bersifat adaptif atau tetap. Penentuan lebar jendela optimum menggunakan validasi silang (CV). Untuk menentukan lebar jendela tetap pada fungsi kernel Gaussian menggunakan sintaks sebagai berikut:</span>
 <span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a><span class="co">#Mengubah class data PDRB menjadi class SpatialPointsDataFrame</span></span>
@@ -1672,7 +1668,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-193"><a href="#cb24-193" aria-hidden="true" tabindex="-1"></a>bw1</span>
 <span id="cb24-194"><a href="#cb24-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a>Untuk menentukan lebar jendela adaptif pada fungsi kernel Gaussian menggunakan syntax sebagai berikut:</span>
+<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a>Untuk menentukan lebar jendela adaptif pada fungsi kernel Gaussian menggunakan sintaks sebagai berikut:</span>
 <span id="cb24-197"><a href="#cb24-197" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a><span class="co">#Menentukan lebar jendela adaptive gaussian</span></span>
@@ -1681,9 +1677,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-204"><a href="#cb24-204" aria-hidden="true" tabindex="-1"></a>bw2</span>
 <span id="cb24-205"><a href="#cb24-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a>b)  Menduga parameter RTG</span>
+<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a><span class="fu">#### b. Menduga parameter RTG</span></span>
 <span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat tetap dilakukan dengan menggunakan syntax berikut:</span>
+<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat tetap dilakukan dengan menggunakan sintaks berikut:</span>
 <span id="cb24-210"><a href="#cb24-210" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-213"><a href="#cb24-213" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-214"><a href="#cb24-214" aria-hidden="true" tabindex="-1"></a><span class="co">#Pendugaan parameter RTG Fixed Gaussian</span></span>
@@ -1692,7 +1688,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-217"><a href="#cb24-217" aria-hidden="true" tabindex="-1"></a>modgwr1</span>
 <span id="cb24-218"><a href="#cb24-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-219"><a href="#cb24-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-220"><a href="#cb24-220" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat adaptif dilakukan dengan menggunakan syntax berikut:</span>
+<span id="cb24-220"><a href="#cb24-220" aria-hidden="true" tabindex="-1"></a>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat adaptif dilakukan dengan menggunakan sintaks berikut:</span>
 <span id="cb24-221"><a href="#cb24-221" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-224"><a href="#cb24-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-225"><a href="#cb24-225" aria-hidden="true" tabindex="-1"></a><span class="co">#Pendugaan parameter RTG Adaptive Gaussian</span></span>
@@ -1701,7 +1697,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-228"><a href="#cb24-228" aria-hidden="true" tabindex="-1"></a>modgwr2</span>
 <span id="cb24-229"><a href="#cb24-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-230"><a href="#cb24-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-231"><a href="#cb24-231" aria-hidden="true" tabindex="-1"></a>Untuk menampilkan 5 baris pertama dari koefisien RTG menggunakan syntax sebagai berikut:</span>
+<span id="cb24-231"><a href="#cb24-231" aria-hidden="true" tabindex="-1"></a>Untuk menampilkan 5 baris pertama dari koefisien RTG menggunakan sintaks sebagai berikut:</span>
 <span id="cb24-232"><a href="#cb24-232" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-235"><a href="#cb24-235" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-236"><a href="#cb24-236" aria-hidden="true" tabindex="-1"></a><span class="co">#Koefisien RTG Fixed Gaussian</span></span>
@@ -1715,7 +1711,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-246"><a href="#cb24-246" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hasil2[,<span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>])</span>
 <span id="cb24-247"><a href="#cb24-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-248"><a href="#cb24-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-249"><a href="#cb24-249" aria-hidden="true" tabindex="-1"></a>Untuk menampilkan ringkasan koefisien RTG menggunakan syntax sebagai berikut:</span>
+<span id="cb24-249"><a href="#cb24-249" aria-hidden="true" tabindex="-1"></a>Untuk menampilkan ringkasan koefisien RTG menggunakan sintaks sebagai berikut:</span>
 <span id="cb24-250"><a href="#cb24-250" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-253"><a href="#cb24-253" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-254"><a href="#cb24-254" aria-hidden="true" tabindex="-1"></a><span class="co">#Membuat fungsi ringkasan RTG fixed Gaussian</span></span>
@@ -1761,9 +1757,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-296"><a href="#cb24-296" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-297"><a href="#cb24-297" aria-hidden="true" tabindex="-1"></a>Berdasarkan output ringkasan koefisien RTG terlihat nilai rataan koefisien X7 bernilai positif  tertinggi pada kedua model (RTG dengan lebar jendela tetap dan adaptif). Untuk koefisien yang bernilai negatif terendah, terlihat X3 pada model dengan lebar jendela tetap dan X6 pada model adaptif. Ragam koefisien untuk model tetap Gaussian cenderung lebih rendah dibandingkan model adaptif Gaussian. Berdasarkan nilai IQR pada kedua model terlihat koefisien X4 memiliki nilai yang lebih tinggi dibandingkan koefisien lainnya, hal ini menunjukan bahwa koefisien X4 pada setiap kabupaten/kota di Jawa lebih beragam dibandingkan koefisien prediktor lainnya. </span>
 <span id="cb24-298"><a href="#cb24-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-299"><a href="#cb24-299" aria-hidden="true" tabindex="-1"></a>c)  ANOVA</span>
+<span id="cb24-299"><a href="#cb24-299" aria-hidden="true" tabindex="-1"></a><span class="fu">#### c. ANOVA</span></span>
 <span id="cb24-300"><a href="#cb24-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-301"><a href="#cb24-301" aria-hidden="true" tabindex="-1"></a>Untuk membandingkan kebaikan antara model regresi linier berganda dengan RTG, digunakan perbandingan kuadrat tengah antara kedua model dengan analisis ragam (ANOVA). Berikut syntax yang digunakan untuk menampilkan ANOVA dan nilai-p dari statistik uji F:</span>
+<span id="cb24-301"><a href="#cb24-301" aria-hidden="true" tabindex="-1"></a>Untuk membandingkan kebaikan antara model regresi linier berganda dengan RTG, digunakan perbandingan kuadrat tengah antara kedua model dengan analisis ragam (ANOVA). Berikut sintaks yang digunakan untuk menampilkan ANOVA dan nilai-p dari statistik uji F:</span>
 <span id="cb24-302"><a href="#cb24-302" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-305"><a href="#cb24-305" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-306"><a href="#cb24-306" aria-hidden="true" tabindex="-1"></a><span class="co">#ANOVA RTG Fixed Gaussian</span></span>
@@ -1779,11 +1775,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-316"><a href="#cb24-316" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(<span class="fl">3.418</span>, <span class="fl">10.64</span>, <span class="fl">99.36</span>, <span class="at">lower.tail =</span> F)</span>
 <span id="cb24-317"><a href="#cb24-317" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-318"><a href="#cb24-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-319"><a href="#cb24-319" aria-hidden="true" tabindex="-1"></a>Nilai-p dari statistik uji F lebih kecil dari α=0.05, sehingga dapat disimpulkan bahwa model RTG mempunyai kuadrat tengah galat lebih kecil dari pada model regresi linier berganda.</span>
+<span id="cb24-319"><a href="#cb24-319" aria-hidden="true" tabindex="-1"></a>Nilai-p dari statistik uji F lebih kecil dari $\alpha=0.05$, sehingga dapat disimpulkan bahwa model RTG mempunyai kuadrat tengah galat lebih kecil dari pada model regresi linier berganda.</span>
 <span id="cb24-320"><a href="#cb24-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-321"><a href="#cb24-321" aria-hidden="true" tabindex="-1"></a>d)  Evaluasi kebaikan RTG</span>
+<span id="cb24-321"><a href="#cb24-321" aria-hidden="true" tabindex="-1"></a><span class="fu">#### d. Evaluasi kebaikan RTG</span></span>
 <span id="cb24-322"><a href="#cb24-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-323"><a href="#cb24-323" aria-hidden="true" tabindex="-1"></a>Untuk mengetahui kebaikan model antara regresi linier berganda dengan RTG, selain menggunakan ANOVA (butir 3d), dapat juga dibandingkani nilai AIC dan R-square kedua model tersebut. Syntax untuk menghitung nilai AIC dan R-square sebagai berikut:</span>
+<span id="cb24-323"><a href="#cb24-323" aria-hidden="true" tabindex="-1"></a>Untuk mengetahui kebaikan model antara regresi linier berganda dengan RTG, selain menggunakan ANOVA (butir 3d), dapat juga dibandingkani nilai AIC dan R-square kedua model tersebut. sintaks untuk menghitung nilai AIC dan R-square sebagai berikut:</span>
 <span id="cb24-324"><a href="#cb24-324" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-327"><a href="#cb24-327" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-328"><a href="#cb24-328" aria-hidden="true" tabindex="-1"></a><span class="co">#Nilai AIC dan R-square</span></span>
@@ -1803,7 +1799,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-342"><a href="#cb24-342" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-343"><a href="#cb24-343" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji asumsi model RTG terbaik</span></span>
 <span id="cb24-344"><a href="#cb24-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-345"><a href="#cb24-345" aria-hidden="true" tabindex="-1"></a>Uji asumsi pada sisaan RTG meliputi uji normalitas, homogenitas ragam, dan kebebasan sisaan. Untuk uji normalitas menggunakan uji Shapiro-Wik dengan syntax sebagai berikut:</span>
+<span id="cb24-345"><a href="#cb24-345" aria-hidden="true" tabindex="-1"></a>Uji asumsi pada sisaan RTG meliputi uji normalitas, homogenitas ragam, dan kebebasan sisaan. Untuk uji normalitas menggunakan uji Shapiro-Wik dengan sintaks sebagai berikut:</span>
 <span id="cb24-346"><a href="#cb24-346" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-349"><a href="#cb24-349" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-350"><a href="#cb24-350" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Normalitas</span></span>
@@ -1813,7 +1809,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-354"><a href="#cb24-354" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-355"><a href="#cb24-355" aria-hidden="true" tabindex="-1"></a>Hasil uji normalitas menunjukkan statistik uji Shapiro-Wilk mempunyai nilai-p&gt; α=0.05, sehingga disimpulkan sebaran sisaan dapat dihampiri dengan sebaran normal. </span>
 <span id="cb24-356"><a href="#cb24-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-357"><a href="#cb24-357" aria-hidden="true" tabindex="-1"></a>Uji homogenitas sisaan menggunakan uji Breusch-Pagan, dan hasil uji menunjukkan p-value = 0.04612&lt; α=0.05, sehingga dapat disimpulkan sisaan bersifat heterogen. Nilai-p dari uji B-P sisaan sudah lebih kecil dibandingkan pada model yaitu sebesar p-value = 0.00542. Dengan demikian dapat disimpulkan Model RTG mampu mengatasi heterogenitas.</span>
+<span id="cb24-357"><a href="#cb24-357" aria-hidden="true" tabindex="-1"></a>Uji homogenitas sisaan menggunakan uji Breusch-Pagan, dan hasil uji menunjukkan <span class="in">`p-value = 0.04612`</span> &lt; $\alpha=0.05$, sehingga dapat disimpulkan sisaan bersifat heterogen. Nilai-p dari uji B-P sisaan sudah lebih kecil dibandingkan pada model yaitu sebesar <span class="in">`p-value = 0.00542`</span>. Dengan demikian dapat disimpulkan Model RTG mampu mengatasi heterogenitas.</span>
 <span id="cb24-358"><a href="#cb24-358" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-361"><a href="#cb24-361" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-362"><a href="#cb24-362" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Heteroskedastisitas</span></span>
@@ -1822,7 +1818,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-365"><a href="#cb24-365" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(modres)</span>
 <span id="cb24-366"><a href="#cb24-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-367"><a href="#cb24-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-368"><a href="#cb24-368" aria-hidden="true" tabindex="-1"></a>Uji kebebasan sisaan dilakukan menggunakan uji indeks Moran pada sisaan untuk mengetahui apakah ada autokorelasi spasial pada sisaan. Hasil uji Moran mempunyai p-value = 0.7293, sehingga dapat disimpulkan tidak terdapat autokorelasi spasial antar sisaan RTG.</span>
+<span id="cb24-368"><a href="#cb24-368" aria-hidden="true" tabindex="-1"></a>Uji kebebasan sisaan dilakukan menggunakan uji indeks Moran pada sisaan untuk mengetahui apakah ada autokorelasi spasial pada sisaan. Hasil uji Moran mempunyai <span class="in">`p-value = 0.7293`</span>, sehingga dapat disimpulkan tidak terdapat autokorelasi spasial antar sisaan RTG.</span>
 <span id="cb24-369"><a href="#cb24-369" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-372"><a href="#cb24-372" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-373"><a href="#cb24-373" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
@@ -1832,7 +1828,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-377"><a href="#cb24-377" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-378"><a href="#cb24-378" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji signifikansi parameter pada tiap lokasi amatan</span></span>
 <span id="cb24-379"><a href="#cb24-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-380"><a href="#cb24-380" aria-hidden="true" tabindex="-1"></a>Parameter dari model RTG pada tiap kabupaten/kota di Jawa diuji menggunakan uji t-student dengan syntax sebagai berikut:</span>
+<span id="cb24-380"><a href="#cb24-380" aria-hidden="true" tabindex="-1"></a>Parameter dari model RTG pada tiap kabupaten/kota di Jawa diuji menggunakan uji t-student dengan sintaks sebagai berikut:</span>
 <span id="cb24-381"><a href="#cb24-381" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-384"><a href="#cb24-384" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-385"><a href="#cb24-385" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji T untuk koefisien RTG</span></span>
@@ -1875,23 +1871,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-422"><a href="#cb24-422" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(<span class="fu">summary</span>(<span class="fu">as.factor</span>(miskin.sp<span class="sc">$</span>Peubah_Signifikan)))</span>
 <span id="cb24-423"><a href="#cb24-423" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-424"><a href="#cb24-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-425"><a href="#cb24-425" aria-hidden="true" tabindex="-1"></a>Output hasil uji t menunjukkan prediktor yang signifikan dan banyaknya kabupaten/kota yang masuk dalam kategorinya. Prediktor X1 tidak nyata pada semua kabupaten/kota di Jawa. Untuk memudahkan mengetahui kabupaten/kota sesuai kategori peubah yang nyata disajikan dalam peta. Syntax yang digunakan untuk membuat peta sebagai berikut:</span>
+<span id="cb24-425"><a href="#cb24-425" aria-hidden="true" tabindex="-1"></a>Output hasil uji t menunjukkan prediktor yang signifikan dan banyaknya kabupaten/kota yang masuk dalam kategorinya. Prediktor $X_1$ tidak nyata pada semua kabupaten/kota di Jawa. Untuk memudahkan mengetahui kabupaten/kota sesuai kategori peubah yang nyata disajikan dalam peta. Sintaks yang digunakan untuk membuat peta sebagai berikut:</span>
 <span id="cb24-426"><a href="#cb24-426" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-429"><a href="#cb24-429" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-430"><a href="#cb24-430" aria-hidden="true" tabindex="-1"></a><span class="co">#Peta koefisien RTG</span></span>
-<span id="cb24-431"><a href="#cb24-431" aria-hidden="true" tabindex="-1"></a>Peubah <span class="ot">&lt;-</span> <span class="fu">cbind</span>(miskin.sp<span class="sc">$</span>Wilayah, miskin.sp<span class="sc">$</span>Peubah_Signifikan)</span>
-<span id="cb24-432"><a href="#cb24-432" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Peubah) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Wilayah"</span>, <span class="st">"Peubah_Signifikan"</span>)</span>
-<span id="cb24-433"><a href="#cb24-433" aria-hidden="true" tabindex="-1"></a>gabung <span class="ot">&lt;-</span> <span class="fu">merge</span>(gabung, Peubah, <span class="at">by.x =</span> <span class="st">"KABKOT"</span>, <span class="at">by.y =</span> </span>
-<span id="cb24-434"><a href="#cb24-434" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Wilayah"</span>)</span>
-<span id="cb24-435"><a href="#cb24-435" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gabung) <span class="sc">+</span></span>
-<span id="cb24-436"><a href="#cb24-436" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill =</span> Peubah_Signifikan) <span class="sc">+</span></span>
-<span id="cb24-437"><a href="#cb24-437" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
-<span id="cb24-438"><a href="#cb24-438" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb24-439"><a href="#cb24-439" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Peubah signifikan"</span>)<span class="sc">+</span></span>
-<span id="cb24-440"><a href="#cb24-440" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb24-441"><a href="#cb24-441" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-442"><a href="#cb24-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-443"><a href="#cb24-443" aria-hidden="true" tabindex="-1"></a>Dari peta terlihat mayoritas kabupaten/kota di Jawa berwarna merah, menunjukkan prediktor X2 sampai X7 berpengaruh nyata. Beberapa kabupate/kota di bagian barat  Provinsi Jawa Barat dan bagian tengah Provinsi Jawa Timur berwarna biru yang menunjukkan prediktor X1 dan X4 tidak nyata.</span>
+<span id="cb24-430"><a href="#cb24-430" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plot-rtg</span></span>
+<span id="cb24-431"><a href="#cb24-431" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Peta koefisien RTG"</span></span>
+<span id="cb24-432"><a href="#cb24-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-433"><a href="#cb24-433" aria-hidden="true" tabindex="-1"></a><span class="co">#Peta koefisien RTG</span></span>
+<span id="cb24-434"><a href="#cb24-434" aria-hidden="true" tabindex="-1"></a>Peubah <span class="ot">&lt;-</span> <span class="fu">cbind</span>(miskin.sp<span class="sc">$</span>Wilayah, miskin.sp<span class="sc">$</span>Peubah_Signifikan)</span>
+<span id="cb24-435"><a href="#cb24-435" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Peubah) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Wilayah"</span>, <span class="st">"Peubah_Signifikan"</span>)</span>
+<span id="cb24-436"><a href="#cb24-436" aria-hidden="true" tabindex="-1"></a>gabung <span class="ot">&lt;-</span> <span class="fu">merge</span>(gabung, Peubah, <span class="at">by.x =</span> <span class="st">"KABKOT"</span>, <span class="at">by.y =</span> </span>
+<span id="cb24-437"><a href="#cb24-437" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Wilayah"</span>)</span>
+<span id="cb24-438"><a href="#cb24-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-439"><a href="#cb24-439" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gabung) <span class="sc">+</span></span>
+<span id="cb24-440"><a href="#cb24-440" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill =</span> Peubah_Signifikan) <span class="sc">+</span></span>
+<span id="cb24-441"><a href="#cb24-441" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb24-442"><a href="#cb24-442" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb24-443"><a href="#cb24-443" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Peubah signifikan"</span>)<span class="sc">+</span></span>
+<span id="cb24-444"><a href="#cb24-444" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb24-445"><a href="#cb24-445" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-446"><a href="#cb24-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-447"><a href="#cb24-447" aria-hidden="true" tabindex="-1"></a>Dari peta pada @fig-plot-rtg terlihat mayoritas kabupaten/kota di Jawa berwarna merah, menunjukkan prediktor $X_2$ sampai $X_7$ berpengaruh nyata. Beberapa kabupaten/kota di bagian barat Provinsi Jawa Barat dan bagian tengah Provinsi Jawa Timur berwarna biru yang menunjukkan prediktor $X_1$ dan $X_4$ tidak nyata.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

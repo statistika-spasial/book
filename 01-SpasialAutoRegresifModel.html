@@ -162,6 +162,9 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Pemodelan Statistika pada Data Geospasial</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/statistika-spasial/book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -293,26 +296,22 @@ window.Quarto = {
 </li>
       </ul>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Model Epidemiologi</span></span>
-  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ModelEpidemiologi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Epidemiologi</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referensi</span></a>
@@ -334,16 +333,16 @@ window.Quarto = {
   <li>
 <a href="#tahapan-analisis-r" id="toc-tahapan-analisis-r" class="nav-link" data-scroll-target="#tahapan-analisis-r"><span class="header-section-number">1.4</span> Tahapan Analisis R</a>
   <ul class="collapse">
-<li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package">Package</a></li>
-  <li><a href="#input-data" id="toc-input-data" class="nav-link" data-scroll-target="#input-data">Input Data</a></li>
-  <li><a href="#input-peta-pulau-jawa" id="toc-input-peta-pulau-jawa" class="nav-link" data-scroll-target="#input-peta-pulau-jawa">Input Peta Pulau Jawa</a></li>
-  <li><a href="#eksplorasi-data" id="toc-eksplorasi-data" class="nav-link" data-scroll-target="#eksplorasi-data">Eksplorasi Data</a></li>
-  <li><a href="#pemeriksaan-multikolinearitas" id="toc-pemeriksaan-multikolinearitas" class="nav-link" data-scroll-target="#pemeriksaan-multikolinearitas">Pemeriksaan Multikolinearitas</a></li>
-  <li><a href="#transformasi-peubah" id="toc-transformasi-peubah" class="nav-link" data-scroll-target="#transformasi-peubah">Transformasi Peubah</a></li>
-  <li><a href="#pengujian-efek-spasial" id="toc-pengujian-efek-spasial" class="nav-link" data-scroll-target="#pengujian-efek-spasial">Pengujian Efek Spasial</a></li>
-  <li><a href="#pemodelan-regresi-spasial" id="toc-pemodelan-regresi-spasial" class="nav-link" data-scroll-target="#pemodelan-regresi-spasial">Pemodelan Regresi Spasial</a></li>
-  <li><a href="#pemilihan-model-terbaik" id="toc-pemilihan-model-terbaik" class="nav-link" data-scroll-target="#pemilihan-model-terbaik">Pemilihan Model Terbaik</a></li>
-  <li><a href="#interpretasi-model" id="toc-interpretasi-model" class="nav-link" data-scroll-target="#interpretasi-model">Interpretasi Model</a></li>
+<li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package"><span class="header-section-number">1.4.1</span> Package</a></li>
+  <li><a href="#input-data" id="toc-input-data" class="nav-link" data-scroll-target="#input-data"><span class="header-section-number">1.4.2</span> Input Data</a></li>
+  <li><a href="#input-peta-pulau-jawa" id="toc-input-peta-pulau-jawa" class="nav-link" data-scroll-target="#input-peta-pulau-jawa"><span class="header-section-number">1.4.3</span> Input Peta Pulau Jawa</a></li>
+  <li><a href="#eksplorasi-data" id="toc-eksplorasi-data" class="nav-link" data-scroll-target="#eksplorasi-data"><span class="header-section-number">1.4.4</span> Eksplorasi Data</a></li>
+  <li><a href="#pemeriksaan-multikolinearitas" id="toc-pemeriksaan-multikolinearitas" class="nav-link" data-scroll-target="#pemeriksaan-multikolinearitas"><span class="header-section-number">1.4.5</span> Pemeriksaan Multikolinearitas</a></li>
+  <li><a href="#transformasi-peubah" id="toc-transformasi-peubah" class="nav-link" data-scroll-target="#transformasi-peubah"><span class="header-section-number">1.4.6</span> Transformasi Peubah</a></li>
+  <li><a href="#pengujian-efek-spasial" id="toc-pengujian-efek-spasial" class="nav-link" data-scroll-target="#pengujian-efek-spasial"><span class="header-section-number">1.4.7</span> Pengujian Efek Spasial</a></li>
+  <li><a href="#pemodelan-regresi-spasial" id="toc-pemodelan-regresi-spasial" class="nav-link" data-scroll-target="#pemodelan-regresi-spasial"><span class="header-section-number">1.4.8</span> Pemodelan Regresi Spasial</a></li>
+  <li><a href="#pemilihan-model-terbaik" id="toc-pemilihan-model-terbaik" class="nav-link" data-scroll-target="#pemilihan-model-terbaik"><span class="header-section-number">1.4.9</span> Pemilihan Model Terbaik</a></li>
+  <li><a href="#interpretasi-model" id="toc-interpretasi-model" class="nav-link" data-scroll-target="#interpretasi-model"><span class="header-section-number">1.4.10</span> Interpretasi Model</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -533,7 +532,8 @@ Tabel&nbsp;1.1: Peubah yang Digunakan
 </ol></section><section id="tahapan-analisis-r" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="tahapan-analisis-r">
 <span class="header-section-number">1.4</span> Tahapan Analisis R</h2>
 <p>Tahap awal dalam pemodelan menggunakan R Studio adalah melakukan input data dan install package sesuai kebutuhan dalam analisis. Package yang perlu diinstall adalah sebagai berikut:</p>
-<section id="package" class="level3"><h3 class="anchored" data-anchor-id="package">Package</h3>
+<section id="package" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="package">
+<span class="header-section-number">1.4.1</span> Package</h3>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span></span>
@@ -551,7 +551,8 @@ Tabel&nbsp;1.1: Peubah yang Digunakan
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="input-data" class="level3"><h3 class="anchored" data-anchor-id="input-data">Input Data</h3>
+</section><section id="input-data" class="level3" data-number="1.4.2"><h3 data-number="1.4.2" class="anchored" data-anchor-id="input-data">
+<span class="header-section-number">1.4.2</span> Input Data</h3>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Data</span> <span class="op">&lt;-</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/produksi_sampah_jabar_2021.xlsx"</span><span class="op">)</span></span>
 <span><span class="va">Y</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">Data</span><span class="op">[</span>,<span class="fl">7</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
@@ -568,7 +569,8 @@ Tabel&nbsp;1.1: Peubah yang Digunakan
 <span><span class="va">Y2</span> <span class="op">&lt;-</span> <span class="va">Y</span><span class="op">/</span><span class="va">X</span></span>
 <span><span class="va">Data</span><span class="op">$</span><span class="va">produksi_sampah_per_kepadatan</span><span class="op">&lt;-</span><span class="va">Y2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="input-peta-pulau-jawa" class="level3"><h3 class="anchored" data-anchor-id="input-peta-pulau-jawa">Input Peta Pulau Jawa</h3>
+</section><section id="input-peta-pulau-jawa" class="level3" data-number="1.4.3"><h3 data-number="1.4.3" class="anchored" data-anchor-id="input-peta-pulau-jawa">
+<span class="header-section-number">1.4.3</span> Input Peta Pulau Jawa</h3>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Spherical geometry (s2) switched off</span></span>
@@ -606,7 +608,8 @@ Tabel&nbsp;1.1: Peubah yang Digunakan
 <span><span class="va">petajabar</span><span class="op">$</span><span class="va">daerah</span> <span class="op">&lt;-</span> <span class="va">Data</span><span class="op">$</span><span class="va">nama_kabupaten_kota</span></span>
 <span><span class="va">petajabar</span><span class="op">$</span><span class="va">prod_sampah</span> <span class="op">&lt;-</span> <span class="va">Data</span><span class="op">$</span><span class="va">produksi_sampah_per_kepadatan</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="eksplorasi-data" class="level3"><h3 class="anchored" data-anchor-id="eksplorasi-data">Eksplorasi Data</h3>
+</section><section id="eksplorasi-data" class="level3" data-number="1.4.4"><h3 data-number="1.4.4" class="anchored" data-anchor-id="eksplorasi-data">
+<span class="header-section-number">1.4.4</span> Eksplorasi Data</h3>
 <p>Peta sebaran produksi sampah per kepadatan penduduk (<a href="#fig-plot-sampah" class="quarto-xref">Gambar&nbsp;<span>1.1</span></a>) dapat dihasilkan dengan syntax berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Peta Produksi Sampah per Kepadatan Penduduk</span></span>
@@ -715,7 +718,8 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <span><span class="co">#&gt; Rataan           176</span></span>
 <span><span class="co">#&gt; Standar Deviasi  295</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="pemeriksaan-multikolinearitas" class="level3"><h3 class="anchored" data-anchor-id="pemeriksaan-multikolinearitas">Pemeriksaan Multikolinearitas</h3>
+</section><section id="pemeriksaan-multikolinearitas" class="level3" data-number="1.4.5"><h3 data-number="1.4.5" class="anchored" data-anchor-id="pemeriksaan-multikolinearitas">
+<span class="header-section-number">1.4.5</span> Pemeriksaan Multikolinearitas</h3>
 <p>Pemeriksaan multikolinearitas menggunakan syntax sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">reglin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Y2</span><span class="op">)</span><span class="op">~</span><span class="va">X1</span><span class="op">+</span><span class="va">X2</span><span class="op">+</span><span class="va">X3</span><span class="op">+</span><span class="va">X4</span><span class="op">+</span><span class="va">X5</span><span class="op">+</span><span class="va">X6</span><span class="op">+</span><span class="va">X7</span><span class="op">+</span><span class="va">X8</span><span class="op">)</span></span>
@@ -731,7 +735,8 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <span><span class="co">#&gt; X8 2.75</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Berdasarkan output di atas, terlihat bahwa nilai VIF dari peubah X3 lebih dari lima sehingga peubah X3 tidak akan disertakan dalam model.</p>
-</section><section id="transformasi-peubah" class="level3"><h3 class="anchored" data-anchor-id="transformasi-peubah">Transformasi Peubah</h3>
+</section><section id="transformasi-peubah" class="level3" data-number="1.4.6"><h3 data-number="1.4.6" class="anchored" data-anchor-id="transformasi-peubah">
+<span class="header-section-number">1.4.6</span> Transformasi Peubah</h3>
 <p>Berdasarkan hasil eksplorasi data, diketahui bahwa peubah respon menjulur ke kanan. Selain itu, peubah penjelas X1 dan X5 memiliki nilai standar deviasi yang tinggi. Hal tersebut mengindikasikan bahwa perlu dilakukan penanganan berupa transformasi pada peubah respon dan peubah penjelas. Transformasi logaritma natural merupakan transformasi yang umum dilakukan untuk peubah respon yang menjulur ke kanan (Gujarati dan Porter 2009). Penerapan transformasi pada peubah dilakukan menggunakan syntax berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Transformasi peubah respon</span></span>
@@ -757,13 +762,10 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 </div>
 </div>
 <p>Berdasarkan gambar di atas, dapat dilihat bahwa nilai 0 berada pada selang nilai λ dari peubah respon X1 dan X5, sehingga transformasi yang akan digunakan adalah transformasi logaritma natural.</p>
-</section><section id="pengujian-efek-spasial" class="level3"><h3 class="anchored" data-anchor-id="pengujian-efek-spasial">Pengujian Efek Spasial</h3>
-<ol type="a">
-<li>
-<p>Uji Breusch-Pagan</p>
+</section><section id="pengujian-efek-spasial" class="level3" data-number="1.4.7"><h3 data-number="1.4.7" class="anchored" data-anchor-id="pengujian-efek-spasial">
+<span class="header-section-number">1.4.7</span> Pengujian Efek Spasial</h3>
+<section id="uji-breusch-pagan" class="level4"><h4 class="anchored" data-anchor-id="uji-breusch-pagan">Uji Breusch-Pagan</h4>
 <p>Uji Breusch-Pagan dilakukan menggunakan syntax berikut:</p>
-</li>
-</ol>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">reglin2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Y2</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">X1</span><span class="op">)</span><span class="op">+</span><span class="va">X2</span><span class="op">+</span><span class="va">X3</span><span class="op">+</span><span class="va">X4</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">X5</span><span class="op">)</span><span class="op">+</span><span class="va">X6</span><span class="op">+</span><span class="va">X7</span><span class="op">+</span><span class="va">X8</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/lmtest/man/bptest.html">bptest</a></span><span class="op">(</span><span class="va">reglin2</span><span class="op">)</span></span>
@@ -774,12 +776,8 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <span><span class="co">#&gt; BP = 2, df = 8, p-value = 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Hasil uji menunjukkan nilai-p &gt; 0.05, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial</p>
-<ol start="2" type="a">
-<li>
-<p>Uji LM dan indeks Moran</p>
-<p>untuk melakukan uji LM dan indeks Moran, perlu ditentukan terlebih dahulu matriks pembobot yang akan digunakan. Pada penelitian ini akan menggunakan matriks bobot ketetanggaan Queen, ketetanggaan rook, jarak eksponensial negatif, dan invers jarak. Berikut merupakan syntax yang digunakan untuk membuat matriks bobot:</p>
-</li>
-</ol>
+</section><section id="uji-lm-dan-indeks-moran" class="level4"><h4 class="anchored" data-anchor-id="uji-lm-dan-indeks-moran">Uji LM dan indeks Moran</h4>
+<p>Untuk melakukan uji LM dan indeks Moran, perlu ditentukan terlebih dahulu matriks pembobot yang akan digunakan. Pada penelitian ini akan menggunakan matriks bobot ketetanggaan Queen, ketetanggaan rook, jarak eksponensial negatif, dan invers jarak. Berikut merupakan syntax yang digunakan untuk membuat matriks bobot:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#### Matriks queen ####</span></span>
 <span><span class="va">queen.nb</span><span class="op">=</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">petajabar</span>, queen <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co">#Pembobot queen</span></span>
@@ -1006,7 +1004,8 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <span><span class="co">#&gt; X8                  0.854                  0.000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Berdasarkan hasil uji indeks Moran, dapat dilihat bahwa peubah X1, X2, X4, dan X8 memiliki dependensi spasial. Pada penelitian ini akan digunakan matriks pembobot jarak eksponensial negatif (s = 1) sebagai matriks pembobot bagi peubah X1, X2, X4, dan X8. &nbsp;<br></p>
-</section><section id="pemodelan-regresi-spasial" class="level3"><h3 class="anchored" data-anchor-id="pemodelan-regresi-spasial">Pemodelan Regresi Spasial</h3>
+</section></section><section id="pemodelan-regresi-spasial" class="level3" data-number="1.4.8"><h3 data-number="1.4.8" class="anchored" data-anchor-id="pemodelan-regresi-spasial">
+<span class="header-section-number">1.4.8</span> Pemodelan Regresi Spasial</h3>
 <p>Model yang akan dibangun adalah model SAR, model SLX, dan model SDM dengan syntax berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">WX1</span> <span class="op">&lt;-</span> <span class="va">mat.eksp1</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">X1</span><span class="op">)</span></span>
@@ -1126,7 +1125,8 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <span><span class="co">#&gt; test value: 0.681, p-value: 0.40907</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Hasil di atas menunjukkan peubah penjelas yang berpengaruh signifikan terhadap total produksi sampah per kepadatan penduduk di Jawa Barat tahun 2021 yaitu X5(jumlah UMKM), X6(jumlah tempat rekreasi dan pariwisata), dan X7(jumlah pasar rakyat). Koefisien lag spasial (ρ) juga berpengaruh terhadap model SDM pada taraf nyata α = 0,05. Hanya koefisien lag spasial peubah penjelas X4 yang berpengaruh nyata terhadap model SDM pada taraf nyata α = 0,05. Hal tersebut mengindikasikan bahwa penambahan lag spasial peubah penjelas dalam model tidak berpengaruh terhadap model.</p>
-</section><section id="pemilihan-model-terbaik" class="level3"><h3 class="anchored" data-anchor-id="pemilihan-model-terbaik">Pemilihan Model Terbaik</h3>
+</section><section id="pemilihan-model-terbaik" class="level3" data-number="1.4.9"><h3 data-number="1.4.9" class="anchored" data-anchor-id="pemilihan-model-terbaik">
+<span class="header-section-number">1.4.9</span> Pemilihan Model Terbaik</h3>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pseudo_sar</span> <span class="op">&lt;-</span> <span class="fl">0.7934</span></span>
 <span><span class="va">pseudo_slx</span> <span class="op">&lt;-</span> <span class="fl">0.6074</span></span>
@@ -1161,7 +1161,8 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <span><span class="co">#&gt; [2,] "Heterogenitas" "2.526"       "0.925"</span></span>
 <span><span class="co">#&gt; [3,] "Autokorelasi"  "0.003"       "0.955"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="interpretasi-model" class="level3"><h3 class="anchored" data-anchor-id="interpretasi-model">Interpretasi Model</h3>
+</section><section id="interpretasi-model" class="level3" data-number="1.4.10"><h3 data-number="1.4.10" class="anchored" data-anchor-id="interpretasi-model">
+<span class="header-section-number">1.4.10</span> Interpretasi Model</h3>
 <p>Interpretasi pada koefisien regresi spasial dilakukan dengan melihat nilai efek langsung (direct effect), efek tidak langsung (indirect effect), dan efek total (total effect). Efek langsung merupakan nilai harapan perubahan rataan semua amatan untuk peubah respon di suatu wilayah karena peningkatan satu unit untuk peubah penjelas tertentu di wilayah tersebut. Efek tidak langsung merupakan perubahan pada peubah respon di suatu wilayah yang timbul dari kenaikan satu unit pada peubah penjelas di wilayah lain. Efek langsung dan tidak langsung dihitung menggunakan syntax berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#### Spill-Over Effect ####</span></span>
@@ -1527,7 +1528,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/statistika-spasial\.github\.io\/book");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -2179,9 +2180,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-330"><a href="#cb23-330" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-331"><a href="#cb23-331" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pengujian Efek Spasial</span></span>
 <span id="cb23-332"><a href="#cb23-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-333"><a href="#cb23-333" aria-hidden="true" tabindex="-1"></a>a.  Uji Breusch-Pagan</span>
+<span id="cb23-333"><a href="#cb23-333" aria-hidden="true" tabindex="-1"></a><span class="fu">####    Uji Breusch-Pagan</span></span>
 <span id="cb23-334"><a href="#cb23-334" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-335"><a href="#cb23-335" aria-hidden="true" tabindex="-1"></a><span class="in">    Uji Breusch-Pagan dilakukan menggunakan syntax berikut:</span></span>
+<span id="cb23-335"><a href="#cb23-335" aria-hidden="true" tabindex="-1"></a>Uji Breusch-Pagan dilakukan menggunakan syntax berikut:</span>
 <span id="cb23-336"><a href="#cb23-336" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-339"><a href="#cb23-339" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb23-340"><a href="#cb23-340" aria-hidden="true" tabindex="-1"></a>reglin2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(Y2)<span class="sc">~</span><span class="fu">log</span>(X1)<span class="sc">+</span>X2<span class="sc">+</span>X3<span class="sc">+</span>X4<span class="sc">+</span><span class="fu">log</span>(X5)<span class="sc">+</span>X6<span class="sc">+</span>X7<span class="sc">+</span>X8)</span>
@@ -2191,9 +2192,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-344"><a href="#cb23-344" aria-hidden="true" tabindex="-1"></a>Hasil uji menunjukkan nilai-p &gt; 0.05, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial </span>
 <span id="cb23-345"><a href="#cb23-345" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-346"><a href="#cb23-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-347"><a href="#cb23-347" aria-hidden="true" tabindex="-1"></a>b.  Uji LM dan indeks Moran</span>
+<span id="cb23-347"><a href="#cb23-347" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Uji LM dan indeks Moran</span></span>
 <span id="cb23-348"><a href="#cb23-348" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-349"><a href="#cb23-349" aria-hidden="true" tabindex="-1"></a><span class="in">    untuk melakukan uji LM dan indeks Moran, perlu ditentukan terlebih dahulu matriks pembobot yang akan digunakan. Pada penelitian ini akan menggunakan matriks bobot ketetanggaan Queen, ketetanggaan rook, jarak eksponensial negatif, dan invers jarak. Berikut merupakan syntax yang digunakan untuk membuat matriks bobot:</span></span>
+<span id="cb23-349"><a href="#cb23-349" aria-hidden="true" tabindex="-1"></a>Untuk melakukan uji LM dan indeks Moran, perlu ditentukan terlebih dahulu matriks pembobot yang akan digunakan. Pada penelitian ini akan menggunakan matriks bobot ketetanggaan Queen, ketetanggaan rook, jarak eksponensial negatif, dan invers jarak. Berikut merupakan syntax yang digunakan untuk membuat matriks bobot:</span>
 <span id="cb23-350"><a href="#cb23-350" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-353"><a href="#cb23-353" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb23-354"><a href="#cb23-354" aria-hidden="true" tabindex="-1"></a><span class="do">#### Matriks queen ####</span></span>
