@@ -447,13 +447,46 @@ d(\theta) = \lVert y - X\beta + EV(\theta)u \rVert^2 + \lVert u \rVert^2
 <p>dengan <span class="math inline">\(V(\theta)^{-2}\)</span> adalah matriks diagonal berukuran <span class="math inline">\(L \times L\)</span> yang elemen ke-<span class="math inline">\(l\)</span> adalah <span class="math inline">\(\left(\frac{\sigma^2}{\sigma_{\gamma}^2}\right) \lambda_l(\alpha)^{-1}\)</span>.</p>
 </section></section><section id="data" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="data">
 <span class="header-section-number">10.2</span> Data</h2>
-<p>Data yang digunakan pada penelitian ini adalah data empiris Stunting per Kabupaten/Kota di Indonesia tahun 2021 dari Badan Pusat Statistika yang terdiri dari 513 Kabupaten/Kota. Data tersebut terdiri dari peubah respon dan peubah penjelas. Peubah-peubah tersebut sebagai berikut:</p>
-<p><span class="math display">\[Y = \text{Stunting}\]</span></p>
-<p><span class="math display">\[X_1 = \text{Tingkat Kemiskinan}\]</span></p>
-<p><span class="math display">\[X_2 = \text{Akses Layanan Kesehatan}\]</span></p>
-<p><span class="math display">\[X_3 = \text{Gizi Ibu Hamil}\]</span></p>
-<p><span class="math display">\[X_4 = \text{Akses Sanitasi}\]</span></p>
-<p><span class="math display">\[X_5 = \text{Akses Air Bersih}\]</span></p>
+<p>Data yang digunakan pada penelitian ini adalah data empiris Stunting per Kabupaten/Kota di Indonesia tahun 2021 dari Badan Pusat Statistika yang terdiri dari 513 Kabupaten/Kota. Data tersebut terdiri dari peubah respon dan peubah penjelas. Peubah-peubah tersebut dapat dilihat pada <a href="#tbl-var-dep" class="quarto-xref">Tabel&nbsp;<span>10.1</span></a>:</p>
+<div id="tbl-var-dep" class="striped hover quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-var-dep-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabel&nbsp;10.1: Keterangan Peubah
+</figcaption><div aria-describedby="tbl-var-dep-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover table">
+<thead><tr class="header">
+<th>Kode</th>
+<th>Peubah</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Y\)</span></td>
+<td>Stunting</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X_1\)</span></td>
+<td>Tingkat Kemiskinan</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(X_2\)</span></td>
+<td>Akses Layanan Kesehatan</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X_3\)</span></td>
+<td>Gizi Ibu Hamil</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(X_4\)</span></td>
+<td>Akses Sanitasi</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X_5\)</span></td>
+<td>Akses Air Bersih</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 </section><section id="tahapan-analisis-data" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="tahapan-analisis-data">
 <span class="header-section-number">10.3</span> Tahapan Analisis Data</h2>
 <p>Penelitian ini dilakukan dengan langkah-langkah sebagai berikut:</p>
@@ -1425,178 +1458,177 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
 <span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>Data yang digunakan pada penelitian ini adalah data empiris Stunting per Kabupaten/Kota di Indonesia tahun 2021 dari Badan Pusat Statistika yang terdiri dari 513 Kabupaten/Kota. Data tersebut terdiri dari peubah respon dan peubah penjelas. Peubah-peubah tersebut sebagai berikut: </span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>Data yang digunakan pada penelitian ini adalah data empiris Stunting per Kabupaten/Kota di Indonesia tahun 2021 dari Badan Pusat Statistika yang terdiri dari 513 Kabupaten/Kota. Data tersebut terdiri dari peubah respon dan peubah penjelas. Peubah-peubah tersebut dapat dilihat pada @tbl-var-dep: </span>
 <span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>$$Y = \text{Stunting}$$</span>
-<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>$$X_1 = \text{Tingkat Kemiskinan}$$</span>
-<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>$$X_2 = \text{Akses Layanan Kesehatan}$$</span>
-<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>$$X_3 = \text{Gizi Ibu Hamil}$$</span>
-<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>$$X_4 = \text{Akses Sanitasi}$$</span>
-<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>$$X_5 = \text{Akses Air Bersih}$$</span>
-<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tahapan Analisis Data</span></span>
-<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>Penelitian ini dilakukan dengan langkah-langkah sebagai berikut:</span>
-<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Melakukan analisis eksplorasi data pada data stunting di Indonesia tahun 2021 untuk melihat gambaran umum setiap peubah yang diamati.</span>
-<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Melakukan tahap pra-pemrosesan data dengan mengidentifikasi pencilan pada peubah respon dan menanganinya.</span>
-<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Memodelkan data stunting menggunakan metode Regresi Linier, memeriksa asumsinya, dan mengevaluasi model.</span>
-<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Memodelkan data stunting menggunakan metode Eigenvector Spatial Filtering (ESF), dengan rincian tahapan sebagai berikut:</span>
-<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    a. Menguji data stunting dengan indeks Moran dan Lagrange-Multiplier</span>
-<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    b. Menghitung bobot spasial menggunakan pendekatan matriks invers jarak dan eksponensial.</span>
-<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a>    c. Memodelkan data stunting menggunakan metode ESF efek tetap (fixed effects) untuk setiap unit spasial.</span>
-<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a>    d. Memodelkan data stunting menggunakan metode ESF efek acak (random effect) dengan asumsi peubah acak berasal dari sebaran normal.</span>
-<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a>    e. Memodelkan data stunting menggunakan metode ESF efek acak dengan pendekatan Varying Coefficient (Random Effect-ESF VC).</span>
-<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a>    f. Melakukan uji hipotesis untuk efek peubah penjelas terhadap peubah respon.</span>
-<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a>    g. Mengevaluasi model.</span>
-<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Membandingkan kinerja model Regresi Linier, Fixed Effect-ESF, Random Effect-ESF, dan Random Effect-ESF VC menggunakan nilai Koefisien Determinasi (R-Sqrd) dan Akaike Information Criterion (AIC).</span>
-<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-160"><a href="#cb12-160" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Menguji kelayakan dari model terbaik.</span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>| Kode   | Peubah                                          |</span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>|--------|-------------------------------------------------|</span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>| $Y$    | Stunting                  |</span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>| $X_1$  | Tingkat Kemiskinan                                   |</span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>| $X_2$  | Akses Layanan Kesehatan      |</span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>| $X_3$  | Gizi Ibu Hamil                           |</span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>| $X_4$  | Akses Sanitasi                     |</span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>| $X_5$  | Akses Air Bersih        |</span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>: Keterangan Peubah {#tbl-var-dep .striped .hover}</span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tahapan Analisis Data</span></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>Penelitian ini dilakukan dengan langkah-langkah sebagai berikut:</span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Melakukan analisis eksplorasi data pada data stunting di Indonesia tahun 2021 untuk melihat gambaran umum setiap peubah yang diamati.</span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Melakukan tahap pra-pemrosesan data dengan mengidentifikasi pencilan pada peubah respon dan menanganinya.</span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Memodelkan data stunting menggunakan metode Regresi Linier, memeriksa asumsinya, dan mengevaluasi model.</span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Memodelkan data stunting menggunakan metode Eigenvector Spatial Filtering (ESF), dengan rincian tahapan sebagai berikut:</span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    a. Menguji data stunting dengan indeks Moran dan Lagrange-Multiplier</span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    b. Menghitung bobot spasial menggunakan pendekatan matriks invers jarak dan eksponensial.</span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    c. Memodelkan data stunting menggunakan metode ESF efek tetap (fixed effects) untuk setiap unit spasial.</span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a>    d. Memodelkan data stunting menggunakan metode ESF efek acak (random effect) dengan asumsi peubah acak berasal dari sebaran normal.</span>
+<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a>    e. Memodelkan data stunting menggunakan metode ESF efek acak dengan pendekatan Varying Coefficient (Random Effect-ESF VC).</span>
+<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a>    f. Melakukan uji hipotesis untuk efek peubah penjelas terhadap peubah respon.</span>
+<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a>    g. Mengevaluasi model.</span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Membandingkan kinerja model Regresi Linier, Fixed Effect-ESF, Random Effect-ESF, dan Random Effect-ESF VC menggunakan nilai Koefisien Determinasi (R-Sqrd) dan Akaike Information Criterion (AIC).</span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Menguji kelayakan dari model terbaik.</span>
+<span id="cb12-160"><a href="#cb12-160" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-161"><a href="#cb12-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tahapan Analisis Data dengan R</span></span>
-<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a><span class="fu">### Package</span></span>
-<span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{r cache=FALSE, message=FALSE, warning=FALSE}</span></span>
-<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a><span class="in">library(spdep) # Untuk pemodelan dependensi spasial</span></span>
-<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a><span class="in">library(spatialreg) # Untuk pemodelan dependensi spasial</span></span>
-<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a><span class="in">library(stats) # Untuk operasi matematis</span></span>
-<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a><span class="in">library(car) # Untuk menghitung VIF</span></span>
-<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a><span class="in">library(nortest) # Untuk uji kenormalan</span></span>
-<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a><span class="in">library(sf) # Untuk menginput peta</span></span>
-<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2) # Untuk visualisasi data</span></span>
-<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyr) # Untuk mengolah dataframe</span></span>
-<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a><span class="in">library(dplyr) # Untuk mengolah dataframe</span></span>
-<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse) # Struktur matriks</span></span>
-<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a><span class="in">library(lmtest) # Uji model linier</span></span>
-<span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a><span class="in">library(spmoran) # ESF</span></span>
-<span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a><span class="in">library(ape)</span></span>
-<span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a><span class="in">library(fitdistrplus)</span></span>
-<span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a><span class="in">library(readxl)</span></span>
-<span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-185"><a href="#cb12-185" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data dan Peta</span></span>
-<span id="cb12-186"><a href="#cb12-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-189"><a href="#cb12-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a><span class="co">#Input Data</span></span>
-<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a>stunting <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/data_stunting_indo.xlsx"</span>)</span>
-<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a><span class="co">#Import peta SHP</span></span>
-<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a>peta <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/shp/BATAS KABUPATEN KOTA DESEMBER 2019 DUKCAPIL.shp"</span>)</span>
-<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a><span class="fu">### Modifikasi Data</span></span>
-<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a><span class="co">#Menggabungkan Data ke file SHP</span></span>
-<span id="cb12-203"><a href="#cb12-203" aria-hidden="true" tabindex="-1"></a><span class="co">#df = cbind(stunting,KAB_KOTA=shp.jabar$KAB_KOTA)</span></span>
-<span id="cb12-204"><a href="#cb12-204" aria-hidden="true" tabindex="-1"></a>dfix <span class="ot">=</span> <span class="fu">left_join</span>(peta, stunting, <span class="at">by =</span> <span class="st">"KAB_KOTA"</span>)</span>
-<span id="cb12-205"><a href="#cb12-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-206"><a href="#cb12-206" aria-hidden="true" tabindex="-1"></a>dfix <span class="ot">=</span> <span class="fu">na.omit</span>(dfix)</span>
-<span id="cb12-207"><a href="#cb12-207" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
-<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a>longlat <span class="ot">=</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(dfix<span class="sc">$</span>geometry))</span>
-<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-210"><a href="#cb12-210" aria-hidden="true" tabindex="-1"></a><span class="co">#library("writexl")</span></span>
-<span id="cb12-211"><a href="#cb12-211" aria-hidden="true" tabindex="-1"></a><span class="co">#write_xlsx(dfix,"datacek.xlsx")</span></span>
-<span id="cb12-212"><a href="#cb12-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-213"><a href="#cb12-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-214"><a href="#cb12-214" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plot Spasial</span></span>
-<span id="cb12-215"><a href="#cb12-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-218"><a href="#cb12-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-219"><a href="#cb12-219" aria-hidden="true" tabindex="-1"></a><span class="co">#Pemetaan Kasus Stunting</span></span>
-<span id="cb12-220"><a href="#cb12-220" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dfix) <span class="sc">+</span></span>
-<span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Y)) <span class="sc">+</span></span>
-<span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(longlat[, <span class="dv">1</span>], longlat[, <span class="dv">2</span>], <span class="at">label =</span> KAB_KOTA), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Stunting di Indonesia"</span>) <span class="sc">+</span></span>
-<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Stunting"</span>)</span>
-<span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-228"><a href="#cb12-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-229"><a href="#cb12-229" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bobot Spasial</span></span>
-<span id="cb12-230"><a href="#cb12-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-233"><a href="#cb12-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-234"><a href="#cb12-234" aria-hidden="true" tabindex="-1"></a><span class="co">#Bobot Spasial</span></span>
-<span id="cb12-235"><a href="#cb12-235" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(longlat, <span class="at">method =</span> <span class="st">"euclidean"</span>))</span>
-<span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a><span class="co">#inverse weight matrix</span></span>
-<span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> D</span>
-<span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a><span class="co"># inverse weight matrix - row-normalized</span></span>
-<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(w) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a>rtot <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(w, <span class="at">na.rm =</span> T)</span>
-<span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a>w_std <span class="ot">&lt;-</span> w <span class="sc">/</span> rtot</span>
-<span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a>cekrowsum <span class="ot">=</span> <span class="fu">rowSums</span>(w_std, <span class="at">na.rm =</span> T)</span>
-<span id="cb12-243"><a href="#cb12-243" aria-hidden="true" tabindex="-1"></a>wmoran <span class="ot">=</span> <span class="fu">mat2listw</span>(w_std, <span class="at">style =</span> <span class="st">"W"</span>)</span>
-<span id="cb12-244"><a href="#cb12-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-245"><a href="#cb12-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-246"><a href="#cb12-246" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji Asumsi</span></span>
-<span id="cb12-247"><a href="#cb12-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-250"><a href="#cb12-250" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-251"><a href="#cb12-251" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Moran Indeks (Autokorelasi)</span></span>
-<span id="cb12-252"><a href="#cb12-252" aria-hidden="true" tabindex="-1"></a><span class="fu">moran.test</span>(dfix<span class="sc">$</span>Y, wmoran)</span>
-<span id="cb12-253"><a href="#cb12-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-254"><a href="#cb12-254" aria-hidden="true" tabindex="-1"></a><span class="co"># Uji Breusch-Pagan (Heteroskesdasitas)</span></span>
-<span id="cb12-255"><a href="#cb12-255" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> dfix))</span>
-<span id="cb12-256"><a href="#cb12-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-257"><a href="#cb12-257" aria-hidden="true" tabindex="-1"></a><span class="co">#LM Test (Model Spsial)</span></span>
-<span id="cb12-258"><a href="#cb12-258" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> dfix)</span>
-<span id="cb12-259"><a href="#cb12-259" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm.LMtests</span>(model, wmoran, <span class="at">test =</span> <span class="fu">c</span>(<span class="st">'LMerr'</span>, <span class="st">'LMlag'</span>, <span class="st">'RLMerr'</span>, <span class="st">'RLMlag'</span>))</span>
-<span id="cb12-260"><a href="#cb12-260" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(LM)</span>
-<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-262"><a href="#cb12-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fixed ESF</span></span>
-<span id="cb12-264"><a href="#cb12-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-267"><a href="#cb12-267" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-268"><a href="#cb12-268" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF Fixed</span></span>
-<span id="cb12-269"><a href="#cb12-269" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
-<span id="cb12-270"><a href="#cb12-270" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
-<span id="cb12-271"><a href="#cb12-271" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">cmat =</span> w)</span>
-<span id="cb12-272"><a href="#cb12-272" aria-hidden="true" tabindex="-1"></a>esf <span class="ot">&lt;-</span> <span class="fu">esf</span>(<span class="at">y =</span> Y, <span class="at">x =</span> X, <span class="at">meig =</span> meig)</span>
-<span id="cb12-273"><a href="#cb12-273" aria-hidden="true" tabindex="-1"></a>esf</span>
-<span id="cb12-274"><a href="#cb12-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-275"><a href="#cb12-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-276"><a href="#cb12-276" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Effect-ESF</span></span>
-<span id="cb12-277"><a href="#cb12-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-280"><a href="#cb12-280" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-281"><a href="#cb12-281" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF Random</span></span>
-<span id="cb12-282"><a href="#cb12-282" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
-<span id="cb12-283"><a href="#cb12-283" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
-<span id="cb12-284"><a href="#cb12-284" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">cmat =</span> w)</span>
-<span id="cb12-285"><a href="#cb12-285" aria-hidden="true" tabindex="-1"></a>resf <span class="ot">&lt;-</span> <span class="fu">resf</span>(<span class="at">y =</span> Y, <span class="at">x =</span> X, <span class="at">meig =</span> meig)</span>
-<span id="cb12-286"><a href="#cb12-286" aria-hidden="true" tabindex="-1"></a>resf</span>
-<span id="cb12-287"><a href="#cb12-287" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb12-288"><a href="#cb12-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-289"><a href="#cb12-289" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Effect ESF - VC</span></span>
-<span id="cb12-290"><a href="#cb12-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-293"><a href="#cb12-293" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-294"><a href="#cb12-294" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF VC</span></span>
-<span id="cb12-295"><a href="#cb12-295" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
-<span id="cb12-296"><a href="#cb12-296" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
-<span id="cb12-297"><a href="#cb12-297" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">coords =</span> longlat)</span>
-<span id="cb12-298"><a href="#cb12-298" aria-hidden="true" tabindex="-1"></a>resf_vc <span class="ot">&lt;-</span> <span class="fu">resf_vc</span>(<span class="at">y =</span> Y,</span>
-<span id="cb12-299"><a href="#cb12-299" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x =</span> X,</span>
-<span id="cb12-300"><a href="#cb12-300" aria-hidden="true" tabindex="-1"></a>                   <span class="at">meig =</span> meig,</span>
-<span id="cb12-301"><a href="#cb12-301" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x_sel =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb12-302"><a href="#cb12-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tahapan Analisis Data dengan R</span></span>
+<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a><span class="fu">### Package</span></span>
+<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{r cache=FALSE, message=FALSE, warning=FALSE}</span></span>
+<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a><span class="in">library(spdep) # Untuk pemodelan dependensi spasial</span></span>
+<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a><span class="in">library(spatialreg) # Untuk pemodelan dependensi spasial</span></span>
+<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a><span class="in">library(stats) # Untuk operasi matematis</span></span>
+<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a><span class="in">library(car) # Untuk menghitung VIF</span></span>
+<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a><span class="in">library(nortest) # Untuk uji kenormalan</span></span>
+<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a><span class="in">library(sf) # Untuk menginput peta</span></span>
+<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2) # Untuk visualisasi data</span></span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyr) # Untuk mengolah dataframe</span></span>
+<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a><span class="in">library(dplyr) # Untuk mengolah dataframe</span></span>
+<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse) # Struktur matriks</span></span>
+<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a><span class="in">library(lmtest) # Uji model linier</span></span>
+<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a><span class="in">library(spmoran) # ESF</span></span>
+<span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a><span class="in">library(ape)</span></span>
+<span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a><span class="in">library(fitdistrplus)</span></span>
+<span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a><span class="in">library(readxl)</span></span>
+<span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data dan Peta</span></span>
+<span id="cb12-185"><a href="#cb12-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-188"><a href="#cb12-188" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-189"><a href="#cb12-189" aria-hidden="true" tabindex="-1"></a><span class="co">#Input Data</span></span>
+<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a>stunting <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/data_stunting_indo.xlsx"</span>)</span>
+<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a><span class="co">#Import peta SHP</span></span>
+<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a>peta <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/shp/BATAS KABUPATEN KOTA DESEMBER 2019 DUKCAPIL.shp"</span>)</span>
+<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a><span class="fu">### Modifikasi Data</span></span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a><span class="co">#Menggabungkan Data ke file SHP</span></span>
+<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a><span class="co">#df = cbind(stunting,KAB_KOTA=shp.jabar$KAB_KOTA)</span></span>
+<span id="cb12-203"><a href="#cb12-203" aria-hidden="true" tabindex="-1"></a>dfix <span class="ot">=</span> <span class="fu">left_join</span>(peta, stunting, <span class="at">by =</span> <span class="st">"KAB_KOTA"</span>)</span>
+<span id="cb12-204"><a href="#cb12-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-205"><a href="#cb12-205" aria-hidden="true" tabindex="-1"></a>dfix <span class="ot">=</span> <span class="fu">na.omit</span>(dfix)</span>
+<span id="cb12-206"><a href="#cb12-206" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb12-207"><a href="#cb12-207" aria-hidden="true" tabindex="-1"></a>longlat <span class="ot">=</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(dfix<span class="sc">$</span>geometry))</span>
+<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a><span class="co">#library("writexl")</span></span>
+<span id="cb12-210"><a href="#cb12-210" aria-hidden="true" tabindex="-1"></a><span class="co">#write_xlsx(dfix,"datacek.xlsx")</span></span>
+<span id="cb12-211"><a href="#cb12-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-212"><a href="#cb12-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-213"><a href="#cb12-213" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plot Spasial</span></span>
+<span id="cb12-214"><a href="#cb12-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-217"><a href="#cb12-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-218"><a href="#cb12-218" aria-hidden="true" tabindex="-1"></a><span class="co">#Pemetaan Kasus Stunting</span></span>
+<span id="cb12-219"><a href="#cb12-219" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dfix) <span class="sc">+</span></span>
+<span id="cb12-220"><a href="#cb12-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Y)) <span class="sc">+</span></span>
+<span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(longlat[, <span class="dv">1</span>], longlat[, <span class="dv">2</span>], <span class="at">label =</span> KAB_KOTA), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Stunting di Indonesia"</span>) <span class="sc">+</span></span>
+<span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Stunting"</span>)</span>
+<span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-228"><a href="#cb12-228" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bobot Spasial</span></span>
+<span id="cb12-229"><a href="#cb12-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-232"><a href="#cb12-232" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-233"><a href="#cb12-233" aria-hidden="true" tabindex="-1"></a><span class="co">#Bobot Spasial</span></span>
+<span id="cb12-234"><a href="#cb12-234" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(longlat, <span class="at">method =</span> <span class="st">"euclidean"</span>))</span>
+<span id="cb12-235"><a href="#cb12-235" aria-hidden="true" tabindex="-1"></a><span class="co">#inverse weight matrix</span></span>
+<span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> D</span>
+<span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a><span class="co"># inverse weight matrix - row-normalized</span></span>
+<span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(w) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a>rtot <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(w, <span class="at">na.rm =</span> T)</span>
+<span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a>w_std <span class="ot">&lt;-</span> w <span class="sc">/</span> rtot</span>
+<span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a>cekrowsum <span class="ot">=</span> <span class="fu">rowSums</span>(w_std, <span class="at">na.rm =</span> T)</span>
+<span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a>wmoran <span class="ot">=</span> <span class="fu">mat2listw</span>(w_std, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb12-243"><a href="#cb12-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-244"><a href="#cb12-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-245"><a href="#cb12-245" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uji Asumsi</span></span>
+<span id="cb12-246"><a href="#cb12-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-249"><a href="#cb12-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-250"><a href="#cb12-250" aria-hidden="true" tabindex="-1"></a><span class="co">#Uji Moran Indeks (Autokorelasi)</span></span>
+<span id="cb12-251"><a href="#cb12-251" aria-hidden="true" tabindex="-1"></a><span class="fu">moran.test</span>(dfix<span class="sc">$</span>Y, wmoran)</span>
+<span id="cb12-252"><a href="#cb12-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-253"><a href="#cb12-253" aria-hidden="true" tabindex="-1"></a><span class="co"># Uji Breusch-Pagan (Heteroskesdasitas)</span></span>
+<span id="cb12-254"><a href="#cb12-254" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> dfix))</span>
+<span id="cb12-255"><a href="#cb12-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-256"><a href="#cb12-256" aria-hidden="true" tabindex="-1"></a><span class="co">#LM Test (Model Spsial)</span></span>
+<span id="cb12-257"><a href="#cb12-257" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> X3 <span class="sc">+</span> X4 <span class="sc">+</span> X5, <span class="at">data =</span> dfix)</span>
+<span id="cb12-258"><a href="#cb12-258" aria-hidden="true" tabindex="-1"></a>LM <span class="ot">&lt;-</span> <span class="fu">lm.LMtests</span>(model, wmoran, <span class="at">test =</span> <span class="fu">c</span>(<span class="st">'LMerr'</span>, <span class="st">'LMlag'</span>, <span class="st">'RLMerr'</span>, <span class="st">'RLMlag'</span>))</span>
+<span id="cb12-259"><a href="#cb12-259" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(LM)</span>
+<span id="cb12-260"><a href="#cb12-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-262"><a href="#cb12-262" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fixed ESF</span></span>
+<span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-266"><a href="#cb12-266" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-267"><a href="#cb12-267" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF Fixed</span></span>
+<span id="cb12-268"><a href="#cb12-268" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
+<span id="cb12-269"><a href="#cb12-269" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
+<span id="cb12-270"><a href="#cb12-270" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">cmat =</span> w)</span>
+<span id="cb12-271"><a href="#cb12-271" aria-hidden="true" tabindex="-1"></a>esf <span class="ot">&lt;-</span> <span class="fu">esf</span>(<span class="at">y =</span> Y, <span class="at">x =</span> X, <span class="at">meig =</span> meig)</span>
+<span id="cb12-272"><a href="#cb12-272" aria-hidden="true" tabindex="-1"></a>esf</span>
+<span id="cb12-273"><a href="#cb12-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-274"><a href="#cb12-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-275"><a href="#cb12-275" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Effect-ESF</span></span>
+<span id="cb12-276"><a href="#cb12-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-279"><a href="#cb12-279" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-280"><a href="#cb12-280" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF Random</span></span>
+<span id="cb12-281"><a href="#cb12-281" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
+<span id="cb12-282"><a href="#cb12-282" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
+<span id="cb12-283"><a href="#cb12-283" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">cmat =</span> w)</span>
+<span id="cb12-284"><a href="#cb12-284" aria-hidden="true" tabindex="-1"></a>resf <span class="ot">&lt;-</span> <span class="fu">resf</span>(<span class="at">y =</span> Y, <span class="at">x =</span> X, <span class="at">meig =</span> meig)</span>
+<span id="cb12-285"><a href="#cb12-285" aria-hidden="true" tabindex="-1"></a>resf</span>
+<span id="cb12-286"><a href="#cb12-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-287"><a href="#cb12-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-288"><a href="#cb12-288" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Effect ESF - VC</span></span>
+<span id="cb12-289"><a href="#cb12-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-292"><a href="#cb12-292" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-293"><a href="#cb12-293" aria-hidden="true" tabindex="-1"></a><span class="co">#ESF VC</span></span>
+<span id="cb12-294"><a href="#cb12-294" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> dfix<span class="sc">$</span>Y</span>
+<span id="cb12-295"><a href="#cb12-295" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(dfix<span class="sc">$</span>X1, dfix<span class="sc">$</span>X2, dfix<span class="sc">$</span>X3, dfix<span class="sc">$</span>X4, dfix<span class="sc">$</span>X5), <span class="fu">nrow</span>(dfix), <span class="dv">5</span>)</span>
+<span id="cb12-296"><a href="#cb12-296" aria-hidden="true" tabindex="-1"></a>meig <span class="ot">&lt;-</span> <span class="fu">meigen</span>(<span class="at">coords =</span> longlat)</span>
+<span id="cb12-297"><a href="#cb12-297" aria-hidden="true" tabindex="-1"></a>resf_vc <span class="ot">&lt;-</span> <span class="fu">resf_vc</span>(<span class="at">y =</span> Y,</span>
+<span id="cb12-298"><a href="#cb12-298" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x =</span> X,</span>
+<span id="cb12-299"><a href="#cb12-299" aria-hidden="true" tabindex="-1"></a>                   <span class="at">meig =</span> meig,</span>
+<span id="cb12-300"><a href="#cb12-300" aria-hidden="true" tabindex="-1"></a>                   <span class="at">x_sel =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-301"><a href="#cb12-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-302"><a href="#cb12-302" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-303"><a href="#cb12-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-304"><a href="#cb12-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-307"><a href="#cb12-307" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-308"><a href="#cb12-308" aria-hidden="true" tabindex="-1"></a>resf_vc</span>
-<span id="cb12-309"><a href="#cb12-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-306"><a href="#cb12-306" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-307"><a href="#cb12-307" aria-hidden="true" tabindex="-1"></a>resf_vc</span>
+<span id="cb12-308"><a href="#cb12-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-309"><a href="#cb12-309" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-310"><a href="#cb12-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-311"><a href="#cb12-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-314"><a href="#cb12-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-315"><a href="#cb12-315" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(resf_vc<span class="sc">$</span>b_vc)</span>
-<span id="cb12-316"><a href="#cb12-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-313"><a href="#cb12-313" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-314"><a href="#cb12-314" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(resf_vc<span class="sc">$</span>b_vc)</span>
+<span id="cb12-315"><a href="#cb12-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
