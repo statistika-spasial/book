@@ -50,3 +50,7 @@ rsconnect/
 *.Rproj
 /.quarto/
 /_book/
+
+*.html
+site_libs/*
+*_files/
