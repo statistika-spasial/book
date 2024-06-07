@@ -120,19 +120,18 @@ dengan $V(\theta)^{-2}$ adalah matriks diagonal berukuran $L \times L$ yang elem
 
 ## Data
 
-Data yang digunakan pada penelitian ini adalah data empiris Stunting per Kabupaten/Kota di Indonesia tahun 2021 dari Badan Pusat Statistika yang terdiri dari 513 Kabupaten/Kota. Data tersebut terdiri dari peubah respon dan peubah penjelas. Peubah-peubah tersebut sebagai berikut: 
+Data yang digunakan pada penelitian ini adalah data empiris Stunting per Kabupaten/Kota di Indonesia tahun 2021 dari Badan Pusat Statistika yang terdiri dari 513 Kabupaten/Kota. Data tersebut terdiri dari peubah respon dan peubah penjelas. Peubah-peubah tersebut dapat dilihat pada @tbl-var-dep: 
 
-$$Y = \text{Stunting}$$
+| Kode   | Peubah                                          |
+|--------|-------------------------------------------------|
+| $Y$    | Stunting                  |
+| $X_1$  | Tingkat Kemiskinan                                   |
+| $X_2$  | Akses Layanan Kesehatan      |
+| $X_3$  | Gizi Ibu Hamil                           |
+| $X_4$  | Akses Sanitasi                     |
+| $X_5$  | Akses Air Bersih        |
 
-$$X_1 = \text{Tingkat Kemiskinan}$$
-
-$$X_2 = \text{Akses Layanan Kesehatan}$$
-
-$$X_3 = \text{Gizi Ibu Hamil}$$
-
-$$X_4 = \text{Akses Sanitasi}$$
-
-$$X_5 = \text{Akses Air Bersih}$$
+: Keterangan Peubah {#tbl-var-dep .striped .hover}
 
 ## Tahapan Analisis Data
 

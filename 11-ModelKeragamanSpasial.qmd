@@ -186,7 +186,7 @@ Berikut adalah langkah prosedur analisis yang dilakukan:
 
 7. Interpretasi hasil estimasi efek marginal dan efek spasial dari model RE-ESF VC.
 
-8. Membandingkan kinerja hasil dari model regresi dan RE-ESF VC dengan nilai residual SE, AIC, BIC, dan adjusted R2.
+8. Membandingkan kinerja hasil dari model regresi dan RE-ESF VC dengan nilai residual SE, AIC, BIC, dan adjusted $R^2$.
 
 ## Tahapan Analisis Data dengan R
 
