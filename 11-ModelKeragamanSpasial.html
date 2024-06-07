@@ -482,7 +482,7 @@ y = X\beta + \tilde{E} \tilde{\Lambda}(\theta) \tilde{u} + \epsilon, \quad \epsi
 </tr>
 </tbody>
 </table>
-<p>Dengan menggunakan transformasi Box-Cox akan diperoleh sebaran yang simetrik mendekati Normal. Ketakhomogenan ragam pun dapat dikurangi dengan transformasi ini <span class="citation" data-cites="hadi2007">(<a href="references.html#ref-hadi2007" role="doc-biblioref">AF, H, and M 2007</a>)</span>.</p>
+<p>Dengan menggunakan transformasi Box-Cox akan diperoleh sebaran yang simetrik mendekati Normal. Ketakhomogenan ragam pun dapat dikurangi dengan transformasi ini <span class="citation" data-cites="hadi2007">(<a href="references.html#ref-hadi2007" role="doc-biblioref">Hadi, Sa’diyah, and Sumertajaya 2007</a>)</span>.</p>
 </section><section id="transformasi-sal" class="level3" data-number="11.1.6"><h3 data-number="11.1.6" class="anchored" data-anchor-id="transformasi-sal">
 <span class="header-section-number">11.1.6</span> Transformasi SAL</h3>
 <p>Transformasi SAL (SinhArcsinh dan Affine Linear) adalah teknik yang digunakan dalam statistika untuk memodifikasi distribusi data sehingga lebih mendekati distribusi normal atau Gaussian. Transformasi ini berguna ketika data tidak memenuhi asumsi kenormalan yang diperlukan dalam banyak analisis statistik. Rois dan Tober (2019) menjelaskan iterasi transformasi SAL mendekati berbagai macam distribusi non-Gaussian tanpa mengasumsikan distribusi data secara eksplisit.</p>
@@ -580,7 +580,7 @@ l(y) = a + b \sinh(c \text{arsinh}(y) - d)
 <li><p>Pemodelan dengan <strong>Random Effect Eigenvector Spatial Filtering Varying Coefficient</strong> (RE-ESF VC).</p></li>
 <li><p>Interpretasi hasil analisis model RE-ESF VC dengan melihat pola persebaran masing-masing peubah penjelas di Indonesia dan melihat peubah yang signifikan pada kabupaten/kota di Indonesia.</p></li>
 <li><p>Interpretasi hasil estimasi efek marginal dan efek spasial dari model RE-ESF VC.</p></li>
-<li><p>Membandingkan kinerja hasil dari model regresi dan RE-ESF VC dengan nilai residual SE, AIC, BIC, dan adjusted R2.</p></li>
+<li><p>Membandingkan kinerja hasil dari model regresi dan RE-ESF VC dengan nilai residual SE, AIC, BIC, dan adjusted <span class="math inline">\(R^2\)</span>.</p></li>
 </ol></section><section id="tahapan-analisis-data-dengan-r" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="tahapan-analisis-data-dengan-r">
 <span class="header-section-number">11.3</span> Tahapan Analisis Data dengan R</h2>
 <section id="package" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="package">
@@ -1348,9 +1348,6 @@ l(y) = a + b \sinh(c \text{arsinh}(y) - d)
 <!-- -->
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-hadi2007" class="csl-entry" role="listitem">
-AF, Hadi, Sa’diyah H, and Sumertajaya M. 2007. <span>“Penanganan Ketaknormalan Data Pada Model AMMI Dengan Transformasi Box-Cox (Data Non-Normality on AMMI Models: Box-Cox Transformations).”</span> <em>J ILMU DASAR</em> 8 (2): 165–74.
-</div>
 <div id="ref-djuraidah2020" class="csl-entry" role="listitem">
 Djuraidah, Anik. 2020. <em>Monograph Penerapan Dan Pengembangan Regresi Spasial Dengan Studi Kasus Pada Kesehatan and Sosial Dan Ekonomi</em>. Ed ke-1. Bogor, Jawa Barat: IPB Press.
 </div>
@@ -1359,6 +1356,9 @@ Dray, Stéphane, Pierre Legendre, and Pedro R Peres-Neto. 2006. <span>“Spatial
 </div>
 <div id="ref-griffith2003" class="csl-entry" role="listitem">
 Griffith, Daniel A. 2003. <em>Spatial Autocorrelation and Spatial Filtering: Gaining Understanding Through Theory and Scientific Visualization</em>. Berlin: Springer.
+</div>
+<div id="ref-hadi2007" class="csl-entry" role="listitem">
+Hadi, Alfian Futuhul, Halimatus Sa’diyah, and I Sumertajaya. 2007. <span>“Penanganan Ketaknormalan Data Pada Model AMMI Dengan Transformasi Box-Cox (Data Non-Normality on AMMI Models: Box-Cox Transformations).”</span> <em>J ILMU DASAR</em> 8 (2): 165–74.
 </div>
 <div id="ref-huang2010" class="csl-entry" role="listitem">
 Huang, Bo, Bo Wu, and Michael Barry. 2010. <span>“Geographically and Temporally Weighted Regression for Modeling Spatio-Temporal Variation in House Prices.”</span> <em>International Journal of Geographical Information Science</em> 24 (3): 383–401. <a href="https://doi.org/10.1080/13658810802672469">https://doi.org/10.1080/13658810802672469</a>.
@@ -2028,7 +2028,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb26-188"><a href="#cb26-188" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-189"><a href="#cb26-189" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Interpretasi hasil estimasi efek marginal dan efek spasial dari model RE-ESF VC.</span>
 <span id="cb26-190"><a href="#cb26-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Membandingkan kinerja hasil dari model regresi dan RE-ESF VC dengan nilai residual SE, AIC, BIC, dan adjusted R2.</span>
+<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Membandingkan kinerja hasil dari model regresi dan RE-ESF VC dengan nilai residual SE, AIC, BIC, dan adjusted $R^2$.</span>
 <span id="cb26-192"><a href="#cb26-192" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-193"><a href="#cb26-193" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tahapan Analisis Data dengan R</span></span>
 <span id="cb26-194"><a href="#cb26-194" aria-hidden="true" tabindex="-1"></a></span>
