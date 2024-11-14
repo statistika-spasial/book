@@ -78,7 +78,7 @@ knitr:
 
 format:
   html:
-    number-depth: 3
+    number-depth: 4
     theme: cosmo
     code-fold: false
     code-summary: "Code"

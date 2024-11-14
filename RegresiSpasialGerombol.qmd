@@ -149,18 +149,19 @@ Analisis pada penelitian ini dilakukan dengan bantuan perangkat lunak RStudio. T
 
 ### Package
 
-Pertama-tama perlu memanggil fungsi untuk memodelkan Regresi Gerombol Spasial menggunanakan fungsi SCR() dan fungsi untuk mendapatkan gerombol optimum menggunakan fungsi SCR.select(). Metode Regresi Gerombol Spasial dapat diimplementasikan ke dalam beragam jenis data, yaitu family gaussian, family poisson, dan family binomial negatif. Selanjutnya, metode Regresi Gerombol Spasial memiliki dua opsi jenis penggerombolan, yaitu opsi K-means dan opsi Fuzzy, tetapi secara umum opsi k-means sudah cukup memberikan gerombol dengan pola yang cukup baik. Di mana langkah-langkah singkat penggunaan metode ini ialah sebagai berikut:
+Pertama-tama perlu memanggil fungsi untuk memodelkan Regresi Gerombol Spasial menggunanakan fungsi `SCR()` dan fungsi untuk mendapatkan gerombol optimum menggunakan fungsi `SCR.select()`. Metode Regresi Gerombol Spasial dapat diimplementasikan ke dalam beragam jenis data, yaitu *family gaussian*, *family poisson*, dan *family binomial negative*. Selanjutnya, metode Regresi Gerombol Spasial memiliki dua opsi jenis penggerombolan, yaitu opsi *K-means* dan opsi *Fuzzy*, tetapi secara umum opsi *K-means* sudah cukup memberikan gerombol dengan pola yang cukup baik. Di mana langkah-langkah singkat penggunaan metode ini ialah sebagai berikut:
+
 1. Eksplorasi data
 2. uji asumsi galat
 3. deteksi multikolinearitas
 4. deteksi efek spasial
 5. membentuk matriks pembobot spasial
 6. membentuk inisiasi gerombol awal menggunakan k-means
-7. Memodelkan Regresi Gerombol Spasial dengan fungsi objektif *penalty likelihood* untuk mengoptimumkan jumlah amatan di tiap gerombol dan nilai parameter beta duga. Model dengan gerombol optimum untuk masing-masing pembobot spasial dilihat melalui nilai *information criterion* pada fungsi SCR.select()
+7. Memodelkan Regresi Gerombol Spasial dengan fungsi objektif *penalty likelihood* untuk mengoptimumkan jumlah amatan di tiap gerombol dan nilai parameter beta duga. Model dengan gerombol optimum untuk masing-masing pembobot spasial dilihat melalui nilai *information criterion* pada fungsi `SCR.select()`
 8. Membandingkan model terbaik pada pembobot yang berbeda menggunakan dua kriteria, yaitu:
    - Uji kebaikan model (MAE, MAPE, dan RMSE) serta,
    - Pola gerombol pada peta yang berpola atau tidak acak (subjektif)
-9. Melakukan analisis sidik ragam mengetahui perbedaan peubah Y di tiap gerombol yang terbentuk dari model terbaik
+9. Melakukan analisis sidik ragam mengetahui perbedaan peubah $Y$ di tiap gerombol yang terbentuk dari model terbaik
 10. Uji peubah berpengaruh di setiap gerombol
 
 ```{r load func, cache=FALSE, message=FALSE, warning=FALSE}
