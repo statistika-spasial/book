@@ -244,10 +244,16 @@ window.Quarto = {
 </li>
       </ul>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MGWRSAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MGWR-SAR</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./part-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mixed SAR-GWR</span></a>
+            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Filtering</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -255,43 +261,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-Data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-MetodeAnalisis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Metode Analisis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-TahapanR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tahapan Analisis dengan R</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./10-ModelDependensiSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-ModelKeragamanSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,15 +279,21 @@ window.Quarto = {
  <span class="menu-text">Model Epidemiologi</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RegresiSpasialGerombol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regresi Spasial Gerombol</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -563,7 +546,8 @@ Tabel&nbsp;3.1: Deskripsi Peubah
 <span><span class="va">petajabar</span><span class="op">$</span><span class="va">pengeluaran</span> <span class="op">=</span> <span class="va">data1</span><span class="op">$</span><span class="va">pengeluaran</span></span>
 <span><span class="va">petajabar</span><span class="op">$</span><span class="va">daerah</span> <span class="op">=</span> <span class="va">data1</span><span class="op">$</span><span class="va">Kabupaten...Kota</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="eksplorasi-data" class="level4"><h4 class="anchored" data-anchor-id="eksplorasi-data">Eksplorasi Data</h4>
+<section id="eksplorasi-data" class="level4" data-number="3.4.2.1"><h4 data-number="3.4.2.1" class="anchored" data-anchor-id="eksplorasi-data">
+<span class="header-section-number">3.4.2.1</span> Eksplorasi Data</h4>
 <p>Untuk membuat peta tentang sebaran banyaknya stunting per 100.000 balita (<a href="#fig-plot-stunting" class="quarto-xref">Gambar&nbsp;<span>3.1</span></a>) digunakan syntax sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#menambahkan list untuk memberi label pada peta</span></span>
@@ -638,7 +622,8 @@ Gambar&nbsp;3.1: Peta stunting
 </div>
 </div>
 <p>Pada output plot Q-Q terlihat mayoritas titik-titik berwarna hijau (lambang untuk sebaran binomial negatif) berada pada garis dibandingkan dengan titik-titik berwarna merah (lambang untuk sebaran Poisson). Sebaran yang paling sesuai untuk data stunting adalah binomial negatif.</p>
-</section><section id="pemeriksaan-multikolinearitas" class="level4"><h4 class="anchored" data-anchor-id="pemeriksaan-multikolinearitas">Pemeriksaan Multikolinearitas</h4>
+</section><section id="pemeriksaan-multikolinearitas" class="level4" data-number="3.4.2.2"><h4 data-number="3.4.2.2" class="anchored" data-anchor-id="pemeriksaan-multikolinearitas">
+<span class="header-section-number">3.4.2.2</span> Pemeriksaan Multikolinearitas</h4>
 <p>Pemeriksaan multikolinearitas menggunakan syntax sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Multikolinieritas</span></span>
@@ -653,7 +638,8 @@ Gambar&nbsp;3.1: Peta stunting
 <span><span class="co">#&gt; X6 1.12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Berdasarkan output terlihat nilai VIF semua prediktor kecil, sehingga dapat disimpulkan tidak terdapat multikolinearitas.</p>
-</section><section id="uji-overdispersi" class="level4"><h4 class="anchored" data-anchor-id="uji-overdispersi">Uji Overdispersi</h4>
+</section><section id="uji-overdispersi" class="level4" data-number="3.4.2.3"><h4 data-number="3.4.2.3" class="anchored" data-anchor-id="uji-overdispersi">
+<span class="header-section-number">3.4.2.3</span> Uji Overdispersi</h4>
 <p>Untuk melakukan uji dispersi menggunakan syntax sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Model Regresi Poisson</span></span>
@@ -672,7 +658,8 @@ Gambar&nbsp;3.1: Peta stunting
 <span><span class="co">#&gt; 1   100  97.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Kedua nilai statistik uji overdispersi bernilai lebih besar dari satu, maka pada data banyaknya stunting terdapat overdispersi. Untuk menangani oversdispersi pada data digunakan model regresi binomial negatif.</p>
-</section><section id="pemodelan-regresi-binomial-negatif" class="level4"><h4 class="anchored" data-anchor-id="pemodelan-regresi-binomial-negatif">Pemodelan regresi binomial negatif</h4>
+</section><section id="pemodelan-regresi-binomial-negatif" class="level4" data-number="3.4.2.4"><h4 data-number="3.4.2.4" class="anchored" data-anchor-id="pemodelan-regresi-binomial-negatif">
+<span class="header-section-number">3.4.2.4</span> Pemodelan regresi binomial negatif</h4>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Regresi Binomial Negatif</span></span>
 <span><span class="va">nb</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/glm.nb.html">glm.nb</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X1</span><span class="op">+</span><span class="va">X2</span><span class="op">+</span><span class="va">X3</span><span class="op">+</span><span class="va">X4</span><span class="op">+</span><span class="va">X5</span><span class="op">+</span><span class="va">X6</span>,data<span class="op">=</span><span class="va">data1</span><span class="op">)</span></span>
@@ -709,7 +696,8 @@ Gambar&nbsp;3.1: Peta stunting
 <span><span class="co">#&gt;  2 x log-likelihood:  -324.641</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pada output regresi binomial negatif terlihat prediktor X2, X3, X4, dan X5 nyata pada α=0.05 dengan AIC model sebesar 340.64.</p>
-</section><section id="uji-efek-spasial" class="level4"><h4 class="anchored" data-anchor-id="uji-efek-spasial">Uji efek spasial</h4>
+</section><section id="uji-efek-spasial" class="level4" data-number="3.4.2.5"><h4 data-number="3.4.2.5" class="anchored" data-anchor-id="uji-efek-spasial">
+<span class="header-section-number">3.4.2.5</span> Uji efek spasial</h4>
 <section id="a.-uji-lm-dan-indeks-moran" class="level5"><h5 class="anchored" data-anchor-id="a.-uji-lm-dan-indeks-moran">a. Uji LM dan indeks Moran</h5>
 <p>Untuk menentukan Indeks Moran dan uji LM, terlebih dulu dibangun matriks bobot, Pada ilustrasi ini digunakan matriks ketetanggan langkah ratu, k-nearest neighbor, inverse distance weight, dan negative exponential. Syntax yang digunakan untuk membuat matriks bobot dan menghitung Indeks Moran sebagai berikut:</p>
 <div class="cell">
@@ -1060,7 +1048,8 @@ Gambar&nbsp;3.1: Peta stunting
 <span><span class="co">#&gt; BP = 5, df = 6, p-value = 0.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nilai statistik uji Breusch-Pagan mempunyai nilai-p &gt; <span class="math inline">\(\alpha=0.05\)</span>, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial.</p>
-</section></section><section id="pendugaan-model-spasial-binomial-negatif" class="level4"><h4 class="anchored" data-anchor-id="pendugaan-model-spasial-binomial-negatif">Pendugaan Model Spasial Binomial Negatif</h4>
+</section></section><section id="pendugaan-model-spasial-binomial-negatif" class="level4" data-number="3.4.2.6"><h4 data-number="3.4.2.6" class="anchored" data-anchor-id="pendugaan-model-spasial-binomial-negatif">
+<span class="header-section-number">3.4.2.6</span> Pendugaan Model Spasial Binomial Negatif</h4>
 <p>Pendugaan model SAR-BN dengan matriks pembobot Queen menggunakan syntax sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#SAR-BN</span></span>
@@ -1201,7 +1190,8 @@ Gambar&nbsp;3.1: Peta stunting
 <span><span class="co">#&gt;  2 x log-likelihood:  -318.62</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pada output model SDM-BN terlihat prediktor signifikan pada kasus stunting adalah TPM dan BBLR. Nilai AIC model sebesar 344.62.</p>
-</section><section id="kebaikan-model" class="level4"><h4 class="anchored" data-anchor-id="kebaikan-model">Kebaikan Model</h4>
+</section><section id="kebaikan-model" class="level4" data-number="3.4.2.7"><h4 data-number="3.4.2.7" class="anchored" data-anchor-id="kebaikan-model">
+<span class="header-section-number">3.4.2.7</span> Kebaikan Model</h4>
 <p>Untuk memilih model terbaik digunakan nilai AIC dengan syntax sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#AIC SAR, SLX, SDM</span></span>
@@ -1224,7 +1214,8 @@ Gambar&nbsp;3.1: Peta stunting
 <span><span class="co">#&gt; SDM-BN                   345</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pada output terlihat nilai AIC terkecil dimiliki model SAR-BN, sehingga disimpulkan model SAR-BN merupakan model terbaik.</p>
-</section><section id="interpretasi-model" class="level4"><h4 class="anchored" data-anchor-id="interpretasi-model">Interpretasi Model</h4>
+</section><section id="interpretasi-model" class="level4" data-number="3.4.2.8"><h4 data-number="3.4.2.8" class="anchored" data-anchor-id="interpretasi-model">
+<span class="header-section-number">3.4.2.8</span> Interpretasi Model</h4>
 <p>Interpretasi pada koefisien regresi spasial dilakukan dengan melihat nilai efek langsung (direct effect), efek tidak langsung (indirect effect), dan efek total (total effect) menggunakan syntax sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Membuat matriks identitas</span></span>

@@ -244,10 +244,16 @@ window.Quarto = {
 </li>
       </ul>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MGWRSAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MGWR-SAR</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./part-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mixed SAR-GWR</span></a>
+            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Filtering</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -255,43 +261,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-Data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-MetodeAnalisis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Metode Analisis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-TahapanR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tahapan Analisis dengan R</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./10-ModelDependensiSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-ModelKeragamanSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,15 +279,21 @@ window.Quarto = {
  <span class="menu-text">Model Epidemiologi</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RegresiSpasialGerombol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regresi Spasial Gerombol</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -653,7 +636,8 @@ Gambar&nbsp;5.1: Peta tematik SKR
 </div>
 </section><section id="uji-efek-spasial" class="level3" data-number="5.4.4"><h3 data-number="5.4.4" class="anchored" data-anchor-id="uji-efek-spasial">
 <span class="header-section-number">5.4.4</span> Uji Efek Spasial</h3>
-<section id="a.-membentuk-matriks-pembobot-spasial" class="level4"><h4 class="anchored" data-anchor-id="a.-membentuk-matriks-pembobot-spasial">a. Membentuk matriks pembobot spasial</h4>
+<section id="a.-membentuk-matriks-pembobot-spasial" class="level4" data-number="5.4.4.1"><h4 data-number="5.4.4.1" class="anchored" data-anchor-id="a.-membentuk-matriks-pembobot-spasial">
+<span class="header-section-number">5.4.4.1</span> a. Membentuk matriks pembobot spasial</h4>
 <p>Pada ilustrasi ini, matriks pembobot spasial yang digunakan yaitu matriks KNN dengan <code>K = 2</code> menggunakan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Matriks bobot 2-NN</span></span>
@@ -683,7 +667,8 @@ Gambar&nbsp;5.1: Peta tematik SKR
 <span><span class="co">#&gt;     n    nn  S0  S1  S2</span></span>
 <span><span class="co">#&gt; W 151 22801 151 126 652</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="b.-uji-lagrange-multiplier" class="level4"><h4 class="anchored" data-anchor-id="b.-uji-lagrange-multiplier">b. Uji Lagrange Multiplier</h4>
+</section><section id="b.-uji-lagrange-multiplier" class="level4" data-number="5.4.4.2"><h4 data-number="5.4.4.2" class="anchored" data-anchor-id="b.-uji-lagrange-multiplier">
+<span class="header-section-number">5.4.4.2</span> b. Uji Lagrange Multiplier</h4>
 <p>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier dengan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># uji LM dan RLM</span></span>
@@ -706,7 +691,8 @@ Gambar&nbsp;5.1: Peta tematik SKR
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pada output uji LMerr dan RLMerr memiliki <code>p-value</code> &lt; <span class="math inline">\(\alpha=0.05\)</span>, menunjukkan pada data terdapat dependensi spasial pada galat.</p>
-</section><section id="c.-uji-breusch-pagan" class="level4"><h4 class="anchored" data-anchor-id="c.-uji-breusch-pagan">c.&nbsp;Uji Breusch-Pagan</h4>
+</section><section id="c.-uji-breusch-pagan" class="level4" data-number="5.4.4.3"><h4 data-number="5.4.4.3" class="anchored" data-anchor-id="c.-uji-breusch-pagan">
+<span class="header-section-number">5.4.4.3</span> c.&nbsp;Uji Breusch-Pagan</h4>
 <p>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial dengan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji Breusch-Pagan</span></span>
@@ -720,7 +706,8 @@ Gambar&nbsp;5.1: Peta tematik SKR
 <p>Pada output uji Breusch-Pagan memiliki <code>p-value</code> &lt; <span class="math inline">\(\alpha=0.05\)</span>, menunjukkan terdapat heterogenitas spasial.</p>
 </section></section><section id="regresi-terboboti-geografis-rtg" class="level3" data-number="5.4.5"><h3 data-number="5.4.5" class="anchored" data-anchor-id="regresi-terboboti-geografis-rtg">
 <span class="header-section-number">5.4.5</span> Regresi Terboboti Geografis (RTG)</h3>
-<section id="a.-menentukan-lebar-jendela" class="level4"><h4 class="anchored" data-anchor-id="a.-menentukan-lebar-jendela">a. Menentukan lebar jendela</h4>
+<section id="a.-menentukan-lebar-jendela" class="level4" data-number="5.4.5.1"><h4 data-number="5.4.5.1" class="anchored" data-anchor-id="a.-menentukan-lebar-jendela">
+<span class="header-section-number">5.4.5.1</span> a. Menentukan lebar jendela</h4>
 <p>Pada ilustrasi ini digunakan kernel bisquare dengan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Mengubah data menjadi class SpatialPointsDataFrame</span></span>
@@ -761,7 +748,8 @@ Gambar&nbsp;5.1: Peta tematik SKR
 <span><span class="co">#&gt; Fixed bandwidth: 285 CV score: 1106</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pada output terlihat nilai lebar jendela optimum sebesar 284.7643 dengan nilai CV minimum sebesar 1106.087.</p>
-</section><section id="b.-menduga-parameter-rtg" class="level4"><h4 class="anchored" data-anchor-id="b.-menduga-parameter-rtg">b. Menduga parameter RTG</h4>
+</section><section id="b.-menduga-parameter-rtg" class="level4" data-number="5.4.5.2"><h4 data-number="5.4.5.2" class="anchored" data-anchor-id="b.-menduga-parameter-rtg">
+<span class="header-section-number">5.4.5.2</span> b. Menduga parameter RTG</h4>
 <p>Pendugaan parameter RTG dengan menggunakan kernel bisquare dapat dilakukan dengan menggunakan sintaks berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Pendugaan parameter RTG dengan fixed bisquare </span></span>
@@ -872,7 +860,8 @@ Gambar&nbsp;5.1: Peta tematik SKR
 <p>Berdasarkan output dapat dilihat RTG mempunyai nilai <span class="math inline">\(R^2\)</span> yang lebih tinggi dan AIC yang lebih rendah dibandingkan model regresi linear.</p>
 </section></section><section id="penentuan-peubah-global-dan-peubah-lokal" class="level3" data-number="5.4.6"><h3 data-number="5.4.6" class="anchored" data-anchor-id="penentuan-peubah-global-dan-peubah-lokal">
 <span class="header-section-number">5.4.6</span> Penentuan peubah global dan peubah lokal</h3>
-<section id="a.-menduga-semivariogram-dan-semivariogram-silang" class="level4"><h4 class="anchored" data-anchor-id="a.-menduga-semivariogram-dan-semivariogram-silang">a. Menduga semivariogram dan semivariogram silang</h4>
+<section id="a.-menduga-semivariogram-dan-semivariogram-silang" class="level4" data-number="5.4.6.1"><h4 data-number="5.4.6.1" class="anchored" data-anchor-id="a.-menduga-semivariogram-dan-semivariogram-silang">
+<span class="header-section-number">5.4.6.1</span> a. Menduga semivariogram dan semivariogram silang</h4>
 <p>Untuk menduga semivariogram dan semivariogram silang, data lebih dulu di standarisasi. Selanjutnya, dibentuk objek geostatistik dari semua peubah yang digunakan. Pada ilustrasi ini model struktur tersarang yang digunakan yaitu model Nug(0) + Sph(54) + Gau(161) dengan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Variogram dan semivariogram silang</span></span>
@@ -925,7 +914,8 @@ Gambar&nbsp;5.1: Peta tematik SKR
 <span><span class="va">g.fit</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/fit.lmc.html">fit.lmc</a></span><span class="op">(</span><span class="va">v</span>, <span class="va">g</span>, fit.lmc <span class="op">=</span> <span class="cn">TRUE</span>, correct.diagonal <span class="op">=</span></span>
 <span>                  <span class="fl">1.01</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="b.-menghitung-proporsi-keragaman-spasial-setiap-peubah" class="level4"><h4 class="anchored" data-anchor-id="b.-menghitung-proporsi-keragaman-spasial-setiap-peubah">b. Menghitung proporsi keragaman spasial setiap peubah</h4>
+</section><section id="b.-menghitung-proporsi-keragaman-spasial-setiap-peubah" class="level4" data-number="5.4.6.2"><h4 data-number="5.4.6.2" class="anchored" data-anchor-id="b.-menghitung-proporsi-keragaman-spasial-setiap-peubah">
+<span class="header-section-number">5.4.6.2</span> b. Menghitung proporsi keragaman spasial setiap peubah</h4>
 <p>Proporsi keragaman spasial ditentukan berdasarkan selang kepercayannya. Rataan proporsi keragaman spasial diperoleh dari rasio antara <em>sill</em> dari <em>nugget</em> terhadap total <em>sill</em> dari tiap peubah. Batas bawah diperoleh dari rasio antara <em>sill</em> dari struktur Sph terhadap total <em>sill</em> dari tiap peubah, dan batas atas diperoleh dari rasio antara <em>sill</em> dari struktur Gau terhadap total <em>sill</em> dari tiap peubah. Berikut sintaks yang digunakan:</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Menyiapkan tabel</span></span>
@@ -975,7 +965,8 @@ Gambar&nbsp;5.1: Peta tematik SKR
 <span><span class="co">#&gt; 12           x11  36.98       41.39      21.63</span></span>
 <span><span class="co">#&gt; 13 y dan semua x  33.06       25.23      41.71</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="c.-menghitung-pengaruh-spasial-setiap-peubah." class="level4"><h4 class="anchored" data-anchor-id="c.-menghitung-pengaruh-spasial-setiap-peubah.">c.&nbsp;Menghitung pengaruh spasial setiap peubah.</h4>
+</section><section id="c.-menghitung-pengaruh-spasial-setiap-peubah." class="level4" data-number="5.4.6.3"><h4 data-number="5.4.6.3" class="anchored" data-anchor-id="c.-menghitung-pengaruh-spasial-setiap-peubah.">
+<span class="header-section-number">5.4.6.3</span> c.&nbsp;Menghitung pengaruh spasial setiap peubah.</h4>
 <p>Proporsi pengaruh spasial yang dapat dimodelkan dapat dihitung berdasarkan nilai proporsi <em>non-nugget</em> (batas atas dan batas bawah). Berikut sintaks yang dapat digunakan:</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Pengaruh spasial</span></span>

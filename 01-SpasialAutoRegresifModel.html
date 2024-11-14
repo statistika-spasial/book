@@ -244,10 +244,16 @@ window.Quarto = {
 </li>
       </ul>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MGWRSAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MGWR-SAR</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./part-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mixed SAR-GWR</span></a>
+            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Filtering</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -255,43 +261,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-Data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-MetodeAnalisis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Metode Analisis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-TahapanR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tahapan Analisis dengan R</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./10-ModelDependensiSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-ModelKeragamanSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,15 +279,21 @@ window.Quarto = {
  <span class="menu-text">Model Epidemiologi</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RegresiSpasialGerombol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regresi Spasial Gerombol</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -381,13 +364,13 @@ u &amp; : \text{vektor galat yang diasumsikan mengandung autokorelasi berukuran 
 \lambda &amp; : \text{koefisien autoregresi galat spasial}, \\
 \epsilon &amp; : \text{vektor galat yang bebas autokorelasi berukuran } n \times 1.
 \end{align*}\]</span></p>
-<p>Jika pada persamaan nilai koefisien <span class="math inline">\(\gamma = 0\)</span> dan <span class="math inline">\(\lambda = 0\)</span>, maka model yang digunakan akan menjadi model SAR. SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR adalah sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">J &amp; Pace, 2009</a>)</span>:</p>
+<p>Jika pada persamaan nilai koefisien <span class="math inline">\(\gamma = 0\)</span> dan <span class="math inline">\(\lambda = 0\)</span>, maka model yang digunakan akan menjadi model SAR. SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR adalah sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">LeSage &amp; Pace, 2009</a>)</span>:</p>
 <p><span class="math inline">\(y = \rho W y + X\beta + \epsilon\)</span></p>
 <p>Dengan <span class="math inline">\(y\)</span> merupakan peubah respon, <span class="math inline">\(W\)</span> merupakan matriks pembobot spasial, <span class="math inline">\(\beta\)</span> adalah koefisien parameter regresi, <span class="math inline">\(\epsilon\)</span> merupakan sisaan, dan <span class="math inline">\(\rho\)</span> merupakan koefisien autoregressive lag spasial. Jika tidak terdapat ketergantungan spasial antara wilayah ke-<span class="math inline">\(i\)</span> dan wilayah ke-<span class="math inline">\(j\)</span>, <span class="math inline">\(\rho\)</span> bernilai 0.</p>
-<p>Saat nilai koefisien <span class="math inline">\(\rho\)</span> dan <span class="math inline">\(\lambda\)</span> pada persamaan bernilai nol, maka model yang digunakan adalah model SLX. SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas <span class="citation" data-cites="vega2015">(<a href="references.html#ref-vega2015" role="doc-biblioref">Vega SH, 2015</a>)</span>. Persamaan untuk SLX sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">J &amp; Pace, 2009</a>)</span>:</p>
+<p>Saat nilai koefisien <span class="math inline">\(\rho\)</span> dan <span class="math inline">\(\lambda\)</span> pada persamaan bernilai nol, maka model yang digunakan adalah model SLX. SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas <span class="citation" data-cites="vega2015">(<a href="references.html#ref-vega2015" role="doc-biblioref">Vega SH, 2015</a>)</span>. Persamaan untuk SLX sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">LeSage &amp; Pace, 2009</a>)</span>:</p>
 <p><span class="math inline">\(y = X\beta + \gamma WX + \epsilon\)</span></p>
 <p>Dengan <span class="math inline">\(y\)</span> merupakan peubah respon, <span class="math inline">\(W\)</span> merupakan matriks pembobot spasial, <span class="math inline">\(\beta\)</span> adalah koefisien parameter regresi, <span class="math inline">\(\epsilon\)</span> merupakan sisaan, dan <span class="math inline">\(\gamma\)</span> merupakan koefisien lag spasial pada peubah penjelas.</p>
-<p>Jika nilai koefisien <span class="math inline">\(\lambda\)</span> pada persamaan bernilai nol, maka model yang digunakan adalah SDM. SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">J &amp; Pace, 2009</a>)</span>:</p>
+<p>Jika nilai koefisien <span class="math inline">\(\lambda\)</span> pada persamaan bernilai nol, maka model yang digunakan adalah SDM. SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">LeSage &amp; Pace, 2009</a>)</span>:</p>
 <p><span class="math inline">\(y = \rho W_1 y + X\beta + \gamma W_2 X + \epsilon\)</span></p>
 <p>Dengan:</p>
 <p><span class="math display">\[\begin{align*}
@@ -766,7 +749,8 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <p>Berdasarkan gambar di atas, dapat dilihat bahwa nilai 0 berada pada selang nilai λ dari peubah respon X1 dan X5, sehingga transformasi yang akan digunakan adalah transformasi logaritma natural.</p>
 </section><section id="pengujian-efek-spasial" class="level3" data-number="1.4.7"><h3 data-number="1.4.7" class="anchored" data-anchor-id="pengujian-efek-spasial">
 <span class="header-section-number">1.4.7</span> Pengujian Efek Spasial</h3>
-<section id="uji-breusch-pagan" class="level4"><h4 class="anchored" data-anchor-id="uji-breusch-pagan">Uji Breusch-Pagan</h4>
+<section id="uji-breusch-pagan" class="level4" data-number="1.4.7.1"><h4 data-number="1.4.7.1" class="anchored" data-anchor-id="uji-breusch-pagan">
+<span class="header-section-number">1.4.7.1</span> Uji Breusch-Pagan</h4>
 <p>Uji Breusch-Pagan dilakukan menggunakan syntax berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">reglin2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Y2</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">X1</span><span class="op">)</span><span class="op">+</span><span class="va">X2</span><span class="op">+</span><span class="va">X3</span><span class="op">+</span><span class="va">X4</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">X5</span><span class="op">)</span><span class="op">+</span><span class="va">X6</span><span class="op">+</span><span class="va">X7</span><span class="op">+</span><span class="va">X8</span><span class="op">)</span></span>
@@ -778,7 +762,8 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <span><span class="co">#&gt; BP = 2, df = 8, p-value = 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Hasil uji menunjukkan nilai-p &gt; 0.05, sehingga dapat disimpulkan tidak terdapat heterogenitas spasial</p>
-</section><section id="uji-lm-dan-indeks-moran" class="level4"><h4 class="anchored" data-anchor-id="uji-lm-dan-indeks-moran">Uji LM dan indeks Moran</h4>
+</section><section id="uji-lm-dan-indeks-moran" class="level4" data-number="1.4.7.2"><h4 data-number="1.4.7.2" class="anchored" data-anchor-id="uji-lm-dan-indeks-moran">
+<span class="header-section-number">1.4.7.2</span> Uji LM dan indeks Moran</h4>
 <p>Untuk melakukan uji LM dan indeks Moran, perlu ditentukan terlebih dahulu matriks pembobot yang akan digunakan. Pada penelitian ini akan menggunakan matriks bobot ketetanggaan Queen, ketetanggaan rook, jarak eksponensial negatif, dan invers jarak. Berikut merupakan syntax yang digunakan untuk membuat matriks bobot:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#### Matriks queen ####</span></span>
@@ -1390,7 +1375,7 @@ Djuraidah, A., Rizki, A., &amp; Alfan, T. (2024). Identifying factors affecting 
 Griffith, D. A. (1988). <em>Advanced spatial statistics</em>. Springer Dordrecht.
 </div>
 <div id="ref-lesage2009" class="csl-entry" role="listitem">
-J, J. L., &amp; Pace, R. (2009). <em>Introduction to spatial econometrics</em>. Chapman; Hall/CRC.
+LeSage, J., &amp; Pace, R. (2009). <em>Introduction to spatial econometrics</em>. Chapman; Hall/CRC.
 </div>
 <div id="ref-vega2015" class="csl-entry" role="listitem">
 Vega SH, E. J. (2015). The SLX model. <em>J Of Regional Science</em>, <em>0</em>(0), 1–25. <a href="https://doi.org/10.1111/jors.12188">https://doi.org/10.1111/jors.12188</a>

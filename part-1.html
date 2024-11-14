@@ -262,10 +262,16 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MGWRSAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MGWR-SAR</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./part-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mixed SAR-GWR</span></a>
+            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Filtering</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -273,43 +279,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-Data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-MetodeAnalisis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Metode Analisis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-TahapanR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tahapan Analisis dengan R</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./10-ModelDependensiSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-ModelKeragamanSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
   </div>
 </li>
       </ul>
@@ -320,15 +297,21 @@ window.Quarto = {
  <span class="menu-text">Model Epidemiologi</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RegresiSpasialGerombol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regresi Spasial Gerombol</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -367,7 +350,7 @@ window.Quarto = {
 </header>
 
 
-<p>Dependensi spasial merupakan suatu hubungan korelasi antara variabel dengan dirinya sendiri atau suatu ukuran dari kemiripan objek di dalam suatu ruang (jarak, waktu dan wilayah). Adanya kemiripan nilai dari lokasi-lokasi yang berdekatan dan cenderung berkelompok akan ditunjukkan dengan dependensi spasial positif. Sedangkan jika lokasi-lokasi yang berdekatan mempunyai nilai yang berbeda dan cenderung menyebar maka akan ditunjukkan dengan dependensi spasial yang negatif <span class="citation" data-cites="kosfeld2006">(<a href="references.html#ref-kosfeld2006" role="doc-biblioref">Kosfeld 2006</a>)</span>.</p>
+<p>Dependensi spasial merupakan suatu hubungan korelasi antara variabel dengan dirinya sendiri atau suatu ukuran dari kemiripan objek di dalam suatu ruang (jarak, waktu dan wilayah). Adanya kemiripan nilai dari lokasi-lokasi yang berdekatan dan cenderung berkelompok akan ditunjukkan dengan dependensi spasial positif. Sedangkan jika lokasi-lokasi yang berdekatan mempunyai nilai yang berbeda dan cenderung menyebar maka akan ditunjukkan dengan dependensi spasial yang negatif <span class="citation" data-cites="kosfeld2006">(<a href="references.html#ref-kosfeld2006" role="doc-biblioref">Kosfeld, 2006</a>)</span>.</p>
 <p>Untuk mengetahui adanya dependensi spasial dilakukan melalui uji statistik Moran’s I dan uji Pengganda Lagrange (Lagrange Multiplier, LM). Hipotesis nol pada kedua pengujian ini adalah dalam model tidak ada efek spasial. Jika <code>p-value</code> uji tersebut lebih kecil dari taraf signifikansi yang ditetapkan maka dapat dikatakan bahwa dalam model terdapat efek spasial.</p>
 <p>Pemodelan pada regresi spasial dilakukan dengan menambahkan matriks spasial atau <em>contiguity</em> (<span class="math inline">\(W\)</span>) pada model regresi yang digunakan. Penambahan matriks <span class="math inline">\(W\)</span> tersebut dapat dilakukan pada variabel-variabel dependen (parameter koefisien regresinya akan disimbolkan dengan <span class="math inline">\(\rho\)</span>), pada variabel independen (parameter koefisien regresinya akan disimbolkan dengan γ), maupun pada error term (parameter koefisien akan regresinya disimbolkan dengan <span class="math inline">\(\lambda\)</span>) atau kombinasi dari dua maupun ketiga efeknya.</p>
 <p>Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\rho\)</span> maka model disebut model <strong>Spatial Autoregressive Regression (SAR)</strong>. Jika efeknya hanya nyata terhadap parameter γ maka model disebut model <strong>Spatial Lag-X (SLX)</strong>. Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\lambda\)</span> maka model disebut <strong>Spatial Error Model (SEM)</strong>. Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\rho\)</span> dan <span class="math inline">\(\lambda\)</span> maka model disebut <strong>General Spatial Model (GSM)</strong>. Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\rho\)</span> dan γ maka model disebut <strong>Spatial Durbin Model (SDM)</strong>. Jika efeknya hanya nyata terhadap parameter <span class="math inline">\(\lambda\)</span> dan γ maka model disebut <strong>Spatial Durbin Error Model (SDEM)</strong>. Jika efeknya nyata terhadap ketiga parameter (<span class="math inline">\(\rho\)</span>, <span class="math inline">\(\lambda\)</span> dan γ) maka model disebut <strong>General Spasial Nested (GNS)</strong>.</p>
@@ -375,9 +358,9 @@ window.Quarto = {
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-kosfeld2006" class="csl-entry" role="listitem">
-Kosfeld, Reinhold. 2006. <em>Spatial Econometric</em>. Germany: University of Kassel.
+Kosfeld, R. (2006). <em>Spatial econometric</em>. University of Kassel.
 </div>
 </div>
 

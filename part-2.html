@@ -233,10 +233,16 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MGWRSAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MGWR-SAR</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./part-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mixed SAR-GWR</span></a>
+            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Filtering</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -244,43 +250,14 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-Data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-MetodeAnalisis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Metode Analisis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-TahapanR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tahapan Analisis dengan R</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./10-ModelDependensiSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-ModelKeragamanSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
   </div>
 </li>
       </ul>
@@ -291,15 +268,21 @@ div.csl-indent {
  <span class="menu-text">Model Epidemiologi</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RegresiSpasialGerombol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regresi Spasial Gerombol</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -339,14 +322,14 @@ div.csl-indent {
 
 
 <p>Keragaman spasial dapat terjadi karena adanya perbedaan karakteristik antara satu titik pengamatan dengan titik pengamatan lainnya. Untuk mengetahuinya dilakukan pengujian Breusch-Pagan dengan hipotesis nol adalah antar lokasi memiliki keragaman/varians yang sama. Jika <code>p-value</code> uji ini lebih kecil dari taraf signifikansi yang ditetapkan maka dapat ditarik kesimpulan bahwa terdapat keragaman spasial atau varian antar lokasi yang berbeda. Sehingga alternatif model spasial yang digunakan adalah model <strong>Geographically Weighted Regression (GWR)</strong>.</p>
-<p>Namun dalam model GWR, koefisien regresi masing-masing lokasi memiliki nilai yang berbeda-beda sehingga dianggap masih kurang tepat sehingga dikembangkan <strong>Mixed Geographically Weighted Regression (MGWR)</strong>. Pada MGWR dihasilkan estimator atau penduga parameter yang sebagian bersifat global dan sebagian yang lain bersifat lokal sesuai dengan lokasi pengamatan <span class="citation" data-cites="purhadi2012">(<a href="references.html#ref-purhadi2012" role="doc-biblioref">Purhadi 2012</a>)</span>.</p>
+<p>Namun dalam model GWR, koefisien regresi masing-masing lokasi memiliki nilai yang berbeda-beda sehingga dianggap masih kurang tepat sehingga dikembangkan <strong>Mixed Geographically Weighted Regression (MGWR)</strong>. Pada MGWR dihasilkan estimator atau penduga parameter yang sebagian bersifat global dan sebagian yang lain bersifat lokal sesuai dengan lokasi pengamatan <span class="citation" data-cites="purhadi2012">(<a href="references.html#ref-purhadi2012" role="doc-biblioref">Purhadi, 2012</a>)</span>.</p>
 
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-purhadi2012" class="csl-entry" role="listitem">
-Purhadi. 2012. <span>“Mixed Geographically Weighted Regression Model (Case Study: The Percentage of Poor Households in Mojokerto 2008).”</span> <em>European Journal of Scientific Research</em> 69 (2): 188–96.
+Purhadi. (2012). Mixed geographically weighted regression model (case study: The percentage of poor households in mojokerto 2008). <em>European Journal of Scientific Research</em>, <em>69</em>(2), 188–196.
 </div>
 </div>
 

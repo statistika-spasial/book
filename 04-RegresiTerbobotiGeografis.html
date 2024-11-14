@@ -244,10 +244,16 @@ window.Quarto = {
 </li>
       </ul>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./MGWRSAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MGWR-SAR</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./part-3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mixed SAR-GWR</span></a>
+            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial Filtering</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -255,43 +261,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-Data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-MetodeAnalisis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Metode Analisis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-TahapanR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tahapan Analisis dengan R</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./part-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./10-ModelDependensiSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Dependensi Spasial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11-ModelKeragamanSpasial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Keragaman Spasial</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,15 +279,21 @@ window.Quarto = {
  <span class="menu-text">Model Epidemiologi</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./RegresiSpasialGerombol.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regresi Spasial Gerombol</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -564,7 +547,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 </div>
 </section><section id="uji-efek-spasial" class="level3" data-number="4.3.4"><h3 data-number="4.3.4" class="anchored" data-anchor-id="uji-efek-spasial">
 <span class="header-section-number">4.3.4</span> Uji Efek Spasial</h3>
-<section id="a.-membentuk-matriks-pembobot-spasial" class="level4"><h4 class="anchored" data-anchor-id="a.-membentuk-matriks-pembobot-spasial">a. Membentuk matriks pembobot spasial</h4>
+<section id="a.-membentuk-matriks-pembobot-spasial" class="level4" data-number="4.3.4.1"><h4 data-number="4.3.4.1" class="anchored" data-anchor-id="a.-membentuk-matriks-pembobot-spasial">
+<span class="header-section-number">4.3.4.1</span> a. Membentuk matriks pembobot spasial</h4>
 <p>Pada ilustrasi ini digunakan matriks pembobot spasial KNN dengan <code>K = 3</code> dengan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Membuat matriks bobot K-NN</span></span>
@@ -585,7 +569,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt;     n    nn  S0   S1  S2</span></span>
 <span><span class="co">#&gt; W 103 10609 103 60.8 429</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="b.-uji-lagrange-multiplier" class="level4"><h4 class="anchored" data-anchor-id="b.-uji-lagrange-multiplier">b. Uji Lagrange Multiplier</h4>
+</section><section id="b.-uji-lagrange-multiplier" class="level4" data-number="4.3.4.2"><h4 data-number="4.3.4.2" class="anchored" data-anchor-id="b.-uji-lagrange-multiplier">
+<span class="header-section-number">4.3.4.2</span> b. Uji Lagrange Multiplier</h4>
 <p>Pengujian efek dependensi spasial dengan menggunakan uji Lagrange Multiplier menggunakan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji LM dan RLM</span></span>
@@ -610,7 +595,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Hasil uji LMlag, LMerr, RLMerr, dan SARMA memiliki nilai-p yang lebih kecil dari <span class="math inline">\(\alpha=0.05\)</span>. Untuk menentukan efek dependensi pada data cukup diperhatikan pada hasil uji robustLM yang nyata pada <span class="math inline">\(\alpha=0.05\)</span>. Berdasarkan hasil uji RLM dapat disimpulkan terdapat dependensi spasial pada galat.</p>
-</section><section id="c.-uji-breusch-pagan" class="level4"><h4 class="anchored" data-anchor-id="c.-uji-breusch-pagan">c.&nbsp;Uji Breusch-Pagan</h4>
+</section><section id="c.-uji-breusch-pagan" class="level4" data-number="4.3.4.3"><h4 data-number="4.3.4.3" class="anchored" data-anchor-id="c.-uji-breusch-pagan">
+<span class="header-section-number">4.3.4.3</span> c.&nbsp;Uji Breusch-Pagan</h4>
 <p>Uji Breusch-Pagan digunakan untuk mengidentifikasi adanya keheterogenan spasial. Sintaks uji ini sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Uji Breusch-Pagan</span></span>
@@ -624,7 +610,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <p>Nilai-p uji Breusch-Pagan lebih kecil dari <span class="math inline">\(\alpha=0.05\)</span>, sehingga dapat disimpulkan bawa terdapat keragaman spasial pada data. Hasil butir (2b) dan (2c) menunjukkan bahwa pada data yang digunakan mengandung efek dependensi pada galat dan efek keragaman. Pada ilustrasi ini, efek dependensi diabaikan dan hanya memperhatikan efek keragaman spasial. Model yang digunakan untuk menangani keragaman spasial adalah regresi terboboti geografis (RTG).</p>
 </section></section><section id="melakukan-pendugaan-parameter-rtg" class="level3" data-number="4.3.5"><h3 data-number="4.3.5" class="anchored" data-anchor-id="melakukan-pendugaan-parameter-rtg">
 <span class="header-section-number">4.3.5</span> Melakukan pendugaan parameter RTG</h3>
-<section id="a.-menentukan-nilai-lebar-jendela-optimum" class="level4"><h4 class="anchored" data-anchor-id="a.-menentukan-nilai-lebar-jendela-optimum">a. Menentukan nilai lebar jendela optimum</h4>
+<section id="a.-menentukan-nilai-lebar-jendela-optimum" class="level4" data-number="4.3.5.1"><h4 data-number="4.3.5.1" class="anchored" data-anchor-id="a.-menentukan-nilai-lebar-jendela-optimum">
+<span class="header-section-number">4.3.5.1</span> a. Menentukan nilai lebar jendela optimum</h4>
 <p>Lebar jendela dari fungsi kernel dapat bersifat adaptif atau tetap. Penentuan lebar jendela optimum menggunakan validasi silang (CV). Untuk menentukan lebar jendela tetap pada fungsi kernel Gaussian menggunakan sintaks sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Mengubah class data PDRB menjadi class SpatialPointsDataFrame</span></span>
@@ -676,7 +663,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="va">bw2</span></span>
 <span><span class="co">#&gt; [1] 0.381</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="b.-menduga-parameter-rtg" class="level4"><h4 class="anchored" data-anchor-id="b.-menduga-parameter-rtg">b. Menduga parameter RTG</h4>
+</section><section id="b.-menduga-parameter-rtg" class="level4" data-number="4.3.5.2"><h4 data-number="4.3.5.2" class="anchored" data-anchor-id="b.-menduga-parameter-rtg">
+<span class="header-section-number">4.3.5.2</span> b. Menduga parameter RTG</h4>
 <p>Pendugaan parameter RTG dengan matriks pembobot kernel Gaussian yang bersifat tetap dilakukan dengan menggunakan sintaks berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Pendugaan parameter RTG Fixed Gaussian</span></span>
@@ -860,7 +848,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; 9 0.10793  0.06222 0.4110</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Berdasarkan output ringkasan koefisien RTG terlihat nilai rataan koefisien X7 bernilai positif tertinggi pada kedua model (RTG dengan lebar jendela tetap dan adaptif). Untuk koefisien yang bernilai negatif terendah, terlihat X3 pada model dengan lebar jendela tetap dan X6 pada model adaptif. Ragam koefisien untuk model tetap Gaussian cenderung lebih rendah dibandingkan model adaptif Gaussian. Berdasarkan nilai IQR pada kedua model terlihat koefisien X4 memiliki nilai yang lebih tinggi dibandingkan koefisien lainnya, hal ini menunjukan bahwa koefisien X4 pada setiap kabupaten/kota di Jawa lebih beragam dibandingkan koefisien prediktor lainnya.</p>
-</section><section id="c.-anova" class="level4"><h4 class="anchored" data-anchor-id="c.-anova">c.&nbsp;ANOVA</h4>
+</section><section id="c.-anova" class="level4" data-number="4.3.5.3"><h4 data-number="4.3.5.3" class="anchored" data-anchor-id="c.-anova">
+<span class="header-section-number">4.3.5.3</span> c.&nbsp;ANOVA</h4>
 <p>Untuk membandingkan kebaikan antara model regresi linier berganda dengan RTG, digunakan perbandingan kuadrat tengah antara kedua model dengan analisis ragam (ANOVA). Berikut sintaks yang digunakan untuk menampilkan ANOVA dan nilai-p dari statistik uji F:</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#ANOVA RTG Fixed Gaussian</span></span>
@@ -888,7 +877,8 @@ Gambar&nbsp;4.1: Peta kemiskinan
 <span><span class="co">#&gt; [1] 0.000546</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Nilai-p dari statistik uji F lebih kecil dari <span class="math inline">\(\alpha=0.05\)</span>, sehingga dapat disimpulkan bahwa model RTG mempunyai kuadrat tengah galat lebih kecil dari pada model regresi linier berganda.</p>
-</section><section id="d.-evaluasi-kebaikan-rtg" class="level4"><h4 class="anchored" data-anchor-id="d.-evaluasi-kebaikan-rtg">d.&nbsp;Evaluasi kebaikan RTG</h4>
+</section><section id="d.-evaluasi-kebaikan-rtg" class="level4" data-number="4.3.5.4"><h4 data-number="4.3.5.4" class="anchored" data-anchor-id="d.-evaluasi-kebaikan-rtg">
+<span class="header-section-number">4.3.5.4</span> d.&nbsp;Evaluasi kebaikan RTG</h4>
 <p>Untuk mengetahui kebaikan model antara regresi linier berganda dengan RTG, selain menggunakan ANOVA (butir 3d), dapat juga dibandingkani nilai AIC dan R-square kedua model tersebut. sintaks untuk menghitung nilai AIC dan R-square sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Nilai AIC dan R-square</span></span>
