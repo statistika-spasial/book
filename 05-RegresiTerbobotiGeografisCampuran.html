@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Pemodelan Statistika pada Data Geospasial - 5&nbsp; Regresi Terboboti Geografis Campuran</title>
+<title>5&nbsp; Regresi Terboboti Geografis Campuran – Pemodelan Statistika pada Data Geospasial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -116,7 +116,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -147,13 +147,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-2.html">Model Keragaman Spasial</a></li><li class="breadcrumb-item"><a href="./05-RegresiTerbobotiGeografisCampuran.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regresi Terboboti Geografis Campuran</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -190,7 +190,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Dependensi Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -219,7 +219,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Keragaman Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -248,7 +248,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixed SAR-GWR</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -277,7 +277,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -304,9 +304,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -363,7 +363,7 @@ window.Quarto = {
 
 </header><section id="deskripsi" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="deskripsi">
 <span class="header-section-number">5.1</span> Deskripsi</h2>
-<p>Regresi terboboti geografis campuran (RTGC) memiliki parameter yang bersifat lokal dan global <span class="citation" data-cites="fotheringham2005">(<a href="references.html#ref-fotheringham2005" role="doc-biblioref">Fotheringham AS 2005</a>)</span>. Prosedur pendugaan parameter pada model RTGC menggabungkan metode parametrik (parameter global) dan nonparametrik (parameter lokal), sehingga model ini juga dikenal sebagai RTG semiparametrik <span class="citation" data-cites="nakaya2005">(<a href="references.html#ref-nakaya2005" role="doc-biblioref">Nakaya T 2005</a>)</span>. Model RTGC diformulasikan sebagai berikut:</p>
+<p>Regresi terboboti geografis campuran (RTGC) memiliki parameter yang bersifat lokal dan global <span class="citation" data-cites="fotheringham2005">(<a href="references.html#ref-fotheringham2005" role="doc-biblioref">Fotheringham et al., 2005</a>)</span>. Prosedur pendugaan parameter pada model RTGC menggabungkan metode parametrik (parameter global) dan nonparametrik (parameter lokal), sehingga model ini juga dikenal sebagai RTG semiparametrik <span class="citation" data-cites="nakaya2005">(<a href="references.html#ref-nakaya2005" role="doc-biblioref">Nakaya T, 2005</a>)</span>. Model RTGC diformulasikan sebagai berikut:</p>
 <p><span id="eq-641"><span class="math display">\[
 y_i = \sum_{j=1}^{k} \alpha_j x_{ij} + \sum_{l=k+1}^{p} \beta_l(u_i,v_i) x_{il} + \epsilon_i
 \tag{5.1}\]</span></span></p>
@@ -419,16 +419,16 @@ H_1: &amp; \ \beta_j(u_i, v_i) \neq 0 \quad \text{(peubah penjelas berpengaruh n
 <p><span id="eq-648"><span class="math display">\[
 t_{\text{hit}} = \frac{\hat{\beta}_j(u_i, v_i)}{S_{\hat{\beta}_j(u_i, v_i)}} \quad \text{untuk } i=1,2,\ldots,n; \ j=0,1,2,\ldots,p
 \tag{5.7}\]</span></span></p>
-<p>Dengan galat baku <span class="math inline">\(\hat{\beta}_j(u_i, v_i)\)</span> adalah <span class="math inline">\(S_{\hat{\beta}_j(u_i, v_i)} = \sqrt{(I-S_l)(I-S_l)'\hat{\sigma}^2}\)</span>, dan penduga ragam adalah <span class="math inline">\(\hat{\sigma}^2 = \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n-p}\)</span>. <span class="math inline">\(H_0\)</span> ditolak jika nilai <span class="math inline">\(t_{\text{hit}} &gt; t_{(\alpha/2;n-p)}\)</span> <span class="citation" data-cites="fotheringham2005">(<a href="references.html#ref-fotheringham2005" role="doc-biblioref">Fotheringham AS 2005</a>)</span>.</p>
+<p>Dengan galat baku <span class="math inline">\(\hat{\beta}_j(u_i, v_i)\)</span> adalah <span class="math inline">\(S_{\hat{\beta}_j(u_i, v_i)} = \sqrt{(I-S_l)(I-S_l)'\hat{\sigma}^2}\)</span>, dan penduga ragam adalah <span class="math inline">\(\hat{\sigma}^2 = \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n-p}\)</span>. <span class="math inline">\(H_0\)</span> ditolak jika nilai <span class="math inline">\(t_{\text{hit}} &gt; t_{(\alpha/2;n-p)}\)</span> <span class="citation" data-cites="fotheringham2005">(<a href="references.html#ref-fotheringham2005" role="doc-biblioref">Fotheringham et al., 2005</a>)</span>.</p>
 </section><section id="data" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="data">
 <span class="header-section-number">5.2</span> Data</h2>
-<p>Ilustrasi untuk model RTGC merujuk hasil penelitian <span class="citation" data-cites="pongoh2015">Pongoh (<a href="references.html#ref-pongoh2015" role="doc-biblioref">2015</a>)</span> dan <span class="citation" data-cites="marah2017">Mar’ah Z (<a href="references.html#ref-marah2017" role="doc-biblioref">2017</a>)</span>. Penentuan peubah penjelas yang bersifat global dan lokal ada dua pendekatan, yaitu dengan menggunakan model liner koregionalisasi (MLK) dan selang kepercayaan. MLK agak rumit tetapi hasilnya lebih detil <span class="citation" data-cites="marah2017">(<a href="references.html#ref-marah2017" role="doc-biblioref">Mar’ah Z 2017</a>)</span>, sedangkan metode selang kepercayaan dari koefisien RTG sangat sederhana <span class="citation" data-cites="pongoh2015">Pongoh (<a href="references.html#ref-pongoh2015" role="doc-biblioref">2015</a>)</span>.</p>
+<p>Ilustrasi untuk model RTGC merujuk hasil penelitian <span class="citation" data-cites="pongoh2015">Pongoh (<a href="references.html#ref-pongoh2015" role="doc-biblioref">2015</a>)</span> dan <span class="citation" data-cites="marah2017">Mar’ah et al. (<a href="references.html#ref-marah2017" role="doc-biblioref">2017</a>)</span>. Penentuan peubah penjelas yang bersifat global dan lokal ada dua pendekatan, yaitu dengan menggunakan model liner koregionalisasi (MLK) dan selang kepercayaan. MLK agak rumit tetapi hasilnya lebih detil <span class="citation" data-cites="marah2017">(<a href="references.html#ref-marah2017" role="doc-biblioref">Mar’ah et al., 2017</a>)</span>, sedangkan metode selang kepercayaan dari koefisien RTG sangat sederhana <span class="citation" data-cites="pongoh2015">Pongoh (<a href="references.html#ref-pongoh2015" role="doc-biblioref">2015</a>)</span>.</p>
 <p>Data dalam penelitian ini bersumber dari Basis Data Terpadu keluarga miskin untuk Program Perlindungan Sosial Juli 2012 pada 159 kecamatan di Provinsi Sulawesi Utara, data diambil dari website TNP2K (Tim Nasional Percepatan Penanggulangan Kemiskinan). Peubah respon (<span class="math inline">\(Y\)</span>) yang digunakan yaitu persentase status kesejahteraan rendah (%) dan prediktor yang digunakan selengkapnya tertera di <a href="#tbl-rtgc" class="quarto-xref">Tabel&nbsp;<span>5.1</span></a>. Data dan peta ilustrasi RTGC tersedia pada tautan <a href="https://ipb.link/gwr-mixed">https://ipb.link/gwr-mixed</a>.</p>
-<div id="tbl-rtgc" class="striped hover quarto-float anchored">
+<div id="tbl-rtgc" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rtgc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabel&nbsp;5.1: Keterangan Peubah
 </figcaption><div aria-describedby="tbl-rtgc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-striped table-hover table">
+<table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 14%">
 <col style="width: 85%">
@@ -641,7 +641,7 @@ Tabel&nbsp;5.1: Keterangan Peubah
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">123</span>, <span class="fl">127.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">plot.skr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot-skr" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plot-skr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-skr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="05-RegresiTerbobotiGeografisCampuran_files/figure-html/fig-plot-skr-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -890,29 +890,29 @@ Gambar&nbsp;5.1: Peta tematik SKR
 <span><span class="fu"><a href="https://edzer.github.io/sp/reference/coordinates.html">coordinates</a></span><span class="op">(</span><span class="va">SKR.sp</span><span class="op">)</span><span class="op">=</span><span class="op">~</span><span class="va">long</span><span class="op">+</span><span class="va">lat</span></span>
 <span><span class="co">#</span></span>
 <span><span class="co">#Membuat objek geostatistik dari setiap peubah</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="st">"y"</span>, <span class="va">y</span><span class="op">~</span><span class="fl">1</span>, <span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x1"</span>, <span class="va">x1</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x2"</span>, <span class="va">x2</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x3"</span>, <span class="va">x3</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x4"</span>, <span class="va">x4</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x5"</span>, <span class="va">x5</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x6"</span>, <span class="va">x6</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x7"</span>, <span class="va">x7</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x8"</span>, <span class="va">x8</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x9"</span>, <span class="va">x9</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x10"</span>, <span class="va">x10</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x11"</span>, <span class="va">x11</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="st">"y"</span>, <span class="va">y</span><span class="op">~</span><span class="fl">1</span>, <span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x1"</span>, <span class="va">x1</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x2"</span>, <span class="va">x2</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x3"</span>, <span class="va">x3</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x4"</span>, <span class="va">x4</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x5"</span>, <span class="va">x5</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x6"</span>, <span class="va">x6</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x7"</span>, <span class="va">x7</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x8"</span>, <span class="va">x8</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x9"</span>, <span class="va">x9</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x10"</span>, <span class="va">x10</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span><span class="va">g</span>, <span class="st">"x11"</span>, <span class="va">x11</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">SKR.sp</span><span class="op">)</span></span>
 <span><span class="co">#</span></span>
 <span><span class="co">#Variogram, semivariogram, dan semivariogram silang</span></span>
-<span><span class="va">v</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/variogram.html">variogram</a></span><span class="op">(</span><span class="va">g</span>, cutoff <span class="op">=</span> <span class="fl">240</span>, width <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/gstat.html">gstat</a></span><span class="op">(</span></span>
+<span><span class="va">v</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/variogram.html">variogram</a></span><span class="op">(</span><span class="va">g</span>, cutoff <span class="op">=</span> <span class="fl">240</span>, width <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/gstat.html">gstat</a></span><span class="op">(</span></span>
 <span>  <span class="va">g</span>,</span>
-<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/vgm.html">vgm</a></span><span class="op">(</span></span>
+<span>  model <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/vgm.html">vgm</a></span><span class="op">(</span></span>
 <span>    psill <span class="op">=</span> <span class="fl">.75</span>,</span>
 <span>    model <span class="op">=</span> <span class="st">"Gau"</span>,</span>
 <span>    range <span class="op">=</span></span>
 <span>      <span class="fl">161</span>,</span>
-<span>    add.to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/vgm.html">vgm</a></span><span class="op">(</span></span>
+<span>    add.to <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/vgm.html">vgm</a></span><span class="op">(</span></span>
 <span>      psill <span class="op">=</span> <span class="fl">.35</span>,</span>
 <span>      model <span class="op">=</span> <span class="st">"Sph"</span>,</span>
 <span>      nugget <span class="op">=</span></span>
@@ -922,7 +922,7 @@ Gambar&nbsp;5.1: Peta tematik SKR
 <span>  <span class="op">)</span>,</span>
 <span>  fill.all <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">g.fit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/gstat/man/fit.lmc.html">fit.lmc</a></span><span class="op">(</span><span class="va">v</span>, <span class="va">g</span>, fit.lmc <span class="op">=</span> <span class="cn">TRUE</span>, correct.diagonal <span class="op">=</span></span>
+<span><span class="va">g.fit</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/fit.lmc.html">fit.lmc</a></span><span class="op">(</span><span class="va">v</span>, <span class="va">g</span>, fit.lmc <span class="op">=</span> <span class="cn">TRUE</span>, correct.diagonal <span class="op">=</span></span>
 <span>                  <span class="fl">1.01</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="b.-menghitung-proporsi-keragaman-spasial-setiap-peubah" class="level4"><h4 class="anchored" data-anchor-id="b.-menghitung-proporsi-keragaman-spasial-setiap-peubah">b. Menghitung proporsi keragaman spasial setiap peubah</h4>
@@ -1071,18 +1071,18 @@ Gambar&nbsp;5.1: Peta tematik SKR
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-fotheringham2005" class="csl-entry" role="listitem">
-Fotheringham AS, Brunsdon C, Charlton M. 2005. <span>“Model Selection Issues in Geographically Weighted Regression.”</span> <em>Proceedings of the 8th International Conference on GeoComputation</em>.
+Fotheringham, S., Charlton, M., Brunsdon, C., &amp; Nakaya, T. (2005). Model selection issues in geographically weighted regression. <em>Proceedings of the 8th International Conference on GeoComputation</em>.
 </div>
 <div id="ref-marah2017" class="csl-entry" role="listitem">
-Mar’ah Z, Wigena AH, Djuraidah A. 2017. <span>“Semi-Parametric Geographically Weighted Regression Modelling Using Linear Model of Coregionalization.”</span> <em>International Journal of Sciences: Basic and Applied Research</em> 34 (2): 178–86.
+Mar’ah, Z., Djuraidah, A., &amp; Wigena, A. H. (2017). Semi-parametric geographically weighted regression modelling using linear model of coregionalization. <em>International Journal of Sciences: Basic and Applied Research</em>, <em>34</em>(2), 178–186.
 </div>
 <div id="ref-nakaya2005" class="csl-entry" role="listitem">
-Nakaya T, Charlton M, Fotheringham AS. 2005. <span>“Geographically Weighted Poisson Regression for Disease Association Mapping.”</span> <em>Statist. Med.</em> 24: 2695–2717.
+Nakaya T, C. M., Fotheringham AS. (2005). Geographically weighted poisson regression for disease association mapping. <em>Statist. Med.</em>, <em>24</em>, 2695–2717.
 </div>
 <div id="ref-pongoh2015" class="csl-entry" role="listitem">
-Pongoh, Fernando Dorothius. 2015. <em>Regresi Terboboti Geografis Dan Regresi Terboboti Geografis Campuran: Studi Kasus Status Kesejahteraan Rendah Di Sulawesi Utara</em>. <em>[Tesis]</em>. Bogor (ID): Institut Pertanian Bogor.
+Pongoh, F. D. (2015). Regresi terboboti geografis dan regresi terboboti geografis campuran: Studi kasus status kesejahteraan rendah di sulawesi utara. In <em>[tesis]</em>. Institut Pertanian Bogor.
 </div>
 </div>
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1120,18 +1120,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1163,7 +1152,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -1222,7 +1233,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -2027,7 +2038,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-500"><a href="#cb16-500" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb16-501"><a href="#cb16-501" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-502"><a href="#cb16-502" aria-hidden="true" tabindex="-1"></a>Nilai $AIC_C$ dari model RTGC lebih kecil dibandingkan RTG, sehingga dapat disimpulkan model terbaik untuk kasus ini adalah RTGC.</span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

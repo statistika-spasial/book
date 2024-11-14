@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Pemodelan Statistika pada Data Geospasial - 1&nbsp; Spasial Autoregresif Model</title>
+<title>1&nbsp; Spasial Autoregresif Model – Pemodelan Statistika pada Data Geospasial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -116,7 +116,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -147,13 +147,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-1.html">Model Dependensi Spasial</a></li><li class="breadcrumb-item"><a href="./01-SpasialAutoRegresifModel.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Spasial Autoregresif Model</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -190,7 +190,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Dependensi Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -219,7 +219,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Keragaman Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -248,7 +248,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixed SAR-GWR</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -277,7 +277,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -304,9 +304,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -365,7 +365,7 @@ window.Quarto = {
 
 </header><section id="deskripsi" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="deskripsi">
 <span class="header-section-number">1.1</span> Deskripsi</h2>
-<p>Model regresi spasial digunakan untuk mengetahui hubungan antara satu peubah dengan satu atau lebih peubah dengan memperhatikan adanya efek spasial <span class="citation" data-cites="cahyati2018">(<a href="references.html#ref-cahyati2018" role="doc-biblioref">Cahyati R 2018</a>)</span>. Persamaan umum untuk model regresi spasial dapat dirumuskan sebagai berikut <span class="citation" data-cites="griffith1988">(<a href="references.html#ref-griffith1988" role="doc-biblioref">Griffith 1988</a>)</span>:</p>
+<p>Model regresi spasial digunakan untuk mengetahui hubungan antara satu peubah dengan satu atau lebih peubah dengan memperhatikan adanya efek spasial <span class="citation" data-cites="adj012024">(<a href="references.html#ref-adj012024" role="doc-biblioref">Djuraidah et al., 2024</a>)</span>. Persamaan umum untuk model regresi spasial dapat dirumuskan sebagai berikut <span class="citation" data-cites="griffith1988">(<a href="references.html#ref-griffith1988" role="doc-biblioref">Griffith, 1988</a>)</span>:</p>
 <p><span class="math inline">\(y = \rho W_1 y + X\beta + \gamma W_2 X\beta + u\)</span></p>
 <p><span class="math inline">\(u = \lambda W u + \epsilon\)</span></p>
 <p>Dengan asumsi bahwa <span class="math inline">\(\epsilon \sim N(0, \sigma^2 I)\)</span>, dengan:</p>
@@ -381,13 +381,13 @@ u &amp; : \text{vektor galat yang diasumsikan mengandung autokorelasi berukuran 
 \lambda &amp; : \text{koefisien autoregresi galat spasial}, \\
 \epsilon &amp; : \text{vektor galat yang bebas autokorelasi berukuran } n \times 1.
 \end{align*}\]</span></p>
-<p>Jika pada persamaan nilai koefisien <span class="math inline">\(\gamma = 0\)</span> dan <span class="math inline">\(\lambda = 0\)</span>, maka model yang digunakan akan menjadi model SAR. SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR adalah sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">LeSage J 2009</a>)</span>:</p>
+<p>Jika pada persamaan nilai koefisien <span class="math inline">\(\gamma = 0\)</span> dan <span class="math inline">\(\lambda = 0\)</span>, maka model yang digunakan akan menjadi model SAR. SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR adalah sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">J &amp; Pace, 2009</a>)</span>:</p>
 <p><span class="math inline">\(y = \rho W y + X\beta + \epsilon\)</span></p>
 <p>Dengan <span class="math inline">\(y\)</span> merupakan peubah respon, <span class="math inline">\(W\)</span> merupakan matriks pembobot spasial, <span class="math inline">\(\beta\)</span> adalah koefisien parameter regresi, <span class="math inline">\(\epsilon\)</span> merupakan sisaan, dan <span class="math inline">\(\rho\)</span> merupakan koefisien autoregressive lag spasial. Jika tidak terdapat ketergantungan spasial antara wilayah ke-<span class="math inline">\(i\)</span> dan wilayah ke-<span class="math inline">\(j\)</span>, <span class="math inline">\(\rho\)</span> bernilai 0.</p>
-<p>Saat nilai koefisien <span class="math inline">\(\rho\)</span> dan <span class="math inline">\(\lambda\)</span> pada persamaan bernilai nol, maka model yang digunakan adalah model SLX. SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas <span class="citation" data-cites="vega2015">(<a href="references.html#ref-vega2015" role="doc-biblioref">Vega SH 2015</a>)</span>. Persamaan untuk SLX sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">LeSage J 2009</a>)</span>:</p>
+<p>Saat nilai koefisien <span class="math inline">\(\rho\)</span> dan <span class="math inline">\(\lambda\)</span> pada persamaan bernilai nol, maka model yang digunakan adalah model SLX. SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas <span class="citation" data-cites="vega2015">(<a href="references.html#ref-vega2015" role="doc-biblioref">Vega SH, 2015</a>)</span>. Persamaan untuk SLX sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">J &amp; Pace, 2009</a>)</span>:</p>
 <p><span class="math inline">\(y = X\beta + \gamma WX + \epsilon\)</span></p>
 <p>Dengan <span class="math inline">\(y\)</span> merupakan peubah respon, <span class="math inline">\(W\)</span> merupakan matriks pembobot spasial, <span class="math inline">\(\beta\)</span> adalah koefisien parameter regresi, <span class="math inline">\(\epsilon\)</span> merupakan sisaan, dan <span class="math inline">\(\gamma\)</span> merupakan koefisien lag spasial pada peubah penjelas.</p>
-<p>Jika nilai koefisien <span class="math inline">\(\lambda\)</span> pada persamaan bernilai nol, maka model yang digunakan adalah SDM. SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">LeSage J 2009</a>)</span>:</p>
+<p>Jika nilai koefisien <span class="math inline">\(\lambda\)</span> pada persamaan bernilai nol, maka model yang digunakan adalah SDM. SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut <span class="citation" data-cites="lesage2009">(<a href="references.html#ref-lesage2009" role="doc-biblioref">J &amp; Pace, 2009</a>)</span>:</p>
 <p><span class="math inline">\(y = \rho W_1 y + X\beta + \gamma W_2 X + \epsilon\)</span></p>
 <p>Dengan:</p>
 <p><span class="math display">\[\begin{align*}
@@ -402,11 +402,11 @@ W_2 &amp; : \text{matriks pembobot spasial bagi peubah penjelas berukuran } n \t
 </section><section id="data" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="data">
 <span class="header-section-number">1.2</span> Data</h2>
 <p>Data yang digunakan pada penelitian ini merupakan data sekunder yang diambil dari situs <a href="https://opendata.jabarprov.go.id/id">Open Data Jabar</a>. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat pada <a href="#tbl-sar" class="quarto-xref">Tabel&nbsp;<span>1.1</span></a>.</p>
-<div id="tbl-sar" class="striped hover quarto-float anchored">
+<div id="tbl-sar" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabel&nbsp;1.1: Peubah yang Digunakan
 </figcaption><div aria-describedby="tbl-sar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-striped table-hover table">
+<table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 61%">
@@ -519,7 +519,7 @@ Tabel&nbsp;1.1: Peubah yang Digunakan
 <p><strong>BIC:</strong></p>
 <p><span class="math inline">\(BIC = -2 \log(\hat{L}) + \log(N)K\)</span> dengan (<span class="math inline">\(\hat{L}\)</span>) adalah nilai maximum likelihood, (<span class="math inline">\(K\)</span>) adalah jumlah parameter yang diestimasi dalam model, dan (<span class="math inline">\(N\)</span>) adalah jumlah sampel (Li dan Nyholt, 2001).</p>
 <p><strong>Nagelkerke Pseudo R-Squared:</strong></p>
-<p><span class="math inline">\(\text{pseudo R}^2 = \frac{\left(1 - \frac{LL_0}{LL_F}\right)^{2/N}}{1 - \left(\frac{LL_0}{LL_F}\right)^{2/N}}\)</span> dengan (<span class="math inline">\(LL_0\)</span>) adalah nilai log likelihood dari model tanpa peubah penjelas, (<span class="math inline">\(LL_F\)</span>) adalah nilai log likelihood dari model dengan peubah penjelas, dan (<span class="math inline">\(N\)</span>) adalah jumlah sampel <span class="citation" data-cites="walker2016">(<a href="references.html#ref-walker2016" role="doc-biblioref">Walker DA 2016</a>)</span>.</p>
+<p><span class="math inline">\(\text{pseudo R}^2 = \frac{\left(1 - \frac{LL_0}{LL_F}\right)^{2/N}}{1 - \left(\frac{LL_0}{LL_F}\right)^{2/N}}\)</span> dengan (<span class="math inline">\(LL_0\)</span>) adalah nilai log likelihood dari model tanpa peubah penjelas, (<span class="math inline">\(LL_F\)</span>) adalah nilai log likelihood dari model dengan peubah penjelas, dan (<span class="math inline">\(N\)</span>) adalah jumlah sampel <span class="citation" data-cites="walker2016">(<a href="references.html#ref-walker2016" role="doc-biblioref">Walker DA, 2016</a>)</span>.</p>
 </li>
 </ul>
 </li>
@@ -575,20 +575,22 @@ Tabel&nbsp;1.1: Peubah yang Digunakan
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Spherical geometry (s2) switched off</span></span>
 <span><span class="va">petajawa</span><span class="op">&lt;-</span> <span class="fu"><a href="http://rgdal.r-forge.r-project.org/reference/rgdal-deprecated.html">readOGR</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="st">"data/shp/jawa.shp"</span>, layer<span class="op">=</span><span class="st">"jawa"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
+<span><span class="co">#&gt; Warning in readOGR(dsn = "data/shp/jawa.shp", layer = "jawa"): OGR</span></span>
+<span><span class="co">#&gt; support is provided by the sf and terra packages among others</span></span>
+<span><span class="co">#&gt; Warning in ogrInfo(dsn = dsn, layer = layer, encoding = encoding,</span></span>
+<span><span class="co">#&gt; use_iconv = use_iconv, : OGR support is provided by the sf and</span></span>
+<span><span class="co">#&gt; terra packages among others</span></span>
+<span><span class="co">#&gt; Warning in ogrFIDs(dsn = dsn, layer = layer): OGR support is</span></span>
+<span><span class="co">#&gt; provided by the sf and terra packages among others</span></span>
+<span><span class="co">#&gt; Warning in OGRSpatialRef(dsn, layer, morphFromESRI = morphFromESRI,</span></span>
+<span><span class="co">#&gt; dumpSRS = dumpSRS, : OGR support is provided by the sf and terra</span></span>
+<span><span class="co">#&gt; packages among others</span></span>
+<span><span class="co">#&gt; Warning in ogrListLayers(dsn): OGR support is provided by the sf</span></span>
+<span><span class="co">#&gt; and terra packages among others</span></span>
+<span><span class="co">#&gt; Warning in ogrFIDs(dsn = dsn, layer = layer): OGR support is</span></span>
+<span><span class="co">#&gt; provided by the sf and terra packages among others</span></span>
 <span><span class="co">#&gt; OGR data source with driver: ESRI Shapefile </span></span>
-<span><span class="co">#&gt; Source: "E:\Materi_Orasi\book\data\shp\jawa.shp", layer: "jawa"</span></span>
+<span><span class="co">#&gt; Source: "C:\Users\anugraha\Documents\Materi_Orasi\book\data\shp\jawa.shp", layer: "jawa"</span></span>
 <span><span class="co">#&gt; with 119 features</span></span>
 <span><span class="co">#&gt; It has 5 fields</span></span>
 <span><span class="co"># subset peta pulau jawa menjadi jawa barat</span></span>
@@ -624,7 +626,7 @@ Tabel&nbsp;1.1: Peubah yang Digunakan
 <span>       cex <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>       bg <span class="op">=</span> <span class="st">"white"</span>, border<span class="op">=</span><span class="st">"light grey"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot-sampah" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plot-sampah" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-sampah-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="01-SpasialAutoRegresifModel_files/figure-html/fig-plot-sampah-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -638,7 +640,7 @@ Gambar&nbsp;1.1: Peta sebaran produksi sampah per kepadatan penduduk
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">Y2</span>, xlab <span class="op">=</span> <span class="st">"Produksi sampah per kepadatan penduduk"</span>, horizontal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot-box" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plot-box" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-box-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="01-SpasialAutoRegresifModel_files/figure-html/fig-plot-box-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -841,29 +843,29 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <span><span class="co">#LM dengan queen</span></span>
 <span><span class="va">LM_Queen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.RStests</a></span><span class="op">(</span><span class="va">reglin2</span>,</span>
 <span>                       <span class="va">queen.jabar</span>,</span>
-<span>                       test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                       test <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#LM rook</span></span>
 <span><span class="va">LM_rook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.RStests</a></span><span class="op">(</span><span class="va">reglin2</span>,</span>
 <span>                      <span class="va">rook.jabar</span>,</span>
-<span>                      test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                      test <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#LM Inverse</span></span>
 <span><span class="va">LM_inv_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.RStests</a></span><span class="op">(</span><span class="va">reglin2</span>,</span>
 <span>                       <span class="va">invers.w</span>,</span>
-<span>                       test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                       test <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">LM_inv_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.RStests</a></span><span class="op">(</span><span class="va">reglin2</span>,</span>
 <span>                       <span class="va">invers.w2</span>,</span>
-<span>                       test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                       test <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
 <span><span class="co">#LM Exponential</span></span>
 <span><span class="va">LM_exp_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.RStests</a></span><span class="op">(</span><span class="va">reglin2</span>,</span>
 <span>                       <span class="va">W.eksp.s1</span>,</span>
-<span>                       test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                       test <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">LM_exp_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.RStests</a></span><span class="op">(</span><span class="va">reglin2</span>,</span>
 <span>                       <span class="va">W.eksp.s2</span>,</span>
-<span>                       test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                       test <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tabel_uji_LM</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span></span>
@@ -1254,7 +1256,8 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 <span></span>
 <span><span class="va">dat.map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"data/shp/jawa.shp"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Reading layer `jawa' from data source </span></span>
-<span><span class="co">#&gt;   `E:\Materi_Orasi\book\data\shp\jawa.shp' using driver `ESRI Shapefile'</span></span>
+<span><span class="co">#&gt;   `C:\Users\anugraha\Documents\Materi_Orasi\book\data\shp\jawa.shp' </span></span>
+<span><span class="co">#&gt;   using driver `ESRI Shapefile'</span></span>
 <span><span class="co">#&gt; Simple feature collection with 119 features and 5 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
@@ -1376,24 +1379,24 @@ Gambar&nbsp;1.2: Boxplot produksi sampah per kepadatan penduduk
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-akinwande2015" class="csl-entry" role="listitem">
-Akinwande MO, Samson A, Dikko HG. 2015. <span>“Variance Inflation Factor: As a Condition for the Inclusion of Suppressor Variable(s) in Regression Analysis.”</span> <em>Open Journal of Statistics</em> 5: 754–67.
+Akinwande MO, S. A., Dikko HG. (2015). Variance inflation factor: As a condition for the inclusion of suppressor variable(s) in regression analysis. <em>Open Journal of Statistics</em>, <em>5</em>, 754–767.
 </div>
-<div id="ref-cahyati2018" class="csl-entry" role="listitem">
-Cahyati R, Rahardiantoro S, Djuraidah A. 2018. <span>“Pemodelan Regresi Spasial Kekar: Studi Kasus Jumlah Kunjungan Wisatawan Mancanegara Asal Eurasia Di Indonesia Tahun 2015.”</span> <em>Xplore J. Stat</em> 2 (1): 61–70. <a href="https://doi.org/10.29244/xplore.v2i1.85">https://doi.org/10.29244/xplore.v2i1.85</a>.
+<div id="ref-adj012024" class="csl-entry" role="listitem">
+Djuraidah, A., Rizki, A., &amp; Alfan, T. (2024). Identifying factors affecting waste generation in west java in 2021 using spatial regression. <em>JTAM (Jurnal Teori Dan Aplikasi Matematika)</em>, <em>8</em>(2), 495–505.
 </div>
 <div id="ref-griffith1988" class="csl-entry" role="listitem">
-Griffith, Daniel A. 1988. <em>Advanced Spatial Statistics</em>. Dordrecht (NL): Springer Dordrecht.
+Griffith, D. A. (1988). <em>Advanced spatial statistics</em>. Springer Dordrecht.
 </div>
 <div id="ref-lesage2009" class="csl-entry" role="listitem">
-LeSage J, Pace RK. 2009. <em>Introduction to Spatial Econometrics</em>. New York (AS): Chapman; Hall/CRC.
+J, J. L., &amp; Pace, R. (2009). <em>Introduction to spatial econometrics</em>. Chapman; Hall/CRC.
 </div>
 <div id="ref-vega2015" class="csl-entry" role="listitem">
-Vega SH, Elhorst JP. 2015. <span>“The SLX Model.”</span> <em>J Of Regional Science</em> 0 (0): 1–25. <a href="https://doi.org/10.1111/jors.12188">https://doi.org/10.1111/jors.12188</a>.
+Vega SH, E. J. (2015). The SLX model. <em>J Of Regional Science</em>, <em>0</em>(0), 1–25. <a href="https://doi.org/10.1111/jors.12188">https://doi.org/10.1111/jors.12188</a>
 </div>
 <div id="ref-walker2016" class="csl-entry" role="listitem">
-Walker DA, Smith TJ. 2016. <span>“Nine Pseudo R2 Indices for Binary Logistic Regression Models.”</span> <em>J. Mod. Appl. Stat. Methods</em> 15 (1): 848–54.
+Walker DA, S. T. (2016). Nine pseudo R2 indices for binary logistic regression models. <em>J. Mod. Appl. Stat. Methods</em>, <em>15</em>(1), 848–854.
 </div>
 </div>
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1431,18 +1434,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1474,7 +1466,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -1533,7 +1547,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1876,7 +1890,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deskripsi</span></span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>Model regresi spasial digunakan untuk mengetahui hubungan antara satu peubah dengan satu atau lebih peubah dengan memperhatikan adanya efek spasial <span class="co">[</span><span class="ot">@cahyati2018</span><span class="co">]</span>. Persamaan umum untuk model regresi spasial dapat dirumuskan sebagai berikut <span class="co">[</span><span class="ot">@griffith1988</span><span class="co">]</span>:</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>Model regresi spasial digunakan untuk mengetahui hubungan antara satu peubah dengan satu atau lebih peubah dengan memperhatikan adanya efek spasial <span class="co">[</span><span class="ot">@adj012024</span><span class="co">]</span>. Persamaan umum untuk model regresi spasial dapat dirumuskan sebagai berikut <span class="co">[</span><span class="ot">@griffith1988</span><span class="co">]</span>:</span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>$y = \rho W_1 y + X\beta + \gamma W_2 X\beta + u$</span>
 <span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
@@ -2257,29 +2271,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-413"><a href="#cb23-413" aria-hidden="true" tabindex="-1"></a><span class="co">#LM dengan queen</span></span>
 <span id="cb23-414"><a href="#cb23-414" aria-hidden="true" tabindex="-1"></a>LM_Queen <span class="ot">&lt;-</span> <span class="fu">lm.RStests</span>(reglin2,</span>
 <span id="cb23-415"><a href="#cb23-415" aria-hidden="true" tabindex="-1"></a>                       queen.jabar,</span>
-<span id="cb23-416"><a href="#cb23-416" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span>))</span>
+<span id="cb23-416"><a href="#cb23-416" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="st">"all"</span>)</span>
 <span id="cb23-417"><a href="#cb23-417" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-418"><a href="#cb23-418" aria-hidden="true" tabindex="-1"></a><span class="co">#LM rook</span></span>
 <span id="cb23-419"><a href="#cb23-419" aria-hidden="true" tabindex="-1"></a>LM_rook <span class="ot">&lt;-</span> <span class="fu">lm.RStests</span>(reglin2,</span>
 <span id="cb23-420"><a href="#cb23-420" aria-hidden="true" tabindex="-1"></a>                      rook.jabar,</span>
-<span id="cb23-421"><a href="#cb23-421" aria-hidden="true" tabindex="-1"></a>                      <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span>))</span>
+<span id="cb23-421"><a href="#cb23-421" aria-hidden="true" tabindex="-1"></a>                      <span class="at">test =</span> <span class="st">"all"</span>)</span>
 <span id="cb23-422"><a href="#cb23-422" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-423"><a href="#cb23-423" aria-hidden="true" tabindex="-1"></a><span class="co">#LM Inverse</span></span>
 <span id="cb23-424"><a href="#cb23-424" aria-hidden="true" tabindex="-1"></a>LM_inv_1 <span class="ot">&lt;-</span> <span class="fu">lm.RStests</span>(reglin2,</span>
 <span id="cb23-425"><a href="#cb23-425" aria-hidden="true" tabindex="-1"></a>                       invers.w,</span>
-<span id="cb23-426"><a href="#cb23-426" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span>))</span>
+<span id="cb23-426"><a href="#cb23-426" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="st">"all"</span>)</span>
 <span id="cb23-427"><a href="#cb23-427" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-428"><a href="#cb23-428" aria-hidden="true" tabindex="-1"></a>LM_inv_2 <span class="ot">&lt;-</span> <span class="fu">lm.RStests</span>(reglin2,</span>
 <span id="cb23-429"><a href="#cb23-429" aria-hidden="true" tabindex="-1"></a>                       invers.w2,</span>
-<span id="cb23-430"><a href="#cb23-430" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span>))</span>
+<span id="cb23-430"><a href="#cb23-430" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="st">"all"</span>)</span>
 <span id="cb23-431"><a href="#cb23-431" aria-hidden="true" tabindex="-1"></a><span class="co">#LM Exponential</span></span>
 <span id="cb23-432"><a href="#cb23-432" aria-hidden="true" tabindex="-1"></a>LM_exp_1 <span class="ot">&lt;-</span> <span class="fu">lm.RStests</span>(reglin2,</span>
 <span id="cb23-433"><a href="#cb23-433" aria-hidden="true" tabindex="-1"></a>                       W.eksp.s1,</span>
-<span id="cb23-434"><a href="#cb23-434" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span>))</span>
+<span id="cb23-434"><a href="#cb23-434" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="st">"all"</span>)</span>
 <span id="cb23-435"><a href="#cb23-435" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-436"><a href="#cb23-436" aria-hidden="true" tabindex="-1"></a>LM_exp_2 <span class="ot">&lt;-</span> <span class="fu">lm.RStests</span>(reglin2,</span>
 <span id="cb23-437"><a href="#cb23-437" aria-hidden="true" tabindex="-1"></a>                       W.eksp.s2,</span>
-<span id="cb23-438"><a href="#cb23-438" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"RSerr"</span>, <span class="st">"RSlag"</span>, <span class="st">"adjRSerr"</span>, <span class="st">"adjRSlag"</span>, <span class="st">"SARMA"</span>))</span>
+<span id="cb23-438"><a href="#cb23-438" aria-hidden="true" tabindex="-1"></a>                       <span class="at">test =</span> <span class="st">"all"</span>)</span>
 <span id="cb23-439"><a href="#cb23-439" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-440"><a href="#cb23-440" aria-hidden="true" tabindex="-1"></a>tabel_uji_LM <span class="ot">&lt;-</span></span>
 <span id="cb23-441"><a href="#cb23-441" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(</span>
@@ -2605,7 +2619,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-781"><a href="#cb23-781" aria-hidden="true" tabindex="-1"></a>map.de.x7</span>
 <span id="cb23-782"><a href="#cb23-782" aria-hidden="true" tabindex="-1"></a>map.ie.x7</span>
 <span id="cb23-783"><a href="#cb23-783" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Pemodelan Statistika pada Data Geospasial - 2&nbsp; Spasial Durbin Model</title>
+<title>2&nbsp; Spasial Durbin Model – Pemodelan Statistika pada Data Geospasial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -116,7 +116,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -147,13 +147,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-1.html">Model Dependensi Spasial</a></li><li class="breadcrumb-item"><a href="./02-SpasialDurbinModel.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spasial Durbin Model</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -190,7 +190,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Dependensi Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -219,7 +219,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Keragaman Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -248,7 +248,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixed SAR-GWR</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -277,7 +277,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -304,9 +304,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -364,12 +364,12 @@ window.Quarto = {
 
 </header><section id="data" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="data">
 <span class="header-section-number">2.1</span> Data</h2>
-<p>Ilustrasi model spasial Durbin (<strong>Spatial Durbin Model/SDM</strong>) bersumber dari penelitian <span class="citation" data-cites="febriyanti2016">Ramadhani (<a href="references.html#ref-febriyanti2016" role="doc-biblioref">2016</a>)</span>. Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada <a href="#tbl-sdm" class="quarto-xref">Tabel&nbsp;<span>2.1</span></a>. Data dan peta ilustrasi SDM tersedia pada tautan <a href="https://ipb.link/sdm">https://ipb.link/sdm</a>.</p>
-<div id="tbl-sdm" class="striped hover quarto-float anchored">
+<p>Ilustrasi model spasial Durbin (<strong>Spatial Durbin Model/SDM</strong>) bersumber dari penelitian <span class="citation" data-cites="febriyanti2016">Febriyanti et al. (<a href="references.html#ref-febriyanti2016" role="doc-biblioref">2016</a>)</span>. Kasus yang diteliti adalah tentang infeksi virus Dengue di kecamatan DKI Jakarta. Peubah yang digunakan dan sumber data selengkapnya disajikan pada <a href="#tbl-sdm" class="quarto-xref">Tabel&nbsp;<span>2.1</span></a>. Data dan peta ilustrasi SDM tersedia pada tautan <a href="https://ipb.link/sdm">https://ipb.link/sdm</a>.</p>
+<div id="tbl-sdm" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sdm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabel&nbsp;2.1: Daftar Peubah dan Sumber Data
 </figcaption><div aria-describedby="tbl-sdm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-striped table-hover table">
+<table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 61%">
@@ -545,7 +545,7 @@ Untuk mengetahui efek dependensi spasial pada persentase kasus DBD secara eksplo
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> </span>
 <span><span class="va">plotDBD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot-dbd" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plot-dbd" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-dbd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-SpasialDurbinModel_files/figure-html/fig-plot-dbd-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -580,7 +580,7 @@ Pemeriksaan pencilan pada peubah Y menggunakan diagram kotak-garis. Sintaks untu
 <span><span class="co">#&gt; Warning: Removed 1 row containing non-finite outside the scale range</span></span>
 <span><span class="co">#&gt; (`stat_boxplot()`).</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot-box2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plot-box2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-box2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="02-SpasialDurbinModel_files/figure-html/fig-plot-box2-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -715,10 +715,10 @@ Gambar&nbsp;2.2: Boxplot virus Dengue
 <span><span class="co">#&gt; test weights: queen.listw2</span></span>
 <span><span class="co">#&gt;  </span></span>
 <span><span class="co">#&gt;          statistic parameter p.value  </span></span>
-<span><span class="co">#&gt; RSerr        1.053         1   0.305  </span></span>
 <span><span class="co">#&gt; RSlag        0.266         1   0.606  </span></span>
-<span><span class="co">#&gt; adjRSerr     4.901         1   0.027 *</span></span>
+<span><span class="co">#&gt; RSerr        1.053         1   0.305  </span></span>
 <span><span class="co">#&gt; adjRSlag     4.115         1   0.043 *</span></span>
+<span><span class="co">#&gt; adjRSerr     4.901         1   0.027 *</span></span>
 <span><span class="co">#&gt; SARMA        5.167         2   0.075 .</span></span>
 <span><span class="co">#&gt; ---</span></span>
 <span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -983,7 +983,7 @@ Pemilihan model yang lebih efisien antara SAR dan SDM dapat menggunakan uji Like
 <span></span>
 <span><span class="co">#Efek tidak langsung</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">mat_s</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
-<span><span class="va">ie</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">mat_s</span><span class="op">)</span> </span>
+<span><span class="va">ie</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/colSums-methods.html">rowSums</a></span><span class="op">(</span><span class="va">mat_s</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="co">#Efek total</span></span>
 <span><span class="va">te</span> <span class="op">&lt;-</span> <span class="va">de</span><span class="op">+</span><span class="va">ie</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1042,7 +1042,7 @@ Pemilihan model yang lebih efisien antara SAR dan SDM dapat menggunakan uji Like
 <span><span class="va">X_2</span> <span class="op">&lt;-</span> <span class="va">DBD_up</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'X1'</span>, <span class="st">'X3'</span>, <span class="st">'X5'</span>, <span class="st">'X8'</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">X_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">X_2</span><span class="op">)</span></span>
 <span><span class="va">matw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2mat.html">listw2mat</a></span><span class="op">(</span><span class="va">queen.listw2</span><span class="op">)</span></span>
-<span><span class="va">y_hat_pre</span> <span class="op">&lt;-</span> <span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/matrix-products.html">crossprod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>, <span class="va">beta_hat</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">matw</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">X_2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">gamma</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">y_hat_pre</span> <span class="op">&lt;-</span> <span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/matmult-methods.html">crossprod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>, <span class="va">beta_hat</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">matw</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">X_2</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">gamma</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Data Kec. Kalideres naikdengan kenaikan nilai</span></span>
 <span><span class="va">DBD_new</span> <span class="op">&lt;-</span> <span class="va">DBD_up</span></span>
@@ -1052,7 +1052,7 @@ Pemilihan model yang lebih efisien antara SAR dan SDM dapat menggunakan uji Like
 <span><span class="va">X_d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">DBD_new</span><span class="op">[</span>,<span class="fl">4</span><span class="op">:</span><span class="fl">11</span><span class="op">]</span><span class="op">)</span> </span>
 <span><span class="va">X_2_d</span> <span class="op">&lt;-</span> <span class="va">DBD_new</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'X1'</span>, <span class="st">'X3'</span>, <span class="st">'X5'</span>, <span class="st">'X8'</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">X_2_d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">X_2_d</span><span class="op">)</span></span>
-<span><span class="va">y_hat_post</span> <span class="op">&lt;-</span> <span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/matrix-products.html">crossprod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">X_d</span><span class="op">)</span>, <span class="va">beta_hat</span><span class="op">)</span> <span class="op">+</span> </span>
+<span><span class="va">y_hat_post</span> <span class="op">&lt;-</span> <span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/matmult-methods.html">crossprod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">X_d</span><span class="op">)</span>, <span class="va">beta_hat</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>             <span class="op">(</span><span class="va">matw</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">X_2_d</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">gamma</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Perubahan nilai</span></span>
@@ -1080,9 +1080,9 @@ Pemilihan model yang lebih efisien antara SAR dan SDM dapat menggunakan uji Like
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-febriyanti2016" class="csl-entry" role="listitem">
-Ramadhani, Febriyanti Esa. 2016. <em>Penerapan Model Regresi Spasial Pada Kasus Infeksi Virus Dengue Di DKI Jakarta</em>. <em>[Skripsi]</em>. Bogor: Institut Pertanian Bogor.
+Febriyanti, E. R., Djuraidah, A., &amp; Alamudi, A. (2016). Penerapan model regresi spasial pada kasus infeksi virus dengue di DKI jakarta. In <em>[skripsi]</em>. Institut Pertanian Bogor.
 </div>
 </div>
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1120,18 +1120,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1163,7 +1152,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -1222,7 +1233,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -2034,7 +2045,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-523"><a href="#cb24-523" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-524"><a href="#cb24-524" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-525"><a href="#cb24-525" aria-hidden="true" tabindex="-1"></a>Pada peta perubahan nilai Y (kasus DBD) terlihat Kecamatan Kalideres (warna biru pekat) mempunyai kenaikan kasus DBD terbesar dibandingkan kecamatan lainnya di DKI Jakarta. Pada peta terlihat tetangga Kecamatan Kalideres tidak mengalami perubahan kasus DBD. Beberapa kecamatan yang letaknya jauh dari Kecamatan Kalideres tampak berwarna biru tua, hal ini karena adanya efek dependensi pada  prediktor X8. </span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

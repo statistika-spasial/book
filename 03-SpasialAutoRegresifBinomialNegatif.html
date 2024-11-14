@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Pemodelan Statistika pada Data Geospasial - 3&nbsp; Spasial Autoregresif Binomial Negatif</title>
+<title>3&nbsp; Spasial Autoregresif Binomial Negatif – Pemodelan Statistika pada Data Geospasial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -116,7 +116,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -147,13 +147,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-1.html">Model Dependensi Spasial</a></li><li class="breadcrumb-item"><a href="./03-SpasialAutoRegresifBinomialNegatif.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Spasial Autoregresif Binomial Negatif</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -190,7 +190,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Dependensi Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -219,7 +219,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Keragaman Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -248,7 +248,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixed SAR-GWR</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -277,7 +277,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -304,9 +304,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -367,33 +367,33 @@ window.Quarto = {
 <p>Regresi autoregresif spasial binomial negatif (SAR-BN) adalah pengembangan analisis regresi binomial negatif dengan menambahkan adanya efek spasial pada data. Regresi spasial binomial negatif dapat digunakan pada data cacah yang memiliki dependensi spasial dan kondisi overdispersi. Model regresi spasial BN antara lain:</p>
 <section id="a.-spatial-autoregressive-model-sar" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="a.-spatial-autoregressive-model-sar">
 <span class="header-section-number">3.1.1</span> a. Spatial Autoregressive Model (SAR)</h3>
-<p>SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR sebagai berikut <span class="citation" data-cites="anselin1988">(<a href="references.html#ref-anselin1988" role="doc-biblioref">Anselin 1988</a>)</span>:</p>
+<p>SAR merupakan pemodelan pada data dengan menambahkan pengaruh spasial pada peubah respon. Persamaan untuk model SAR sebagai berikut <span class="citation" data-cites="anselin1988">(<a href="references.html#ref-anselin1988" role="doc-biblioref">Anselin, 1988</a>)</span>:</p>
 <p><span class="math inline">\(y = \rho W_1 y + X\beta + \varepsilon\)</span></p>
 <p>dengan <span class="math inline">\(y\)</span> merupakan peubah respon, <span class="math inline">\(W_1\)</span> merupakan matriks pembobot spasial untuk <span class="math inline">\(y\)</span>, <span class="math inline">\(\beta\)</span> adalah koefisien parameter regresi, <span class="math inline">\(\varepsilon\)</span> merupakan sisaan, dan <span class="math inline">\(\rho\)</span> merupakan koefisien autoregressive lag spasial. Model SAR binomial negatif (SAR BN) dinyatakan sebagai berikut:</p>
 <p><span class="math inline">\(\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta\right)\)</span></p>
 <p>dengan <span class="math inline">\(y_i \sim \text{NB}(\mu_i)\)</span></p>
 </section><section id="b.-spatial-durbin-model-sdm" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="b.-spatial-durbin-model-sdm">
 <span class="header-section-number">3.1.2</span> b. Spatial Durbin Model (SDM)</h3>
-<p>SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut <span class="citation" data-cites="anselin1988">(<a href="references.html#ref-anselin1988" role="doc-biblioref">Anselin 1988</a>)</span>:</p>
+<p>SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut <span class="citation" data-cites="anselin1988">(<a href="references.html#ref-anselin1988" role="doc-biblioref">Anselin, 1988</a>)</span>:</p>
 <p>$y = W_1 y + X+ W_2 X + $</p>
-<p>dengan <span class="math inline">\(W_2\)</span> merupakan matriks pembobot spasial untuk <span class="math inline">\(X\)</span> dan <span class="math inline">\(\gamma\)</span> merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut <span class="citation" data-cites="glaser2017">(<a href="references.html#ref-glaser2017" role="doc-biblioref">Glaser 2017</a>)</span>:</p>
+<p>dengan <span class="math inline">\(W_2\)</span> merupakan matriks pembobot spasial untuk <span class="math inline">\(X\)</span> dan <span class="math inline">\(\gamma\)</span> merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut <span class="citation" data-cites="glaser2017">(<a href="references.html#ref-glaser2017" role="doc-biblioref">Glaser, 2017</a>)</span>:</p>
 <p><span class="math inline">\(\mu_i = \exp\left(\rho w_{1i}^{\prime} y + x_i \beta + w_{2i}^{\prime} x_i \gamma\right)\)</span></p>
 <p>dengan <span class="math inline">\(y_i \sim \text{NB}(\mu_i)\)</span></p>
 </section><section id="c.-spatial-lag-x-slx" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="c.-spatial-lag-x-slx">
 <span class="header-section-number">3.1.3</span> c.&nbsp;Spatial Lag-X (SLX)</h3>
-<p>SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas. Persamaan untuk SLX sebagai berikut <span class="citation" data-cites="vega2015">(<a href="references.html#ref-vega2015" role="doc-biblioref">Vega SH 2015</a>)</span>:</p>
+<p>SLX adalah model regresi spasial dengan dependensi spasial hanya pada peubah penjelas. Persamaan untuk SLX sebagai berikut <span class="citation" data-cites="vega2015">(<a href="references.html#ref-vega2015" role="doc-biblioref">Vega SH, 2015</a>)</span>:</p>
 <p><span class="math inline">\(y = X\beta + \gamma W_2 X + \varepsilon\)</span></p>
 <p>Spatial lag-x binomial negatif (SLX BN) merupakan model regresi spasial untuk data cacah dengan overdispersi dan terdapat dependensi spasial pada prediktor. Persamaan dari SLX BN sebagai berikut:</p>
 <p><span class="math inline">\(\mu_i = \exp\left(x_i \beta + w_{2i}^{\prime} x_i \gamma\right)\)</span></p>
 <p>dengan <span class="math inline">\(y_i \sim \text{NB}(\mu_i)\)</span></p>
 </section></section><section id="data" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="data">
 <span class="header-section-number">3.2</span> Data</h2>
-<p>Ilustrasi model SAR-BN dirujuk dari hasil penelitian <span class="citation" data-cites="amelia2023">Amelia M (<a href="references.html#ref-amelia2023" role="doc-biblioref">2023</a>)</span>. Data yang digunakan adalah data sekunder yang diperoleh dari Badan Pusat Statistik Jawa Barat, Dinas Kesehatan Provinsi Jawa Barat, dan Profil Kesehatan Provinsi Jawa Barat Tahun 2021 yang dikeluarkan oleh Dinas Kesehatan Jawa Barat tahun 2021. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat di <a href="#tbl-sarbn" class="quarto-xref">Tabel&nbsp;<span>3.1</span></a>. Data dan peta ilustrasi SAR-BN tersedia pada tautan <a href="https://ipb.link/sar-binomial-negatif" class="uri">https://ipb.link/sar-binomial-negatif</a>.</p>
-<div id="tbl-sarbn" class="striped hover quarto-float anchored">
+<p>Ilustrasi model SAR-BN dirujuk dari hasil penelitian <span class="citation" data-cites="amelia2023">Amelia et al. (<a href="references.html#ref-amelia2023" role="doc-biblioref">2023</a>)</span>. Data yang digunakan adalah data sekunder yang diperoleh dari Badan Pusat Statistik Jawa Barat, Dinas Kesehatan Provinsi Jawa Barat, dan Profil Kesehatan Provinsi Jawa Barat Tahun 2021 yang dikeluarkan oleh Dinas Kesehatan Jawa Barat tahun 2021. Unit amatan pada penelitian ini adalah 27 kabupaten/kota di Jawa Barat. Peubah yang digunakan dapat dilihat di <a href="#tbl-sarbn" class="quarto-xref">Tabel&nbsp;<span>3.1</span></a>. Data dan peta ilustrasi SAR-BN tersedia pada tautan <a href="https://ipb.link/sar-binomial-negatif" class="uri">https://ipb.link/sar-binomial-negatif</a>.</p>
+<div id="tbl-sarbn" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sarbn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabel&nbsp;3.1: Deskripsi Peubah
 </figcaption><div aria-describedby="tbl-sarbn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-striped table-hover table">
+<table class="table-striped table-hover caption-top table">
 <thead><tr class="header">
 <th>Kode</th>
 <th>Peubah</th>
@@ -502,7 +502,7 @@ Tabel&nbsp;3.1: Deskripsi Peubah
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">lmtest</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spdep/">spdep</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lbbe.univ-lyon1.fr/fr/fitdistrplus">fitdistrplus</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lbbe-software.github.io/fitdistrplus/">fitdistrplus</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://zoo.R-Forge.R-project.org/">zoo</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">lmtest</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster">raster</a></span><span class="op">)</span></span>
@@ -525,21 +525,23 @@ Tabel&nbsp;3.1: Deskripsi Peubah
 <span><span class="co">#Input peta SHP</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Spherical geometry (s2) switched off</span></span>
-<span><span class="va">petajawa</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rgdal/man/rgdal-deprecated.html">readOGR</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="st">"data/shp/jawa.shp"</span>, layer<span class="op">=</span><span class="st">"jawa"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
-<span><span class="co">#&gt; Warning: OGR support is provided by the sf and terra packages among</span></span>
-<span><span class="co">#&gt; others</span></span>
+<span><span class="va">petajawa</span><span class="op">&lt;-</span> <span class="fu"><a href="http://rgdal.r-forge.r-project.org/reference/rgdal-deprecated.html">readOGR</a></span><span class="op">(</span>dsn <span class="op">=</span> <span class="st">"data/shp/jawa.shp"</span>, layer<span class="op">=</span><span class="st">"jawa"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in readOGR(dsn = "data/shp/jawa.shp", layer = "jawa"): OGR</span></span>
+<span><span class="co">#&gt; support is provided by the sf and terra packages among others</span></span>
+<span><span class="co">#&gt; Warning in ogrInfo(dsn = dsn, layer = layer, encoding = encoding,</span></span>
+<span><span class="co">#&gt; use_iconv = use_iconv, : OGR support is provided by the sf and</span></span>
+<span><span class="co">#&gt; terra packages among others</span></span>
+<span><span class="co">#&gt; Warning in ogrFIDs(dsn = dsn, layer = layer): OGR support is</span></span>
+<span><span class="co">#&gt; provided by the sf and terra packages among others</span></span>
+<span><span class="co">#&gt; Warning in OGRSpatialRef(dsn, layer, morphFromESRI = morphFromESRI,</span></span>
+<span><span class="co">#&gt; dumpSRS = dumpSRS, : OGR support is provided by the sf and terra</span></span>
+<span><span class="co">#&gt; packages among others</span></span>
+<span><span class="co">#&gt; Warning in ogrListLayers(dsn): OGR support is provided by the sf</span></span>
+<span><span class="co">#&gt; and terra packages among others</span></span>
+<span><span class="co">#&gt; Warning in ogrFIDs(dsn = dsn, layer = layer): OGR support is</span></span>
+<span><span class="co">#&gt; provided by the sf and terra packages among others</span></span>
 <span><span class="co">#&gt; OGR data source with driver: ESRI Shapefile </span></span>
-<span><span class="co">#&gt; Source: "E:\Materi_Orasi\book\data\shp\jawa.shp", layer: "jawa"</span></span>
+<span><span class="co">#&gt; Source: "C:\Users\anugraha\Documents\Materi_Orasi\book\data\shp\jawa.shp", layer: "jawa"</span></span>
 <span><span class="co">#&gt; with 119 features</span></span>
 <span><span class="co">#&gt; It has 5 fields</span></span>
 <span><span class="co">#</span></span>
@@ -577,7 +579,7 @@ Tabel&nbsp;3.1: Deskripsi Peubah
 <span> cex <span class="op">=</span> <span class="fl">0.5</span>, bg <span class="op">=</span> <span class="st">"white"</span>, border<span class="op">=</span><span class="st">"light grey"</span>, </span>
 <span> main<span class="op">=</span><span class="st">"Sebaran Kasus Stunting per 100.000 balita Jawa Barat 2021"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot-stunting" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plot-stunting" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-stunting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-SpasialAutoRegresifBinomialNegatif_files/figure-html/fig-plot-stunting-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -601,13 +603,13 @@ Gambar&nbsp;3.1: Peta stunting
 <p>Pemeriksaan sebaran yang paling sesuai untuk data stunting menggunakan grafik Cullen and Frey dan plot kuantil-kuantil dengan menggunakan syntax sebagai berikut:</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Grafik Cullen-Frey </span></span>
-<span><span class="va">poisson</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fitdistrplus/man/fitdist.html">fitdist</a></span><span class="op">(</span><span class="va">data1</span><span class="op">$</span><span class="va">Stunting</span>, <span class="st">"pois"</span>, method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mle"</span>, </span>
+<span><span class="va">poisson</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbbe-software.github.io/fitdistrplus/reference/fitdist.html">fitdist</a></span><span class="op">(</span><span class="va">data1</span><span class="op">$</span><span class="va">Stunting</span>, <span class="st">"pois"</span>, method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mle"</span>, </span>
 <span>      <span class="st">"mme"</span>, <span class="st">"qme"</span>, <span class="st">"mge"</span>, <span class="st">"mse"</span><span class="op">)</span>, start<span class="op">=</span><span class="cn">NULL</span>, fix.arg<span class="op">=</span><span class="cn">NULL</span>, <span class="cn">T</span>,</span>
 <span>       keepdata <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">binom.negatif</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fitdistrplus/man/fitdist.html">fitdist</a></span><span class="op">(</span><span class="va">data1</span><span class="op">$</span><span class="va">Stunting</span>, <span class="st">"nbinom"</span>, method <span class="op">=</span> </span>
+<span><span class="va">binom.negatif</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbbe-software.github.io/fitdistrplus/reference/fitdist.html">fitdist</a></span><span class="op">(</span><span class="va">data1</span><span class="op">$</span><span class="va">Stunting</span>, <span class="st">"nbinom"</span>, method <span class="op">=</span> </span>
 <span>       <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mle"</span>, <span class="st">"mme"</span>, <span class="st">"qme"</span>, <span class="st">"mge"</span>, <span class="st">"mse"</span><span class="op">)</span>,  start<span class="op">=</span><span class="cn">NULL</span>, </span>
 <span>       fix.arg<span class="op">=</span><span class="cn">NULL</span>, <span class="cn">T</span>, keepdata <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/fitdistrplus/man/descdist.html">descdist</a></span><span class="op">(</span><span class="va">data1</span><span class="op">$</span><span class="va">Stunting</span>, discrete <span class="op">=</span> <span class="cn">TRUE</span>, boot<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://lbbe-software.github.io/fitdistrplus/reference/descdist.html">descdist</a></span><span class="op">(</span><span class="va">data1</span><span class="op">$</span><span class="va">Stunting</span>, discrete <span class="op">=</span> <span class="cn">TRUE</span>, boot<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="co">#&gt; summary statistics</span></span>
 <span><span class="co">#&gt; ------</span></span>
 <span><span class="co">#&gt; min:  29   max:  958 </span></span>
@@ -626,7 +628,7 @@ Gambar&nbsp;3.1: Peta stunting
 <p>Pemeriksaan sebaran yang sesuai untuk data stunting dapat juga dilakukan menggunakan plot kuantil-kuantil dengan menggunakan syntax berikut ini:</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#Pemeriksaan sebaran menggunakan plot Q-Q</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/fitdistrplus/man/graphcomp.html">qqcomp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">poisson</span>, <span class="va">binom.negatif</span><span class="op">)</span>, legendtext <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pois"</span>, </span>
+<span><span class="fu"><a href="https://lbbe-software.github.io/fitdistrplus/reference/graphcomp.html">qqcomp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">poisson</span>, <span class="va">binom.negatif</span><span class="op">)</span>, legendtext <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pois"</span>, </span>
 <span>     <span class="st">"Neg Binom"</span><span class="op">)</span>, fitpch<span class="op">=</span><span class="st">"o"</span>, fitcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"green"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -724,6 +726,8 @@ Gambar&nbsp;3.1: Peta stunting
 <span><span class="co">#</span></span>
 <span><span class="co">#Matriks Pembobot KNN dengan K = 1</span></span>
 <span><span class="va">W.knn1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knn2nb.html">knn2nb</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/knearneigh.html">knearneigh</a></span><span class="op">(</span><span class="va">longlat</span>, k<span class="op">=</span><span class="fl">1</span>, longlat<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="co">#matriks bobot dengan </span></span>
+<span><span class="co">#&gt; Warning in knn2nb(knearneigh(longlat, k = 1, longlat = TRUE)):</span></span>
+<span><span class="co">#&gt; neighbour object has 8 sub-graphs</span></span>
 <span><span class="va">W.knn1.s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">W.knn1</span>, style<span class="op">=</span><span class="st">'W'</span><span class="op">)</span></span>
 <span><span class="va">knn1.jabar</span> <span class="op">&lt;-</span> <span class="va">W.knn1.s</span></span>
 <span><span class="co">#</span></span>
@@ -1283,7 +1287,8 @@ Gambar&nbsp;3.1: Peta stunting
 <span></span>
 <span><span class="va">dat.map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"data/shp/jawa.shp"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Reading layer `jawa' from data source </span></span>
-<span><span class="co">#&gt;   `E:\Materi_Orasi\book\data\shp\jawa.shp' using driver `ESRI Shapefile'</span></span>
+<span><span class="co">#&gt;   `C:\Users\anugraha\Documents\Materi_Orasi\book\data\shp\jawa.shp' </span></span>
+<span><span class="co">#&gt;   using driver `ESRI Shapefile'</span></span>
 <span><span class="co">#&gt; Simple feature collection with 119 features and 5 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
@@ -1307,7 +1312,7 @@ Gambar&nbsp;3.1: Peta stunting
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">peta.de</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot-dex2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plot-dex2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-dex2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-SpasialAutoRegresifBinomialNegatif_files/figure-html/fig-plot-dex2-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -1330,7 +1335,7 @@ Gambar&nbsp;3.2: Peta efek tak langsung peubah <span class="math inline">\(X_2\)
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">peta.ie</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot-iex2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plot-iex2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-iex2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="03-SpasialAutoRegresifBinomialNegatif_files/figure-html/fig-plot-iex2-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -1344,18 +1349,18 @@ Gambar&nbsp;3.3: Peta efek tak langsung peubah <span class="math inline">\(X_2\)
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-amelia2023" class="csl-entry" role="listitem">
-Amelia M, Anisa R, Djuraidah A. 2023. <span>“Estimation of Factors Affecting Stunting Cases in West Java in 2021 Using Negative Binomial Spatial Regression.”</span> <em>Jurnal Matematika, Statistika Dan Komputasi</em> 20 (10): 41–51.
+Amelia, M., Djuraidah, A., &amp; Anisa, R. (2023). Estimation of factors affecting stunting cases in west java in 2021 using negative binomial spatial regression. <em>Jurnal Matematika, Statistika Dan Komputasi</em>, <em>20</em>(10), 41–51.
 </div>
 <div id="ref-anselin1988" class="csl-entry" role="listitem">
-Anselin, Luc. 1988. <em>Spatial Econometrics: Methods and Models</em>. Dordrecht: Kluwer Academic Publisher.
+Anselin, L. (1988). <em>Spatial econometrics: Methods and models</em>. Kluwer Academic Publisher.
 </div>
 <div id="ref-glaser2017" class="csl-entry" role="listitem">
-Glaser, Stephanie. 2017. <span>“A Review of Spatial Econometric Models for Count Data.”</span> <em>Hohenheim Discussion Papers in Business, Economics and Social Sicences</em>.
+Glaser, S. (2017). A review of spatial econometric models for count data. <em>Hohenheim Discussion Papers in Business, Economics and Social Sicences</em>.
 </div>
 <div id="ref-vega2015" class="csl-entry" role="listitem">
-Vega SH, Elhorst JP. 2015. <span>“The SLX Model.”</span> <em>J Of Regional Science</em> 0 (0): 1–25. <a href="https://doi.org/10.1111/jors.12188">https://doi.org/10.1111/jors.12188</a>.
+Vega SH, E. J. (2015). The SLX model. <em>J Of Regional Science</em>, <em>0</em>(0), 1–25. <a href="https://doi.org/10.1111/jors.12188">https://doi.org/10.1111/jors.12188</a>
 </div>
 </div>
 </section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1393,18 +1398,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1436,7 +1430,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -1495,7 +1511,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1856,7 +1872,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut <span class="co">[</span><span class="ot">@anselin1988</span><span class="co">]</span>:</span>
 <span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>\$y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon \$</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>$y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon $</span>
 <span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>dengan $W_2$ merupakan matriks pembobot spasial untuk $X$ dan $\gamma$ merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut <span class="co">[</span><span class="ot">@glaser2017</span><span class="co">]</span>:</span>
 <span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a></span>
@@ -2529,7 +2545,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-751"><a href="#cb27-751" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>))</span>
 <span id="cb27-752"><a href="#cb27-752" aria-hidden="true" tabindex="-1"></a>peta.ie</span>
 <span id="cb27-753"><a href="#cb27-753" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

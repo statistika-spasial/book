@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Pemodelan Statistika pada Data Geospasial - 6&nbsp; Regresi Terboboti Geografis Binomial Negatif</title>
+<title>6&nbsp; Regresi Terboboti Geografis Binomial Negatif – Pemodelan Statistika pada Data Geospasial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -116,7 +116,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -147,13 +147,13 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-2.html">Model Keragaman Spasial</a></li><li class="breadcrumb-item"><a href="./06-RegresiTerbobotiGeografisBinomialNegatif.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regresi Terboboti Geografis Binomial Negatif</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -190,7 +190,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Dependensi Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -219,7 +219,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Keragaman Spasial</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -248,7 +248,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mixed SAR-GWR</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -277,7 +277,7 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="./part-4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spatial Filtering</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -304,9 +304,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Lampiran</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -361,13 +361,13 @@ window.Quarto = {
 
 </header><section id="deskripsi" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="deskripsi">
 <span class="header-section-number">6.1</span> Deskripsi</h2>
-<p>Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda <span class="citation" data-cites="silva2014">(<a href="references.html#ref-silva2014" role="doc-biblioref">Silva AR 2014</a>)</span>.</p>
+<p>Regresi Terboboti Geografis Binomial Negatif (RTGBN) merupakan pengembangan dari model regresi binomial negatif. Model RTGBN adalah salah satu metode yang cukup efektif menduga data yang memiliki ketergantungan spasial untuk data cacah yang memiliki overdispersi. Model ini akan menghasilkan pendugaan parameter lokal dengan masing-masing lokasi akan memiliki parameter yang berbeda <span class="citation" data-cites="silva2014">(<a href="references.html#ref-silva2014" role="doc-biblioref">Silva &amp; Rodrigues, 2014</a>)</span>.</p>
 <p>Model RTGBN dapat dirumuskan sebagai berikut:</p>
 <p><span id="eq-661"><span class="math display">\[
 y_i \sim \text{BN}\left(\exp\left(\sum_j \beta_j(u_i,v_i) x_{ij} \theta_i(u_i,v_i)\right)\right)
 \tag{6.1}\]</span></span></p>
 <p>dengan <span class="math inline">\(y_i\)</span> adalah nilai amatan respon ke-<span class="math inline">\(i\)</span>, <span class="math inline">\(x_{ij}\)</span> adalah nilai amatan prediktor ke-<span class="math inline">\(j\)</span> pada pengamatan, <span class="math inline">\((u_i, v_i)\)</span> adalah longitud dan latitud lokasi-<span class="math inline">\(i\)</span>, <span class="math inline">\(\beta_j(u_i, v_i)\)</span> adalah parameter regresi prediktor ke-<span class="math inline">\(j\)</span> untuk setiap lokasi-<span class="math inline">\(i\)</span>, dan <span class="math inline">\(\theta_i(u_i, v_i)\)</span> adalah parameter dispersi setiap lokasi-<span class="math inline">\(i\)</span>.</p>
-<p>Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut <span class="citation" data-cites="ricardo2013">(<a href="references.html#ref-ricardo2013" role="doc-biblioref">Ricardo A 2013</a>)</span>:</p>
+<p>Pendugaan model RTG-BN menggunakan metode kemungkinan maksimum. Langkah awal dari metode kemungkinan adalah membentuk fungsi kemungkinan sebagai berikut <span class="citation" data-cites="ricardo2013">(<a href="references.html#ref-ricardo2013" role="doc-biblioref">Silva &amp; Rodrigues, 2013</a>)</span>:</p>
 <span class="math display">\[\begin{aligned}
 L(\beta(u_i, v_i), \theta_i, i=1,2,\ldots,n) = \prod_{i=1}^{n} \left(\prod_{r=0}^{y_i-1} (r + \frac{1}{\theta_i})\right) \frac{1}{y_i!} \left(\frac{1}{1 + \theta_i \mu_i}\right)^{\frac{1}{\theta_i}} \left(\frac{\theta_i \mu_i}{1 + \theta_i \mu_i}\right)^{y_i}
 \end{aligned}\]</span>
@@ -389,12 +389,12 @@ H_1: &amp; \ \beta_j(u_i,v_i) \neq 0
 <p>dengan <span class="math inline">\(\hat{\beta}_j(u_i,v_i)\)</span> merupakan penduga parameter koefisien regresi prediktor ke-<span class="math inline">\(j\)</span> pada lokasi ke-<span class="math inline">\(i\)</span> dan <span class="math inline">\(\text{se}(\hat{\beta}_j)\)</span> adalah galat baku penduga parameter koefisien regresi prediktor ke-<span class="math inline">\(j\)</span> pada lokasi ke-<span class="math inline">\(i\)</span>. Keputusan adalah tolak <span class="math inline">\(H_0\)</span> jika <span class="math inline">\(|z_{\text{hit}}| &gt; z_{\alpha/2}\)</span></p>
 </section><section id="data" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="data">
 <span class="header-section-number">6.2</span> Data</h2>
-<p>Ilustrasi untuk model RTG-BN merujuk hasil penelitian <span class="citation" data-cites="fadila2021">Fadila A (<a href="references.html#ref-fadila2021" role="doc-biblioref">2021</a>)</span> tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (<a href="#tbl-tbc" class="quarto-xref">Tabel&nbsp;<span>6.1</span></a>). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan <a href="https://ipb.link/gwr-binomial-negatif">https://ipb.link/gwr-binomial-negatif</a>.</p>
-<div id="tbl-tbc" class="striped hover quarto-float anchored">
+<p>Ilustrasi untuk model RTG-BN merujuk hasil penelitian <span class="citation" data-cites="fadila2021">Fadila et al. (<a href="references.html#ref-fadila2021" role="doc-biblioref">2021</a>)</span> tentang Tuberkulosis (TB) di Jawa Timur. Data yang digunakan merupakan data sekunder yang yang diperoleh dari Statistik Kesehatan Provinsi Jawa Timur 2019 yang dikeluarkan oleh Badan Pusat Statistik Jawa Timur, Profil Kesehatan Jawa Timur tahun 2018 dan Profil Kesehatan Jawa Timur tahun 2019 yang dikeluarkan oleh dinas kesehatan Provinsi Jawa Timur. Data yang digunakan mencakup jumlah kasus tuberkulosis dan enam peubah lainnya yang diduga berpengaruh terhadap kasus tuberkulosis (<a href="#tbl-tbc" class="quarto-xref">Tabel&nbsp;<span>6.1</span></a>). Unit amatan adalah 38 kabupaten/kota yang berada di Provinsi Jawa Timur. Data dan peta ilustrasi RTG-BN tersedia pada tautan <a href="https://ipb.link/gwr-binomial-negatif">https://ipb.link/gwr-binomial-negatif</a>.</p>
+<div id="tbl-tbc" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tbc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabel&nbsp;6.1: Tabel Peubah dan Referensi
 </figcaption><div aria-describedby="tbl-tbc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-striped table-hover table">
+<table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 10%">
 <col style="width: 61%">
@@ -453,7 +453,7 @@ Tabel&nbsp;6.1: Tabel Peubah dan Referensi
 <li><p>Melakukan eksplorasi data untuk mengetahui gambaran awal data jumlah kasus TB pada balita di Provinsi Jawa Timur tahun 2019.</p></li>
 <li><p>Membuat peta sebaran dari setiap peubah respon dan prediktor yang digunakan.</p></li>
 <li>
-<p>Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai <span class="math inline">\(VIF_i &gt; 10\)</span>, maka terdapat multikolinear <span class="citation" data-cites="kutner2005">(<a href="references.html#ref-kutner2005" role="doc-biblioref">Kutner MH 2005</a>)</span>:</p>
+<p>Memeriksa adanya multikolinearitas antar prediktor dengan menggunakan Variance Inflation Factor (VIF), jika nilai <span class="math inline">\(VIF_i &gt; 10\)</span>, maka terdapat multikolinear <span class="citation" data-cites="kutner2005">(<a href="references.html#ref-kutner2005" role="doc-biblioref">Kutner MH, 2005</a>)</span>:</p>
 <p><span class="math inline">\(VIF_i = \frac{1}{1 - R_i^2}\)</span></p>
 </li>
 </ol>
@@ -583,7 +583,7 @@ H_1: &amp; \text{Model tidak mengandung overdispersi}
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span></span>
 <span><span class="va">plot.tb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-plot-tb" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-plot-tb" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-tb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="06-RegresiTerbobotiGeografisBinomialNegatif_files/figure-html/fig-plot-tb-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
@@ -618,6 +618,8 @@ Gambar&nbsp;6.1: Peta kasus TB
 <span><span class="va">queenl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_zm.html">st_zm</a></span><span class="op">(</span><span class="va">jatim</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects assumes</span></span>
 <span><span class="co">#&gt; that they are planar</span></span>
+<span><span class="co">#&gt; Warning in poly2nb(st_zm(jatim)): neighbour object has 2 sub-graphs;</span></span>
+<span><span class="co">#&gt; if this sub-graph count seems unexpected, try increasing the snap argument.</span></span>
 <span><span class="va">queenl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">queenl</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/lm.RStests.html">lm.LMtests</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">queenl</span>, zero.policy <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>        test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'LMlag'</span>, <span class="st">'LMerr'</span>, <span class="st">'RLMlag'</span>, <span class="st">'RLMerr'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -630,10 +632,10 @@ Gambar&nbsp;6.1: Peta kasus TB
 <span><span class="co">#&gt; test weights: listw</span></span>
 <span><span class="co">#&gt;  </span></span>
 <span><span class="co">#&gt;          statistic parameter p.value</span></span>
-<span><span class="co">#&gt; RSerr        0.764         1    0.38</span></span>
 <span><span class="co">#&gt; RSlag        0.368         1    0.54</span></span>
-<span><span class="co">#&gt; adjRSerr     0.756         1    0.38</span></span>
-<span><span class="co">#&gt; adjRSlag     0.360         1    0.55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; RSerr        0.764         1    0.38</span></span>
+<span><span class="co">#&gt; adjRSlag     0.360         1    0.55</span></span>
+<span><span class="co">#&gt; adjRSerr     0.756         1    0.38</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pada output di atas terlihat semua uji LM dan RLM mempunyai <code>p-value</code> &gt; <span class="math inline">\(\alpha=0.05\)</span>, sehingga tidak terdapat dependensi spasial pada <code>ln(Y)</code> dan sisaan.</p>
 </section><section id="b.-uji-breusch-pagan" class="level4"><h4 class="anchored" data-anchor-id="b.-uji-breusch-pagan">b. Uji Breusch-Pagan</h4>
@@ -920,18 +922,18 @@ Gambar&nbsp;6.1: Peta kasus TB
 
 <!-- -->
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-fadila2021" class="csl-entry" role="listitem">
-Fadila A, Alamudi A, Djuraidah A. 2021. <em>Pemodelan Jumlah Penderita Tuberkulosis Di Jawa Timur Dengan Regresi Terboboti Geografis Binomial Negatif</em>. <em>[Skripsi]</em>. Bogor: Institut Pertanian Bogor.
+Fadila, A., Djuraidah, A., &amp; Alamudi, A. (2021). Pemodelan jumlah penderita tuberkulosis di jawa timur dengan regresi terboboti geografis binomial negatif. In <em>[skripsi]</em>. Institut Pertanian Bogor.
 </div>
 <div id="ref-kutner2005" class="csl-entry" role="listitem">
-Kutner MH, Neter J, Nachtsheim CJ. 2005. <em>Applied Linear Statistical Models</em>. 5th ed. New York: McGraw-Hill Irwin.
+Kutner MH, N. J., Nachtsheim CJ. (2005). <em>Applied linear statistical models</em> (5th ed.). McGraw-Hill Irwin.
 </div>
 <div id="ref-ricardo2013" class="csl-entry" role="listitem">
-Ricardo A, Carvalho T. 2013. <em>Geographically Weighted Negative Binomial Regression-Incorporating Overdispersion</em>. New York: Springer Science.
+Silva, A. R. da, &amp; Rodrigues, T. C. V. (2013). <em>Geographically weighted negative binomial regression-incorporating overdispersion</em>. Springer Science.
 </div>
 <div id="ref-silva2014" class="csl-entry" role="listitem">
-Silva AR, Rodrigues TCV. 2014. <span>“Geographically Weighted Negative Binomial Regression Incorporating Overdispersion.”</span> <em>Stat. Comput.</em> <a href="https://doi.org/10.1007/s11222-013-9401-9">https://doi.org/10.1007/s11222-013-9401-9</a>.
+Silva, A. R. da, &amp; Rodrigues, T. C. V. (2014). Geographically weighted negative binomial regression incorporating overdispersion. <em>Stat. Comput.</em> <a href="https://doi.org/10.1007/s11222-013-9401-9">https://doi.org/10.1007/s11222-013-9401-9</a>
 </div>
 </div>
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -969,18 +971,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1012,7 +1003,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -1071,7 +1084,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1793,7 +1806,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-419"><a href="#cb17-419" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb17-420"><a href="#cb17-420" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-421"><a href="#cb17-421" aria-hidden="true" tabindex="-1"></a>Dari output terlihat urutan rataan koefisien $X_1$ dari terkecil sampai terbesar berturut-turut pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1. Sebaliknya urutan koefisien untuk $X_2$ sampai $X_6$ dari terkecil sampai terbesar berturut-turut pada gerombol 4, gerombol 2, gerombol 3, dan gerombol 1.</span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
