@@ -1,4 +1,4 @@
-# MGWR-SAR {#sec-mgwrsar .unnumbered}
+# 3. MGWR-SAR {#sec-mgwrsar .unnumbered}
 
 ```{r}
 #| echo: false

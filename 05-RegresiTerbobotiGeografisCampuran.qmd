@@ -1,4 +1,4 @@
-# Regresi Terboboti Geografis Campuran {#sec-mixed-rtg}
+# b. Regresi Terboboti Geografis Campuran {#sec-mixed-rtg .unnumbered}
 
 ```{r}
 #| echo: false

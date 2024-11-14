@@ -1,4 +1,4 @@
-# Model Keragaman Spasial  {#sec-keragaman-spasial}
+# b. Model Keragaman Spasial  {#sec-keragaman-spasial .unnumbered}
 
 ```{r}
 #| echo: false

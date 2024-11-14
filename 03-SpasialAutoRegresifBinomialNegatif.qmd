@@ -1,4 +1,4 @@
-# Spasial Autoregresif Binomial Negatif {#sec-sar-bn}
+# c. Spasial Autoregresif Binomial Negatif {#sec-sar-bn .unnumbered}
 
 ```{r}
 #| echo: false

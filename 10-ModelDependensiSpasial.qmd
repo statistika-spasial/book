@@ -1,4 +1,4 @@
-# Model Dependensi Spasial {#sec-dependensi-model}
+# a. Model Dependensi Spasial {#sec-dependensi-model .unnumbered}
 
 ```{r}
 #| echo: false

@@ -1,4 +1,4 @@
-# Regresi Terboboti Geografis Binomial Negatif {#sec-rtg-bn}
+# c. Regresi Terboboti Geografis Binomial Negatif {#sec-rtg-bn .unnumbered}
 
 ```{r}
 #| echo: false

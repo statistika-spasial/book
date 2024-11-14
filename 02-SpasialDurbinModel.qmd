@@ -1,4 +1,4 @@
-# Spasial Durbin Model  {#sec-sd-model}
+# b. Spasial Durbin Model  {#sec-sd-model .unnumbered}
 
 ```{r}
 #| echo: false

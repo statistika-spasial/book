@@ -30,7 +30,6 @@ book:
   search: true
   chapters:
     - index.qmd
-    - intro.qmd
     
     - part: part-1.qmd
       chapters: 

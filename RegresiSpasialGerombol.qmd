@@ -1,4 +1,4 @@
-# Regresi Spasial Gerombol {#sec-spatclusreg .unnumbered}
+# 6. Regresi Spasial Gerombol {#sec-spatclusreg .unnumbered}
 
 ```{r}
 #| echo: false
@@ -1096,9 +1096,9 @@ menas15
 Peta `G = 15`
 
 
-## Model Regresi Gerombol Spasial dengan Peubah Y
+### Model Regresi Gerombol Spasial dengan Peubah Y
 
-### Gerombol dengan pembobot 1
+#### Gerombol dengan pembobot 1
 
 ```{r clusw1}
 ## SCR: spatially clustered regression
@@ -1120,7 +1120,7 @@ data.gerombol.spasial <- imputasi[,c(-6,-7,-8,-16,-17)]
 data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot1 = fit1$group)
 ```
 
-### Gerombol dengan pembobot 2
+#### Gerombol dengan pembobot 2
 
 ```{r clusw2}
 ## SCR: spatially clustered regression
@@ -1142,7 +1142,7 @@ data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot2 = fit2$gro
 ```
 
 
-### Gerombol dengan pembobot 3
+#### Gerombol dengan pembobot 3
 
 ```{r clusw3}
 ## SCR: spatially clustered regression
@@ -1164,7 +1164,7 @@ data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot3 = fit3$gro
 ```
 
 
-### Gerombol dengan pembobot 4
+#### Gerombol dengan pembobot 4
 
 ```{r clusw4}
 ## SCR: spatially clustered regression
@@ -1185,7 +1185,7 @@ fit4 <- SCR(Y, X, W4, Sp, G= Y.hG.4, Phi=1)
 data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot4 = fit4$group)
 ```
 
-### Gerombol dengan pembobot 5
+#### Gerombol dengan pembobot 5
 
 ```{r clusw5}
 ## SCR: spatially clustered regression
@@ -1206,7 +1206,7 @@ fit5 <- SCR(Y, X, W5, Sp, G= Y.hG.5, Phi=1)
 data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot5 = fit5$group)
 ```
 
-### Gerombol dengan pembobot 6
+#### Gerombol dengan pembobot 6
 
 ```{r clusw6}
 ## SCR: spatially clustered regression
@@ -1227,7 +1227,7 @@ fit6 <- SCR(Y, X, W6, Sp, G= Y.hG.6, Phi=1)
 data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot6 = fit6$group)
 ```
 
-### Gerombol dengan pembobot 7
+#### Gerombol dengan pembobot 7
 
 ```{r clusw7}
 ## SCR: spatially clustered regression
@@ -1248,7 +1248,7 @@ fit7 <- SCR(Y, X, W7, Sp, G= Y.hG.7, Phi=1)
 data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot7 = fit7$group)
 ```
 
-### Gerombol dengan pembobot 8
+#### Gerombol dengan pembobot 8
 
 ```{r clusw8}
 ## SCR: spatially clustered regression
@@ -1272,7 +1272,7 @@ data.gerombol.spasial.2 <- imputasi[order(imputasi$ADM2_EN),]
 data.gerombol.spasial.2 <- data.gerombol.spasial.2 %>% mutate(Y.pembobot8 = fit8$group)
 ```
 
-### Gerombol dengan pembobot 9
+#### Gerombol dengan pembobot 9
 
 ```{r clusw9}
 ## SCR: spatially clustered regression
@@ -1296,7 +1296,7 @@ data.gerombol.spasial.2 <- data.gerombol.spasial.2 %>% mutate(Y.pembobot9 = fit9
 ```
 
 
-### Peta Gerombol Spasial
+#### Peta Gerombol Spasial
 
 Berikut hasil peta 9 model Regresi Gerombol Spasial
 
@@ -1306,7 +1306,7 @@ indonesia.map <- indonesia.map[c(-91,-92,-93,-94,-95,-127,-513,-514),]
 indonesia.2 <- tigris::geo_join(spatial_data=indonesia.map, data_frame = data.gerombol.spasial, by_df = "ADM2_EN",by_sp ="ADM2_EN", how = "inner")
 ```
 
-#### Y pembobot 1
+##### Y pembobot 1
 
 ```{r yw1}
 Y.pembobot1 <- ggplot() +
@@ -1319,7 +1319,7 @@ Y.pembobot1
 
 Peta Regresi Gerombol Spasial pembobot jarak ambang
 
-#### Y pembobot 2
+##### Y pembobot 2
 
 ```{r yw2}
 Y.pembobot2 <- ggplot() +
@@ -1331,7 +1331,7 @@ Y.pembobot2
 ```
 Peta Regresi Gerombol Spasial pembobot eksponensial
 
-#### Y pembobot 3
+##### Y pembobot 3
 
 ```{r yw3}
 Y.pembobot3 <- ggplot() +
@@ -1344,7 +1344,7 @@ Y.pembobot3
 
 Peta Regresi Pembobot Spasial pembobot KNN (k = 3)
 
-#### Y pembobot 4
+##### Y pembobot 4
 
 ```{r yw4}
 Y.pembobot4 <- ggplot() +
@@ -1357,7 +1357,7 @@ Y.pembobot4
 
 Peta Regresi Gerombol Spasial pembobot KNN (k = 4)
 
-#### Y pembobot 5
+##### Y pembobot 5
 
 ```{r yw5}
 Y.pembobot5 <- ggplot() +
@@ -1369,7 +1369,7 @@ Y.pembobot5
 ```
 Peta Regresi Gerombol Spasial KNN (k = 5)
 
-#### Y pembobot 6
+##### Y pembobot 6
 
 ```{r yw6}
 Y.pembobot6 <- ggplot() +
@@ -1382,7 +1382,7 @@ Y.pembobot6
 
 Peta Regresi Gerombol Spasial pembobot jarak invers (alpha = 1)
 
-#### Y pembobot 7
+##### Y pembobot 7
 
 ```{r yw7}
 Y.pembobot7 <- ggplot() +
@@ -1395,7 +1395,7 @@ Y.pembobot7
 
 Peta Regresi Gerombol Spasial pembobot jarak invers (alpha = 2)
 
-#### Y pembobot 8
+##### Y pembobot 8
 
 ```{r}
 indonesia.3 <- tigris::geo_join(spatial_data=indonesia.map, data_frame = data.gerombol.spasial.2, by_df = "ADM2_EN",by_sp ="ADM2_EN", how = "inner")
@@ -1412,7 +1412,7 @@ Y.pembobot8
 
 Peta Regresi Gerombol Spasial pembobot queen contiguity
 
-#### Y pembobot 9
+##### Y pembobot 9
 
 ```{r yw9}
 Y.pembobot9 <- ggplot() +
