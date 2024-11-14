@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Deskripsi
 
-Model regresi spasial digunakan untuk mengetahui hubungan antara satu peubah dengan satu atau lebih peubah dengan memperhatikan adanya efek spasial [@cahyati2018]. Persamaan umum untuk model regresi spasial dapat dirumuskan sebagai berikut [@griffith1988]:
+Model regresi spasial digunakan untuk mengetahui hubungan antara satu peubah dengan satu atau lebih peubah dengan memperhatikan adanya efek spasial [@adj012024]. Persamaan umum untuk model regresi spasial dapat dirumuskan sebagai berikut [@griffith1988]:
 
 $y = \rho W_1 y + X\beta + \gamma W_2 X\beta + u$
 
@@ -389,29 +389,29 @@ reglin2 <- lm(log(Y2) ~ log(X1) + X2 + X4 + log(X5) + X6 + X7 + X8)
 #LM dengan queen
 LM_Queen <- lm.RStests(reglin2,
                        queen.jabar,
-                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
+                       test = "all")
 
 #LM rook
 LM_rook <- lm.RStests(reglin2,
                       rook.jabar,
-                      test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
+                      test = "all")
 
 #LM Inverse
 LM_inv_1 <- lm.RStests(reglin2,
                        invers.w,
-                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
+                       test = "all")
 
 LM_inv_2 <- lm.RStests(reglin2,
                        invers.w2,
-                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
+                       test = "all")
 #LM Exponential
 LM_exp_1 <- lm.RStests(reglin2,
                        W.eksp.s1,
-                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
+                       test = "all")
 
 LM_exp_2 <- lm.RStests(reglin2,
                        W.eksp.s2,
-                       test = c("RSerr", "RSlag", "adjRSerr", "adjRSlag", "SARMA"))
+                       test = "all")
 
 tabel_uji_LM <-
   matrix(

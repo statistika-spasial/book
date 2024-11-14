@@ -1,0 +1,1950 @@
+# Regresi Spasial Gerombol {#sec-spatclusreg .unnumbered}
+
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
+## Deskripsi
+
+Regresi gerombol spasial (*Spatially Clustered Regression*) merupakan pengembangan dari metode regresi terboboti geografis (RTGT) yang digabungkan dengan analisis gerombol [@sugasawa2021]. Perpaduan antara analisis gerombol dengan regresi spasial memberikan interpretasi yang lebih sederhana pada model lokal [@li2018]. Metode ini menghasilkan satu model regresi pada setiap gerombol. 
+
+Model regresi gerombol spasial sebagai berikut
+
+$$
+y_i = \beta_0(g_i)  + \sum_k \beta_k (g_i) x_{ik} + \epsilon_i 
+$$ {#eq-1301}
+
+dengan:
+
+\begin{align*}
+
+  y_i &: \text{nilai amatan peubah respon gerombol ke-i} \\
+  
+  g_i &: \text{gerombol ke-i} \\
+  
+  \beta_0 (g_i) &: \text{konstanta/intersep pada gerombol ke-i} \\
+  
+  \beta_i (g_i) &: \text{koefisien regresi peubah penjelas ke-p pada gerombol ke-i} \\
+  
+  X_{ip} &: \text{peubah penjelas ke-p pada gerombol ke-i} \\
+  
+  \epsilon_i &: \text{galat pada gerombol ke-i}
+  
+\end{align*}
+
+Sebelum mendapatkan model regresi gerombol spasial, pertama-tama dilakukan inisiasi gerombol awal $g_0$ dan nilai beta awal $\theta_0=(\beta_0 (g_i ), \beta_i (g_i))$. Gerombol awal didapatkan melalui metode K-means berdasarkan koordinat kabupaten/kota di Indonesia. Nilai beta awal diinisiasi dengan membentuk matriks **0** berukuran $p×G$, dengan $p$ merupakan banyaknya koefisien beta dan $G$ merupakan banyaknya gerombol yang ingin dibentuk. Ragam dalam gerombol diformulakan sebagai
+
+$$
+W(C_k) = \sum_{x_i\in C_k} (x_i - \mu_k) ^2
+$$ {#eq-1302}
+
+Sehingga total ragam dalam gerombol (TRG), yaitu:
+
+$$
+TRG = \sum_{k=1}^k W(C_k) = \sum_{k=1}^k \sum_{x_i\in C_k} (x_i - \mu_k) ^2
+$$ {#eq-1303}
+
+dengan:
+
+\begin{align*}
+x_i : & \ \text{amatan dalam klaster }C_k \\
+\mu_k : & \ \text{rataan dari amatan pada gerombol }C_k
+\end{align*}
+
+Penentuan amatan dalam gerombol menggunakan fungsi likelihood terpenalti. Nilai parameter pada setiap gerombol bernilai sama. Fungsi penalti likelihood memiliki formula sebagai berikut:
+
+$$
+Q(\theta,g) ≡ \sum_{i=1}^n log f (y_i | x_i;\theta_(g_i)) + \phi \sum_{i<j} w_{ij} I(g_i=g_j)
+$$ {#eq-1304}
+
+dengan:
+
+\begin{align*}
+
+  Q(\theta,g) : & \ \text{fungsi objektif likelihood terpenalti nilai peubah penjelas bagi beta pada gerombol g} \\
+  
+  f (y_i | x_i;\theta_(g_i)) : & \ \text{fungsi likelihood peubah respons dan penjelas saat gerombol ke-i} \\
+  
+  \phi : & \ \text{kekuatan hubungan spasial yang diberi nilai 1 } \\
+  
+  w_{ij} : & \ \text{nilai fungsi pembobot} \\
+  
+  I(g_i=g_j) : & \ \text{matriks indeks dengan unsur bernilai 1 untuk amatan dengan gerombol }g_i=g_j
+  
+\end{align*}
+
+Nilai inisiasi gerombol $g_0$ dan nilai beta $\beta_0$ dimasukan ke dalam fungsi likelihood  terpenalti (@eq-1304) untuk menentukan amatan berada pada gerombol. Nilai $g_k$ dan $\beta_k$ diperbaiki pada setiap iterasi-k hingga mendapatkan anggota $g_k$ dan nilai $\beta_k$ yang memaksimumkan fungsi likelihood terpenalti. Konvergensi didapatkan ketika perbedaan nilai saat ini dan nilai hasil pembaharuan lebih kecil dari nilai toleransi $\epsilon$. Nilai toleransi ditetapkan bernilai $\epsilon=10^{-6}$ [@sugasawa2021]. 
+
+## Data
+
+Penelitian ini mengacu pada @sayidar2024. Data yang digunakan dalam penelitian ini merupakan data sekunder yang bersumber dari hasil publikasi Badan Pusat Statistik mengenai indikator kemiskinan di Indonesia tahun 2022. Unit pengamatan berupa 514 kabupaten/kota di Indonesia, satu peubah respons, dan delapan peubah penjelas. Peubah-Peubah yang digunakan dalam penelitian ini tertera pada @tbl-gerombol.
+
+| Peubah | Keterangan                                              | Satuan             | Referensi               |
+|--------|---------------------------------------------------------|--------------------|-------------------------|
+| $(x,y)$  | Koordinat kabupaten/kota                              | Bujur, lintang     | -                       |
+| $y$      | Persentase penduduk miskin                            | %                  | -                       |
+| $x_1$    | Banyak sarana kesehatan per jumlah penduduk            | %                 | @rahmawati2010     |
+| $x_2$    | Persentase penduduk yang mempunyai pendidikan < SMA    | %                 | -                   |
+| $x_3$    | Persentase rumah tangga yang menggunakan air minum layak|%                 | @rahmawati2011            |
+| $x_4$    | Persentase pengeluaran per kapita untuk makanan         | %                | Damayanti dan Ratnasari (2013)      |
+| $x_5$    | Indeks pembangunan manusia                              | -                | @putri2021                   |
+| $x_6$    | Tingkat pengangguran terbuka                            | %                | @putri2021                   |
+| $x_7$    | Upah minimum kerja                                      | Rp               | @agustina2015            |
+| $x_8$    | Persentase rumah tangga dengan Jamban sendiri           | %                | @agustina2015            |
+
+: Peubah yang digunakan {#tbl-gerombol .striped .hover}
+
+Peubah yang digunakan pada penelitian ini merupakan referensi dari penelitian-penelitian terdahulu yang menggunakan metode Regresi Terboboti Geografis, di antaranya dilakukan oleh Rahmawati & Djuraidah [-@rahmawati2010;-@rahmawati2011] yang menunjukkan peubah, banyaknya sarana kesehatan dan persentase rumah tangga yang menggunakan air minum layak. Peubah persentase penduduk yang mempunyai pendidikan di bawah SMA merupakan hal baru yang sebelumnya oleh @rahmawati2010 diketahui bahwa persentase penduduk yang mempunyai pendidikan di bawah SD berpengaruh terhadap tingkat kemiskinan. Kemudian, @putri2021 menunjukkan peubah IPM dan TPT berpengaruh terhadap kemiskinan. Terakhir, penelitian @agustina2015 menunjukkan faktor upah minimum kerja (UMK) dan persentase rumah tangga memiliki jamban sendiri berpengaruh terhadap model. Peubah-Peubah signifikan pada model Regresi Terboboti Geografis tersebut dijadikan acuan peubah-peubah yang digunakan pada model Regresi Gerombol Spasial.
+
+
+## Metode Penelitian
+
+Analisis pada penelitian ini dilakukan dengan bantuan perangkat lunak RStudio. Tahapan analisis yang dilakukan adalah sebagai berikut:
+
+1. Melakukan *preprocessing* data berupa penyesuaian format data, yaitu bentuk tabel agar sesuai dengan keperluan analisis dan penanganan *missing value* menggunakan **Group Mean Imputation** di mana provinsi didefinisikan sebagai sebuah grup.
+
+2. Melakukan eksplorasi data untuk mengetahui karakteristik data tingkat kemiskinan kabupaten/kota di Indonesia secara umum. Eksplorasi data yang dilakukan adalah sebagai berikut:
+
+   - Analisis deskriptif peubah respons dan peubah penjelas. Berupa ringkasan data dan ukuran penyebaran data peubah-peubah.
+	 - Peta tematik untuk melihat pola sebaran peubah respons di setiap amatan
+	 - Boxplot untuk mengetahui pencilan, sebaran, dan karakteristik pada peubah respons. Boxplot dapat digunakan sebagai indikasi awal apakah terdapat efek spasial dalam data, yaitu daerah pencilan yang menunjukkan bahwa nilai dari peubah cukup bervariasi [@ritonga2022].
+	 - Korelasi data antara peubah respons dan peubah penjelas. Korelasi digunakan untuk menggambarkan hubungan linear antarpeubah.
+	 
+3. Melakukan pengecekan asumsi galat regresi sebagai berikut:
+
+   - Pengecekan normalitas menggunakan uji Shapiro-Wilk
+   - Pengecekan autokorelasi menggunakan uji Durbin-Watson
+	 - Pengecekan heteroskedastisitas menggunakan uji Breusch-Pagan
+
+4. Melakukan pengecekan asumsi multikolinearitas pada seluruh peubah penjelas menggunakan nilai *variance inflation factor* (VIF). Jika terdapat peubah penjelas yang terdeteksi mengandung multikolinearitas, peubah penjelas tersebut dibuang dari model. VIF di atas 5 dianggap mengandung multikolinearitas [@james2013]
+
+5. Melakukan uji efek spasial, yaitu uji asumsi keragaman spasial menggunakan uji Moran dan uji asumsi heterogenitas spasial menggunakan uji Breusch-Pagan. Jika salah satu dari kedua uji tersebut menunjukkan terdapat efek spasial maka dapat dilanjutkan melakukan analisis Regresi Gerombol Spasial. 
+
+6. Membentuk matriks jarak menggunakan jarak ecludian antar dua kabupaten/kota berdasarkan koordinat amatan dan matriks pembobot spasial menggunakan fungsi pembobot jarak ambang, fungsi pembobot eksponensial, fungsi pembobot *3-nearest neighboor*, fungsi pembobot *4-nearest neighbor*, fungsi pembobot *5-nearest neighbor*, fungsi *invers distance weight* $(\alpha=1)$, fungsi *invers distance weight* $(\alpha=2)$, *rock contiguity*, dan *queen contiguity*.
+
+7. Inisiasi anggota gerombol awal $g_0$ untuk total gerombol $G \in {3,4,5,6,…,15}$ menggunakan algoritma *K-means clustering*. Klaster atau gerombol dibentuk menggunakan data latitude dan longitude tiap lokasi amatan.
+
+8. Inisiasi nilai beta awal $\beta_0$ sesuai banyaknya amatan $n$ dan gerombol $G$. Di mana $\beta_0$ merupakan matriks berdimensi $n×G$ dengan unsur bernilai 1 pada setiap baris dan kolomnya.
+
+9. Melakukan *penalty likelihood* melalui fungsi objektif @eq-1304 untuk menggerombolkan data amatan. *Penalty likelihood* berfungsi untuk mendapatkan nilai parameter beta duga dan anggota gerombol akhir di mana menggunakan gerombol inisiasi awal *K-Means* ditambah matriks pembobot spasial sehingga didapatkan model Regresi Gerombol Spasial sebanyak 117 kombinasi. Fungsi objektif *penalty likelihood* dioptimasi berdasarkan Langkah-langkah berikut:
+
+   - Inisiasi nilai parameter beta awal $\beta_0$ dan anggota gerombol awal $g_0$
+	 - Perbaharui nilai parameter ke-k $\beta_k$ untuk setiap gerombol $g=1,2,3,…,G$ 
+	 - Perbaharui anggota gerombol ke-k $g_k$ untuk setiap gerombol $g=1,2,3,…,G$ 
+	 - Ulangi langkah hingga konvergen
+
+10. Menentukan model terbaik dari masing-masing pembobot spasial sekaligus mendapatkan $G$ gerombol optimum menggunakan *information criterion*.
+
+11. Melakukan uji kebaikan model menggunakan mean absolute error (MAE), mean absolute percentage error (MAPE) dan root mean square error (RMSE) untuk model terbaik berdasarkan masing-masing fungsi pembobot pada Langkah 10.
+
+12. Melakukan analisis sidik ragam atau ANOVA pada model terbaik hasil uji kebaikan model untuk mengetahui perbedaan gerombol pada tingkat kemiskinan. Kemudian, dilanjutkan melakukan uji lanjut Tukey model.
+
+13. Uji peubah berpengaruh tiap gerombol spasial menggunakan uji parsial atau uji t.
+
+14. Penarikan interpretasi dan kesimpulan.
+
+## Tahapan Analisis dengan R
+
+### Package
+
+Pertama-tama perlu memanggil fungsi untuk memodelkan Regresi Gerombol Spasial menggunanakan fungsi SCR() dan fungsi untuk mendapatkan gerombol optimum menggunakan fungsi SCR.select(). Metode Regresi Gerombol Spasial dapat diimplementasikan ke dalam beragam jenis data, yaitu family gaussian, family poisson, dan family binomial negatif. Selanjutnya, metode Regresi Gerombol Spasial memiliki dua opsi jenis penggerombolan, yaitu opsi K-means dan opsi Fuzzy, tetapi secara umum opsi k-means sudah cukup memberikan gerombol dengan pola yang cukup baik. Di mana langkah-langkah singkat penggunaan metode ini ialah sebagai berikut:
+1. Eksplorasi data
+2. uji asumsi galat
+3. deteksi multikolinearitas
+4. deteksi efek spasial
+5. membentuk matriks pembobot spasial
+6. membentuk inisiasi gerombol awal menggunakan k-means
+7. Memodelkan Regresi Gerombol Spasial dengan fungsi objektif *penalty likelihood* untuk mengoptimumkan jumlah amatan di tiap gerombol dan nilai parameter beta duga. Model dengan gerombol optimum untuk masing-masing pembobot spasial dilihat melalui nilai *information criterion* pada fungsi SCR.select()
+8. Membandingkan model terbaik pada pembobot yang berbeda menggunakan dua kriteria, yaitu:
+   - Uji kebaikan model (MAE, MAPE, dan RMSE) serta,
+   - Pola gerombol pada peta yang berpola atau tidak acak (subjektif)
+9. Melakukan analisis sidik ragam mengetahui perbedaan peubah Y di tiap gerombol yang terbentuk dari model terbaik
+10. Uji peubah berpengaruh di setiap gerombol
+
+```{r load func, cache=FALSE, message=FALSE, warning=FALSE}
+## packages
+library(SparseM)
+library(MASS)
+
+
+###  Spatially clustered regression (with LASSO)   ###
+## Input
+# Y: n-dimensional response vector 
+# X: (n,p)-matrix of covariates (p: number of covariates)
+# W: (n,n)-matrix of spatial weight
+# Sp: (n,2)-matrix of location information 
+# G: number of groups 
+# Phi: tuning parameter for spatial similarity 
+# offset: n-dimensional vector of offset term (applicable only to "poisson" and "NB")
+# fuzzy: if True, SFCR is applied
+# maxitr: maximum number of iterations
+# family: distribution family ("gaussian", "poisson" or "NB)
+
+## Output
+# Beta: (G,p)-matrix of group-wise regression coefficients
+# Sig: G-dimensional vector of group-wise standard deviations (only for "gaussian" and "NB")
+# group: n-dimensional vector of group assignment 
+# sBeta: (n,p)-matrix of location-wise regression coefficients
+# sSig: n-dimensional vector of location-wise standard deviations (only for "gaussian")
+# s: n-dimensional vector of location-wise standard deviations (only for "gaussian")
+# ML: maximum log-likelihood
+# itr: number of iterations 
+
+## Remark
+# matrix X should not include an intercept term
+# initial grouping is determined by K-means of spatial locations
+
+
+## Main function 
+SCR <- function(Y, X, W, Sp, G=5, Phi=1, offset=NULL, fuzzy=F, maxitr=100, delta=1, family="gaussian"){
+  ## Preparations
+  ep <- 10^(-5)      # convergence criterion 
+  X <- as.matrix(X)
+  n <- dim(X)[1]     # number of samples
+  p <- dim(X)[2]+1   # number of regression coefficients
+  XX <- as.matrix( cbind(1,X) )
+  W <- as(W, "sparseMatrix")
+  if(is.null(offset)){ offset <- rep(0, n) }
+  nmax <- function(x){ max(na.omit(x)) }   # new max function 
+  
+  ## Initial values
+  M <- 20  # the number of initial values of k-means
+  WSS <- c()
+  CL <- list()
+  for(k in 1:M){
+    set.seed(123)
+    CL[[k]] <- kmeans(Sp, G)
+    WSS[k] <- CL[[k]]$tot.withinss
+  }
+  Ind <- CL[[which.min(WSS)]]$cluster
+  Pen <- rep(0, G)
+  Beta <- matrix(0, p, G)
+  dimnames(Beta)[[2]] <- paste0("G=",1:G)
+  Sig <- rep(1, G)    # not needed under non-Gaussian case
+  Nu <- rep(1, G) 
+  
+  ## iterative algorithm 
+  val <- 0
+  mval <- 0
+  for(k in 1:maxitr){
+    cval <- val
+    #print(paste("Sekarang adalah k ke-", k))
+    ## penalty term
+    Ind.mat <- matrix(0, n, G)
+    for(g in 1:G){
+      Ind.mat[Ind==g, g] <- 1
+    }
+    Ind.mat <- as(Ind.mat, "sparseMatrix")
+    Pen <- W%*%Ind.mat     # penalty term
+    
+    ## model parameters (clustered case)
+    if(fuzzy==F){
+      for(g in 1:G){
+        #print(paste("length sepanjang", length(Ind[Ind==g]), "dan p + 1 sebesar", p+1))
+        if(length(Ind[Ind==g])>p+1){
+          # gaussian
+          if(family=="gaussian"){
+            fit <- lm(Y[Ind==g]~X[Ind==g,])
+            #print(paste("Sekarang adalah gerombol ke-", g))
+            #print(summary(fit)) #Jika ingin melihat peubah berpengaruh maka hilangkan tanda pagar
+            Beta[,g] <- as.vector( coef(fit) )
+            resid <- Y-as.vector(XX%*%Beta[,g])
+            Sig[g] <- sqrt(mean(resid[Ind==g]^2))
+            Sig[g] <- max(Sig[g], 0.1)
+          }
+          # poisson
+          if(family=="poisson"){
+            x <- X[Ind==g,]
+            y <- Y[Ind==g]
+            off <- offset[Ind==g]
+            fit <- glm(y~x, offset=off, family="poisson")
+            Beta[,g] <- as.vector( coef(fit) )
+          }
+          # NB
+          if(family=="NB"){
+            x <- X[Ind==g,]
+            y <- Y[Ind==g]
+            off <- offset[Ind==g]
+            fit <- glm.nb(y~x+offset(off))
+            Beta[,g] <- as.vector( coef( fit ) )
+            Nu[g] <- fit$theta
+          }
+        }
+      }
+    }
+    
+    ## model parameters (fuzzy case)
+    if(fuzzy==T){
+      # Gaussian
+      if(family=="gaussian"){
+        Mu <- XX%*%Beta      # (n,G)-matrix
+        ESig <- t(matrix(rep(Sig,n), G, n))    # (n,G)-matrix
+        log.dens <- log(dnorm(Y,Mu,ESig)) + Phi*Pen
+        mval <- apply(log.dens, 1, max)
+        log.denom <- mval + log(apply(exp(log.dens-mval), 1, sum))
+        PP <- exp(log.dens-log.denom)     # weight
+        for(g in 1:G){ 
+          if(sum(PP[,g])>0.1){
+            fit <- lm(Y~X, weights=PP[,g])
+            
+            Beta[,g] <- as.vector( coef(fit) )
+            resid <- Y-as.vector(XX%*%Beta[,g])
+            Sig[g] <- sqrt( sum(PP[,g]*resid^2)/sum(PP[,g]) )
+            Sig[g] <- max(Sig[g], 0.1)
+          }
+        }
+      }
+      
+      # Poisson
+      if(family=="poisson"){
+        Mu <- exp(offset + XX%*%Beta)    # (n,G)-matrix
+        log.dens <- log(dpois(Y, Mu)) + Phi*Pen 
+        mval <- apply(log.dens, 1, max)
+        log.denom <- mval + log(apply(exp(log.dens-mval), 1, sum))
+        PP <- exp(log.dens-log.denom)     # weight
+        for(g in 1:G){
+          if(sum(PP[,g])>0.1){
+            fit <- glm(Y~X, offset=offset, weights=PP[,g], family="poisson")
+            Beta[,g] <- as.vector( coef(fit) )
+          }
+        }
+      }
+      # NB
+      if(family=="NB"){
+        Mu <- exp(offset + XX%*%Beta)    # (n,G)-matrix
+        log.dens <- dnbinom(Y, size=Nu, prob=Nu/(Nu+Mu), log=T) + Phi*Pen 
+        mval <- apply(log.dens, 1, max)
+        log.denom <- mval + log(apply(exp(log.dens-mval), 1, sum))
+        PP <- exp(log.dens-log.denom)     # weight
+        for(g in 1:G){
+          if(sum(PP[,g])>0.1){
+            fit <- glm.nb(Y~X+offset(offset), weights=PP[,g])
+            Beta[,g] <- as.vector( coef(fit) )
+            Nu[g] <- fit$theta
+          }
+        }
+      }
+    }
+    
+    ## Grouping (clustered case)
+    if(fuzzy==F){
+      if(family=="gaussian"){
+        Mu <- XX%*%Beta      # (n,G)-matrix
+        ESig <- t(matrix(rep(Sig,n), G, n))    # (n,G)-matrix
+        Q <- dnorm(Y, Mu, ESig, log=T) + Phi*Pen     # penalized likelihood
+      }
+      if(family=="poisson"){ 
+        Mu <- exp(offset + XX%*%Beta) 
+        Q <- dpois(Y, Mu, log=T)  + Phi*Pen    # penalized likelihood
+      }
+      if(family=="NB"){ 
+        Mu <- exp(offset + XX%*%Beta) 
+        Q <- dnbinom(Y, size=Nu, prob=Nu/(Nu+Mu), log=T)  + Phi*Pen    # penalized likelihood
+      }
+      Ind <- apply(Q, 1, which.max)
+    }
+    
+    ## Grouping (fuzzy case)
+    if(fuzzy==T){
+      if(family=="gaussian"){
+        Mu <- XX%*%Beta      # (n,G)-matrix
+        ESig <- t(matrix(rep(Sig,n), G, n))    # (n,G)-matrix
+        Q <- delta*(dnorm(Y, Mu, ESig, log=T) + Phi*Pen)   # penalized likelihood
+        mval <- apply(Q, 1, max)
+        log.denom <- mval + log(apply(exp(Q-mval), 1, sum))
+        PP <- exp(Q-log.denom)
+      }
+      if(family=="poisson"){ 
+        Mu <- exp(offset + XX%*%Beta)    # (n,G)-matrix
+        Q <- delta*(dpois(Y, Mu, log=T)  + Phi*Pen)   # penalized likelihood
+        mval <- apply(Q, 1, max)
+        log.denom <- mval + log(apply(exp(Q-mval), 1, sum))
+        PP <- exp(Q-log.denom)
+      }
+      if(family=="NB"){ 
+        Mu <- exp(offset + XX%*%Beta)    # (n,G)-matrix
+        Q <- delta*(dnbinom(Y, size=Nu, prob=Nu/(Nu+Mu), log=T) + Phi*Pen)   # penalized likelihood
+        mval <- apply(Q, 1, max)
+        log.denom <- mval + log(apply(exp(Q-mval), 1, sum))
+        PP <- exp(Q-log.denom)
+      }
+      Ind <- apply(PP, 1, which.max)
+    }
+    
+    ## Value of objective function
+    val <- sum( apply(Q, 1, nmax) ) 
+    dd <- abs(cval-val)/abs(val)
+    mval <- max(mval, cval)
+    if( dd<ep | abs(mval-val)<ep ){ break }
+  }
+  
+  ## varying parameters
+  if(fuzzy==F){  sBeta <- t(Beta[,Ind]) }
+  if(fuzzy==T){  sBeta <- PP%*%t(Beta) }
+  sSig <- Sig[Ind]     # location-wise error variance
+  
+
+  ## maximum likelihood 
+  if(family=="gaussian"){
+    hmu <- apply(XX*sBeta, 1, sum)
+    ML <- sum( dnorm(Y, hmu, sSig, log=T) ) 
+  }
+  if(family=="poisson"){
+    hmu <- exp(offset + apply(XX*sBeta, 1, sum))
+    ML <- sum( dpois(Y, hmu, log=T) ) 
+  }
+  if(family=="NB"){
+    sNu <- Nu[Ind]
+    hmu <- exp(offset + apply(XX*sBeta, 1, sum))
+    ML <- sum( dnbinom(Y, size=sNu, prob=sNu/(sNu+hmu), log=T) ) 
+  }
+  
+  ## Results
+  result <- list(Beta=Beta, Sig=Sig, Nu=Nu, group=Ind, sBeta=sBeta, sSig=sSig, ML=ML, itr=k)
+  return(result)
+}
+
+###  Selection of tuning parameters  ###
+## Imput
+# most of inputs are the same as 'SCR' 
+# G.set: vector of candidates for G
+# print: if True, interim progress is reported 
+
+## Output
+# BIC: BIC-type criteria
+# select: selection results 
+
+## Main function 
+SCR.select <- function(Y, X, W, Sp, G.set=NULL, Phi=1, offset=NULL, maxitr=50, print=T, family="gaussian"){
+  ## Preparations
+  if(is.null(G.set)){ G.set <- seq(10, 40, by=5) }
+  X <- as.matrix(X)
+  n <- dim(X)[1]
+  p <- dim(X)[2]+1
+  L <- length(G.set)
+  
+  ## computing information criteria
+  BIC <- c()
+  for(l in 1:L){
+    fit <- SCR(Y, X, W, Sp, offset=offset, G=G.set[l], Phi=Phi, maxitr=maxitr, family=family)
+    pp <- length(fit$Beta) 
+    if(family=="gaussian"| family=="NB"){ pp <- pp + G.set[l] }
+    BIC[l] <- -2*fit$ML + log(n)*pp
+    if(print){ print( paste0("G=",G.set[l], ", iteration=", fit$itr) ) }
+  }
+  names(BIC) <- paste0("G=", G.set)
+  
+  ## selection
+  hG <- G.set[which.min(BIC)]
+
+  ## result
+  Result <- list(BIC=BIC, G=hG)
+  return(Result)
+}
+```
+
+```{r load package, cache=FALSE, message=FALSE, warning=FALSE}
+library(readxl)
+library(corrplot)
+library(RColorBrewer)
+library(car)
+library(lmtest)
+library(MASS)
+library(rcompanion)
+library(sf)
+library(FastKNN)
+library(devtools)
+library(ggplot2)
+library(dplyr)
+library(sp)
+library(binovisualfields)
+library(raster)
+library(spdep)
+```
+
+### Persiapan Data
+
+Data excel kemiskinan dipanggil dengan mendefinisikan *dataframe* "kemiskinan"
+
+```{r load data}
+kemiskinan <- read_xlsx("data/kemiskinan_2022.xlsx", sheet = 1)
+```
+
+Melihat *summary* dari data kemiskinan sebagai berikut:
+
+```{r sum data}
+summary(kemiskinan)
+```
+
+Melihat missing value pada *dataframe*
+
+```{r}
+which(is.na(kemiskinan$X6))
+```
+
+Diketahui terdapat *missing value* di peubah Tingkat Pengangguran Terbuka (TPT) dengan rincian:
+1. Sumatera Utara: 3
+2. Papua: 6
+
+#### Data hasil imputasi
+
+*Missing value* tersebut diatasi menggunakan *Group Mean Imputation* di mana provinsi dianggap sebagai grup (imputasi dilakukan menggunakan ms excel dan hasilnya langsung dipanggil sebagai *dataframe* "imputasi")
+```{r load data 2}
+imputasi <- read_xlsx("data/kemiskinan_2022.xlsx", sheet = 2)
+```
+
+Melihat *summary* dari data hasil imputasi
+```{r}
+summary(imputasi)
+```
+
+### Eksplorasi Data
+
+#### Boxplot sebaran
+
+fungsi untuk melihat amatan yang termasuk ke dalam pencilan
+
+```{r set outlier}
+findoutlier <- function(x) {
+  return(x < quantile(x, .25) - 1.5*IQR(x) | x > quantile(x, .75) + 1.5*IQR(x))
+}
+```
+
+```{r show outlier}
+#Y = Tingkat Kemiskinan
+imputasi <- imputasi %>%
+        mutate(outlier.y = ifelse(findoutlier(Y), `ADM2_EN`, NA))
+```
+
+Nama-Nama Daerah pencilan tingkat kemiskinan (35 Kabupaten)
+```{r}
+imputasi$outlier.y[!is.na(imputasi$outlier.y)]
+```
+
+Grafik boxplot tingkat kemiskinan kabupaten/kota di Indonesia (%)
+```{r boxplot}
+ggplot(imputasi, aes(x= "",y = Y)) +
+  geom_boxplot(fill = "lightblue") +
+  theme_classic() +
+  coord_flip()
+```
+
+
+#### Eksplorasi Spasial
+
+Membaca peta Indonesia
+
+```{r}
+id.map <- st_read("data/shp/idn_admbnda_adm2_bps_20200401.shp")
+```
+
+```{r read map}
+indonesia.map <- id.map
+indonesia.map <- indonesia.map[c(-91,-92,-93,-94,-95,-127,-513,-514),]
+indonesia.2 <- tigris::geo_join(spatial_data=indonesia.map, data_frame = imputasi, by_df = "ADM2_EN",by_sp ="ADM2_EN", how = "inner")
+```
+
+Peta tematik tingkat kemiskinan di Indonesia
+
+```{r plot map}
+#Y = Tingkat kemiskinan (persen)
+plot(indonesia.2["Y"], 
+     main = "Tingkat Kemiskinan",
+     breaks = "quantile", nbreaks = 7,
+     pal = brewer.pal(7, "Blues"),
+     graticule = st_crs(4326))
+```
+
+#### Korelasi
+
+Melihat korelasi antar peubah
+
+```{r corr}
+data <- imputasi[,c(4,5,9,10,11,12,13,14,15)]
+korelasi <- cor(data)
+corrplot(korelasi, method = "number", type = "upper")
+```
+
+#### Scatter plot
+
+Membuat plot tebaran antara peubah respons dan peubah penjelas
+```{r scatter plot}
+tmp <- par(mfrow=c(2,4))
+plot(data$X1 , data$Y, ylab = "penduduk miskin (%)", xlab = "X1")
+plot(data$X2 , data$Y, ylab = "penduduk miskin (%)", xlab = "X2")
+plot(data$X3 , data$Y, ylab = "penduduk miskin (%)", xlab = "X3")
+plot(data$X4 , data$Y, ylab = "penduduk miskin (%)", xlab = "X4")
+plot(data$X5 , data$Y, ylab = "penduduk miskin (%)", xlab = "X5")
+plot(data$X6 , data$Y, ylab = "penduduk miskin (%)", xlab = "X6")
+plot(data$X7 , data$Y, ylab = "penduduk miskin (%)", xlab = "X7")
+plot(data$X8 , data$Y, ylab = "penduduk miskin (%)", xlab = "X8")
+par(tmp)
+```
+
+### Pengecekan asumsi galat
+
+Membentuk regresi linear berganda terlebih dahulu
+
+```{r regression}
+regresi.klasik <- lm(Y ~ X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8, data = imputasi)
+summary(regresi.klasik)
+```
+
+terdapat lima peubah yang signifikan.
+
+Dilanjutkan menguji asumsi galat/sisaan yang terdiri dari uji normalitas, homoskedastisitas, dan autokorelasi
+
+```{r saphiro test}
+dwtest(regresi.klasik) #autokorelasi
+bptest(regresi.klasik) #homoskedastisitas
+shapiro.test(regresi.klasik$residuals) #normalitas
+```
+
+Seluruh asumsi tidak terpenuhi karena `p-value < 0.05`
+
+### Deteksi multikolinearitas
+
+Sebuah peubah penjelas dikatakan mengandung multikolinearitas ketika memiliki VIF di atas 5 [@james2013]
+
+```{r vif 1}
+vif(regresi.klasik) #Multikolinearitas
+```
+
+Terlihat peubah $X_5$ (IPM) memiliki VIF > 5 sehingga dikeluarkan dari model
+
+#### deteksi multikolinearitas tanpa peubah X5
+
+```{r}
+regresi.klasik.2 <- lm(Y ~ X1 + X2 + X3 + X4 + X6 + X7 + X8, data = imputasi)
+summary(regresi.klasik.2)
+```
+
+terdapat empat peubah penjelas yang signifikan
+
+```{r}
+vif(regresi.klasik.2)
+```
+
+sudah tidak ada peubah dengan nilai `VIF > 5` sehingga aman dari multikolinearitas
+
+### Asumsi efek spasial
+
+#### Heteroskedastisitas spasial
+
+Menggunakan uji Breusch-Pagan untuk mengecek heteroskedastisitas spasial dengan hipotesis
+
+> $H_0$: Tidak terdapat heteroskedastisitas spasial
+> $H_1$: Terdapat heteroskedastisitas spasial
+
+```{r bptest}
+#heteroskedastisitas spasial
+bptest(regresi.klasik.2)
+```
+
+Tolak $H_0$ sehingga dapat dikatakan terdapat heteroskedastisitas spasial
+
+#### Autokorelasi spasial
+
+Menggunakan uji Moran untuk mengecek autokorelasi spasial dengan hipotesis
+
+> $H_0$: tidak terdapat autokorelasi spasial
+> $H_1$: terdapat autokorelasi spasial
+
+digunakan beragam pembobot spasial untuk mendapatkan nilai indeks Moran membentuk matrik jarak
+
+```{r moran test}
+koordinat <- imputasi[,c(16,17)]
+Sp <- as.matrix(koordinat)
+DD <- as.matrix(dist(Sp))
+```
+
+##### KNN
+
+K-Nearest Neighbor Weight (k = 5)
+
+```{r knn}
+W.knn <- knn2nb(knearneigh(koordinat,k=5,longlat=TRUE))
+```
+
+```{r w knn}
+W.knn1 <- nb2listw(W.knn, style = 'W')
+```
+
+##### Invers Distance Weight
+
+```{r idw}
+alpha1 = 1
+W.idw <- 1/(DD^alpha1)
+
+diag(W.idw) <- 0
+rtot <- rowSums(W.idw, na.rm = TRUE)
+
+W.idw.sd <- W.idw/rtot
+
+W.idw.1 = mat2listw(W.idw.sd,style = 'W')
+
+alpha2 = 2
+W.idw2 = 1/(DD^alpha2)
+
+diag(W.idw2) <- 0
+rtot <- rowSums(W.idw2,na.rm=TRUE)
+
+W.idw.sd2 <- W.idw2/rtot
+
+W.idw.22 = mat2listw(W.idw.sd2,style='W')
+```
+
+##### Eksponensial Distance Weight
+
+```{r exponential}
+W.e <- exp((-1)*DD^2/(2.65^2))
+diag(W.e) <- 0
+rtot <- rowSums(W.e,na.rm=TRUE)
+
+W.e.sd <- W.e/rtot
+
+W.ed1 <- mat2listw(W.e.sd,style = 'W')
+```
+
+##### Rook Contiguity
+
+```{r rock}
+sf_use_s2(FALSE)
+W.rook <- poly2nb(as(indonesia.map, "Spatial"),queen = F)
+
+W.rook.s <- nb2listw(W.rook,style='W', zero.policy = TRUE)
+```
+
+
+##### Queen Contiguity
+
+```{r queen}
+sf_use_s2(FALSE)
+W.queen <- poly2nb(as(indonesia.map, "Spatial"),queen = T)
+
+W.queen.s <- nb2listw(W.queen,style='W', zero.policy =TRUE)
+```
+
+
+##### Pemilihan matriks bobot
+
+```{r compare mtx}
+MI.knn <- moran(imputasi$Y, W.knn1, n=length(W.knn1$neighbours), S0=Szero(W.knn1))
+MI.power1 <-moran(imputasi$Y,W.idw.1, n =length(W.idw.1$neighbours), S0=Szero(W.idw.1))
+MI.power2 <- moran(imputasi$Y, W.idw.22, n=length(W.idw.22$neighbours),S0=Szero(W.idw.22))
+MI.exp1 <- moran(imputasi$Y, W.ed1, n=length(W.ed1$neighbours), S0=Szero(W.ed1))
+MI.rook <- moran.test(imputasi$Y, W.rook.s, randomisation=TRUE, zero.policy = TRUE)
+MI.queen <- moran.test(imputasi$Y, W.queen.s,randomisation = TRUE, zero.policy = TRUE)
+```
+
+```{r index moran}
+moranindeks<-data.frame(
+  "Matriks Bobot"=c("KNN (k=5)", "Power distance weight (alpha=1)", "Power distance weight (alpha=2)", "Exponential distance weight (alpha=1)", "Rook Contiguity", "Queen Contiguity"),
+  "Nilai Indeks Moran"=c(MI.knn$I, MI.power1$I, MI.power2$I, MI.exp1$I, 0.087286515, 0.085003993))
+
+moranindeks
+```
+
+Matrik bobot yang menghasilkan nilai Indeks Moran terbesar adalah matriks bobot KNN (k = 5)
+
+```{r autocorr}
+#Autokorelasi spasial
+Woptimum <- W.knn1
+moran.test(imputasi$Y,Woptimum, randomisation=TRUE, zero.policy = TRUE)
+```
+
+Tolak $H_0$ sehingga dapat dikatakan terdapat autokorelasi spasial.
+
+### Matriks pembobot spasial
+
+Karena syarat adanya efek spasial terpenuhi maka dapat dilanjutkan analisis menggunakan Regresi Gerombol Spasial. Pertama-tama perlu mendefinisikan matriks pembobot spasial dalam studi kasus ini menggunakan 9 kombinasi pembobot spasial sebagai berikut:
+
+#### Pembentukan pembobot 1 (1 atau 0) Jarak Ambang
+
+```{r generate w1}
+koordinat <- imputasi[,c(16,17)]
+batas <- knn2nb(knearneigh(koordinat))
+batas.maks <- unlist(nbdists(batas, koordinat, longlat = F))
+summary(batas.maks)
+```
+
+batas dmaks agar seluruh amatan setidaknya memiliki satu tetangga ialah 2,65 km
+
+```{r generate w11}
+koordinat <- imputasi[,c(16,17)]
+Sp <- as.matrix(koordinat)
+DD <- as.matrix(dist(Sp))
+th <- 2.65
+W1 <- matrix(0, 514, 514)
+for(i in 1:514){
+  W1[i,] <- ifelse(DD[i,]<th, 1, 0)
+}
+diag(W1) <- 0
+```
+
+#### Pembentukan pembobot 2 (eksponensial)
+
+```{r generate w2}
+koordinat <- imputasi[,c(16,17)]
+Sp <- as.matrix(koordinat)
+DD <- as.matrix(dist(Sp))
+th <- 2.65
+W2 <- matrix(0, 514, 514)
+for(i in 1:514){
+  W2[i,] <- exp(DD[i,]*(-1)/th^2)
+}
+diag(W2) <- 0
+```
+
+#### Pembentukan pembobot 3 (KNN) k = 3
+
+```{r generate w3}
+nrst <- lapply(1:nrow(DD), function(i) k.nearest.neighbors(i, DD, k = 3))
+
+## Build w
+W3 <- matrix(nrow = dim(DD), ncol=dim(DD)) ## all NA right now
+W3[is.na(W3)] <- 0 ## populate with 0
+for(i in 1:length(nrst)) for(j in nrst[[i]]) W3[i,j] = 1
+```
+
+#### Pembentukan pembobot 4 (KNN) k = 4
+
+```{r generate w4}
+nrst.2 <- lapply(1:nrow(DD), function(i) k.nearest.neighbors(i, DD, k = 4))
+
+## Build w
+W4 <- matrix(nrow = dim(DD), ncol=dim(DD)) ## all NA right now
+W4[is.na(W4)] <- 0 ## populate with 0
+for(i in 1:length(nrst.2)) for(j in nrst.2[[i]]) W4[i,j] = 1
+```
+
+#### Pembentukan pembobot 5 (KNN) k = 5
+
+```{r generate w5}
+nrst.3 <- lapply(1:nrow(DD), function(i) k.nearest.neighbors(i, DD, k = 5))
+
+## Build w
+W5 <- matrix(nrow = dim(DD), ncol=dim(DD)) ## all NA right now
+W5[is.na(W5)] <- 0 ## populate with 0
+for(i in 1:length(nrst.3)) for(j in nrst.3[[i]]) W5[i,j] = 1
+```
+
+#### Pembentukan pembobot 6 (Invers Distance Weight)
+
+```{r generate w6}
+koordinat <- imputasi[,c(16,17)]
+Sp <- as.matrix(koordinat)
+DD <- as.matrix(dist(Sp))
+#Alpha = 1 
+alpha1=1 
+W.idw <-1/(DD^alpha1) 
+class(W.idw)
+diag(W.idw) = 0
+W6 <- W.idw
+```
+
+
+#### Pembentukan pembobot 7 (Invers Distance Weight: Alpha 2)
+
+```{r generate w7}
+koordinat <- imputasi[,c(16,17)]
+Sp <- as.matrix(koordinat)
+DD <- as.matrix(dist(Sp))
+#Alpha = 2
+alpha2=2  
+W.idw2 <-1/(DD^alpha2) 
+class(W.idw2)
+diag(W.idw2) = 0
+W7 <- W.idw2
+```
+
+#### Pembentukan Pembobot 8 (Queen Contiguity)
+
+```{r generate w8}
+sf_use_s2(FALSE)
+queen.w <- poly2nb(as(indonesia.map, "Spatial"),queen = T)
+summary(queen.w)
+```
+
+```{r}
+#Untuk melihat bentuk matriks bobot
+queen.w1<-nb2mat(queen.w,style = "B", zero.policy = TRUE) 
+W8 <- queen.w1
+```
+
+#### Pembentukan Pembobot 9 (Rook Contiguity)
+
+```{r generate w9}
+sf_use_s2(FALSE)
+rook.w <- poly2nb(as(indonesia.map, "Spatial"),queen = F)
+summary(rook.w)
+```
+
+```{r}
+#Untuk melihat bentuk matriks bobot
+rook.w1<-nb2mat(rook.w,style = "B", zero.policy = TRUE) 
+W9 <- rook.w1
+```
+
+
+### Gerombol K-Means (inisiasi awal)
+
+Gerombol inisiasi awal menggunakan metode *K-means* di mana data yang digunakan untuk penggerombolan tak berhierarki adalah data koordinat (longitude dan latitude) atau data jarak antara satu lokasi amatan dengan lokasi amatan lainnya
+
+```{r}
+set.seed(123)
+G3 <- kmeans(Sp, 3)
+G4 <- kmeans(Sp, 4)
+G5 <- kmeans(Sp, 5)
+G6 <- kmeans(Sp, 6)
+G7 <- kmeans(Sp, 7)
+G8 <- kmeans(Sp, 8)
+G9 <- kmeans(Sp, 9)
+G10 <- kmeans(Sp, 10)
+G11 <- kmeans(Sp, 11)
+G12 <- kmeans(Sp, 12)
+G13 <- kmeans(Sp, 13)
+G14 <- kmeans(Sp, 14)
+G15 <- kmeans(Sp, 15)
+```
+
+```{r}
+table(G3$cluster)
+table(G4$cluster)
+table(G5$cluster)
+table(G6$cluster)
+table(G7$cluster)
+table(G8$cluster)
+table(G9$cluster)
+table(G10$cluster)
+table(G11$cluster)
+table(G12$cluster)
+table(G13$cluster)
+table(G14$cluster)
+table(G15$cluster)
+```
+
+```{r}
+gerombol.kmeans <- imputasi[,c(1,2,3,16,17)]
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G3 = G3$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G4 = G4$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G5 = G5$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G6 = G6$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G7 = G7$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G8 = G8$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G9 = G9$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G10 = G10$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G11 = G11$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G12 = G12$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G13 = G13$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G14 = G14$cluster)
+gerombol.kmeans <- gerombol.kmeans %>% mutate(G15 = G15$cluster)
+```
+
+#### Peta Kluster K-Means
+
+```{r cluster map}
+indonesia.map <- id.map
+indonesia.map <- indonesia.map[c(-91,-92,-93,-94,-95,-127,-513,-514),]
+indonesia.kmeans <- tigris::geo_join(spatial_data=indonesia.map, data_frame = gerombol.kmeans, by_df = "ADM2_EN",by_sp ="ADM2_EN", how = "inner")
+```
+
+```{r G3 map}
+menas3 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G3))) +
+  labs(title = "K-Means 3",
+       fill = "Cluster") +
+  theme_bw()
+menas3
+```
+
+Peta `G = 3`
+
+```{r G4 map}
+menas4 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G4))) +
+  labs(title = "K-Means 4",
+       fill = "Cluster") +
+  theme_bw()
+menas4
+```
+
+Peta `G = 4`
+
+```{r G5 map}
+menas5 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G5))) +
+  labs(title = "K-Means 5",
+       fill = "Cluster") +
+  theme_bw()
+menas5
+```
+
+Peta `G = 5`
+
+```{r G6 map}
+menas6 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G6))) +
+  labs(title = "K-Means 6",
+       fill = "Cluster") +
+  theme_bw()
+menas6
+```
+
+Peta `G = 6`
+
+```{r G7 map}
+menas7 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G7))) +
+  labs(title = "K-Means 7",
+       fill = "Cluster") +
+  theme_bw()
+menas7
+```
+
+Peta `G = 7`
+
+```{r G8 map}
+menas8 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G8))) +
+  labs(title = "K-Means 8",
+       fill = "Cluster") +
+  theme_bw()
+menas8
+```
+
+Peta `G = 8`
+
+```{r G9 map}
+menas9 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G9))) +
+  labs(title = "K-Means 9",
+       fill = "Cluster") +
+  theme_bw()
+menas9
+```
+
+Peta `G = 9`
+
+```{r G10 map}
+menas10 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G10))) +
+  labs(title = "K-Means 10",
+       fill = "Cluster") +
+  theme_bw()
+menas10
+```
+
+Peta `G = 10`
+
+```{r G11 map}
+menas11 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G11))) +
+  labs(title = "K-Means 11",
+       fill = "Cluster") +
+  theme_bw()
+menas11
+```
+
+Peta `G = 11`
+
+```{r G12 map}
+menas12 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G12))) +
+  labs(title = "K-Means 12",
+       fill = "Cluster") +
+  theme_bw()
+menas12
+```
+
+Peta `G = 12`
+
+```{r G13 map}
+menas13 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G13))) +
+  labs(title = "K-Means 13",
+       fill = "Cluster") +
+  theme_bw()
+menas13
+```
+
+Peta `G = 13`
+
+```{r G14 map}
+menas14 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G14))) +
+  labs(title = "K-Means 14",
+       fill = "Cluster") +
+  theme_bw()
+menas14
+```
+
+Peta `G = 14`
+
+```{r G15 map}
+menas15 <- ggplot() +
+  geom_sf(data = indonesia.kmeans, aes(fill = as.factor(G15))) +
+  labs(title = "K-Means 15",
+       fill = "Cluster") +
+  theme_bw()
+menas15
+```
+
+Peta `G = 15`
+
+
+## Model Regresi Gerombol Spasial dengan Peubah Y
+
+### Gerombol dengan pembobot 1
+
+```{r clusw1}
+## SCR: spatially clustered regression
+set.seed(1)
+Y <- imputasi$Y
+X <- as.matrix(cbind(imputasi$X1,imputasi$X2,imputasi$X3,imputasi$X4,
+                     imputasi$X6,imputasi$X7,imputasi$X8))
+G.set <- seq(3, 15, by=1)
+Y.IC.1 <- SCR.select(Y, X, W1, Sp, G.set=G.set, Phi=1, print=F, family="gaussian")
+Y.hG.1 <- Y.IC.1$G    # optimal number of group via BIC
+Y.hG.1
+```
+
+Gerombol optimum = 4
+
+```{r}
+fit1 <- SCR(Y, X, W1, Sp, G= Y.hG.1, Phi=1)
+data.gerombol.spasial <- imputasi[,c(-6,-7,-8,-16,-17)]
+data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot1 = fit1$group)
+```
+
+### Gerombol dengan pembobot 2
+
+```{r clusw2}
+## SCR: spatially clustered regression
+set.seed(1)
+Y <- imputasi$Y
+X <- as.matrix(cbind(imputasi$X1,imputasi$X2,imputasi$X3,imputasi$X4,
+                     imputasi$X6,imputasi$X7,imputasi$X8))
+G.set <- seq(3, 30, by=1)
+Y.IC.2 <- SCR.select(Y, X, W2, Sp, G.set=G.set, Phi=1, print=F, family="gaussian")
+Y.hG.2 <- Y.IC.2$G    # optimal number of group via BIC
+Y.hG.2
+```
+
+Gerombol optimum = 3
+
+```{r}
+fit2 <- SCR(Y, X, W2, Sp, G= Y.hG.2, Phi=1)
+data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot2 = fit2$group)
+```
+
+
+### Gerombol dengan pembobot 3
+
+```{r clusw3}
+## SCR: spatially clustered regression
+set.seed(1)
+Y <- imputasi$Y
+X <- as.matrix(cbind(imputasi$X1,imputasi$X2,imputasi$X3,imputasi$X4,
+                     imputasi$X6,imputasi$X7,imputasi$X8))
+G.set <- seq(3, 30, by=1)
+Y.IC.3 <- SCR.select(Y, X, W3, Sp, G.set=G.set, Phi=1, print=F, family="gaussian")
+Y.hG.3 <- Y.IC.3$G    # optimal number of group via BIC
+Y.hG.3
+```
+
+Gerombol optimum = 22
+
+```{r}
+fit3 <- SCR(Y, X, W3, Sp, G= Y.hG.3, Phi=1)
+data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot3 = fit3$group)
+```
+
+
+### Gerombol dengan pembobot 4
+
+```{r clusw4}
+## SCR: spatially clustered regression
+set.seed(1)
+Y <- imputasi$Y
+X <- as.matrix(cbind(imputasi$X1,imputasi$X2,imputasi$X3,imputasi$X4,
+                     imputasi$X6,imputasi$X7,imputasi$X8))
+G.set <- seq(3, 30, by=1)
+Y.IC.4 <- SCR.select(Y, X, W4, Sp, G.set=G.set, Phi=1, print=F, family="gaussian")
+Y.hG.4 <- Y.IC.4$G    # optimal number of group via BIC
+Y.hG.4
+```
+
+Gerombol optimum = 7
+
+```{r}
+fit4 <- SCR(Y, X, W4, Sp, G= Y.hG.4, Phi=1)
+data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot4 = fit4$group)
+```
+
+### Gerombol dengan pembobot 5
+
+```{r clusw5}
+## SCR: spatially clustered regression
+set.seed(1)
+Y <- imputasi$Y
+X <- as.matrix(cbind(imputasi$X1,imputasi$X2,imputasi$X3,imputasi$X4,
+                     imputasi$X6,imputasi$X7,imputasi$X8))
+G.set <- seq(3, 30, by=1)
+Y.IC.5 <- SCR.select(Y, X, W5, Sp, G.set=G.set, Phi=1, print=F, family="gaussian")
+Y.hG.5 <- Y.IC.5$G    # optimal number of group via BIC
+Y.hG.5
+```
+
+Gerombol optimum = 6
+
+```{r}
+fit5 <- SCR(Y, X, W5, Sp, G= Y.hG.5, Phi=1)
+data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot5 = fit5$group)
+```
+
+### Gerombol dengan pembobot 6
+
+```{r clusw6}
+## SCR: spatially clustered regression
+set.seed(1)
+Y <- imputasi$Y
+X <- as.matrix(cbind(imputasi$X1,imputasi$X2,imputasi$X3,imputasi$X4,
+                     imputasi$X6,imputasi$X7,imputasi$X8))
+G.set <- seq(3, 30, by=1)
+Y.IC.6 <- SCR.select(Y, X, W6, Sp, G.set=G.set, Phi=1, print=F, family="gaussian")
+Y.hG.6 <- Y.IC.6$G    # optimal number of group via BIC
+Y.hG.6
+```
+
+Gerombol optimum = 5
+
+```{r}
+fit6 <- SCR(Y, X, W6, Sp, G= Y.hG.6, Phi=1)
+data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot6 = fit6$group)
+```
+
+### Gerombol dengan pembobot 7
+
+```{r clusw7}
+## SCR: spatially clustered regression
+set.seed(1)
+Y <- imputasi$Y
+X <- as.matrix(cbind(imputasi$X1,imputasi$X2,imputasi$X3,imputasi$X4,
+                     imputasi$X6,imputasi$X7,imputasi$X8))
+G.set <- seq(3, 30, by=1)
+Y.IC.7 <- SCR.select(Y, X, W7, Sp, G.set=G.set, Phi=1, print=F, family="gaussian")
+Y.hG.7 <- Y.IC.7$G    # optimal number of group via BIC
+Y.hG.7
+```
+
+Gerombol optimum = 4
+
+```{r}
+fit7 <- SCR(Y, X, W7, Sp, G= Y.hG.7, Phi=1)
+data.gerombol.spasial <- data.gerombol.spasial %>% mutate(Y.pembobot7 = fit7$group)
+```
+
+### Gerombol dengan pembobot 8
+
+```{r clusw8}
+## SCR: spatially clustered regression
+df <- imputasi[order(imputasi$ADM2_EN),]
+koordinat.2 <- df[,c(16,17)]
+Sp.2 <- as.matrix(koordinat.2)
+Y <- df$Y
+X <- as.matrix(cbind(df$X1,df$X2,df$X3,df$X4,
+                     df$X6,df$X7,df$X8))
+G.set <- seq(3, 15, by=1)
+Y.IC.8 <- SCR.select(Y, X, W8, Sp.2, G.set=G.set, Phi=1, print=F, family="gaussian")
+Y.hG.8 <- Y.IC.8$G    # optimal number of group via BIC
+Y.hG.8
+```
+
+Gerombol optimum = 13
+
+```{r}
+fit8 <- SCR(Y, X, W8, Sp.2, G= Y.hG.8, Phi=1)
+data.gerombol.spasial.2 <- imputasi[order(imputasi$ADM2_EN),]
+data.gerombol.spasial.2 <- data.gerombol.spasial.2 %>% mutate(Y.pembobot8 = fit8$group)
+```
+
+### Gerombol dengan pembobot 9
+
+```{r clusw9}
+## SCR: spatially clustered regression
+df <- imputasi[order(imputasi$ADM2_EN),]
+koordinat.2 <- df[,c(16,17)]
+Sp.2 <- as.matrix(koordinat.2)
+Y <- df$Y
+X <- as.matrix(cbind(df$X1,df$X2,df$X3,df$X4,
+                     df$X6,df$X7,df$X8))
+G.set <- seq(3, 15, by=1)
+Y.IC.9 <- SCR.select(Y, X, W9, Sp.2, G.set=G.set, Phi=1, print=F, family="gaussian")
+Y.hG.9 <- Y.IC.9$G    # optimal number of group via BIC
+Y.hG.9
+```
+
+Gerombol optimum = 12
+
+```{r}
+fit9 <- SCR(Y, X, W9, Sp, G= Y.hG.9, Phi=1)
+data.gerombol.spasial.2 <- data.gerombol.spasial.2 %>% mutate(Y.pembobot9 = fit9$group)
+```
+
+
+### Peta Gerombol Spasial
+
+Berikut hasil peta 9 model Regresi Gerombol Spasial
+
+```{r plot 9  model}
+indonesia.map <- id.map
+indonesia.map <- indonesia.map[c(-91,-92,-93,-94,-95,-127,-513,-514),]
+indonesia.2 <- tigris::geo_join(spatial_data=indonesia.map, data_frame = data.gerombol.spasial, by_df = "ADM2_EN",by_sp ="ADM2_EN", how = "inner")
+```
+
+#### Y pembobot 1
+
+```{r yw1}
+Y.pembobot1 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot1))) +
+  labs(title = "Y pembobot 1",
+       fill = "Cluster") +
+  theme_bw()
+Y.pembobot1
+```
+
+Peta Regresi Gerombol Spasial pembobot jarak ambang
+
+#### Y pembobot 2
+
+```{r yw2}
+Y.pembobot2 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot2))) +
+  labs(title = "Y pembobot 2",
+       fill = "Cluster") +
+  theme_bw()
+Y.pembobot2
+```
+Peta Regresi Gerombol Spasial pembobot eksponensial
+
+#### Y pembobot 3
+
+```{r yw3}
+Y.pembobot3 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot3))) +
+  labs(title = "Y pembobot 3",
+       fill = "Cluster") +
+  theme_bw()
+Y.pembobot3
+```
+
+Peta Regresi Pembobot Spasial pembobot KNN (k = 3)
+
+#### Y pembobot 4
+
+```{r yw4}
+Y.pembobot4 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot4))) +
+  labs(title = "Y pembobot 4",
+       fill = "Cluster") +
+  theme_bw()
+Y.pembobot4
+```
+
+Peta Regresi Gerombol Spasial pembobot KNN (k = 4)
+
+#### Y pembobot 5
+
+```{r yw5}
+Y.pembobot5 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot5))) +
+  labs(title = "Y pembobot 5",
+       fill = "Cluster") +
+  theme_bw()
+Y.pembobot5
+```
+Peta Regresi Gerombol Spasial KNN (k = 5)
+
+#### Y pembobot 6
+
+```{r yw6}
+Y.pembobot6 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot6))) +
+  labs(title = "Y pembobot 6",
+       fill = "Cluster") +
+  theme_bw()
+Y.pembobot6
+```
+
+Peta Regresi Gerombol Spasial pembobot jarak invers (alpha = 1)
+
+#### Y pembobot 7
+
+```{r yw7}
+Y.pembobot7 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot7))) +
+  labs(title = "Y pembobot 7",
+       fill = "Cluster") +
+  theme_bw()
+Y.pembobot7
+```
+
+Peta Regresi Gerombol Spasial pembobot jarak invers (alpha = 2)
+
+#### Y pembobot 8
+
+```{r}
+indonesia.3 <- tigris::geo_join(spatial_data=indonesia.map, data_frame = data.gerombol.spasial.2, by_df = "ADM2_EN",by_sp ="ADM2_EN", how = "inner")
+```
+
+```{r yw8}
+Y.pembobot8 <- ggplot() +
+  geom_sf(data = indonesia.3, aes(fill = as.factor(Y.pembobot8))) +
+  labs(title = "Y pembobot 8",
+       fill = "Cluster") +
+  theme_bw()
+Y.pembobot8
+```
+
+Peta Regresi Gerombol Spasial pembobot queen contiguity
+
+#### Y pembobot 9
+
+```{r yw9}
+Y.pembobot9 <- ggplot() +
+  geom_sf(data = indonesia.3, aes(fill = as.factor(Y.pembobot9))) +
+  labs(title = "Y pembobot 9",
+       fill = "Cluster") +
+  theme_bw()
+Y.pembobot9
+```
+
+Peta Regresi Gerombol Spasial rook contiguity
+
+### Nilai uji kebaikan model
+
+#### MAE
+
+```{r mae}
+MAE.1 <- mean(abs(fit1$sSig))
+MAE.2 <- mean(abs(fit2$sSig))
+MAE.3 <- mean(abs(fit3$sSig))
+MAE.4 <- mean(abs(fit4$sSig))
+MAE.5 <- mean(abs(fit5$sSig))
+MAE.6 <- mean(abs(fit6$sSig))
+MAE.7 <- mean(abs(fit7$sSig))
+MAE.8 <- mean(abs(fit8$sSig))
+MAE.9 <- mean(abs(fit9$sSig))
+
+MAE <- c(MAE.1, MAE.2, MAE.3, MAE.4, MAE.5, MAE.6, MAE.7, MAE.8, MAE.9)
+```
+
+#### MAPE
+
+```{r mape}
+MAPE.1 <- mean(abs(fit1$sSig/imputasi$Y)) * 100
+MAPE.2 <- mean(abs(fit2$sSig/imputasi$Y)) * 100
+MAPE.3 <- mean(abs(fit3$sSig/imputasi$Y)) * 100
+MAPE.4 <- mean(abs(fit4$sSig/imputasi$Y)) * 100
+MAPE.5 <- mean(abs(fit5$sSig/imputasi$Y)) * 100
+MAPE.6 <- mean(abs(fit6$sSig/imputasi$Y)) * 100
+MAPE.7 <- mean(abs(fit7$sSig/imputasi$Y)) * 100
+MAPE.8 <- mean(abs(fit8$sSig/imputasi$Y)) * 100
+MAPE.9 <- mean(abs(fit9$sSig/imputasi$Y)) * 100
+
+MAPE <- c(MAPE.1, MAPE.2, MAPE.3, MAPE.4, MAPE.5, MAPE.6, MAPE.7, MAPE.8, MAPE.9)
+```
+
+#### RMSE
+
+```{r rmse}
+RMSE.1 <- sqrt(mean(fit1$sSig^2))
+RMSE.2 <- sqrt(mean(fit2$sSig^2))
+RMSE.3 <- sqrt(mean(fit3$sSig^2))
+RMSE.4 <- sqrt(mean(fit4$sSig^2))
+RMSE.5 <- sqrt(mean(fit5$sSig^2))
+RMSE.6 <- sqrt(mean(fit6$sSig^2))
+RMSE.7 <- sqrt(mean(fit7$sSig^2))
+RMSE.8 <- sqrt(mean(fit8$sSig^2))
+RMSE.9 <- sqrt(mean(fit9$sSig^2))
+
+RMSE <- c(RMSE.1, RMSE.2, RMSE.3, RMSE.4, RMSE.5, RMSE.6, RMSE.7, RMSE.8, RMSE.9)
+```
+
+```{r model compare}
+Model <- c("Model 1", "Model 2", "Model 3", "Model 4", "Model 5", "Model 6", "Model 7", "Model 8", "Model 9")
+df.model <- data.frame(Model, MAE, MAPE, RMSE)
+knitr::kable(df.model, digits = 2, "simple")
+```
+
+
+Berdasarkan *information criterion*, uji kebaikan model, dan pola gerombol peta dipilih model 4 dengan gerombol optimum 7 dan pembobot 4-tetangga terdekat sebagai model terbaik
+
+
+### ANOVA
+
+Hasil boxplot menunjukkan bahwa terdapat perbedaan antara gerombol spasial satu dengan gerombol spasial yang lain.
+
+```{r boxplot yw4}
+data.gerombol.spasial$Y.pembobot4 <- as.factor(data.gerombol.spasial$Y.pembobot4)
+boxplot(Y ~ Y.pembobot4, data = data.gerombol.spasial,
+        col = c("white", "steelblue"))
+```
+
+Setelah didapatkan model terbaik, kemudian dilakukan analisis sidik ragam untuk mengetahui apakah terdapat perbedaan antar gerombol terhadap tingkat kemiskinan dengan hipotesis sebagai berikut:
+
+> $H_0$: tingkat kemiskinan antar gerombol sama
+> $H_1$: tingkat kemiskinan antar gerombol berbeda
+
+```{r create anova}
+buat.anova <- data.gerombol.spasial
+buat.anova$Y.pembobot4 <- as.factor(buat.anova$Y.pembobot4)
+aov_ral <- aov(Y ~ Y.pembobot4, data = buat.anova)
+summary(aov_ral)
+```
+
+Tabel ANOVA menunjukkan `p-value < 0.05` sehingga tolak $H_0$ atau dapat dikatakan bahwa tingkat kemiskinan antar gerombol berbeda. Berikut rataan tiap peubah untuk setiap gerombol spasial:
+
+```{r mean y}
+library(data.table)
+rata.2 <- buat.anova
+peubahlain <- data.gerombol.spasial
+setDT(rata.2)
+setDT(peubahlain)
+rata.2[ ,list(mean=mean(Y)), by=Y.pembobot4]
+```
+
+Rataan peubah **$Y$**
+
+```{r mean x1}
+peubahlain[ ,list(mean=mean(X1)), by=Y.pembobot4]
+```
+
+Rataan peubah **$X_1$**
+
+```{r mean x2}
+peubahlain[ ,list(mean=mean(X2)), by=Y.pembobot4]
+```
+
+Rataan peubah **$X_2$**
+
+```{r mean x3}
+peubahlain[ ,list(mean=mean(X3)), by=Y.pembobot4]
+```
+
+Rataan peubah **$X_3$**
+
+```{r mean x4}
+peubahlain[ ,list(mean=mean(X4)), by=Y.pembobot4]
+```
+
+Rataan peubah **$X_4$**
+
+```{r mean x6}
+peubahlain[ ,list(mean=mean(X6)), by=Y.pembobot4]
+```
+
+Rataan peubah **$X_6$**
+
+```{r mean x7}
+peubahlain[ ,list(mean=mean(X7)), by=Y.pembobot4]
+```
+
+Rataan peubah **$X_7$**
+
+```{r mean x8}
+peubahlain[ ,list(mean=mean(X8)), by=Y.pembobot4]
+```
+
+Rataan peubah **$X_8$**
+
+#### Uji lanjut (Tukey)
+
+Sudah diketahui melalui ANOVA bahwa terdapat perbedaan tingkat kemiskinan antar gerombol. Pertanyaannya gerombol mana yang berbeda? Oleh karena itu dilakukan uji lanjut menggunakan uji Tukey untuk mengecek perbedaan tingkat kemiskinan di setiap gerombolnya sehingga dikethaui mana gerombol dengan tingkat kemiskinan sama dan gerombol dengan tingkat kemiskinan berbeda.
+
+```{r tukey test}
+tukey.gerombol <- TukeyHSD(aov_ral, 'Y.pembobot4', conf.level = 0.95)
+tukey.gerombol$Y.pembobot4
+```
+
+Dua gerombol diketahui berbeda nyata ketika memiliki nilai `p-value` dibawah `0.05` atau mengandung nilai 0 pada selang antara batas bawah dan batas atasnya. Dengan demikian, 7 gerombol yang ada di bagi menjadi 4 kelompok sebagai berikut:
+
+  - Kelompok a (kemiskinan rendah) : gerombol 1
+  - Kelompok b (kemiskinan sedang) : gerombol 3, 4, 5, 6
+  - Kelompok c (kemiskinan tinggi) : gerombol 7
+  - Kelompok d (kemiskinan sangat tinggi) : gerombol 2
+
+#### Peta per gerombol untuk model terbaik
+
+Berikut peta untuk masing-masing gerombol
+
+##### Gerombol ke-1
+
+```{r finclus1}
+Y.pembobot4.1 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot4))) +
+  labs(title = "Gerombol spasial 1",
+       fill = "Cluster") +
+  theme_bw() +
+  scale_fill_manual(values = c("1" = "darkblue",
+                                "2"="white", "3"="white", "4"="white", "5"="white", "6"="white", "7"="white")) 
+Y.pembobot4.1
+```
+
+##### Gerombol ke-2
+
+```{r finclus2}
+Y.pembobot4.2 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot4))) +
+  labs(title = "Gerombol spasial 2",
+       fill = "Cluster") +
+  theme_bw() +
+  scale_fill_manual(values = c("2" = "darkblue",
+                                "1"="white", "3"="white", "4"="white", "5"="white", "6"="white", "7"="white")) 
+Y.pembobot4.2
+```
+
+
+##### Gerombol ke-3
+
+```{r finclus3}
+Y.pembobot4.3 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot4))) +
+  labs(title = "Gerombol spasial 3",
+       fill = "Cluster") +
+  theme_bw() +
+  scale_fill_manual(values = c("3" = "darkblue",
+                                "1"="white", "2"="white", "4"="white", "5"="white", "6"="white", "7"="white")) 
+Y.pembobot4.3
+```
+
+
+##### Gerombol ke-4
+
+```{r finclus4}
+Y.pembobot4.4 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot4))) +
+  labs(title = "Gerombol spasial 4",
+       fill = "Cluster") +
+  theme_bw() +
+  scale_fill_manual(values = c("4" = "darkblue",
+                                "1"="white", "2"="white", "3"="white", "5"="white", "6"="white", "7"="white")) 
+Y.pembobot4.4
+```
+
+
+##### Gerombol ke-5
+
+```{r finclus5}
+Y.pembobot4.5 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot4))) +
+  labs(title = "Gerombol spasial 5",
+       fill = "Cluster") +
+  theme_bw() +
+  scale_fill_manual(values = c("5" = "darkblue",
+                                "1"="white", "2"="white", "3"="white", "4"="white", "6"="white", "7"="white")) 
+Y.pembobot4.5
+```
+
+
+##### Gerombol ke-6
+
+```{r finclus6}
+Y.pembobot4.6 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot4))) +
+  labs(title = "Gerombol spasial 6",
+       fill = "Cluster") +
+  theme_bw() +
+  scale_fill_manual(values = c("6" = "darkblue",
+                                "1"="white", "2"="white", "3"="white", "4"="white", "5"="white", "7"="white")) 
+Y.pembobot4.6
+```
+
+
+##### Gerombol ke-7
+
+```{r finclus7}
+Y.pembobot4.7 <- ggplot() +
+  geom_sf(data = indonesia.2, aes(fill = as.factor(Y.pembobot4))) +
+  labs(title = "Gerombol spasial 7",
+       fill = "Cluster") +
+  theme_bw() +
+  scale_fill_manual(values = c("7" = "darkblue",
+                                "1"="white", "2"="white", "3"="white", "4"="white", "5"="white", "6"="white")) 
+Y.pembobot4.7
+```
+
+### Peubah-Peubah berpengaruh
+
+Peubah berpengaruh signifikan dicari menggunakan uji t pada tahap iterasi terakhir model Regresi Gerombol Spasial. peubah dengan `p-value` lebih kecil dari `0.05` maka dikatakan signifikan dengan hipotesis sebagai berikut:
+
+> $H_0$: peubah penjelas tidak berpengaruh signifikan terhadap $Y$
+> $H_1$: peubah penjelas berpengaruh signifikan terhadap $Y$
+
+```{r echo=FALSE}
+## Main function 
+SCR <- function(Y, X, W, Sp, G=5, Phi=1, offset=NULL, fuzzy=F, maxitr=100, delta=1, family="gaussian"){
+  ## Preparations
+  ep <- 10^(-5)      # convergence criterion 
+  X <- as.matrix(X)
+  n <- dim(X)[1]     # number of samples
+  p <- dim(X)[2]+1   # number of regression coefficients
+  XX <- as.matrix( cbind(1,X) )
+  W <- as(W, "sparseMatrix")
+  if(is.null(offset)){ offset <- rep(0, n) }
+  nmax <- function(x){ max(na.omit(x)) }   # new max function 
+  
+  ## Initial values
+  M <- 20  # the number of initial values of k-means
+  WSS <- c()
+  CL <- list()
+  for(k in 1:M){
+    set.seed(123)
+    CL[[k]] <- kmeans(Sp, G)
+    WSS[k] <- CL[[k]]$tot.withinss
+  }
+  Ind <- CL[[which.min(WSS)]]$cluster
+  Pen <- rep(0, G)
+  Beta <- matrix(0, p, G)
+  dimnames(Beta)[[2]] <- paste0("G=",1:G)
+  Sig <- rep(1, G)    # not needed under non-Gaussian case
+  Nu <- rep(1, G) 
+  
+  ## iterative algorithm 
+  val <- 0
+  mval <- 0
+  for(k in 1:maxitr){
+    cval <- val
+    #print(paste("Sekarang adalah k ke-", k))
+    ## penalty term
+    Ind.mat <- matrix(0, n, G)
+    for(g in 1:G){
+      Ind.mat[Ind==g, g] <- 1
+    }
+    Ind.mat <- as(Ind.mat, "sparseMatrix")
+    Pen <- W%*%Ind.mat     # penalty term
+    
+    ## model parameters (clustered case)
+    if(fuzzy==F){
+      for(g in 1:G){
+        print(paste("length sepanjang", length(Ind[Ind==g]), "dan p + 1 sebesar", p+1))
+        if(length(Ind[Ind==g])>p+1){
+          # gaussian
+          if(family=="gaussian"){
+            fit <- lm(Y[Ind==g]~X[Ind==g,])
+            print(paste("Sekarang adalah gerombol ke-", g))
+            print(summary(fit)) #Jika ingin melihat peubah berpengaruh maka hilangkan tanda pagar
+            Beta[,g] <- as.vector( coef(fit) )
+            resid <- Y-as.vector(XX%*%Beta[,g])
+            Sig[g] <- sqrt(mean(resid[Ind==g]^2))
+            Sig[g] <- max(Sig[g], 0.1)
+          }
+          # poisson
+          if(family=="poisson"){
+            x <- X[Ind==g,]
+            y <- Y[Ind==g]
+            off <- offset[Ind==g]
+            fit <- glm(y~x, offset=off, family="poisson")
+            Beta[,g] <- as.vector( coef(fit) )
+          }
+          # NB
+          if(family=="NB"){
+            x <- X[Ind==g,]
+            y <- Y[Ind==g]
+            off <- offset[Ind==g]
+            fit <- glm.nb(y~x+offset(off))
+            Beta[,g] <- as.vector( coef( fit ) )
+            Nu[g] <- fit$theta
+          }
+        }
+      }
+    }
+    
+    ## model parameters (fuzzy case)
+    if(fuzzy==T){
+      # Gaussian
+      if(family=="gaussian"){
+        Mu <- XX%*%Beta      # (n,G)-matrix
+        ESig <- t(matrix(rep(Sig,n), G, n))    # (n,G)-matrix
+        log.dens <- log(dnorm(Y,Mu,ESig)) + Phi*Pen
+        mval <- apply(log.dens, 1, max)
+        log.denom <- mval + log(apply(exp(log.dens-mval), 1, sum))
+        PP <- exp(log.dens-log.denom)     # weight
+        for(g in 1:G){ 
+          if(sum(PP[,g])>0.1){
+            fit <- lm(Y~X, weights=PP[,g])
+            
+            Beta[,g] <- as.vector( coef(fit) )
+            resid <- Y-as.vector(XX%*%Beta[,g])
+            Sig[g] <- sqrt( sum(PP[,g]*resid^2)/sum(PP[,g]) )
+            Sig[g] <- max(Sig[g], 0.1)
+          }
+        }
+      }
+      
+      # Poisson
+      if(family=="poisson"){
+        Mu <- exp(offset + XX%*%Beta)    # (n,G)-matrix
+        log.dens <- log(dpois(Y, Mu)) + Phi*Pen 
+        mval <- apply(log.dens, 1, max)
+        log.denom <- mval + log(apply(exp(log.dens-mval), 1, sum))
+        PP <- exp(log.dens-log.denom)     # weight
+        for(g in 1:G){
+          if(sum(PP[,g])>0.1){
+            fit <- glm(Y~X, offset=offset, weights=PP[,g], family="poisson")
+            Beta[,g] <- as.vector( coef(fit) )
+          }
+        }
+      }
+      # NB
+      if(family=="NB"){
+        Mu <- exp(offset + XX%*%Beta)    # (n,G)-matrix
+        log.dens <- dnbinom(Y, size=Nu, prob=Nu/(Nu+Mu), log=T) + Phi*Pen 
+        mval <- apply(log.dens, 1, max)
+        log.denom <- mval + log(apply(exp(log.dens-mval), 1, sum))
+        PP <- exp(log.dens-log.denom)     # weight
+        for(g in 1:G){
+          if(sum(PP[,g])>0.1){
+            fit <- glm.nb(Y~X+offset(offset), weights=PP[,g])
+            Beta[,g] <- as.vector( coef(fit) )
+            Nu[g] <- fit$theta
+          }
+        }
+      }
+    }
+    
+    ## Grouping (clustered case)
+    if(fuzzy==F){
+      if(family=="gaussian"){
+        Mu <- XX%*%Beta      # (n,G)-matrix
+        ESig <- t(matrix(rep(Sig,n), G, n))    # (n,G)-matrix
+        Q <- dnorm(Y, Mu, ESig, log=T) + Phi*Pen     # penalized likelihood
+      }
+      if(family=="poisson"){ 
+        Mu <- exp(offset + XX%*%Beta) 
+        Q <- dpois(Y, Mu, log=T)  + Phi*Pen    # penalized likelihood
+      }
+      if(family=="NB"){ 
+        Mu <- exp(offset + XX%*%Beta) 
+        Q <- dnbinom(Y, size=Nu, prob=Nu/(Nu+Mu), log=T)  + Phi*Pen    # penalized likelihood
+      }
+      Ind <- apply(Q, 1, which.max)
+    }
+    
+    ## Grouping (fuzzy case)
+    if(fuzzy==T){
+      if(family=="gaussian"){
+        Mu <- XX%*%Beta      # (n,G)-matrix
+        ESig <- t(matrix(rep(Sig,n), G, n))    # (n,G)-matrix
+        Q <- delta*(dnorm(Y, Mu, ESig, log=T) + Phi*Pen)   # penalized likelihood
+        mval <- apply(Q, 1, max)
+        log.denom <- mval + log(apply(exp(Q-mval), 1, sum))
+        PP <- exp(Q-log.denom)
+      }
+      if(family=="poisson"){ 
+        Mu <- exp(offset + XX%*%Beta)    # (n,G)-matrix
+        Q <- delta*(dpois(Y, Mu, log=T)  + Phi*Pen)   # penalized likelihood
+        mval <- apply(Q, 1, max)
+        log.denom <- mval + log(apply(exp(Q-mval), 1, sum))
+        PP <- exp(Q-log.denom)
+      }
+      if(family=="NB"){ 
+        Mu <- exp(offset + XX%*%Beta)    # (n,G)-matrix
+        Q <- delta*(dnbinom(Y, size=Nu, prob=Nu/(Nu+Mu), log=T) + Phi*Pen)   # penalized likelihood
+        mval <- apply(Q, 1, max)
+        log.denom <- mval + log(apply(exp(Q-mval), 1, sum))
+        PP <- exp(Q-log.denom)
+      }
+      Ind <- apply(PP, 1, which.max)
+    }
+    
+    ## Value of objective function
+    val <- sum( apply(Q, 1, nmax) ) 
+    dd <- abs(cval-val)/abs(val)
+    mval <- max(mval, cval)
+    if( dd<ep | abs(mval-val)<ep ){ break }
+  }
+  
+  ## varying parameters
+  if(fuzzy==F){  sBeta <- t(Beta[,Ind]) }
+  if(fuzzy==T){  sBeta <- PP%*%t(Beta) }
+  sSig <- Sig[Ind]     # location-wise error variance
+  
+
+  ## maximum likelihood 
+  if(family=="gaussian"){
+    hmu <- apply(XX*sBeta, 1, sum)
+    ML <- sum( dnorm(Y, hmu, sSig, log=T) ) 
+  }
+  if(family=="poisson"){
+    hmu <- exp(offset + apply(XX*sBeta, 1, sum))
+    ML <- sum( dpois(Y, hmu, log=T) ) 
+  }
+  if(family=="NB"){
+    sNu <- Nu[Ind]
+    hmu <- exp(offset + apply(XX*sBeta, 1, sum))
+    ML <- sum( dnbinom(Y, size=sNu, prob=sNu/(sNu+hmu), log=T) ) 
+  }
+  
+  ## Results
+  result <- list(Beta=Beta, Sig=Sig, Nu=Nu, group=Ind, sBeta=sBeta, sSig=sSig, ML=ML, itr=k)
+  return(result)
+}
+
+###  Selection of tuning parameters  ###
+## Imput
+# most of inputs are the same as 'SCR' 
+# G.set: vector of candidates for G
+# print: if True, interim progress is reported 
+
+## Output
+# BIC: BIC-type criteria
+# select: selection results 
+
+## Main function 
+SCR.select <- function(Y, X, W, Sp, G.set=NULL, Phi=1, offset=NULL, maxitr=50, print=T, family="gaussian"){
+  ## Preparations
+  if(is.null(G.set)){ G.set <- seq(10, 40, by=5) }
+  X <- as.matrix(X)
+  n <- dim(X)[1]
+  p <- dim(X)[2]+1
+  L <- length(G.set)
+  
+  ## computing information criteria
+  BIC <- c()
+  for(l in 1:L){
+    fit <- SCR(Y, X, W, Sp, offset=offset, G=G.set[l], Phi=Phi, maxitr=maxitr, family=family)
+    pp <- length(fit$Beta) 
+    if(family=="gaussian"| family=="NB"){ pp <- pp + G.set[l] }
+    BIC[l] <- -2*fit$ML + log(n)*pp
+    if(print){ print( paste0("G=",G.set[l], ", iteration=", fit$itr) ) }
+  }
+  names(BIC) <- paste0("G=", G.set)
+  
+  ## selection
+  hG <- G.set[which.min(BIC)]
+
+  ## result
+  Result <- list(BIC=BIC, G=hG)
+  return(Result)
+}
+```
+
+
+```{r fit scr}
+fit4 <- SCR(Y, X, W4, Sp, G= 7, Phi=1)
+```
+
+Peubah-Peubah signifikan di tiap gerombolnya adalah sebagai berikut:
+
+- Gerombol 1: $X_2$, $X_3$, $X_4$, $X_6$
+- Gerombol 2: $X_3$, $X_8$
+- Gerombol 3: $X_3$
+- Gerombol 4: $X_2$, $X_3$, $X_4$, $X_6$, $X_7$, $X_8$
+- Gerombol 5: $X_1$, $X_2$, $X_3$
+- Gerombol 6: $X_1$, $X_3$
+- Gerombol 7: $X_8$
+

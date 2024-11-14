@@ -26,7 +26,7 @@ dengan $y_i \sim \text{NB}(\mu_i)$
 
 SDM merupakan model regresi spasial yang digunakan ketika data memiliki dependensi spasial pada peubah respon dan peubah penjelas sehingga pembobotan spasial dilakukan pada peubah respon dan peubah penjelas. Persamaan untuk SDM sebagai berikut [@anselin1988]:
 
-\$y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon \$
+$y = \rho W_1 y + X\beta + \gamma W_2 X + \varepsilon $
 
 dengan $W_2$ merupakan matriks pembobot spasial untuk $X$ dan $\gamma$ merupakan koefisien untuk lag spasial pada prediktor. Spatial Durbin model binomial negatif (SDM BN) merupakan model spasial Durbin untuk data cacah dengan overdispersi. Persamaan dari SDM BN sebagai berikut [@glaser2017]:
 

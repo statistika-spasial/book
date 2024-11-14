@@ -41,8 +41,7 @@ Buku ini memberikan penjelasan tentang analisis data geospasial dimulai dari ide
 
 Buku ini dirancang untuk pembaca dari berbagai latar belakang, baik yang memiliki pengalaman dalam analisis geospasial maupun yang baru mengenalnya. Kami berharap buku ini dapat menjadi sumber pengetahuan yang berharga dan panduan yang berguna bagi pembaca dalam memahami dan menguasai analisis geospasial.
 
-Ucapan terima kasih disampaikan kepada Sdr. ……., ……… yang membantu dalam menyusun dan memeriksa scipt R. Ucapan terimakasih juga disampaikan pada Bpk. ……. yang memberikan review pada buku yang kami susun.  Kami juga mengucapkan terima kasih kepada semua pihak yang telah mendukung dan berkontribusi dalam pembuatan buku ini. 
-Buku ini masih jauh dari sempurna, kritik dan saran yang membangun terhadap buku ini sangat diharapkan. Semoga buku ini dapat memberikan manfaat dan meningkatkan pemahaman pembaca tentang analisis data geospasial.
+Terima kasih disampaikan kepada Alfa Nugraha Pradana, M.Si., Fadillah Rohimahastuti, M.Si., dan Nindi Pighita, M.Si. yang telah membantu dalam penyusunan dan pemeriksaan script R, serta Prof. Aji Hamim Wigena, M.Sc. dan Rahma Anisa, S.Stat, M.Si., M.Act.Sc. yang telah memberikan review pada buku yang kami susun. Kami juga mengucapkan terima kasih kepada semua pihak yang telah mendukung dan berkontribusi dalam pembuatan buku ini. Buku ini masih jauh dari sempurna, kritik dan saran yang membangun terhadap buku ini sangat diharapkan. Semoga buku ini dapat memberikan manfaat dan meningkatkan pemahaman pembaca tentang analisis data geospasial.
 
 
 ::: {.content-visible when-format="html"}
@@ -52,5 +51,3 @@ Buku ini masih jauh dari sempurna, kritik dan saran yang membangun terhadap buku
 ![](images/cover.png){fig-alt="cover by Fadillah R" fig-align="left" height=500}
 
 :::
-
-## Acknowledgements {-}

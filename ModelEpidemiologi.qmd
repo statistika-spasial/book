@@ -463,7 +463,7 @@ moran.test(jawa_data$Stunting, WW1,randomisation=T,
            alternative="two.sided")
 ```
 
-Berdasarkan uji Indeks Moran di atas, diperoleh p-value < 0.05, artinya bahwa H0 ditolak. Sehingga dapat disimpulkan bahwa terdapat autokorelasi spasial pada data.
+Berdasarkan uji Indeks Moran di atas, diperoleh `p-value < 0.05`, artinya bahwa $H_0$ ditolak. Sehingga dapat disimpulkan bahwa terdapat autokorelasi spasial pada data.
  
 
 ## Model Estimation

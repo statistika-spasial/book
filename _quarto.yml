@@ -43,12 +43,8 @@ book:
         - 04-RegresiTerbobotiGeografis.qmd 
         - 05-RegresiTerbobotiGeografisCampuran.qmd
         - 06-RegresiTerbobotiGeografisBinomialNegatif.qmd
-    
-    - part: part-3.qmd
-      chapters: 
-        - 07-Data.qmd 
-        - 08-MetodeAnalisis.qmd
-        - 09-TahapanR.qmd    
+        
+    - MGWRSAR.qmd
     
     - part: part-4.qmd
       chapters: 
@@ -56,6 +52,8 @@ book:
         - 11-ModelKeragamanSpasial.qmd
     
     - ModelEpidemiologi.qmd
+    
+    - RegresiSpasialGerombol.qmd
   
   appendices: 
     - references.qmd
@@ -64,6 +62,8 @@ bibliography:
   - packages.bib
   - book.bib
   - references.bib
+
+csl: https://www.zotero.org/styles/apa
 
 knitr:
   opts_chunk: 
